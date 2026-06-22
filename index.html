@@ -318,64 +318,64 @@ body {
 </div>
 
 <script>
-// SEED verified June 22, 2026 (Monday)
+// SEED verified June 22, 2026 (Monday) — test run
 // Sources: EOX Live Morning Report 6:01 AM CST Jun 22: Nat Gas $3.323 (+$0.090, +2.78%), WTI $77.00 (+$0.40, +0.52%), Brent $79.35 (-$0.50) |
-//          ERCOT CDR last updated Jun 22 08:02 — HB_HUBAVG $22.89 at 0800 (early morning off-peak); peak so far $34.74 at 0700 |
-//          Heat dome now over central/eastern U.S. — PJM and MISO on Max Gen Alert; peak-hour price spikes expected Mon–Wed |
+//          ERCOT CDR last updated Jun 22 08:02 — HB_HUBAVG $22.89 at 0800 (off-peak); peak so far $34.74 at 0700 with heat dome |
+//          Heat dome active Mon–Wed over central/eastern U.S. — PJM and MISO Max Gen Alert; afternoon price spikes expected |
 //          EIA storage wk/e Jun 12 (released Jun 18): 2,759 Bcf, +73 Bcf build, 151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago |
 //          Next EIA storage report: wk/e Jun 19, due Thu Jun 25 |
-//          Qatar: explosion at Ras Laffan LNG Industrial City on Jun 21 — 13 killed, 54 injured, 18 missing |
-//            Qatar Energy Ministry + NGI + Bloomberg confirm no impact to LNG export flows |
+//          U.S. LNG export flows: 17.1 Bcf/d in June, flat vs. May; European demand supporting export capacity utilization |
+//          SunZia Wind Farm (3,650 MW) reaches commercial operations in New Mexico — largest wind farm in U.S. history |
 //          PJM ComEd zone DA ~$52/MWh estimate (heat dome conditions; peak-hour spikes expected) |
-//          natGas Jun '26 updated 3.21 -> 3.32 (EOX Live Jun 22 spot); wti updated 76.50 -> 77.00 |
-//          ercot Jun '26 bumped 40 -> 42; pjm 47 -> 52; miso 33 -> 36; nyiso 58 -> 60 (heat dome MTD approx)
+//          All prices confirmed unchanged from EOX Live 6:01 AM CST Jun 22 (email thread verified) |
 // WORD OF DAY USED — never repeat: Price to Compare (PTC), Basis Differential,
 //   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
-//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC)
+//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge
 // LAST KB TOPICS (avoid repeating): How Pipeline Capacity Constraints Create Regional Gas Price Dislocations,
 //   How the PJM Capacity Auction Determines Costs on Your Customer's Electric Bill,
 //   How Natural Gas Storage Works and Why Weekly EIA Storage Reports Move Markets,
 //   How Summer Power Burn Links Natural Gas and Electricity Markets,
 //   How the EDI 814 Transaction Starts Your Customer's Competitive Energy Supply,
 //   How Grid Emergency Alerts Translate into Wholesale Power Price Spikes,
-//   How U.S. LNG Export Growth Tied Domestic Natural Gas Prices to Global Supply Events
+//   How U.S. LNG Export Growth Tied Domestic Natural Gas Prices to Global Supply Events,
+//   How Utility Rate Classes Determine Which Tariff Applies to Your Customer
 const SEED = {
   date: "Monday, June 22, 2026",
   meta: "Auto-refreshed June 22, 2026 · EOX Live 6:01 AM CST · ERCOT CDR 08:02 · EIA wk/e Jun 12 · Heat dome active Mon–Wed",
   prices: [
     { name: "Nat Gas Spot",          price: "$3.32/MMBtu",  change: "EOX Live 6:01 AM CST — +$0.09 (+2.78%) vs. prior settle",    direction: "up" },
     { name: "Nat Gas Futures (Jul)", price: "$3.32/MMBtu",  change: "Jul contract settles ~Jun 25 · heat dome lifting demand bids", direction: "up" },
-    { name: "ERCOT Real-Time",       price: "$23/MWh",      change: "CDR 08:02 off-peak · peak hours expected to spike with heat dome", direction: "flat" },
+    { name: "ERCOT Real-Time",       price: "$23/MWh",      change: "CDR 08:02 off-peak · peak at $34.74 (0700) · afternoon spikes expected", direction: "up" },
     { name: "PJM ComEd Zone",        price: "$52/MWh",      change: "DA estimate · Max Gen Alert active · peak-hour spikes likely Mon–Wed", direction: "up" },
     { name: "WTI Crude",             price: "$77.00/bbl",   change: "EOX Live 6:01 AM CST — +$0.40 (+0.52%) vs. prior settle",    direction: "up" }
   ],
   wordOfDay: {
-    term: "Peak Load Contribution",
-    abbr: "(PLC)",
-    category: "Power Markets",
-    tldr: "A customer's share of the grid's annual peak demand hour that determines their capacity cost obligation.",
-    usedInSentence: "In PJM, each commercial customer is assigned a Peak Load Contribution tag based on how much power they consumed during the five highest-demand hours of the previous summer — typically hot weekday afternoons in July or August — and that tag is multiplied by the annual capacity auction clearing price to calculate the capacity charge that flows through on their electric bill for the following year, which is why customers who reduce their usage on critical summer peak hours can meaningfully lower their capacity costs 12 months later."
+    term: "Generation Charge",
+    abbr: "",
+    category: "Bill Components",
+    tldr: "The supply portion of an electric bill covering the actual cost of producing power.",
+    usedInSentence: "For a commercial customer in ComEd territory who has switched to a competitive electricity supplier, the utility's generation charge line item disappears from the bill and is replaced by the supplier's contracted rate — which is why competitive pricing proposals always compare their offered rate directly against the utility's current generation charge, not against the full bill total that also includes delivery, transmission, and non-bypassable charges."
   },
   headlines: [
     {
-      title: "Explosion at Qatar's Ras Laffan LNG Facility Kills 13; Exports Said Unaffected",
-      tag: "LNG / Global Supply",
-      summary: "A technical malfunction triggered a deadly blast Sunday at Qatar's main LNG complex, but the Energy Ministry and Bloomberg confirmed no disruption to global export flows."
+      title: "SunZia Wind Farm, Nation's Largest at 3,650 MW, Reaches Commercial Operation in New Mexico",
+      tag: "Renewables / Grid",
+      summary: "Pattern Energy's SunZia project is now delivering power to Arizona and California via a 550-mile HVDC line, reshaping Southwest power market dynamics."
     },
     {
-      title: "Heat Dome Settles Over Central and Eastern U.S., Pushing Grid Operators to Highest Alert",
-      tag: "Power Grid / Demand",
-      summary: "PJM and MISO declared maximum generation alerts as the heat dome's arrival threatens to drive summer peak demand records through midweek."
+      title: "U.S. LNG Export Flows Hold at 17.1 Bcf/d in June Despite Maintenance Season Headwinds",
+      tag: "LNG / Supply",
+      summary: "American LNG terminals shipped at near-capacity in June as firm European demand absorbed any maintenance-related softness, keeping Henry Hub tied to global signals."
     }
   ],
   knowledgeBuilder: {
-    topic: "How U.S. LNG Export Growth Tied Domestic Natural Gas Prices to Global Supply Events",
-    tldr: "Before the buildout of U.S. LNG export terminals beginning in 2016, Henry Hub prices were largely insulated from international gas markets — a supply disruption in Qatar or Australia would have had little effect on what a Chicago manufacturer paid for gas. Today, with the U.S. exporting over 14 Bcf/d of LNG, events like the Ras Laffan explosion immediately ripple into domestic futures because traders must now price American gas against a global demand pool that includes European and Asian buyers competing for the same supply, which is why a geopolitical headline halfway around the world can move the NYMEX strip within minutes."
+    topic: "How Utility Rate Classes Determine Which Tariff Applies to Your Customer",
+    tldr: "Every utility customer is assigned a rate class — typically based on annual consumption level or peak demand — that determines which tariff schedule governs their account, setting the default generation rate, distribution charges, and demand thresholds that competitive suppliers must account for when building a quote. Understanding a customer's rate class is the first step in procurement because it defines the price-to-compare, whether demand charges apply, and which capacity tags the customer carries — all of which affect whether a competitive offer will actually deliver savings on the total bill."
   },
   procurementTip: {
-    tip: "With the heat dome now active across PJM and MISO through midweek, real-time wholesale prices during afternoon peak hours are likely to spike well above day-ahead averages — customers on real-time indexed electricity supply should expect this week's settlement values to reflect those scarcity-priced intervals even when surrounding off-peak hours remain calm, which is exactly the scenario where day-ahead or fixed-price supply products provide the most visible budget protection."
+    tip: "With heat dome conditions driving afternoon power prices well above day-ahead estimates across PJM and MISO through midweek, this week is a reminder that ERCOT's early-morning off-peak reading of $23/MWh tells only part of the story — customers evaluating indexed supply should ask for a full 8,760-hour load-weighted average price, not just the overnight lows."
   },
   // 1-Year Price History (monthly averages)
   // Updated June 22, 2026 by scheduled task.
@@ -417,17 +417,18 @@ const SEED = {
     { term: "Non-Bypassable Charge (NBC)",     category: "Bill Components",   definition: "A regulated utility surcharge that all customers must pay regardless of whether they have switched their energy supply to a competitive provider. NBCs cover programs mandated by the state — such as low-income energy assistance, system benefit funds, and stranded cost recovery — and cannot be eliminated by choosing a different supplier, which is why competitive supply savings are always calculated net of these charges." },
     { term: "ESI ID",                          category: "Data & Enrollment", definition: "A unique identifier (typically 22 digits in ERCOT) assigned to each electric service delivery point. Used by retail electric providers and utilities to route enrollment, change, and drop transactions, ensuring the correct meter is associated with the correct supplier without relying solely on address matching." },
     { term: "Reconciliation Charge",           category: "Bill Components",   definition: "A billing adjustment that corrects the difference between estimated costs already charged to customers in prior periods and what those costs actually turned out to be. Common in gas utility bills where fuel cost estimates are trued up monthly or quarterly — customers may see a credit or an additional charge depending on whether the utility over- or under-recovered costs earlier." },
-    { term: "Peak Load Contribution (PLC)",    category: "Power Markets",     definition: "A customer's assigned share of the grid's annual single-hour peak demand, used in PJM and other ISO/RTOs to determine capacity cost obligations. The PLC tag is set based on a customer's measured demand during the prior year's critical peak hours — typically hot summer afternoons — and directly drives the capacity charge on their electric bill for the following year, which is why load reduction during peak hours has a measurable financial payoff 12 months later." }
+    { term: "Peak Load Contribution (PLC)",    category: "Power Markets",     definition: "A customer's assigned share of the grid's annual single-hour peak demand, used in PJM and other ISO/RTOs to determine capacity cost obligations. The PLC tag is set based on a customer's measured demand during the prior year's critical peak hours — typically hot summer afternoons — and directly drives the capacity charge on their electric bill for the following year, which is why load reduction during peak hours has a measurable financial payoff 12 months later." },
+    { term: "Generation Charge",               category: "Bill Components",   definition: "The portion of an electricity bill covering the cost of actually producing power — distinct from delivery, transmission, and non-bypassable charges. For customers who switch to a competitive supplier, the utility's generation charge is replaced by the supplier's contracted rate, which is why it serves as the primary benchmark when evaluating whether a competitive offer delivers savings." }
   ]
 };
 
 // AI Prompt (AI Refresh button)
 const AI_PROMPT = `You are writing an early-career energy markets daily newsletter for junior analysts at an energy brokerage. Informational tone — explain what is happening and why. No task-list language.
 
-WORD OF DAY — already used (do not repeat): Price to Compare (PTC), Basis Differential, LMP, Capacity Charge, FAC, Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC)
-Pick from: franchise fee, true-up, generation charge, supply adder, adder, swing supply, contract start vs flow date, early termination fee, notice period, renewal window, POD ID, rate class, interval data, AMI meter, MDM, EDI 814, EDI 867, EDI 810, enrollment window, drop notice, reinstatement, capacity tag (ICAP)
+WORD OF DAY — already used (do not repeat): Price to Compare (PTC), Basis Differential, LMP, Capacity Charge, FAC, Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge
+Pick from: franchise fee, true-up, supply adder, adder, swing supply, contract start vs flow date, early termination fee, notice period, renewal window, POD ID, rate class, interval data, AMI meter, MDM, EDI 867, EDI 810, enrollment window, drop notice, reinstatement, capacity tag (ICAP)
 
-MARKET FACTS (June 22, 2026 — Monday): Henry Hub spot $3.32/MMBtu (EOX Live 6:01 AM CST, +$0.09 vs. prior settle); NYMEX Jul futures $3.32/MMBtu (Jul contract settles ~Jun 25; heat dome lifting demand bids); ERCOT CDR 08:02 HB_HUBAVG $22.89/MWh at 0800 off-peak (peak hours TBD; heat dome active); PJM ComEd zone DA ~$52/MWh estimate (Max Gen Alert active; peak-hour spikes expected Mon–Wed); WTI $77.00/bbl (EOX Live +$0.40 +0.52%); EIA storage wk/e Jun 12: 2,759 Bcf, +73 Bcf build (151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago); explosion at Qatar Ras Laffan LNG Jun 21 — 13 killed, Qatar confirms no LNG export disruption; heat dome active across central/eastern U.S. through midweek; MISO Max Gen Event expected Jun 23; next EIA storage report wk/e Jun 19, due Thu Jun 25.
+MARKET FACTS (June 22, 2026 — Monday): Henry Hub spot $3.32/MMBtu (EOX Live 6:01 AM CST, +$0.09 vs. prior settle); NYMEX Jul futures $3.32/MMBtu (Jul contract settles ~Jun 25; heat dome lifting demand bids); ERCOT CDR 08:02 HB_HUBAVG $22.89/MWh at 0800 off-peak (peak so far $34.74 at 0700; heat dome active); PJM ComEd zone DA ~$52/MWh estimate (Max Gen Alert active; peak-hour spikes expected Mon–Wed); WTI $77.00/bbl (EOX Live +$0.40 +0.52%); EIA storage wk/e Jun 12: 2,759 Bcf, +73 Bcf build (151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago); U.S. LNG exports 17.1 Bcf/d in June flat vs. May; SunZia Wind Farm (3,650 MW) reached commercial operations in New Mexico; next EIA storage report wk/e Jun 19, due Thu Jun 25.
 
 RULES: wordOfDay.tldr ≤20 words · headlines: exactly 2 · headlines[].summary ≤25 words · knowledgeBuilder.tldr 1-2 sentences · procurementTip.tip 1 sentence · glossary: keep all past entries, append today's new term.
 priceHistory: preserve existing arrays unchanged unless it's a new month, in which case append the new month's data.
