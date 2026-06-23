@@ -333,61 +333,56 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service
 // LAST KB TOPICS -- avoid repeating recent ones:
-//   How Natural Gas Storage Works and Why Weekly EIA Storage Reports Move Markets,
-//   How Summer Power Burn Links Natural Gas and Electricity Markets,
-//   How the EDI 814 Transaction Starts Your Customer's Competitive Energy Supply,
-//   How Grid Emergency Alerts Translate into Wholesale Power Price Spikes,
-//   How U.S. LNG Export Growth Tied Domestic Natural Gas Prices to Global Supply Events,
-//   How Utility Rate Classes Determine Which Tariff Applies to Your Customer,
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
-//   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events
+//   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
+//   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point
 const SEED = {
-  date: "Tuesday, June 23, 2026",
+  date: "Wednesday, June 24, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures slipped nearly 3% to $3.12 today as LNG export maintenance at Freeport and Golden Pass curtailed demand, even as weather forecasts show temperatures climbing sharply by the weekend. WTI crude fell to $73.77. In ERCOT, a surge in renewable output is softening gas-fired generation, pushing power prices lower despite rising summer load."
+    marketTakeaway: "[TEST RUN] Natural gas edged up $0.04 to $3.26/MMBtu as LNG export flows recovered from maintenance outages and a hotter extended forecast lifted power burn expectations. WTI crude held near $74. ERCOT load is climbing toward seasonal peaks as Texas enters peak cooling season."
   },
   prices: [
-    { name: "HH Spot", price: "$3.22", change: "-0.92%", direction: "down" },
-    { name: "NYMEX NG", price: "$3.12", change: "-3.1%", direction: "down" },
-    { name: "WTI Crude", price: "$73.77", change: "-1.40%", direction: "down" },
-    { name: "Brent Crude", price: "$77.80", change: "-0.13%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$32", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.26", change: "+1.2%", direction: "up" },
+    { name: "NYMEX NG", price: "$3.18", change: "+0.8%", direction: "up" },
+    { name: "WTI Crude", price: "$74.10", change: "+0.4%", direction: "up" },
+    { name: "Brent Crude", price: "$78.05", change: "+0.3%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "~$45", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Curtailment",
-    abbr: "CURT",
-    category: "Grid Operations",
-    tldr: "A grid operator-ordered reduction in power output or customer load to maintain system reliability during supply shortfalls.",
-    usedInSentence: "During extreme heat events, ERCOT can issue curtailment orders to industrial customers on interruptible service contracts, reducing their electricity draw to prevent widespread outages."
+    term: "Interruptible Service",
+    abbr: "IS",
+    category: "Contract Terms",
+    tldr: "A lower-cost gas or power contract that lets the supplier cut off delivery during high-demand periods.",
+    usedInSentence: "Large industrial facilities often take interruptible service to save on fixed charges, accepting the risk that supply may be curtailed on the coldest days of the year when pipeline capacity is fully committed."
   },
   headlines: [
     {
-      title: "It's About to Get Hotter -- So Why Aren't Natural Gas Prices Rising?",
-      tag: "Gas Markets",
-      summary: "Despite forecasts calling for a heat-driven surge in cooling demand by the weekend, natural gas futures remain flat as ample storage and supply growth offset seasonal demand signals."
+      title: "[TEST] LNG Export Flows Recover as Freeport Returns from Maintenance",
+      tag: "Gas Supply",
+      summary: "Feed gas deliveries to U.S. LNG terminals rebounded toward 17.5 Bcfd as Freeport LNG restarted a liquefaction train sidelined for scheduled maintenance earlier this week."
     },
     {
-      title: "Renewables Roaring Back in ERCOT as Natural Gas Generation Softens",
-      tag: "Power Generation",
-      summary: "A sharp week-over-week increase in wind and solar output is expected to substantially reduce ERCOT natural gas power burn this week, even as total electricity load climbs."
+      title: "[TEST] ERCOT Issues Conservation Appeal Ahead of Wednesday Afternoon Peak",
+      tag: "Grid Operations",
+      summary: "Texas grid operator ERCOT asked customers to voluntarily reduce power use between 3 and 8 PM Wednesday as afternoon load is forecast to approach 79 GW amid 100-degree heat."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events",
-    tldr: "Demand response (DR) programs pay commercial and industrial energy users to voluntarily cut their electricity consumption when the grid is under stress. Grid operators dispatch these curtailments instead of firing up expensive peaker plants, which lowers wholesale prices and protects grid reliability for everyone on the system."
+    topic: "How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point",
+    tldr: "Basis risk is the difference between the Henry Hub benchmark price and the actual price at a local delivery point -- driven by pipeline congestion, regional supply-demand imbalances, and seasonal demand shifts. When a customer locks in a Henry Hub-indexed contract, they still face basis risk: if local prices spike above Henry Hub due to a cold snap or pipeline outage, their effective cost rises above what the contract appears to guarantee."
   },
-  procurementTip: "With Henry Hub spot at $3.22 and storage 151 Bcf above the five-year average, natural gas supply remains comfortable heading into peak summer demand -- an environment that has historically favored index-linked pricing for customers comfortable with short-term price fluctuations.",
+  procurementTip: "With LNG maintenance wrapping up and summer heat building, basis risk between Henry Hub and Midcontinent delivery points is widening -- customers on index contracts in constrained regions should watch local spot prices, not just the Henry Hub headline.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
-    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.22],
-    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 73.77],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 32],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 42],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 34],
-    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 57]
+    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26],
+    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10],
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
+    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
   },
   deepDive: null,
   glossary: [
@@ -412,7 +407,8 @@ const SEED = {
     { term: "Generation Charge", category: "Bill Components", definition: "The portion of a utility bill attributed to electricity production -- what competitive suppliers replace when a customer switches from default service." },
     { term: "Swing Supply", category: "Contract Terms", definition: "A natural gas supply arrangement allowing the buyer to take more or less than contracted volume, typically at a premium to the daily spot index." },
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
-    { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." }
+    { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
+    { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." }
   ]
 };
 
