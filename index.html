@@ -215,7 +215,7 @@ body {
   <div class="header">
     <div class="header-left">
       <h1>Energy Morning Brief</h1>
-      <div class="header-meta" id="headerMeta">Loadingâ¦</div>
+      <div class="header-meta" id="headerMeta">LoadingÃ¢ÂÂ¦</div>
     </div>
     <div class="header-actions">
       <button class="export-btn" onclick="window.print()">Export PDF</button>
@@ -226,35 +226,35 @@ body {
   <div class="error-bar" id="errorBar"></div>
 
   <div class="section">
-    <div class="section-label">ð¬ Word of the Day</div>
+    <div class="section-label">Ã°ÂÂÂ¬ Word of the Day</div>
     <div id="wordContainer"></div>
   </div>
 
   <hr class="divider">
 
   <div class="section">
-    <div class="section-label">ð§  Concept Explainer</div>
+    <div class="section-label">Ã°ÂÂ§Â  Concept Explainer</div>
     <div id="kbContainer"></div>
   </div>
 
   <hr class="divider">
 
   <div class="section">
-    <div class="section-label">ð Market Takeaway</div>
+    <div class="section-label">Ã°ÂÂÂ Market Takeaway</div>
     <div id="tipContainer"></div>
   </div>
 
   <hr class="divider">
 
   <div class="section">
-    <div class="section-label">ð° Top Stories</div>
+    <div class="section-label">Ã°ÂÂÂ° Top Stories</div>
     <div id="headlinesContainer"></div>
   </div>
 
   <div id="deepDiveSection" style="display:none">
     <hr class="divider">
     <div class="section">
-      <div class="section-label">ð Friday Deep Dive</div>
+      <div class="section-label">Ã°ÂÂÂ Friday Deep Dive</div>
       <div id="deepDiveContainer"></div>
     </div>
   </div>
@@ -262,7 +262,7 @@ body {
   <hr class="divider">
 
   <div class="section">
-    <div class="section-label">ð 1-Year Price Trends</div>
+    <div class="section-label">Ã°ÂÂÂ 1-Year Price Trends</div>
     <div class="charts-wrap" id="chartsWrap">
       <div class="chart-panel">
         <div class="chart-panel-header">
@@ -273,11 +273,11 @@ body {
           </div>
         </div>
         <canvas id="chartCommodity" height="170"></canvas>
-        <div class="chart-note">Monthly averages Â· refreshed by scheduled task Â· approximate seed data</div>
+        <div class="chart-note">Monthly averages ÃÂ· refreshed by scheduled task ÃÂ· approximate seed data</div>
       </div>
       <div class="chart-panel">
         <div class="chart-panel-header">
-          <span class="chart-panel-title">Wholesale Power â ECX Markets ($/MWh)</span>
+          <span class="chart-panel-title">Wholesale Power Ã¢ÂÂ ECX Markets ($/MWh)</span>
           <div class="chart-legend">
             <span class="legend-item"><span class="legend-swatch" style="background:#3fb950"></span>ERCOT Hub Avg</span>
             <span class="legend-item"><span class="legend-swatch" style="background:#bc8cff"></span>PJM ComEd Zone</span>
@@ -286,7 +286,7 @@ body {
           </div>
         </div>
         <canvas id="chartPower" height="160"></canvas>
-        <div class="chart-note">Monthly averages Â· refreshed by scheduled task Â· approximate seed data</div>
+        <div class="chart-note">Monthly averages ÃÂ· refreshed by scheduled task ÃÂ· approximate seed data</div>
       </div>
     </div>
   </div>
@@ -294,38 +294,38 @@ body {
   <hr class="divider">
 
   <div class="section" id="termQueueSection">
-    <div class="section-label">ð³ï¸ Term Requests â What the Team Wants Explained</div>
-    <div id="termQueueContainer"><div class="tq-empty">Loading requestsâ¦</div></div>
-    <a class="suggest-btn" href="https://docs.google.com/forms/d/1HJpH8S-ISQ4Oe67rglPe-Hu0oVf0peAN4C1YFegoMm0/viewform" target="_blank" rel="noopener">âï¸ Suggest a Term (anonymous)</a>
+    <div class="section-label">Ã°ÂÂÂ³Ã¯Â¸Â Term Requests Ã¢ÂÂ What the Team Wants Explained</div>
+    <div id="termQueueContainer"><div class="tq-empty">Loading requestsÃ¢ÂÂ¦</div></div>
+    <a class="suggest-btn" href="https://docs.google.com/forms/d/1HJpH8S-ISQ4Oe67rglPe-Hu0oVf0peAN4C1YFegoMm0/viewform" target="_blank" rel="noopener">Ã¢ÂÂÃ¯Â¸Â Suggest a Term (anonymous)</a>
   </div>
 
   <hr class="divider">
 
   <div class="section">
     <button class="glossary-toggle" id="glossaryToggle" onclick="toggleGlossary()">
-      ð Glossary <span class="chevron">â¼</span>
+      Ã°ÂÂÂ Glossary <span class="chevron">Ã¢ÂÂ¼</span>
     </button>
     <div class="glossary-body" id="glossaryBody">
       <div class="gloss-controls">
-        <input type="search" id="glossSearch" class="gloss-search" placeholder="Search terms and definitionsâ¦">
+        <input type="search" id="glossSearch" class="gloss-search" placeholder="Search terms and definitionsÃ¢ÂÂ¦">
         <div class="gloss-pills" id="glossPills"></div>
       </div>
       <div class="glossary-list" id="glossaryList"></div>
     </div>
   </div>
 
-  <div class="footer">Sources: EIA &nbsp;Â·&nbsp; ERCOT CDR &nbsp;Â·&nbsp; EOX Live &nbsp;Â·&nbsp; NGI &nbsp;Â·&nbsp; refreshed daily via scheduled task</div>
+  <div class="footer">Sources: EIA &nbsp;ÃÂ·&nbsp; ERCOT CDR &nbsp;ÃÂ·&nbsp; EOX Live &nbsp;ÃÂ·&nbsp; NGI &nbsp;ÃÂ·&nbsp; refreshed daily via scheduled task</div>
 </div>
 
 <script>
-// SEED verified June 22, 2026 (Monday) â test run
+// SEED verified June 22, 2026 (Monday) Ã¢ÂÂ test run
 // Sources: EOX Live Morning Report 6:01 AM CST Jun 22: Nat Gas $3.323 (+$0.090, +2.78%), WTI $77.00 (+$0.40, +0.52%), Brent $79.35 (-$0.50) |
-//          ERCOT CDR last updated Jun 22 08:02 â HB_HUBAVG $22.89 at 0800 (off-peak); peak so far $34.74 at 0700 with heat dome |
-//          Heat dome active MonâWed over central/eastern U.S. â PJM and MISO Max Gen Alert; afternoon price spikes expected |
+//          ERCOT CDR last updated Jun 22 08:02 Ã¢ÂÂ HB_HUBAVG $22.89 at 0800 (off-peak); peak so far $34.74 at 0700 with heat dome |
+//          Heat dome active MonÃ¢ÂÂWed over central/eastern U.S. Ã¢ÂÂ PJM and MISO Max Gen Alert; afternoon price spikes expected |
 //          EIA storage wk/e Jun 12 (released Jun 18): 2,759 Bcf, +73 Bcf build, 151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago |
 //          Next EIA storage report: wk/e Jun 19, due Thu Jun 25 |
 //          U.S. LNG export flows: 17.1 Bcf/d in June, flat vs. May; European demand supporting export capacity utilization |
-//          SunZia Wind Farm (3,650 MW) reaches commercial operations in New Mexico â largest wind farm in U.S. history |
+//          SunZia Wind Farm (3,650 MW) reaches commercial operations in New Mexico Ã¢ÂÂ largest wind farm in U.S. history |
 //          PJM ComEd zone DA ~$52/MWh estimate (heat dome conditions; peak-hour spikes expected) |
 //          All prices confirmed unchanged from EOX Live 6:01 AM CST Jun 22 (email thread verified) |
 // WORD OF DAY USED — never repeat: Price to Compare (PTC), Basis Differential,
@@ -361,24 +361,14 @@ const SEED = {
     usedInSentence: "When a manufacturing plant runs extended shifts during a heat event and burns more gas than its fixed-volume contract allows, the local distribution company arranges swing supply to fill the gap — typically priced at a premium to the daily spot index, which is why customers with highly variable load profiles often use block-and-index structures to limit their swing exposure."
   },
   headlines: [
-    {
-      title: "Venture Global Signs Five-Year LNG Supply Deal with Germany's EnBW for 0.82 MTPA",
-      tag: "LNG / Global Markets",
-      summary: "The agreement adds to existing 20-year SPAs between the two parties, reinforcing American LNG's growing role in European energy security."
-    },
-    {
-      title: "Global Natural Gas Prices Retreat as U.S.-Iran Strait of Hormuz Talks Show Progress",
-      tag: "Geopolitics / Gas",
-      summary: "Peace negotiations reduced the geopolitical risk premium across crude and global LNG, with WTI shedding over $1/bbl on easing supply-disruption fears."
-    }
+    { title: "Venture Global Signs Five-Year LNG Supply Deal with Germany's EnBW for 0.82 MTPA", tag: "LNG / Global Markets", summary: "The agreement adds to existing 20-year SPAs between the two parties, reinforcing American LNG's growing role in European energy security." },
+    { title: "Global Natural Gas Prices Retreat as U.S.-Iran Strait of Hormuz Talks Show Progress", tag: "Geopolitics / Gas", summary: "Peace negotiations reduced the geopolitical risk premium across crude and global LNG, with WTI shedding over $1/bbl on easing supply-disruption fears." }
   ],
   knowledgeBuilder: {
     topic: "How Contract Start Dates Differ from Flow Dates and Why the Gap Matters",
     tldr: "In competitive energy supply, a contract's start date is when the agreement is legally executed, but the flow date is when the supplier actually begins delivering energy — and the two can be weeks apart because enrollment must move through the utility's EDI processing window and meter read cycle before the switch takes effect. This gap matters operationally because a customer who signs in September expecting October supply may not see the new supplier on their invoice until November, which is why brokers track enrollment deadlines separately from signature dates and always confirm a supplier's flow confirmation notice before considering a deal complete."
   },
-  procurementTip: {
-    tip: "With Henry Hub slipping back to $3.22 as the heat dome weakens and WTI dropping on Iran diplomacy, near-term index supply bills will ease — but EIA projects H2 2026 Henry Hub averaging above $3.34/MMBtu heading into winter, making this a reasonable window to discuss fixed-price locks with customers still riding full index exposure."
-  },
+  procurementTip: { tip: "With Henry Hub slipping back to $3.22 as the heat dome weakens and WTI dropping on Iran diplomacy, near-term index supply bills will ease — but EIA projects H2 2026 Henry Hub averaging above $3.34/MMBtu heading into winter, making this a reasonable window to discuss fixed-price locks with customers still riding full index exposure." },
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
     natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.23],
@@ -390,38 +380,38 @@ const SEED = {
   },
   deepDive: null,
   glossary: [
-    { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate — the benchmark a competitive supplier must beat to show savings for a customer." },
-    { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
-    { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO. Varies by node because transmission congestion prevents power from flowing freely across the grid." },
-    { term: "Capacity Charge", category: "Power Markets", definition: "A utility pass-through on electric bills covering the cost of reserving generation capacity in the ISO/RTO forward capacity auction. In PJM, sized based on each customer's Peak Load Contribution (PLC) tag and the auction clearing price." },
-    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes monthly fuel procurement costs to customers; it rises when wholesale gas prices increase and falls when they drop, making it one of the most volatile components of a distribution invoice." },
+    { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate — the benchmark a competitive supplier must beat to show savings." },
+    { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand." },
+    { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO." },
+    { term: "Capacity Charge", category: "Power Markets", definition: "A utility pass-through covering the cost of reserving generation capacity in the ISO/RTO forward capacity auction." },
+    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item passing monthly fuel procurement costs to customers; rises when wholesale gas prices increase." },
     { term: "Index Price", category: "Contract Terms", definition: "A supply price that floats with a published market benchmark rather than being locked in at signing." },
-    { term: "Fixed Price", category: "Contract Terms", definition: "A supply rate set at contract signing that remains constant for the full contract term, regardless of how wholesale markets move." },
-    { term: "Demand Charge", category: "Bill Components", definition: "A monthly billing component based on a customer's highest measured rate of power draw (kW) during a billing period — usually the single highest 15- or 30-minute interval — rather than total energy consumed (kWh)." },
-    { term: "Henry Hub", category: "Gas Supply", definition: "A pipeline interchange in Erath, Louisiana, serving as the benchmark for U.S. natural gas pricing." },
-    { term: "NYMEX Settlement", category: "Contract Terms", definition: "The official final closing price of an expiring NYMEX natural gas futures contract, published by CME about three business days before the delivery month begins." },
-    { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for physically delivering electricity or gas through local distribution pipes and wires to a customer's meter." },
-    { term: "Evergreen Clause", category: "Contract Terms", definition: "A contract provision that automatically renews a supply agreement for an additional term unless the customer provides written notice of cancellation within a specified window before the expiration date." },
-    { term: "Transmission Charge", category: "Bill Components", definition: "The regulated fee on utility bills that pays for moving electricity over high-voltage transmission lines from power plants to local distribution systems." },
-    { term: "Block-and-Index", category: "Contract Terms", definition: "A supply pricing structure in which a defined volume is purchased at a fixed rate while any usage above that volume is priced at a floating market index." },
-    { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A regulated utility surcharge that all customers must pay regardless of whether they have switched their energy supply to a competitive provider." },
-    { term: "ESI ID", category: "Data & Enrollment", definition: "A unique identifier assigned to each electric service delivery point in ERCOT, used to route enrollment and supply transactions." },
-    { term: "Reconciliation Charge", category: "Bill Components", definition: "A billing adjustment that corrects the difference between estimated costs already charged and what those costs actually turned out to be." },
-    { term: "Peak Load Contribution (PLC)", category: "Power Markets", definition: "A customer's assigned share of the grid's annual single-hour peak demand, used in PJM to determine capacity cost obligations." },
-    { term: "Generation Charge", category: "Bill Components", definition: "The portion of an electricity bill covering the cost of actually producing power, replaced by the supplier's contracted rate when a customer switches to a competitive supplier." },
-    { term: "Swing Supply", category: "Gas Supply", definition: "Short-term natural gas purchased to cover demand that exceeds a customer's base contracted volume, typically priced at a premium to the daily spot index." }
+    { term: "Fixed Price", category: "Contract Terms", definition: "A supply rate set at contract signing that remains constant for the full contract term." },
+    { term: "Demand Charge", category: "Bill Components", definition: "A monthly billing component based on a customer's highest measured rate of power draw (kW) during a billing period." },
+    { term: "Henry Hub", category: "Gas Supply", definition: "A pipeline interchange in Erath, Louisiana serving as the benchmark for U.S. natural gas pricing." },
+    { term: "NYMEX Settlement", category: "Contract Terms", definition: "The official final closing price of an expiring NYMEX natural gas futures contract, published by CME before the delivery month." },
+    { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for physically delivering electricity or gas through local distribution infrastructure to a customer's meter." },
+    { term: "Evergreen Clause", category: "Contract Terms", definition: "A contract provision that automatically renews a supply agreement unless the customer provides written notice within a specified window." },
+    { term: "Transmission Charge", category: "Bill Components", definition: "The regulated fee for moving electricity over high-voltage transmission lines from power plants to local distribution systems." },
+    { term: "Block-and-Index", category: "Contract Terms", definition: "A pricing structure where a base volume is fixed-price and any usage above that volume is priced at a floating index." },
+    { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A regulated surcharge all customers must pay regardless of whether they have switched to a competitive supplier." },
+    { term: "ESI ID", category: "Data & Enrollment", definition: "A unique identifier assigned to each electric service delivery point in ERCOT, used to route enrollment transactions." },
+    { term: "Reconciliation Charge", category: "Bill Components", definition: "A billing adjustment correcting the difference between estimated costs already charged and actual costs." },
+    { term: "Peak Load Contribution (PLC)", category: "Power Markets", definition: "A customer's assigned share of the grid's annual peak demand hour, driving capacity cost obligations in PJM." },
+    { term: "Generation Charge", category: "Bill Components", definition: "The portion of an electricity bill covering power production cost, replaced by the supplier's rate when switching to competitive supply." },
+    { term: "Swing Supply", category: "Gas Supply", definition: "Short-term natural gas purchased to cover demand exceeding a customer's base contracted volume, typically at a premium to the daily spot index." }
   ]
 };
 
 // AI Prompt (AI Refresh button)
-const AI_PROMPT = `You are writing an early-career energy markets daily newsletter for junior analysts at an energy brokerage. Informational tone â explain what is happening and why. No task-list language.
+const AI_PROMPT = `You are writing an early-career energy markets daily newsletter for junior analysts at an energy brokerage. Informational tone Ã¢ÂÂ explain what is happening and why. No task-list language.
 
-WORD OF DAY â already used (do not repeat): Price to Compare (PTC), Basis Differential, LMP, Capacity Charge, FAC, Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge
+WORD OF DAY Ã¢ÂÂ already used (do not repeat): Price to Compare (PTC), Basis Differential, LMP, Capacity Charge, FAC, Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge
 Pick from: franchise fee, true-up, supply adder, adder, swing supply, contract start vs flow date, early termination fee, notice period, renewal window, POD ID, rate class, interval data, AMI meter, MDM, EDI 867, EDI 810, enrollment window, drop notice, reinstatement, capacity tag (ICAP)
 
-MARKET FACTS (June 22, 2026 â Monday): Henry Hub spot $3.32/MMBtu (EOX Live 6:01 AM CST, +$0.09 vs. prior settle); NYMEX Jul futures $3.32/MMBtu (Jul contract settles ~Jun 25; heat dome lifting demand bids); ERCOT CDR 08:02 HB_HUBAVG $22.89/MWh at 0800 off-peak (peak so far $34.74 at 0700; heat dome active); PJM ComEd zone DA ~$52/MWh estimate (Max Gen Alert active; peak-hour spikes expected MonâWed); WTI $77.00/bbl (EOX Live +$0.40 +0.52%); EIA storage wk/e Jun 12: 2,759 Bcf, +73 Bcf build (151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago); U.S. LNG exports 17.1 Bcf/d in June flat vs. May; SunZia Wind Farm (3,650 MW) reached commercial operations in New Mexico; next EIA storage report wk/e Jun 19, due Thu Jun 25.
+MARKET FACTS (June 22, 2026 Ã¢ÂÂ Monday): Henry Hub spot $3.32/MMBtu (EOX Live 6:01 AM CST, +$0.09 vs. prior settle); NYMEX Jul futures $3.32/MMBtu (Jul contract settles ~Jun 25; heat dome lifting demand bids); ERCOT CDR 08:02 HB_HUBAVG $22.89/MWh at 0800 off-peak (peak so far $34.74 at 0700; heat dome active); PJM ComEd zone DA ~$52/MWh estimate (Max Gen Alert active; peak-hour spikes expected MonÃ¢ÂÂWed); WTI $77.00/bbl (EOX Live +$0.40 +0.52%); EIA storage wk/e Jun 12: 2,759 Bcf, +73 Bcf build (151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago); U.S. LNG exports 17.1 Bcf/d in June flat vs. May; SunZia Wind Farm (3,650 MW) reached commercial operations in New Mexico; next EIA storage report wk/e Jun 19, due Thu Jun 25.
 
-RULES: wordOfDay.tldr â¤20 words Â· headlines: exactly 2 Â· headlines[].summary â¤25 words Â· knowledgeBuilder.tldr 1-2 sentences Â· procurementTip.tip 1 sentence Â· glossary: keep all past entries, append today's new term.
+RULES: wordOfDay.tldr Ã¢ÂÂ¤20 words ÃÂ· headlines: exactly 2 ÃÂ· headlines[].summary Ã¢ÂÂ¤25 words ÃÂ· knowledgeBuilder.tldr 1-2 sentences ÃÂ· procurementTip.tip 1 sentence ÃÂ· glossary: keep all past entries, append today's new term.
 priceHistory: preserve existing arrays unchanged unless it's a new month, in which case append the new month's data.
 IF TODAY IS FRIDAY: include deepDive with 3 sections (2-3 sentences each).
 Today: ${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}.
@@ -533,7 +523,7 @@ function buildCommodityChart(h) {
     },
     options: {
       ...CHART_DEFAULTS,
-      plugins: { legend: { display: false }, tooltip: { ...tooltipStyle({}), callbacks: { title: items => items[0].label, label: item => { const units = ['$/MMBtu','$/bbl']; const val = item.raw != null ? item.raw.toFixed(2) : 'â'; return `  ${item.dataset.label}: $${val} ${units[item.datasetIndex]}`; } } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipStyle({}), callbacks: { title: items => items[0].label, label: item => { const units = ['$/MMBtu','$/bbl']; const val = item.raw != null ? item.raw.toFixed(2) : 'Ã¢ÂÂ'; return `  ${item.dataset.label}: $${val} ${units[item.datasetIndex]}`; } } } },
       scales: {
         x: axisStyle({}),
         yGas: axisStyle({ type: 'linear', position: 'left', title: { display: true, text: '$/MMBtu', color: '#388bfd', font: { size: 10.5 } }, ticks: { color: '#388bfd', font: { size: 10 }, callback: v => '$' + v.toFixed(2) }, grid: { color: '#1e242d' } }),
@@ -560,14 +550,14 @@ function buildPowerChart(h) {
     },
     options: {
       ...CHART_DEFAULTS,
-      plugins: { legend: { display: false }, tooltip: { ...tooltipStyle({}), callbacks: { title: items => items[0].label, label: item => { const val = item.raw != null ? item.raw.toFixed(0) : 'â'; return `  ${item.dataset.label}: $${val}/MWh`; } } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipStyle({}), callbacks: { title: items => items[0].label, label: item => { const val = item.raw != null ? item.raw.toFixed(0) : 'Ã¢ÂÂ'; return `  ${item.dataset.label}: $${val}/MWh`; } } } },
       scales: { x: axisStyle({}), y: axisStyle({ title: { display: true, text: '$/MWh', color: '#484f58', font: { size: 10.5 } }, ticks: { color: '#484f58', font: { size: 10 }, callback: v => '$' + v.toFixed(0) } }) }
     }
   });
 }
 
 function renderAll(data, loading=false) {
-  document.getElementById('headerMeta').textContent = `${data.date||''} Â· ${data.meta||''}`;
+  document.getElementById('headerMeta').textContent = `${data.date||''} ÃÂ· ${data.meta||''}`;
   document.getElementById('wordContainer').innerHTML      = loading ? pulse() : renderWord(data.wordOfDay);
   document.getElementById('headlinesContainer').innerHTML = loading ? pulse() : renderHeadlines(data.headlines);
   document.getElementById('kbContainer').innerHTML        = loading ? pulse() : renderKB(data.knowledgeBuilder);
@@ -641,7 +631,7 @@ async function loadTermQueue() {
     });
     const queue = Object.values(counts).sort((a, b) => b.count - a.count).slice(0, 5);
     if (!queue.length) {
-      el.innerHTML = '<div class="tq-empty">No open requests yet â be the first. Submissions are anonymous, and the most-requested term becomes the next Word of the Day.</div>';
+      el.innerHTML = '<div class="tq-empty">No open requests yet Ã¢ÂÂ be the first. Submissions are anonymous, and the most-requested term becomes the next Word of the Day.</div>';
       return;
     }
     el.innerHTML = queue.map((t, i) => `
@@ -651,7 +641,7 @@ async function loadTermQueue() {
         <span class="tq-count">${t.count} request${t.count > 1 ? 's' : ''}</span>
       </div>`).join('');
   } catch(_) {
-    el.innerHTML = '<div class="tq-empty">Couldn\'t reach the request sheet right now â use the Suggest a Term button below; submissions still land in the queue.</div>';
+    el.innerHTML = '<div class="tq-empty">Couldn\'t reach the request sheet right now Ã¢ÂÂ use the Suggest a Term button below; submissions still land in the queue.</div>';
   }
 }
 
@@ -682,7 +672,7 @@ function renderGlossaryUI(gl) {
 async function doRefresh() {
   const btn = document.getElementById('refreshBtn');
   const err = document.getElementById('errorBar');
-  btn.disabled = true; btn.textContent = 'Loadingâ¦';
+  btn.disabled = true; btn.textContent = 'LoadingÃ¢ÂÂ¦';
   err.style.display = 'none';
   renderAll(currentData, true);
   try {
@@ -690,10 +680,10 @@ async function doRefresh() {
     const cleaned = raw.replace(/```json|```/g,'').trim();
     const s = cleaned.indexOf('{'), e = cleaned.lastIndexOf('}');
     const parsed = JSON.parse(s>-1&&e>-1 ? cleaned.slice(s,e+1) : cleaned);
-    currentData = { ...parsed, meta: `AI refreshed Â· ${new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}` };
+    currentData = { ...parsed, meta: `AI refreshed ÃÂ· ${new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}` };
     renderAll(currentData);
   } catch(_) {
-    err.textContent = 'AI refresh unavailable â showing this morning\'s verified data.';
+    err.textContent = 'AI refresh unavailable Ã¢ÂÂ showing this morning\'s verified data.';
     err.style.display = 'block';
     renderAll(currentData);
   }
