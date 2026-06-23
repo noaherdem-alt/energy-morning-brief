@@ -472,7 +472,8 @@ function renderKB(kb) {
 }
 function renderTip(tip) {
   if (!tip) return '';
-  return `<div class="takeaway-text">${esc(tip.tip)}</div>`;
+  const text = typeof tip === 'string' ? tip : (tip.tip || '');
+  return `<div class="takeaway-text">${esc(text)}</div>`;
 }
 function renderDeepDive(dd) {
   if (!dd) return '';
