@@ -318,72 +318,73 @@ body {
 </div>
 
 <script>
-// SEED verified June 22, 2026 (Monday)  test run
-// Sources: EOX Live Morning Report 6:01 AM CST Jun 22: Nat Gas $3.323 (+$0.090, +2.78%), WTI $77.00 (+$0.40, +0.52%), Brent $79.35 (-$0.50) |
-//          ERCOT CDR last updated Jun 22 08:02  HB_HUBAVG $22.89 at 0800 (off-peak); peak so far $34.74 at 0700 with heat dome |
-//          Heat dome active MonWed over central/eastern U.S.  PJM and MISO Max Gen Alert; afternoon price spikes expected |
-//          EIA storage wk/e Jun 12 (released Jun 18): 2,759 Bcf, +73 Bcf build, 151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago |
-//          Next EIA storage report: wk/e Jun 19, due Thu Jun 25 |
-//          U.S. LNG export flows: 17.1 Bcf/d in June, flat vs. May; European demand supporting export capacity utilization |
-//          SunZia Wind Farm (3,650 MW) reaches commercial operations in New Mexico  largest wind farm in U.S. history |
-//          PJM ComEd zone DA ~$52/MWh estimate (heat dome conditions; peak-hour spikes expected) |
-//          All prices confirmed unchanged from EOX Live 6:01 AM CST Jun 22 (email thread verified) |
+// SEED verified June 23, 2026 (Tuesday)
+// Sources: EOX Live Morning Report 6:05 AM CST Jun 23: Nat Gas $3.223 (-$0.030, -0.92%), WTI $73.77 (-$1.05, -1.40%), Brent $77.80 (-$0.10, -0.13%) |
+//          ERCOT CDR last updated Jun 22 08:02 (ESTIMATED -- CDR not refreshed for Jun 23 at time of run) HB_HUBAVG $22.89 off-peak |
+//          Renewables surging in ERCOT week/week; natural gas power burn softening despite rising summer load |
+//          PJM DA price estimated ~$40/MWh (no confirmed DA figure for Jun 23) |
+//          EIA storage wk/e Jun 12 (released Jun 18): +73 Bcf actual vs. 82 Bcf forecast |
+//          NGI forecasts wk/e Jun 19 storage: +68 Bcf (5 Bcf lower w/w); EIA report due Thu Jun 25 |
+//          Storage ~5.8% above normal as of wk/e Jun 19; stronger LNG flows expected to deepen year/year storage deficit |
+//          US-Iran peace talks progressing; WTI and global LNG prices pulled lower on reduced supply-disruption risk |
+//          LNG export flows: ~17.2 Bcf/d in June, up from 17.1 Bcf/d in May (Freeport units back from maintenance) |
+//          Alaska LNG financing at risk: Glenfarne warns Senate tax bill leaves pipeline segment unfinanceable |
 // WORD OF DAY USED -- never repeat:
 //   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How ISO/RTO Economic Dispatch Sets Electricity Prices and Why Every Generator Gets Paid the Same Rate
+//   How ISO/RTO Capacity Markets Work and Why Commercial Electric Customers Pay a Capacity Charge They Can't Opt Out Of
 const SEED = {
   date: "Tuesday, June 23, 2026",
   meta: {
-    marketTakeaway: "Natural gas fell nearly 1% to $3.22/MMBtu Tuesday as traders took profits ahead of the July NYMEX contract expiration Thursday, while LNG export volumes edged up to 17.2 Bcf/d as Freeport units returned from maintenance. Crude oil also retreated, with WTI dropping 1.4% to $73.77/bbl, though above-normal temperatures forecast through July 7 continue to support power burn demand from gas-fired generators. The next EIA storage report for the week ending June 19 arrives Thursday and will give a fresh read on whether the 151 Bcf surplus over the five-year average is widening or narrowing."
+    marketTakeaway: "Natural gas slipped back Tuesday, with NYMEX front-month easing to $3.22/MMBtu (-0.92%) as progress in US-Iran peace talks eased global LNG demand concerns and healthy storage levels kept supply comfortable. WTI crude fell to $73.77/bbl (-1.40%) on the same geopolitical tailwind. In ERCOT, a surge in renewable generation is displacing natural gas on the grid this week, moderating power burn demand even as summer load continues to build toward seasonal peaks."
   },
   prices: [
-    { name: "HH Spot", price: "$3.22", change: "-0.9%", direction: "down" },
-    { name: "NYMEX NG", price: "$3.22", change: "-0.9%", direction: "down" },
-    { name: "WTI Crude", price: "$73.77", change: "-1.4%", direction: "down" },
-    { name: "Brent Crude", price: "$77.80", change: "-0.1%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$23*", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.22", change: "-0.92%", direction: "down" },
+    { name: "NYMEX NG", price: "$3.22", change: "-0.92%", direction: "down" },
+    { name: "WTI Crude", price: "$73.77", change: "-1.40%", direction: "down" },
+    { name: "Brent Crude", price: "$77.80", change: "-0.13%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$23 est.", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Load Factor",
+    term: "Franchise Fee",
     abbr: "",
     category: "Bill Components",
-    tldr: "The ratio of a customer's average electricity use to peak demand, showing how steadily they consume power.",
-    usedInSentence: "A refrigerated warehouse running compressors around the clock has a high load factor, spreading its peak demand charge across far more kilowatt-hours and resulting in a lower effective cost per kWh compared to a customer whose usage spikes sharply for only a few hours each day."
+    tldr: "A government-mandated fee utilities collect and remit to local jurisdictions for operating within their territory.",
+    usedInSentence: "When a commercial customer switches from default utility service to a competitive supplier, the franchise fee remains on their bill unchanged — it is paid to the municipality, not the supplier, so no competitive offer can eliminate it."
   },
   headlines: [
     {
-      title: "Natural Gas Retreats as Traders Square Positions Before July Contract Expiration Thursday",
-      tag: "Gas Markets",
-      summary: "Henry Hub fell nearly 1% to $3.22 Tuesday as profit-taking ahead of July NYMEX expiration outweighed warm-weather demand support with no new supply disruptions on the horizon."
+      title: "Renewables Roaring Back in ERCOT as Natural Gas Generation Softens",
+      tag: "Grid Operations",
+      summary: "A sharp week-over-week increase in renewable output is cutting into natural gas power burn across ERCOT even as overall summer load climbs toward seasonal highs."
     },
     {
-      title: "EIA Projects U.S. Summer Electricity Generation to Rise 3% on Solar Growth and Warmer Weather",
-      tag: "Power Markets",
-      summary: "Above-average temperatures and 19% growth in solar capacity are expected to drive a forecasted 3% increase in U.S. summer electricity generation compared with summer 2025."
+      title: "Glenfarne Says Senate Tax Bill Could Leave Alaska LNG Pipeline 'Unfinanceable'",
+      tag: "LNG / Policy",
+      summary: "Alaska LNG developer Glenfarne warns the Senate's latest tax bill strips the estimated $13-17 billion pipeline segment of any viable financing path forward."
     }
   ],
   knowledgeBuilder: {
-    topic: "How ISO/RTO Economic Dispatch Sets Electricity Prices and Why Every Generator Gets Paid the Same Rate",
-    tldr: "In an ISO/RTO energy market, generators are dispatched from lowest to highest cost until demand is fully met — the last and most expensive unit needed to balance supply sets the price for that interval, known as the locational marginal price (LMP). Every generator dispatched in that window receives that same clearing price regardless of their own cost, which is why a low-cost nuclear plant earns the same real-time rate as the gas peaker that was needed to keep the lights on."
+    topic: "How ISO/RTO Capacity Markets Work and Why Commercial Electric Customers Pay a Capacity Charge They Can't Opt Out Of",
+    tldr: "Independent system operators like PJM and MISO run forward capacity auctions — typically held one to three years ahead of the delivery year — where generators bid to guarantee availability during peak demand periods. The auction clearing price is then divided across all load-serving entities proportional to their share of system peak, and passed through to customers as a capacity charge on their electric bill. Because grid reliability is a shared obligation, this charge applies regardless of which competitive supplier a customer chooses — it is a non-bypassable utility pass-through, not a commodity cost that can be negotiated away."
   },
-  procurementTip: "Gas at $3.22 after today's profit-taking selloff gives index buyers a brief window to evaluate fixed-price options before above-normal temperatures through July push power burn and spot prices back higher.",
+  procurementTip: "With WTI and natural gas both pulling back on Iran peace progress and storage running comfortable, customers evaluating fixed-price supply contracts may find a brief pricing window before late-July heat expectations drive summer futures higher.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
     natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.22],
     wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 73.77],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 42],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
-    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 57]
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 40],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 33],
+    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
   },
   deepDive: null,
   glossary: [
@@ -410,7 +411,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average electricity demand over a billing period to their peak demand, expressed as a percentage. A high load factor indicates steady, consistent consumption; a low load factor means peak demand is much higher than average, typically resulting in higher demand charge costs per kWh." }
+    { term: "Franchise Fee", category: "Bill Components", definition: "A state or local government fee that utilities collect from customers and remit to the municipality for the right to operate within its jurisdiction -- passed through on utility bills and not reducible by switching to a competitive supplier." }
   ]
 };
 
