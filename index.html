@@ -334,56 +334,56 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How ISO/RTO Capacity Markets Work and Why Commercial Electric Customers Pay a Capacity Charge They Can't Opt Out Of
+//   How Notice Periods and Renewal Windows Work in Energy Supply Contracts
 const SEED = {
-  date: "Tuesday, June 23, 2026",
+  date: "Wednesday, June 24, 2026",
   meta: {
-    marketTakeaway: "Natural gas slipped back Tuesday, with NYMEX front-month easing to $3.22/MMBtu (-0.92%) as progress in US-Iran peace talks eased global LNG demand concerns and healthy storage levels kept supply comfortable. WTI crude fell to $73.77/bbl (-1.40%) on the same geopolitical tailwind. In ERCOT, a surge in renewable generation is displacing natural gas on the grid this week, moderating power burn demand even as summer load continues to build toward seasonal peaks."
+    marketTakeaway: "Natural gas edged up to $3.165/MMBtu as LNG export flows recovered to 17.2 Bcf/d after Freeport LNG restarted maintenance-idled capacity, while above-normal temperature forecasts through July 7 are lifting power burn demand. WTI crude fell sharply to $71.82, down nearly 2%, as US-Iran peace negotiations progressed and tankers resumed transit through the Strait of Hormuz. The EIA natural gas storage report for the week ending June 19 is due tomorrow and inventories are running about 5.8% above the five-year average."
   },
   prices: [
-    { name: "HH Spot", price: "$3.22", change: "-0.92%", direction: "down" },
-    { name: "NYMEX NG", price: "$3.22", change: "-0.92%", direction: "down" },
-    { name: "WTI Crude", price: "$73.77", change: "-1.40%", direction: "down" },
-    { name: "Brent Crude", price: "$77.80", change: "-0.13%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$23 est.", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.165", change: "+0.57%", direction: "up" },
+    { name: "NYMEX Jul", price: "$3.20", change: "+0.5%", direction: "up" },
+    { name: "WTI Crude", price: "$71.82", change: "-1.90%", direction: "down" },
+    { name: "Brent Crude", price: "$75.59", change: "-1.93%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$22.89*", change: "est.", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Franchise Fee",
-    abbr: "",
+    term: "Load Factor",
+    abbr: "LF",
     category: "Bill Components",
-    tldr: "A government-mandated fee utilities collect and remit to local jurisdictions for operating within their territory.",
-    usedInSentence: "When a commercial customer switches from default utility service to a competitive supplier, the franchise fee remains on their bill unchanged — it is paid to the municipality, not the supplier, so no competitive offer can eliminate it."
+    tldr: "The ratio of a customer's average energy use to their peak demand, expressed as a percentage.",
+    usedInSentence: "A manufacturing plant running around the clock will have a high load factor, meaning its per-unit energy cost is lower than a retailer with the same peak demand but irregular hours -- because demand charges are spread across more consumption."
   },
   headlines: [
     {
-      title: "Renewables Roaring Back in ERCOT as Natural Gas Generation Softens",
-      tag: "Grid Operations",
-      summary: "A sharp week-over-week increase in renewable output is cutting into natural gas power burn across ERCOT even as overall summer load climbs toward seasonal highs."
+      title: "Crude Oil Slides to $72 as US-Iran Peace Talks Ease Strait of Hormuz Tensions",
+      tag: "Oil Markets",
+      summary: "WTI fell nearly 2% Wednesday after US-Iran negotiations produced a 60-day waiver allowing global buyers to purchase Iranian crude, with tankers resuming Strait of Hormuz transit."
     },
     {
-      title: "Glenfarne Says Senate Tax Bill Could Leave Alaska LNG Pipeline 'Unfinanceable'",
-      tag: "LNG / Policy",
-      summary: "Alaska LNG developer Glenfarne warns the Senate's latest tax bill strips the estimated $13-17 billion pipeline segment of any viable financing path forward."
+      title: "LNG Export Flows Recover to 17.2 Bcf/d as Freeport Returns from Maintenance",
+      tag: "Gas Supply",
+      summary: "U.S. LNG feedgas deliveries edged up in June as Freeport LNG restarted liquefaction units sidelined for scheduled maintenance, tightening domestic supply and supporting prices."
     }
   ],
   knowledgeBuilder: {
-    topic: "How ISO/RTO Capacity Markets Work and Why Commercial Electric Customers Pay a Capacity Charge They Can't Opt Out Of",
-    tldr: "Independent system operators like PJM and MISO run forward capacity auctions — typically held one to three years ahead of the delivery year — where generators bid to guarantee availability during peak demand periods. The auction clearing price is then divided across all load-serving entities proportional to their share of system peak, and passed through to customers as a capacity charge on their electric bill. Because grid reliability is a shared obligation, this charge applies regardless of which competitive supplier a customer chooses — it is a non-bypassable utility pass-through, not a commodity cost that can be negotiated away."
+    topic: "How Notice Periods and Renewal Windows Work in Energy Supply Contracts",
+    tldr: "Most energy supply contracts require a customer to provide written notice of cancellation within a specific window before the contract end date -- often 30 to 90 days prior. Miss that window and an evergreen clause automatically renews the contract, sometimes at an unfavorable rate. The practical implication for operations analysts is that the notice deadline, not the contract end date itself, is the real cutoff to track when building renewal workflows."
   },
-  procurementTip: "With WTI and natural gas both pulling back on Iran peace progress and storage running comfortable, customers evaluating fixed-price supply contracts may find a brief pricing window before late-July heat expectations drive summer futures higher.",
+  procurementTip: "With WTI falling sharply on Iran peace progress and natural gas holding firm on LNG demand recovery, the gas-to-oil price ratio is widening -- customers evaluating dual-fuel contracts or oil-indexed supply alternatives should run comparisons now before oil-linked pricing adjusts down.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
-    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.22],
-    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 73.77],
+    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.17],
+    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 71.82],
     ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 40],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 33],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
     nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
   },
   deepDive: null,
@@ -411,7 +411,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A state or local government fee that utilities collect from customers and remit to the municipality for the right to operate within its jurisdiction -- passed through on utility bills and not reducible by switching to a competitive supplier." }
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average energy demand to their peak demand over a billing period, expressed as a percentage. A high load factor means consistent usage relative to peak; a low load factor means spiky consumption patterns that drive up demand charges relative to total energy spend." }
   ]
 };
 
