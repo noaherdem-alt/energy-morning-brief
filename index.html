@@ -368,7 +368,7 @@ body {
 const SEED = {
   date: "Thursday, June 25, 2026",
   meta: {
-    marketTakeaway: "Natural gas firmed to $3.28/MMBtu this morning as heat across Florida and the Southern Plains boosted power burn, while Cheniere Energy's announcement of Train 7 commissioning at Corpus Christi Stage 3 highlights the growing LNG export pull on domestic supply. Crude oil sold off sharply — WTI dropped to $69.51/bbl — as progress in U.S.-Iran peace talks and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported oil prices through the spring."
+    marketTakeaway: "Natural gas firmed to $3.28/MMBtu this morning as heat across Florida and the Southern Plains boosted power burn, while Cheniere Energy's announcement of Train 7 commissioning at Corpus Christi Stage 3 highlights the growing LNG export pull on domestic supply. Crude oil sold off sharply â WTI dropped to $69.51/bbl â as progress in U.S.-Iran peace talks and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported oil prices through the spring."
   },
   prices: [
     { name: "HH Spot", price: "$3.28", change: "+1.96%", direction: "up" },
@@ -410,7 +410,28 @@ const SEED = {
     miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
     nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
   },
-  deepDive: null,
+  deepDive: {
+    topic: "WTI Crude Oil: What It Is and Why Energy Customers Should Care",
+    sections: [
+      {
+        title: "What WTI Actually Is",
+        body: "WTI stands for West Texas Intermediate — it\'s not a company or an index fund, it\'s a specific grade of physical crude oil. Oil pulled out of the ground varies in quality depending on where it comes from. WTI is prized because it\'s what refiners call \"light sweet crude\": light means it\'s less dense (flows easily through pipes), and sweet means it has very low sulfur content. Low sulfur is a big deal because sulfur has to be removed during refining — the less of it there is, the cheaper and faster the refining process. WTI is produced mainly from the Permian Basin in West Texas and New Mexico, and it physically settles (gets delivered) at a pipeline hub in Cushing, Oklahoma, which is why you\'ll sometimes hear traders call it \"Cushing crude.\"",
+      },
+      {
+        title: "Why It\'s the Benchmark Everyone Quotes",
+        body: "WTI is the primary price benchmark for crude oil in the United States. When the news says \"oil prices fell today,\" they almost always mean WTI. The reason one grade of oil became the benchmark is partly historical and partly practical: the NYMEX futures contract for WTI has been trading since 1983, giving it decades of liquidity. Every day, buyers (refiners, airlines, utilities with fuel oil exposure) and sellers (oil producers, traders) use the WTI futures price to lock in or hedge their costs. The \"front-month\" price you see quoted — like $69.51 today — is the price for the nearest delivery month on that futures contract. There\'s also Brent crude, which is produced in the North Sea and serves as the international benchmark. Brent and WTI move together closely but aren\'t identical — today Brent is at $72.68, a $3.17 premium over WTI, which is a fairly typical spread reflecting transportation costs and global demand dynamics.",
+      },
+      {
+        title: "Why It Fell Below $70 Today",
+        body: "Crude oil prices are driven by two big forces: supply expectations and demand expectations. Today\'s drop to $69.51 is largely about supply — specifically, progress in U.S.-Iran diplomatic talks. Iran sits on roughly 9% of the world\'s proven oil reserves and has been producing well below capacity due to sanctions. Any credible signal that sanctions could ease means more Iranian barrels potentially hitting the market, which pushes the global supply outlook higher and prices lower. The Strait of Hormuz is also relevant here: about 20% of the world\'s traded oil passes through that narrow waterway between Iran and Oman. When geopolitical tension there rises, traders add a \"risk premium\" to oil prices as insurance against a supply disruption. When tension eases — as it has this week — that premium unwinds and prices fall. This is called the \"geopolitical risk premium\" and it can add or subtract $5-10/bbl during periods of Middle East instability.",
+      },
+      {
+        title: "Does This Affect Your Customers\' Energy Bills?",
+        body: "For electricity customers, the link is indirect but real. Natural gas — not oil — is the primary fuel for power generation in the U.S., so gas prices drive power prices more directly. But crude oil and natural gas prices tend to move in the same direction over time because they compete in some end-use markets (industrial heating, some power generation), and because both respond to the same macro signals like economic growth and recession fears. For customers with gas supply contracts, oil prices are a useful forward indicator: when oil falls sharply on demand concerns, gas often follows. When oil rallies on supply fears, watch gas. There\'s also a direct connection for customers in markets where utilities still burn residual fuel oil (a petroleum product) for peaking generation — their capacity charges can carry oil price exposure. And of course, transportation and logistics costs embedded in nearly every business are directly tied to diesel, which is refined from crude.",
+      }
+    ],
+    takeaway: "WTI is the U.S. crude oil price benchmark — a specific grade of light, low-sulfur oil from West Texas that trades on the NYMEX futures exchange. Today\'s drop below $70 reflects easing geopolitical risk around Iran, not a change in physical supply or demand. For energy customers, crude oil matters most as a directional signal: when oil falls on macro concerns, natural gas and power prices often follow."
+  },
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
