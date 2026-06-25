@@ -359,56 +359,56 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, West Texas Intermediate (WTI)
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Day-Ahead and Real-Time Markets Work Together to Balance Electricity Supply and Demand in ISO/RTO Systems
+//   How AMI Meters Enable Interval Data Collection and Why Granular Usage Data Matters for Procurement
 const SEED = {
   date: "Thursday, June 25, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures rebounded 1.96% to $3.284/MMBtu this morning despite a larger-than-expected EIA storage build of 76 Bcf, as recovering LNG export flows provided support after mid-week selling. WTI crude slid below $70 to $69.51 on demand concerns tied to a cooler-than-expected Mid-Atlantic weather outlook through late June. ERCOT real-time hub prices hit $8.83/MWh at 10:30 AM as midday solar generation pushed near-zero prices at several hubs, illustrating how renewable output reshapes the daily price curve."
+    marketTakeaway: "Natural gas futures rose nearly 2% to $3.284/MMBtu this morning as Cheniere Energy began commissioning a new Corpus Christi LNG liquefaction train, boosting export demand optimism even as today's EIA storage report showed a larger-than-expected +76 Bcf injection for the week ending June 19, keeping inventories 5.8% above the five-year average. WTI crude dropped sharply below $70/bbl for the first time in months, extending a four-session slide as U.S.-Iran peace talks showed meaningful progress toward reopening the Strait of Hormuz and unwinding the war premium that had been embedded in oil markets since the spring."
   },
   prices: [
-    { name: "HH Spot", price: "~$3.22", change: "est.", direction: "neutral" },
+    { name: "HH Spot", price: "$3.28", change: "+1.9%", direction: "up" },
     { name: "NYMEX NG", price: "$3.284", change: "+1.96%", direction: "up" },
     { name: "WTI Crude", price: "$69.51", change: "-1.18%", direction: "down" },
     { name: "Brent Crude", price: "$72.68", change: "-1.44%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "$8.83", change: "10:30 AM", direction: "neutral" }
+    { name: "ERCOT RT Hub", price: "~$28", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "West Texas Intermediate",
-    abbr: "WTI",
-    category: "Oil Markets",
-    tldr: "The primary U.S. crude oil benchmark, priced at Cushing, Oklahoma, and used globally to set oil contract prices.",
-    usedInSentence: "When WTI crude fell to $69.51 Thursday, energy traders paid close attention because oil prices influence feedstock costs, fuel adjustment clauses, and forward power curves in markets where gas-fired generation sets the marginal price."
+    term: "Franchise Fee",
+    abbr: "",
+    category: "Bill Components",
+    tldr: "A small utility charge funding a local government's right-of-way access for energy infrastructure in public streets.",
+    usedInSentence: "When a municipality grants a utility the right to run gas lines or power cables through public streets, it charges a franchise fee that utilities pass through to customers as a fixed percentage of the bill -- typically 1 to 5 percent and non-bypassable regardless of which competitive supplier a customer chooses."
   },
   headlines: [
     {
-      title: "Natural Gas Futures Recover to $3.28 as LNG Flows Offset Bearish Storage Build",
-      tag: "Gas Markets",
-      summary: "NYMEX July gas rebounded 1.96% Thursday morning as recovering LNG export volumes countered a 76 Bcf EIA storage injection that came in above the 67 Bcf market consensus."
+      title: "Cheniere Begins Commissioning Corpus Christi LNG Train 7, Expanding U.S. Export Capacity",
+      tag: "LNG",
+      summary: "Cheniere Energy notified Texas regulators it is starting startup operations on Corpus Christi Stage 3 Train 7, adding to U.S. LNG export infrastructure as global demand stays elevated."
     },
     {
-      title: "WTI Crude Slides Below $70 as Cooler Mid-Atlantic Forecast Weighs on Energy Demand",
+      title: "WTI Crude Drops Below $70 as U.S.-Iran Peace Talks Unwind War Premium",
       tag: "Oil Markets",
-      summary: "West Texas Intermediate fell 1.18% to $69.51 per barrel Thursday as below-average temperatures forecast through late June signal softer air-conditioning load and weaker power burn."
+      summary: "Crude oil fell for a fourth straight session Thursday as diplomatic progress raised prospects of the Strait of Hormuz reopening and restoring global oil supply disrupted since the spring conflict."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Day-Ahead and Real-Time Markets Work Together to Balance Electricity Supply and Demand in ISO/RTO Systems",
-    tldr: "ISO/RTOs run two overlapping electricity markets: a day-ahead market where generators and utilities commit supply and demand at forecasted prices the night before, and a real-time market that clears every 5 minutes to balance actual production and consumption as conditions unfold. Day-ahead prices give generators revenue certainty and allow load-serving entities to hedge most of their cost exposure, while real-time prices continuously adjust for surprises like equipment outages, weather swings, and renewable variability -- today's ERCOT data, where real-time hub prices dropped to $8.83/MWh at 10:30 AM as solar generation surged, is a live illustration of how the real-time market responds to conditions no day-ahead forecast fully anticipates."
+    topic: "How AMI Meters Enable Interval Data Collection and Why Granular Usage Data Matters for Procurement",
+    tldr: "Advanced Metering Infrastructure (AMI) meters record a customer's electricity consumption in 15- or 30-minute intervals rather than just a monthly total, creating a detailed load profile that shows when and how intensely a facility uses power. For procurement, interval data reveals usage patterns -- peak demand windows, load factor, and hourly shape -- that determine whether a flat-rate, time-of-use, or block-and-index contract structure will best fit that customer's actual consumption behavior and risk tolerance."
   },
-  procurementTip: "ERCOT midday real-time prices near $9/MWh reflect peak solar output, not a structural shift in market fundamentals -- customers on index power contracts in Texas are seeing favorable near-term costs, but with NYMEX gas futures holding above $3.28, forward summer pricing has not been meaningfully discounted.",
+  procurementTip: "With natural gas rising on LNG export demand while crude oil falls on geopolitical de-escalation, the two commodities are decoupling -- customers evaluating gas-linked electricity contracts should track Henry Hub independently from oil headlines this summer, as the correlation that normally ties them together has broken down.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
-    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.22],
+    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.28],
     wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.51],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 22],
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 28],
     pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 38],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 30],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 32],
     nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 52]
   },
   deepDive: null,
@@ -436,7 +436,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "West Texas Intermediate (WTI)", category: "Oil Markets", definition: "The primary U.S. crude oil benchmark, priced at the Cushing, Oklahoma, delivery hub. WTI is one of the two major global oil price benchmarks (alongside Brent) and is used to price domestic crude oil contracts, fuel oil derivatives, and energy supply agreements with oil-linked pricing." }
+    { term: "Franchise Fee", category: "Bill Components", definition: "A charge passed through on utility bills that funds a local government's compensation for granting the utility the right-of-way to operate pipes and wires through public streets and property -- typically 1-5% of the bill and non-bypassable regardless of supplier." }
   ]
 };
 
