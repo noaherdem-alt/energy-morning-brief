@@ -359,7 +359,8 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee,
+//   WTI (West Texas Intermediate)
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -379,11 +380,11 @@ const SEED = {
     { name: "ERCOT RT Hub", price: "~$28", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Franchise Fee",
-    abbr: "",
-    category: "Bill Components",
-    tldr: "A small utility charge funding a local government's right-of-way access for energy infrastructure in public streets.",
-    usedInSentence: "When a municipality grants a utility the right to run gas lines or power cables through public streets, it charges a franchise fee that utilities pass through to customers as a fixed percentage of the bill -- typically 1 to 5 percent and non-bypassable regardless of which competitive supplier a customer chooses."
+    term: "WTI",
+    abbr: "West Texas Intermediate",
+    category: "Oil Markets",
+    tldr: "The primary U.S. crude oil benchmark priced at Cushing, Oklahoma, and the reference contract traded on the NYMEX.",
+    usedInSentence: "When a commodity desk reports crude at $69.51 today, they're quoting WTI -- the light, sweet benchmark that prices U.S. oil futures and historically moves in tandem with natural gas, though today's decoupling shows the two markets responding to very different supply signals."
   },
   headlines: [
     {
@@ -436,7 +437,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A charge passed through on utility bills that funds a local government's compensation for granting the utility the right-of-way to operate pipes and wires through public streets and property -- typically 1-5% of the bill and non-bypassable regardless of supplier." }
+    { term: "WTI (West Texas Intermediate)", category: "Oil Markets", definition: "The primary U.S. crude oil benchmark, priced at the Cushing, Oklahoma delivery hub and traded as the front-month NYMEX futures contract. WTI is light (low density) and sweet (low sulfur), making it easy to refine, and it serves as the reference price for U.S. oil production and a key input for energy cost forecasting." }
   ]
 };
 
