@@ -361,77 +361,57 @@ body {
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
 //   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
 // LAST KB TOPICS -- avoid repeating recent ones:
+//   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Rate Classes Determine a Commercial Customer's Base Utility Charges
+//   How Day-Ahead and Real-Time Markets Work Together to Balance Electricity Supply and Demand in ISO/RTO Systems
 const SEED = {
   date: "Thursday, June 25, 2026",
   meta: {
-    marketTakeaway: "Natural gas firmed to $3.28/MMBtu this morning as heat across Florida and the Southern Plains boosted power burn, while Cheniere Energy's announcement of Train 7 commissioning at Corpus Christi Stage 3 highlights the growing LNG export pull on domestic supply. Crude oil sold off sharply â WTI dropped to $69.51/bbl â as progress in U.S.-Iran peace talks and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported oil prices through the spring."
+    marketTakeaway: "Natural gas futures rebounded 1.96% to $3.284/MMBtu this morning despite a larger-than-expected EIA storage build of 76 Bcf, as recovering LNG export flows provided support after mid-week selling. WTI crude slid below $70 to $69.51 on demand concerns tied to a cooler-than-expected Mid-Atlantic weather outlook through late June. ERCOT real-time hub prices hit $8.83/MWh at 10:30 AM as midday solar generation pushed near-zero prices at several hubs, illustrating how renewable output reshapes the daily price curve."
   },
   prices: [
-    { name: "HH Spot", price: "$3.28", change: "+1.96%", direction: "up" },
-    { name: "NYMEX NG", price: "$3.23", change: "+0.8%", direction: "up" },
+    { name: "HH Spot", price: "~$3.22", change: "est.", direction: "neutral" },
+    { name: "NYMEX NG", price: "$3.284", change: "+1.96%", direction: "up" },
     { name: "WTI Crude", price: "$69.51", change: "-1.18%", direction: "down" },
     { name: "Brent Crude", price: "$72.68", change: "-1.44%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$45", change: "", direction: "neutral" }
+    { name: "ERCOT RT Hub", price: "$8.83", change: "10:30 AM", direction: "neutral" }
   ],
   wordOfDay: {
     term: "Load Factor",
     abbr: "LF",
     category: "Bill Components",
-    tldr: "Ratio of average energy use to peak demand -- measures how evenly a customer draws power over a billing period.",
-    usedInSentence: "A manufacturing plant running three shifts around the clock will have a high load factor, making it an attractive customer for competitive suppliers who can price more aggressively because the facility's demand rarely spikes unpredictably."
+    tldr: "The ratio of a customer's average demand to their peak demand, showing how evenly they consume energy over a billing period.",
+    usedInSentence: "A cold-storage warehouse running refrigeration equipment around the clock typically has a high load factor, which can reduce the per-unit impact of demand charges on its monthly electric bill."
   },
   headlines: [
     {
-      title: "Cheniere Begins Commissioning of Train 7 at Corpus Christi LNG Stage 3",
-      tag: "LNG Supply",
-      summary: "Cheniere told Texas regulators it is beginning startup and commissioning operations on Train 7, the final unit of its Corpus Christi Stage 3 expansion, adding the last increment of the project's more than 10 mtpa of new export capacity."
+      title: "Natural Gas Futures Recover to $3.28 as LNG Flows Offset Bearish Storage Build",
+      tag: "Gas Markets",
+      summary: "NYMEX July gas rebounded 1.96% Thursday morning as recovering LNG export volumes countered a 76 Bcf EIA storage injection that came in above the 67 Bcf market consensus."
     },
     {
-      title: "Crude Oil Slides Below $70 as U.S.-Iran Peace Talks Ease Supply Fears",
-      tag: "Crude Markets",
-      summary: "WTI fell to $69.51/bbl as progress in U.S.-Iran negotiations and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported crude prices through the spring."
+      title: "WTI Crude Slides Below $70 as Cooler Mid-Atlantic Forecast Weighs on Energy Demand",
+      tag: "Oil Markets",
+      summary: "West Texas Intermediate fell 1.18% to $69.51 per barrel Thursday as below-average temperatures forecast through late June signal softer air-conditioning load and weaker power burn."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Rate Classes Determine a Commercial Customer's Base Utility Charges",
-    tldr: "Utilities assign each customer to a rate class -- such as small commercial, medium commercial, or large industrial -- based on usage volume and demand characteristics, and the rate class sets the tariff structure a customer pays for distribution, transmission, and other non-bypassable charges. Because competitive suppliers use the rate class tariff as the baseline for pricing a supply offer, getting the rate class right at enrollment is essential: a misclassified account will have a cost structure that doesn't match the contract, leading to billing errors and unexpected reconciliation charges."
+    topic: "How Day-Ahead and Real-Time Markets Work Together to Balance Electricity Supply and Demand in ISO/RTO Systems",
+    tldr: "ISO/RTOs run two overlapping electricity markets: a day-ahead market where generators and utilities commit supply and demand at forecasted prices the night before, and a real-time market that clears every 5 minutes to balance actual production and consumption as conditions unfold. Day-ahead prices give generators revenue certainty and allow load-serving entities to hedge most of their cost exposure, while real-time prices continuously adjust for surprises like equipment outages, weather swings, and renewable variability -- today's ERCOT data, where real-time hub prices dropped to $8.83/MWh at 10:30 AM as solar generation surged, is a live illustration of how the real-time market responds to conditions no day-ahead forecast fully anticipates."
   },
-  procurementTip: "With the EIA storage report for week ending June 19 releasing today and natural gas already bid higher on heat-driven power burn, buyers on index-priced contracts should watch for intraday cash price volatility if the injection number comes in below expectations.",
+  procurementTip: "ERCOT midday real-time prices near $9/MWh reflect peak solar output, not a structural shift in market fundamentals -- customers on index power contracts in Texas are seeing favorable near-term costs, but with NYMEX gas futures holding above $3.28, forward summer pricing has not been meaningfully discounted.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
-    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.28],
-    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.50],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
-    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
+    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.22],
+    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.51],
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 22],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 38],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 30],
+    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 52]
   },
-  deepDive: {
-    topic: "WTI Crude Oil: What It Is and Why Energy Customers Should Care",
-    sections: [
-      {
-        title: "What WTI Actually Is",
-        body: "WTI stands for West Texas Intermediate — it\'s not a company or an index fund, it\'s a specific grade of physical crude oil. Oil pulled out of the ground varies in quality depending on where it comes from. WTI is prized because it\'s what refiners call \"light sweet crude\": light means it\'s less dense (flows easily through pipes), and sweet means it has very low sulfur content. Low sulfur is a big deal because sulfur has to be removed during refining — the less of it there is, the cheaper and faster the refining process. WTI is produced mainly from the Permian Basin in West Texas and New Mexico, and it physically settles (gets delivered) at a pipeline hub in Cushing, Oklahoma, which is why you\'ll sometimes hear traders call it \"Cushing crude.\"",
-      },
-      {
-        title: "Why It\'s the Benchmark Everyone Quotes",
-        body: "WTI is the primary price benchmark for crude oil in the United States. When the news says \"oil prices fell today,\" they almost always mean WTI. The reason one grade of oil became the benchmark is partly historical and partly practical: the NYMEX futures contract for WTI has been trading since 1983, giving it decades of liquidity. Every day, buyers (refiners, airlines, utilities with fuel oil exposure) and sellers (oil producers, traders) use the WTI futures price to lock in or hedge their costs. The \"front-month\" price you see quoted — like $69.51 today — is the price for the nearest delivery month on that futures contract. There\'s also Brent crude, which is produced in the North Sea and serves as the international benchmark. Brent and WTI move together closely but aren\'t identical — today Brent is at $72.68, a $3.17 premium over WTI, which is a fairly typical spread reflecting transportation costs and global demand dynamics.",
-      },
-      {
-        title: "Why It Fell Below $70 Today",
-        body: "Crude oil prices are driven by two big forces: supply expectations and demand expectations. Today\'s drop to $69.51 is largely about supply — specifically, progress in U.S.-Iran diplomatic talks. Iran sits on roughly 9% of the world\'s proven oil reserves and has been producing well below capacity due to sanctions. Any credible signal that sanctions could ease means more Iranian barrels potentially hitting the market, which pushes the global supply outlook higher and prices lower. The Strait of Hormuz is also relevant here: about 20% of the world\'s traded oil passes through that narrow waterway between Iran and Oman. When geopolitical tension there rises, traders add a \"risk premium\" to oil prices as insurance against a supply disruption. When tension eases — as it has this week — that premium unwinds and prices fall. This is called the \"geopolitical risk premium\" and it can add or subtract $5-10/bbl during periods of Middle East instability.",
-      },
-      {
-        title: "Does This Affect Your Customers\' Energy Bills?",
-        body: "For electricity customers, the link is indirect but real. Natural gas — not oil — is the primary fuel for power generation in the U.S., so gas prices drive power prices more directly. But crude oil and natural gas prices tend to move in the same direction over time because they compete in some end-use markets (industrial heating, some power generation), and because both respond to the same macro signals like economic growth and recession fears. For customers with gas supply contracts, oil prices are a useful forward indicator: when oil falls sharply on demand concerns, gas often follows. When oil rallies on supply fears, watch gas. There\'s also a direct connection for customers in markets where utilities still burn residual fuel oil (a petroleum product) for peaking generation — their capacity charges can carry oil price exposure. And of course, transportation and logistics costs embedded in nearly every business are directly tied to diesel, which is refined from crude.",
-      }
-    ],
-    takeaway: "WTI is the U.S. crude oil price benchmark — a specific grade of light, low-sulfur oil from West Texas that trades on the NYMEX futures exchange. Today\'s drop below $70 reflects easing geopolitical risk around Iran, not a change in physical supply or demand. For energy customers, crude oil matters most as a directional signal: when oil falls on macro concerns, natural gas and power prices often follow."
-  },
+  deepDive: null,
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -456,7 +436,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average power consumption over a billing period to their peak demand, expressed as a percentage. A high load factor (steady usage) typically results in lower per-unit demand charges; a low load factor (large demand spikes) increases them." }
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand over a billing period to their peak demand during that same period, expressed as a percentage. A higher load factor generally indicates more consistent energy use and can reduce the per-unit cost of demand charges." }
   ]
 };
 
