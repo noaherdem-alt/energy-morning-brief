@@ -158,6 +158,7 @@ body {
   margin-bottom: 12px; flex-wrap: wrap; gap: 8px;
 }
 .chart-panel-title { font-size: 11px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.08em; }
+.chart-subtitle { font-size: 10.5px; color: #484f58; margin-bottom: 10px; margin-top: -4px; }
 .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; }
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #8b949e; }
 .legend-swatch { width: 20px; height: 3px; border-radius: 2px; flex-shrink: 0; }
@@ -281,8 +282,9 @@ body {
             <span class="legend-item"><span class="legend-swatch" style="background:#d29922"></span>WTI Crude ($/bbl, right)</span>
           </div>
         </div>
+        <div class="chart-subtitle" id="chartCommoditySubtitle"></div>
         <canvas id="chartCommodity" height="170"></canvas>
-        <div class="chart-note">Monthly averages  refreshed by scheduled task  approximate seed data</div>
+        <div class="chart-note">Monthly averages · approximate seed data</div>
       </div>
       <div class="chart-panel">
         <div class="chart-panel-header">
@@ -294,8 +296,9 @@ body {
             <span class="legend-item"><span class="legend-swatch" style="background:#58a6ff"></span>NYISO Zone A</span>
           </div>
         </div>
+        <div class="chart-subtitle" id="chartPowerSubtitle"></div>
         <canvas id="chartPower" height="160"></canvas>
-        <div class="chart-note">Monthly averages  refreshed by scheduled task  approximate seed data</div>
+        <div class="chart-note">Monthly averages · approximate seed data</div>
       </div>
     </div>
   </div>
@@ -483,15 +486,37 @@ function renderWord(w) {
       <div class="inset-text">${esc(w.usedInSentence)}</div>
     </div>`;
 }
+const TAG_COLORS = {
+  'lng': '#58a6ff',
+  'oil markets': '#d29922',
+  'gas supply': '#388bfd',
+  'gas markets': '#388bfd',
+  'grid operations': '#3fb950',
+  'power markets': '#bc8cff',
+  'weather': '#79c0ff',
+  'policy': '#f78166',
+  'regulation': '#f78166',
+  'renewables': '#3fb950',
+  'storage': '#388bfd',
+  'market structure': '#bc8cff',
+  'rates': '#d29922',
+  'default': '#484f58'
+};
+function tagColor(tag) {
+  return TAG_COLORS[(tag||'').toLowerCase()] || TAG_COLORS['default'];
+}
 function renderHeadlines(hs) {
-  return `<div class="headlines-list">${(hs||[]).map(h=>`
-    <div class="headline-card">
+  return `<div class="headlines-list">${(hs||[]).map(h=>{
+    const c = tagColor(h.tag);
+    return `
+    <div class="headline-card" style="border-left:2px solid ${c};padding-left:14px;margin-left:-2px;">
       <div class="headline-title-row">
         <div class="headline-title">${esc(h.title)}</div>
-        <div class="headline-right"><span class="tag-chip">${esc(h.tag)}</span></div>
+        <div class="headline-right"><span class="tag-chip" style="color:${c};background:${c}1a;">${esc(h.tag)}</span></div>
       </div>
       ${h.summary?`<div class="story-summary">${safeHtml(h.summary)}</div>`:''}
-    </div>`).join('')}</div>`;
+    </div>`;
+  }).join('')}</div>`;
 }
 function renderKB(kb) {
   if (!kb) return '';
@@ -553,6 +578,8 @@ function buildCommodityChart(h) {
   const ctx = document.getElementById('chartCommodity');
   if (!ctx || !h) return;
   if (chartCommodityInst) { chartCommodityInst.destroy(); chartCommodityInst = null; }
+  const subC = document.getElementById('chartCommoditySubtitle');
+  if (subC && h.labels && h.labels.length > 1) subC.textContent = `${h.labels[0]} – ${h.labels[h.labels.length-1]}  ·  13-month rolling  ·  updated daily`;
   chartCommodityInst = new Chart(ctx, {
     type: 'line',
     data: {
@@ -578,6 +605,8 @@ function buildPowerChart(h) {
   const ctx = document.getElementById('chartPower');
   if (!ctx || !h) return;
   if (chartPowerInst) { chartPowerInst.destroy(); chartPowerInst = null; }
+  const subP = document.getElementById('chartPowerSubtitle');
+  if (subP && h.labels && h.labels.length > 1) subP.textContent = `${h.labels[0]} – ${h.labels[h.labels.length-1]}  ·  13-month rolling  ·  updated daily`;
   chartPowerInst = new Chart(ctx, {
     type: 'line',
     data: {
