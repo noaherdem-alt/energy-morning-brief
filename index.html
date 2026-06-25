@@ -359,7 +359,7 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, West Texas Intermediate (WTI)
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -379,11 +379,11 @@ const SEED = {
     { name: "ERCOT RT Hub", price: "$8.83", change: "10:30 AM", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Load Factor",
-    abbr: "LF",
-    category: "Bill Components",
-    tldr: "The ratio of a customer's average demand to their peak demand, showing how evenly they consume energy over a billing period.",
-    usedInSentence: "A cold-storage warehouse running refrigeration equipment around the clock typically has a high load factor, which can reduce the per-unit impact of demand charges on its monthly electric bill."
+    term: "West Texas Intermediate",
+    abbr: "WTI",
+    category: "Oil Markets",
+    tldr: "The primary U.S. crude oil benchmark, priced at Cushing, Oklahoma, and used globally to set oil contract prices.",
+    usedInSentence: "When WTI crude fell to $69.51 Thursday, energy traders paid close attention because oil prices influence feedstock costs, fuel adjustment clauses, and forward power curves in markets where gas-fired generation sets the marginal price."
   },
   headlines: [
     {
@@ -436,7 +436,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand over a billing period to their peak demand during that same period, expressed as a percentage. A higher load factor generally indicates more consistent energy use and can reduce the per-unit cost of demand charges." }
+    { term: "West Texas Intermediate (WTI)", category: "Oil Markets", definition: "The primary U.S. crude oil benchmark, priced at the Cushing, Oklahoma, delivery hub. WTI is one of the two major global oil price benchmarks (alongside Brent) and is used to price domestic crude oil contracts, fuel oil derivatives, and energy supply agreements with oil-linked pricing." }
   ]
 };
 
