@@ -1,0 +1,721 @@
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Energy Morning Brief",
+  "schemaVersion": 1,
+  "description": "Daily energy market brief for energy brokerage analysts. Prices verified each morning from ERCOT live feed, NYMEX/CME, and EIA storage reports via scheduled task. AI Refresh button regenerates analysis using Claude. Covers nat gas futures, real-time power prices across ERCOT/PJM/MISO, market headlines, Word of the Day, Knowledge Builder, and Procurement Tip.",
+  "mcpTools": [
+    "mcp__4bd6e6dd-34f4-4585-83de-234ccc4dda36__read_file_content"
+  ],
+  "mcpServerNames": [
+    "Google Drive"
+  ]
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Morning Brief</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { color-scheme: dark; }
+body {
+  background: #0d1117;
+  min-height: 100vh;
+  padding: 32px 20px 48px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #c9d1d9;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: #21262d; border-radius: 4px; }
+.container { max-width: 740px; margin: 0 auto; }
+
+/* Header */
+.header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding-bottom: 20px; margin-bottom: 28px;
+  border-bottom: 1px solid #21262d;
+}
+.header-left h1 { font-size: 15px; font-weight: 600; color: #e6edf3; margin-bottom: 4px; }
+.header-meta { font-size: 11.5px; color: #484f58; }
+.header-actions { display: flex; gap: 8px; flex-shrink: 0; align-items: center; }
+.refresh-btn {
+  background: none; color: #388bfd; border: 1px solid #1f6feb;
+  border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 500;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.refresh-btn:hover { background: #1f6feb22; }
+.refresh-btn:disabled { color: #484f58; border-color: #21262d; cursor: not-allowed; background: none; }
+.export-btn {
+  background: none; color: #8b949e; border: 1px solid #30363d;
+  border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 500;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.export-btn:hover { background: #21262d; color: #c9d1d9; }
+
+.error-bar {
+  background: #160b0b; border: 1px solid #6e1a1a;
+  border-radius: 6px; padding: 10px 14px; margin-bottom: 20px;
+  font-size: 12px; color: #f85149; display: none;
+}
+.section { margin-bottom: 36px; }
+.section-label {
+  font-size: 10.5px; font-weight: 600; color: #484f58;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px;
+}
+.divider { border: none; border-top: 1px solid #21262d; margin: 36px 0; }
+
+/* Word of Day */
+.wod-meta { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+.badge-cat { background: #1c2a3a; color: #58a6ff; }
+.wod-term { font-size: 22px; font-weight: 700; color: #e6edf3; letter-spacing: -0.02em; margin-bottom: 4px; }
+.wod-abbr { font-size: 14px; font-weight: 500; color: #8b949e; margin-left: 6px; }
+.wod-tldr { font-size: 13px; font-weight: 600; color: #e6edf3; line-height: 1.6; margin-bottom: 10px; padding: 9px 12px; background: #1c2a3a; border-radius: 6px; border-left: 2px solid #388bfd; }
+.inset-box { border-left: 2px solid #21262d; padding: 10px 14px; margin-bottom: 10px; }
+.inset-label { font-size: 10px; font-weight: 600; color: #484f58; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.inset-text { font-size: 12.5px; color: #8b949e; line-height: 1.7; }
+.inset-box.context { border-color: #238636; }
+.inset-box.context .inset-label { color: #3fb950; }
+
+/* Headlines */
+.headlines-list { display: flex; flex-direction: column; }
+.headline-card { padding: 14px 0; border-bottom: 1px solid #21262d; }
+.headline-card:first-child { padding-top: 0; }
+.headline-card:last-child { border-bottom: none; padding-bottom: 0; }
+.headline-title-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.headline-title { font-size: 13.5px; font-weight: 600; color: #e6edf3; line-height: 1.4; }
+.headline-right { flex-shrink: 0; }
+.tag-chip { font-size: 10px; font-weight: 600; color: #8b949e; padding: 3px 8px; border-radius: 4px; background: #21262d; white-space: nowrap; }
+.story-summary { font-size: 12.5px; color: #8b949e; line-height: 1.65; margin-top: 6px; }
+
+/* KB / Tip */
+.kb-topic { font-size: 15px; font-weight: 600; color: #e6edf3; margin-bottom: 10px; }
+.kb-tldr { font-size: 13px; color: #c9d1d9; background: #161b22; border-radius: 6px; padding: 11px 14px; border-left: 2px solid #388bfd; line-height: 1.7; }
+.takeaway-text { font-size: 13px; color: #c9d1d9; line-height: 1.75; padding: 11px 14px; background: #161b22; border-radius: 6px; border-left: 2px solid #d29922; }
+
+/* Deep Dive */
+.dd-topic { font-size: 15px; font-weight: 600; color: #e6edf3; margin-bottom: 10px; }
+.dd-section { margin-bottom: 16px; }
+.dd-section-title { font-size: 10.5px; font-weight: 600; color: #484f58; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.dd-body { font-size: 13px; color: #c9d1d9; line-height: 1.8; }
+.dd-body strong { color: #79c0ff; font-weight: 600; }
+.dd-takeaway { font-size: 12.5px; color: #c9d1d9; line-height: 1.7; background: #161b22; border-radius: 6px; padding: 12px 14px; border-left: 2px solid #388bfd; margin-top: 14px; }
+.dd-takeaway-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #388bfd; margin-bottom: 5px; }
+
+/* Glossary */
+.glossary-toggle {
+  background: none; border: none; cursor: pointer;
+  font-size: 12px; color: #484f58; font-weight: 500;
+  display: flex; align-items: center; gap: 6px; padding: 0;
+}
+.glossary-toggle:hover { color: #8b949e; }
+.chevron { font-size: 9px; transition: transform 0.2s; display: inline-block; }
+.glossary-toggle.open .chevron { transform: rotate(180deg); }
+.glossary-body { display: none; margin-top: 16px; }
+.glossary-body.open { display: block; }
+.glossary-list { display: flex; flex-direction: column; gap: 1px; background: #21262d; border: 1px solid #21262d; border-radius: 7px; overflow: hidden; }
+.glossary-entry { background: #161b22; padding: 12px 14px; }
+.glossary-term { font-size: 12.5px; font-weight: 600; color: #e6edf3; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+.glossary-cat-badge { font-size: 9.5px; font-weight: 600; padding: 2px 6px; border-radius: 3px; background: #1c2a3a; color: #58a6ff; }
+.glossary-def { font-size: 12px; color: #8b949e; line-height: 1.6; }
+
+/* Term request queue */
+.tq-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
+.tq-row:last-child { border-bottom: none; }
+.tq-term { color: #e6edf3; font-weight: 600; }
+.tq-count { margin-left: auto; font-size: 11px; color: #8b949e; background: #21262d; padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
+.tq-next { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #3fb950; background: #12261a; border: 1px solid #238636; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; }
+.tq-empty { font-size: 12.5px; color: #8b949e; padding: 8px 0; line-height: 1.6; }
+.suggest-btn { display: inline-block; margin-top: 14px; background: none; color: #388bfd; border: 1px solid #1f6feb; border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 500; text-decoration: none; transition: background 0.15s; }
+.suggest-btn:hover { background: #1f6feb22; }
+
+/* Glossary search + filters */
+.gloss-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.gloss-search { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; padding: 8px 12px; font-size: 12.5px; width: 100%; outline: none; font-family: inherit; }
+.gloss-search:focus { border-color: #1f6feb; }
+.gloss-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill { background: #161b22; border: 1px solid #30363d; color: #8b949e; font-size: 11px; padding: 4px 10px; border-radius: 12px; cursor: pointer; font-family: inherit; }
+.pill.active { background: #1c2a3a; border-color: #1f6feb; color: #58a6ff; }
+@media print { .suggest-btn, .gloss-controls, #termQueueSection { display: none !important; } }
+
+/* Pulse skeleton */
+.pulse-line { height: 12px; background: #21262d; border-radius: 4px; margin-bottom: 8px; animation: fp 1.5s ease-in-out infinite; }
+@keyframes fp { 0%,100%{opacity:.3} 50%{opacity:.6} }
+
+/* Charts */
+.charts-wrap { display: flex; flex-direction: column; gap: 16px; }
+.chart-panel {
+  background: #161b22; border: 1px solid #21262d; border-radius: 8px;
+  padding: 16px 18px 12px;
+}
+.chart-panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px; flex-wrap: wrap; gap: 8px;
+}
+.chart-panel-title { font-size: 11px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.08em; }
+.chart-legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #8b949e; }
+.legend-swatch { width: 20px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+.chart-note { font-size: 10px; color: #30363d; margin-top: 8px; }
+
+/* Footer */
+.footer { font-size: 11px; color: #30363d; padding-top: 24px; border-top: 1px solid #21262d; }
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff !important; color: #1a1a2e !important; padding: 24px 32px !important; font-size: 12px !important; }
+  .container { max-width: 100% !important; }
+  .header { border-bottom-color: #ddd !important; }
+  .header-left h1 { color: #1a1a2e !important; }
+  .header-meta { color: #666 !important; }
+  .export-btn, .refresh-btn { display: none !important; }
+  .error-bar { display: none !important; }
+  .divider { border-top-color: #ddd !important; }
+  .section-label { color: #666 !important; }
+  .wod-term { color: #1a1a2e !important; }
+  .wod-tldr { background: #eaf0ff !important; border-left-color: #2563eb !important; color: #1a1a2e !important; }
+  .inset-box { border-left-color: #ddd !important; }
+  .inset-box.context { border-left-color: #27ae60 !important; }
+  .inset-text, .story-summary, .glossary-def { color: #444 !important; }
+  .headline-title { color: #1a1a2e !important; }
+  .tag-chip { background: #eee !important; color: #555 !important; }
+  .kb-tldr { background: #eaf0ff !important; border-left-color: #2563eb !important; color: #1a1a2e !important; }
+  .takeaway-text { background: #fffbea !important; border-left-color: #d97706 !important; color: #1a1a2e !important; }
+  .glossary-toggle { color: #444 !important; }
+  .glossary-body { display: block !important; }
+  .glossary-list { background: #ddd !important; border-color: #ddd !important; }
+  .glossary-entry { background: #f8f8f8 !important; }
+  .glossary-term { color: #1a1a2e !important; }
+  .glossary-cat-badge { background: #eaf0ff !important; color: #2563eb !important; }
+  .badge-cat { background: #eaf0ff !important; color: #2563eb !important; }
+  .chart-panel { background: #f8f8f8 !important; border-color: #ddd !important; page-break-inside: avoid; }
+  .chart-panel-title { color: #555 !important; }
+  .legend-item { color: #444 !important; }
+  .chart-note { color: #999 !important; }
+  .footer { color: #aaa !important; border-top-color: #ddd !important; }
+  #deepDiveSection { display: block !important; }
+  .dd-topic { color: #1a1a2e !important; }
+  .dd-section-title { color: #666 !important; }
+  .dd-body { color: #333 !important; }
+  .dd-body strong { color: #2563eb !important; }
+  .dd-takeaway { background: #eaf0ff !important; border-left-color: #2563eb !important; color: #1a1a2e !important; }
+  .dd-takeaway-label { color: #2563eb !important; }
+  .wod-abbr { color: #666 !important; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Energy Morning Brief</h1>
+      <div class="header-meta" id="headerMeta">Loading...</div>
+    </div>
+    <div class="header-actions">
+      <button class="export-btn" onclick="window.print()">Export PDF</button>
+      <button class="refresh-btn" id="refreshBtn" onclick="doRefresh()">Refresh</button>
+    </div>
+  </div>
+
+  <div class="error-bar" id="errorBar"></div>
+
+  <div class="section">
+    <div class="section-label">Word of the Day</div>
+    <div id="wordContainer"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Concept Explainer</div>
+    <div id="kbContainer"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Market Takeaway</div>
+    <div id="tipContainer"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Top Stories</div>
+    <div id="headlinesContainer"></div>
+  </div>
+
+  <div id="deepDiveSection" style="display:none">
+    <hr class="divider">
+    <div class="section">
+      <div class="section-label">Friday Deep Dive</div>
+      <div id="deepDiveContainer"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">1-Year Price Trends</div>
+    <div class="charts-wrap" id="chartsWrap">
+      <div class="chart-panel">
+        <div class="chart-panel-header">
+          <span class="chart-panel-title">Nat Gas &amp; Crude Oil</span>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-swatch" style="background:#388bfd"></span>Henry Hub ($/MMBtu, left)</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#d29922"></span>WTI Crude ($/bbl, right)</span>
+          </div>
+        </div>
+        <canvas id="chartCommodity" height="170"></canvas>
+        <div class="chart-note">Monthly averages  refreshed by scheduled task  approximate seed data</div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-header">
+          <span class="chart-panel-title">Wholesale Power  ECX Markets ($/MWh)</span>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-swatch" style="background:#3fb950"></span>ERCOT Hub Avg</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#bc8cff"></span>PJM ComEd Zone</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#f78166"></span>MISO IL Hub</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#58a6ff"></span>NYISO Zone A</span>
+          </div>
+        </div>
+        <canvas id="chartPower" height="160"></canvas>
+        <div class="chart-note">Monthly averages  refreshed by scheduled task  approximate seed data</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section" id="termQueueSection">
+    <div class="section-label">Term Requests  What the Team Wants Explained</div>
+    <div id="termQueueContainer"><div class="tq-empty">Loading requests...</div></div>
+    <a class="suggest-btn" href="https://docs.google.com/forms/d/1HJpH8S-ISQ4Oe67rglPe-Hu0oVf0peAN4C1YFegoMm0/viewform" target="_blank" rel="noopener"> Suggest a Term (anonymous)</a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <button class="glossary-toggle" id="glossaryToggle" onclick="toggleGlossary()">
+       Glossary <span class="chevron"></span>
+    </button>
+    <div class="glossary-body" id="glossaryBody">
+      <div class="gloss-controls">
+        <input type="search" id="glossSearch" class="gloss-search" placeholder="Search terms and definitions...">
+        <div class="gloss-pills" id="glossPills"></div>
+      </div>
+      <div class="glossary-list" id="glossaryList"></div>
+    </div>
+  </div>
+
+  <div class="footer">Sources: EIA &nbsp;&nbsp; ERCOT CDR &nbsp;&nbsp; EOX Live &nbsp;&nbsp; NGI &nbsp;&nbsp; refreshed daily via scheduled task</div>
+</div>
+
+<script>
+// SEED verified June 23, 2026 (Tuesday)
+// Sources: EOX Live Morning Report 6:05 AM CST Jun 23: Nat Gas $3.223 (-$0.030, -0.92%), WTI $73.77 (-$1.05, -1.40%), Brent $77.80 (-$0.10, -0.13%) |
+//          ERCOT CDR last updated Jun 22 08:02 (ESTIMATED -- CDR not refreshed for Jun 23 at time of run) HB_HUBAVG $22.89 off-peak |
+//          Renewables surging in ERCOT week/week; natural gas power burn softening despite rising summer load |
+//          PJM DA price estimated ~$40/MWh (no confirmed DA figure for Jun 23) |
+//          EIA storage wk/e Jun 12 (released Jun 18): +73 Bcf actual vs. 82 Bcf forecast |
+//          NGI forecasts wk/e Jun 19 storage: +68 Bcf (5 Bcf lower w/w); EIA report due Thu Jun 25 |
+//          Storage ~5.8% above normal as of wk/e Jun 19; stronger LNG flows expected to deepen year/year storage deficit |
+//          US-Iran peace talks progressing; WTI and global LNG prices pulled lower on reduced supply-disruption risk |
+//          LNG export flows: ~17.2 Bcf/d in June, up from 17.1 Bcf/d in May (Freeport units back from maintenance) |
+//          Alaska LNG financing at risk: Glenfarne warns Senate tax bill leaves pipeline segment unfinanceable |
+// SEED verified June 24, 2026 (Wednesday)
+// Sources: EOX Live Morning Report 6:11 AM CST Jun 24: Nat Gas $3.165 (+$0.018, +0.57%), WTI $71.82 (-$1.39, -1.90%), Brent $75.59 (-$1.49, -1.93%) |
+//          ERCOT CDR unavailable -- real-time price estimated at ~$35/MWh (page timed out) |
+//          PJM DA price: ~$38/MWh estimated |
+//          EIA storage wk/e Jun 12 (released Jun 18): 2,759 Bcf, +73 Bcf build, ~5.8% above normal |
+//          Next EIA storage report: wk/e Jun 19, due Thu Jun 25 |
+//          ERCOT renewables surging sharply w/w, softening nat gas power burn despite summer heat |
+//          LNG export flows: 17.2 Bcfd in June (up from 17.1 in May), supporting gas demand |
+//          WTI crude fell sharply on demand uncertainty; gas/oil decoupling notable |
+// WORD OF DAY USED -- never repeat:
+//   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
+//   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
+//   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
+//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
+// LAST KB TOPICS -- avoid repeating recent ones:
+//   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
+//   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
+//   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
+//   How Rate Classes Determine a Commercial Customer's Base Utility Charges
+const SEED = {
+  date: "Thursday, June 25, 2026",
+  meta: {
+    marketTakeaway: "Natural gas firmed to $3.28/MMBtu this morning as heat across Florida and the Southern Plains boosted power burn, while Cheniere Energy's announcement of Train 7 commissioning at Corpus Christi Stage 3 highlights the growing LNG export pull on domestic supply. Crude oil sold off sharply — WTI dropped to $69.51/bbl — as progress in U.S.-Iran peace talks and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported oil prices through the spring."
+  },
+  prices: [
+    { name: "HH Spot", price: "$3.28", change: "+1.96%", direction: "up" },
+    { name: "NYMEX NG", price: "$3.23", change: "+0.8%", direction: "up" },
+    { name: "WTI Crude", price: "$69.51", change: "-1.18%", direction: "down" },
+    { name: "Brent Crude", price: "$72.68", change: "-1.44%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$45", change: "", direction: "neutral" }
+  ],
+  wordOfDay: {
+    term: "Load Factor",
+    abbr: "LF",
+    category: "Bill Components",
+    tldr: "Ratio of average energy use to peak demand -- measures how evenly a customer draws power over a billing period.",
+    usedInSentence: "A manufacturing plant running three shifts around the clock will have a high load factor, making it an attractive customer for competitive suppliers who can price more aggressively because the facility's demand rarely spikes unpredictably."
+  },
+  headlines: [
+    {
+      title: "Cheniere Begins Commissioning of Train 7 at Corpus Christi LNG Stage 3",
+      tag: "LNG Supply",
+      summary: "Cheniere told Texas regulators it is beginning startup and commissioning operations on Train 7, the final unit of its Corpus Christi Stage 3 expansion, adding the last increment of the project's more than 10 mtpa of new export capacity."
+    },
+    {
+      title: "Crude Oil Slides Below $70 as U.S.-Iran Peace Talks Ease Supply Fears",
+      tag: "Crude Markets",
+      summary: "WTI fell to $69.51/bbl as progress in U.S.-Iran negotiations and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported crude prices through the spring."
+    }
+  ],
+  knowledgeBuilder: {
+    topic: "How Rate Classes Determine a Commercial Customer's Base Utility Charges",
+    tldr: "Utilities assign each customer to a rate class -- such as small commercial, medium commercial, or large industrial -- based on usage volume and demand characteristics, and the rate class sets the tariff structure a customer pays for distribution, transmission, and other non-bypassable charges. Because competitive suppliers use the rate class tariff as the baseline for pricing a supply offer, getting the rate class right at enrollment is essential: a misclassified account will have a cost structure that doesn't match the contract, leading to billing errors and unexpected reconciliation charges."
+  },
+  procurementTip: "With the EIA storage report for week ending June 19 releasing today and natural gas already bid higher on heat-driven power burn, buyers on index-priced contracts should watch for intraday cash price volatility if the injection number comes in below expectations.",
+  priceHistory: {
+    labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
+    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.28],
+    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.50],
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
+    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
+  },
+  deepDive: null,
+  glossary: [
+    { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
+    { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
+    { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO." },
+    { term: "Capacity Charge", category: "Power Markets", definition: "A utility pass-through on electric bills covering the cost of reserving generation capacity in the ISO/RTO forward capacity auction." },
+    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes through changes in the utility's fuel costs for generation -- primarily the cost of natural gas burned at power plants." },
+    { term: "Index Price", category: "Contract Terms", definition: "A natural gas or electricity price tied to a published market benchmark (e.g., Henry Hub daily spot), meaning the customer's commodity cost floats with the market." },
+    { term: "Fixed Price", category: "Contract Terms", definition: "A locked-in supply rate for the full contract term. Protects the customer from market spikes but foregoes savings if prices fall." },
+    { term: "Demand Charge", category: "Bill Components", definition: "A monthly fee on commercial electric bills based on the customer's peak 15- or 30-minute interval demand (kW), not total consumption (kWh)." },
+    { term: "Henry Hub", category: "Gas Markets", definition: "The primary natural gas pricing benchmark in the U.S., located in Erath, Louisiana, where several interstate pipelines interconnect." },
+    { term: "NYMEX Settlement", category: "Gas Markets", definition: "The official closing price of the front-month natural gas futures contract on the New York Mercantile Exchange, used to mark-to-market positions and set financial obligations." },
+    { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for delivering energy through local pipes or wires to a customer's meter -- separate from the commodity supply cost." },
+    { term: "Evergreen Clause", category: "Contract Terms", definition: "A provision that automatically renews a supply contract for a set period if the customer does not provide timely written notice of cancellation." },
+    { term: "Transmission Charge", category: "Bill Components", definition: "A utility fee for moving electricity or gas across high-voltage or high-pressure interstate systems to the local distribution network -- a non-bypassable cost in most markets." },
+    { term: "Block-and-Index", category: "Contract Terms", definition: "A hybrid pricing structure where a portion of a customer's energy volume is fixed-price (the block) and the remainder floats with a market index." },
+    { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A utility fee that all customers pay regardless of their energy supplier -- typically funding public benefit programs, infrastructure, or prior regulatory commitments." },
+    { term: "ESI ID", category: "Data & Enrollment", definition: "Electric Service Identifier -- a unique number assigned to each electric meter in ERCOT used to identify the service point in all EDI transactions and supplier registrations." },
+    { term: "Reconciliation Charge", category: "Bill Components", definition: "An adjustment applied when actual metered usage differs from the estimated or scheduled quantities used for billing -- common in natural gas markets with daily scheduling." },
+    { term: "Peak Load Contribution (PLC)", category: "Power Markets", definition: "A customer's share of the ISO/RTO system peak demand, measured during specific high-demand hours; determines the customer's capacity obligation and associated charges for the next planning year." },
+    { term: "Generation Charge", category: "Bill Components", definition: "The portion of a utility bill attributed to electricity production -- what competitive suppliers replace when a customer switches from default service." },
+    { term: "Swing Supply", category: "Contract Terms", definition: "A natural gas supply arrangement allowing the buyer to take more or less than contracted volume, typically at a premium to the daily spot index." },
+    { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
+    { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
+    { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average power consumption over a billing period to their peak demand, expressed as a percentage. A high load factor (steady usage) typically results in lower per-unit demand charges; a low load factor (large demand spikes) increases them." }
+  ]
+};
+
+
+// AI Prompt (AI Refresh button)
+const AI_PROMPT = `You are writing an early-career energy markets daily newsletter for junior analysts at an energy brokerage. Informational tone  explain what is happening and why. No task-list language.
+
+WORD OF DAY  already used (do not repeat): Price to Compare (PTC), Basis Differential, LMP, Capacity Charge, FAC, Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge
+Pick from: franchise fee, true-up, supply adder, adder, swing supply, contract start vs flow date, early termination fee, notice period, renewal window, POD ID, rate class, interval data, AMI meter, MDM, EDI 867, EDI 810, enrollment window, drop notice, reinstatement, capacity tag (ICAP)
+
+MARKET FACTS (June 22, 2026  Monday): Henry Hub spot $3.32/MMBtu (EOX Live 6:01 AM CST, +$0.09 vs. prior settle); NYMEX Jul futures $3.32/MMBtu (Jul contract settles ~Jun 25; heat dome lifting demand bids); ERCOT CDR 08:02 HB_HUBAVG $22.89/MWh at 0800 off-peak (peak so far $34.74 at 0700; heat dome active); PJM ComEd zone DA ~$52/MWh estimate (Max Gen Alert active; peak-hour spikes expected MonWed); WTI $77.00/bbl (EOX Live +$0.40 +0.52%); EIA storage wk/e Jun 12: 2,759 Bcf, +73 Bcf build (151 Bcf above 5-yr avg of 2,608 Bcf; 29 Bcf below year-ago); U.S. LNG exports 17.1 Bcf/d in June flat vs. May; SunZia Wind Farm (3,650 MW) reached commercial operations in New Mexico; next EIA storage report wk/e Jun 19, due Thu Jun 25.
+
+RULES: wordOfDay.tldr 20 words  headlines: exactly 2  headlines[].summary 25 words  knowledgeBuilder.tldr 1-2 sentences  procurementTip.tip 1 sentence  glossary: keep all past entries, append today's new term.
+priceHistory: preserve existing arrays unchanged unless it's a new month, in which case append the new month's data.
+IF TODAY IS FRIDAY: include deepDive with 3 sections (2-3 sentences each).
+Today: ${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}.
+Reply ONLY with valid JSON matching the SEED structure exactly.`;
+
+let currentData = SEED;
+let chartCommodityInst = null;
+let chartPowerInst = null;
+
+function pulse() {
+  return [85,65,75,55,70].map((w,i)=>
+    `<div class="pulse-line" style="width:${w}%;opacity:${(1-i*0.14).toFixed(2)}"></div>`).join('');
+}
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function safeHtml(s) {
+  return String(s||'')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/&lt;strong&gt;/g,'<strong>').replace(/&lt;\/strong&gt;/g,'</strong>');
+}
+
+function renderWord(w) {
+  if (!w) return '';
+  return `
+    <div class="wod-meta"><span class="badge badge-cat">${esc(w.category||'')}</span></div>
+    <div class="wod-term">${esc(w.term)}${w.abbr?`<span class="wod-abbr">${esc(w.abbr)}</span>`:''}</div>
+    <div class="wod-tldr">${esc(w.tldr)}</div>
+    <div class="inset-box context" style="margin-top:10px">
+      <div class="inset-label">Where you'll see this</div>
+      <div class="inset-text">${esc(w.usedInSentence)}</div>
+    </div>`;
+}
+function renderHeadlines(hs) {
+  return `<div class="headlines-list">${(hs||[]).map(h=>`
+    <div class="headline-card">
+      <div class="headline-title-row">
+        <div class="headline-title">${esc(h.title)}</div>
+        <div class="headline-right"><span class="tag-chip">${esc(h.tag)}</span></div>
+      </div>
+      ${h.summary?`<div class="story-summary">${safeHtml(h.summary)}</div>`:''}
+    </div>`).join('')}</div>`;
+}
+function renderKB(kb) {
+  if (!kb) return '';
+  return `<div class="kb-topic">${esc(kb.topic)}</div><div class="kb-tldr">${esc(kb.tldr)}</div>`;
+}
+function renderTip(tip) {
+  if (!tip) return '';
+  const text = typeof tip === 'string' ? tip : (tip.tip || '');
+  return `<div class="takeaway-text">${esc(text)}</div>`;
+}
+function renderDeepDive(dd) {
+  if (!dd) return '';
+  const secs = (dd.sections||[]).map(s=>`
+    <div class="dd-section">
+      <div class="dd-section-title">${esc(s.title)}</div>
+      <div class="dd-body">${safeHtml(s.body)}</div>
+    </div>`).join('');
+  return `<div class="dd-topic">${esc(dd.topic)}</div>${secs}
+    ${dd.takeaway?`<div class="dd-takeaway"><div class="dd-takeaway-label">Key takeaway</div>${esc(dd.takeaway)}</div>`:''}`;
+}
+function renderGlossary(gl) {
+  if (!gl||!gl.length) return '';
+  return gl.map(g=>`
+    <div class="glossary-entry">
+      <div class="glossary-term">${esc(g.term)}<span class="glossary-cat-badge">${esc(g.category||'')}</span></div>
+      <div class="glossary-def">${esc(g.definition)}</div>
+    </div>`).join('');
+}
+
+const CHART_DEFAULTS = {
+  responsive: true,
+  interaction: { mode: 'index', intersect: false },
+  plugins: { legend: { display: false } },
+};
+
+function tooltipStyle(extra) {
+  return {
+    backgroundColor: '#0d1117',
+    borderColor: '#30363d',
+    borderWidth: 1,
+    titleColor: '#8b949e',
+    bodyColor: '#c9d1d9',
+    padding: 10,
+    titleFont: { size: 11 },
+    bodyFont: { size: 11 },
+    ...extra
+  };
+}
+
+function axisStyle(opts) {
+  return {
+    grid: { color: '#1e242d' },
+    ticks: { color: '#484f58', font: { size: 10.5 }, maxTicksLimit: 6 },
+    ...opts
+  };
+}
+
+function buildCommodityChart(h) {
+  const ctx = document.getElementById('chartCommodity');
+  if (!ctx || !h) return;
+  if (chartCommodityInst) { chartCommodityInst.destroy(); chartCommodityInst = null; }
+  chartCommodityInst = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: h.labels,
+      datasets: [
+        { label: 'Henry Hub', data: h.natGas, yAxisID: 'yGas', borderColor: '#388bfd', backgroundColor: 'rgba(56,139,253,0.07)', borderWidth: 2.5, pointRadius: 3.5, pointHoverRadius: 6, pointBackgroundColor: '#388bfd', tension: 0.35, fill: true },
+        { label: 'WTI Crude', data: h.wti, yAxisID: 'yOil', borderColor: '#d29922', backgroundColor: 'rgba(210,153,34,0.05)', borderWidth: 2.5, pointRadius: 3.5, pointHoverRadius: 6, pointBackgroundColor: '#d29922', tension: 0.35, fill: false }
+      ]
+    },
+    options: {
+      ...CHART_DEFAULTS,
+      plugins: { legend: { display: false }, tooltip: { ...tooltipStyle({}), callbacks: { title: items => items[0].label, label: item => { const units = ['$/MMBtu','$/bbl']; const val = item.raw != null ? item.raw.toFixed(2) : ''; return `  ${item.dataset.label}: $${val} ${units[item.datasetIndex]}`; } } } },
+      scales: {
+        x: axisStyle({}),
+        yGas: axisStyle({ type: 'linear', position: 'left', title: { display: true, text: '$/MMBtu', color: '#388bfd', font: { size: 10.5 } }, ticks: { color: '#388bfd', font: { size: 10 }, callback: v => '$' + v.toFixed(2) }, grid: { color: '#1e242d' } }),
+        yOil: axisStyle({ type: 'linear', position: 'right', title: { display: true, text: '$/bbl', color: '#d29922', font: { size: 10.5 } }, ticks: { color: '#d29922', font: { size: 10 }, callback: v => '$' + v.toFixed(0) }, grid: { drawOnChartArea: false } })
+      }
+    }
+  });
+}
+
+function buildPowerChart(h) {
+  const ctx = document.getElementById('chartPower');
+  if (!ctx || !h) return;
+  if (chartPowerInst) { chartPowerInst.destroy(); chartPowerInst = null; }
+  chartPowerInst = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: h.labels,
+      datasets: [
+        { label: 'ERCOT Avg', data: h.ercot, borderColor: '#3fb950', backgroundColor: 'rgba(63,185,80,0.07)', borderWidth: 2.5, pointRadius: 3.5, pointHoverRadius: 6, pointBackgroundColor: '#3fb950', tension: 0.35, fill: true },
+        { label: 'PJM ComEd Zone', data: h.pjm, borderColor: '#bc8cff', backgroundColor: 'rgba(188,140,255,0.05)', borderWidth: 2.5, pointRadius: 3.5, pointHoverRadius: 6, pointBackgroundColor: '#bc8cff', tension: 0.35, fill: false },
+        { label: 'MISO IL Hub', data: h.miso, borderColor: '#f78166', backgroundColor: 'rgba(247,129,102,0.05)', borderWidth: 2.5, pointRadius: 3.5, pointHoverRadius: 6, pointBackgroundColor: '#f78166', tension: 0.35, fill: false },
+        { label: 'NYISO Zone A', data: h.nyiso, borderColor: '#58a6ff', backgroundColor: 'rgba(88,166,255,0.05)', borderWidth: 2.5, pointRadius: 3.5, pointHoverRadius: 6, pointBackgroundColor: '#58a6ff', tension: 0.35, fill: false }
+      ]
+    },
+    options: {
+      ...CHART_DEFAULTS,
+      plugins: { legend: { display: false }, tooltip: { ...tooltipStyle({}), callbacks: { title: items => items[0].label, label: item => { const val = item.raw != null ? item.raw.toFixed(0) : ''; return `  ${item.dataset.label}: $${val}/MWh`; } } } },
+      scales: { x: axisStyle({}), y: axisStyle({ title: { display: true, text: '$/MWh', color: '#484f58', font: { size: 10.5 } }, ticks: { color: '#484f58', font: { size: 10 }, callback: v => '$' + v.toFixed(0) } }) }
+    }
+  });
+}
+
+function renderAll(data, loading=false) {
+  document.getElementById('headerMeta').textContent = `${data.date||''}  ${data.meta||''}`;
+  document.getElementById('wordContainer').innerHTML      = loading ? pulse() : renderWord(data.wordOfDay);
+  document.getElementById('headlinesContainer').innerHTML = loading ? pulse() : renderHeadlines(data.headlines);
+  document.getElementById('kbContainer').innerHTML        = loading ? pulse() : renderKB(data.knowledgeBuilder);
+  document.getElementById('tipContainer').innerHTML       = loading ? pulse() : renderTip(data.procurementTip);
+  const gl = document.getElementById('glossaryList');
+  if (gl) { if (loading) { gl.innerHTML = ''; } else { renderGlossaryUI(data.glossary||[]); } }
+  const isFriday = new Date().getDay() === 5;
+  const hasDD = !!(data.deepDive && data.deepDive.topic);
+  const ddSec = document.getElementById('deepDiveSection');
+  if (ddSec) ddSec.style.display = (isFriday || hasDD) ? 'block' : 'none';
+  const ddCont = document.getElementById('deepDiveContainer');
+  if (ddCont) ddCont.innerHTML = loading ? pulse() : renderDeepDive(data.deepDive);
+  if (!loading && data.priceHistory) {
+    buildCommodityChart(data.priceHistory);
+    buildPowerChart(data.priceHistory);
+  }
+}
+
+function toggleGlossary() {
+  document.getElementById('glossaryBody').classList.toggle('open');
+  document.getElementById('glossaryToggle').classList.toggle('open');
+}
+
+const TERM_SHEET_ID = '19JTXz_ZsZ1A_f727g2P8O4zVghtn_4N2vRfU59nAZQ8';
+const DRIVE_READ_TOOL = 'mcp__4bd6e6dd-34f4-4585-83de-234ccc4dda36__read_file_content';
+
+function parseCsvLine(line) {
+  const out = []; let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inQ) {
+      if (ch === '"' && line[i+1] === '"') { cur += '"'; i++; }
+      else if (ch === '"') inQ = false;
+      else cur += ch;
+    } else {
+      if (ch === '"') inQ = true;
+      else if (ch === ',') { out.push(cur); cur = ''; }
+      else cur += ch;
+    }
+  }
+  out.push(cur);
+  return out;
+}
+
+async function loadTermQueue() {
+  const el = document.getElementById('termQueueContainer');
+  if (!el) return;
+  if (!window.cowork || !window.cowork.callMcpTool) {
+    el.innerHTML = '<div class="tq-empty">The live request queue loads when this brief is opened in Cowork.</div>';
+    return;
+  }
+  try {
+    const r = await window.cowork.callMcpTool(DRIVE_READ_TOOL, { fileId: TERM_SHEET_ID });
+    let payload = r.structuredContent;
+    if (!payload && r.content && r.content[0] && r.content[0].text) {
+      try { payload = JSON.parse(r.content[0].text); } catch(_) { payload = { fileContent: r.content[0].text }; }
+    }
+    const csv = (payload && payload.fileContent) || '';
+    const rows = csv.split(/\r?\n/).filter(l => l.trim());
+    const covered = new Set((currentData.glossary || []).map(g =>
+      g.term.toLowerCase().replace(/\s*\([^)]*\)/g, '').trim()));
+    const counts = {};
+    rows.slice(1).forEach(line => {
+      const cells = parseCsvLine(line);
+      const term = (cells[1] || '').trim();
+      if (!term) return;
+      const key = term.toLowerCase().replace(/\s*\([^)]*\)/g, '').trim();
+      if (covered.has(key)) return;
+      if (!counts[key]) counts[key] = { term: term, count: 0 };
+      counts[key].count++;
+    });
+    const queue = Object.values(counts).sort((a, b) => b.count - a.count).slice(0, 5);
+    if (!queue.length) {
+      el.innerHTML = '<div class="tq-empty">No open requests yet  be the first. Submissions are anonymous, and the most-requested term becomes the next Word of the Day.</div>';
+      return;
+    }
+    el.innerHTML = queue.map((t, i) => `
+      <div class="tq-row">
+        ${i === 0 ? '<span class="tq-next">Up next</span>' : ''}
+        <span class="tq-term">${esc(t.term)}</span>
+        <span class="tq-count">${t.count} request${t.count > 1 ? 's' : ''}</span>
+      </div>`).join('');
+  } catch(_) {
+    el.innerHTML = '<div class="tq-empty">Couldn\'t reach the request sheet right now  use the Suggest a Term button below; submissions still land in the queue.</div>';
+  }
+}
+
+let glossQuery = '';
+let glossCat = 'All';
+let glossData = [];
+
+function renderGlossaryUI(gl) {
+  glossData = gl || [];
+  const pillsEl = document.getElementById('glossPills');
+  const listEl = document.getElementById('glossaryList');
+  if (!pillsEl || !listEl) return;
+  const cats = ['All'].concat(Array.from(new Set(glossData.map(g => g.category))).sort());
+  if (cats.indexOf(glossCat) === -1) glossCat = 'All';
+  pillsEl.innerHTML = cats.map(c =>
+    `<button class="pill${c === glossCat ? ' active' : ''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+  pillsEl.querySelectorAll('.pill').forEach(b =>
+    b.addEventListener('click', () => { glossCat = b.dataset.cat; renderGlossaryUI(glossData); }));
+  const q = glossQuery.toLowerCase();
+  const filtered = glossData.filter(g =>
+    (glossCat === 'All' || g.category === glossCat) &&
+    (!q || g.term.toLowerCase().includes(q) || (g.definition || '').toLowerCase().includes(q)));
+  listEl.innerHTML = filtered.length
+    ? renderGlossary(filtered)
+    : '<div class="glossary-entry"><div class="glossary-def">No matching terms.</div></div>';
+}
+
+async function doRefresh() {
+  const btn = document.getElementById('refreshBtn');
+  const err = document.getElementById('errorBar');
+  btn.disabled = true; btn.textContent = 'Loading...';
+  err.style.display = 'none';
+  renderAll(currentData, true);
+  try {
+    const raw = await window.cowork.askClaude(AI_PROMPT, []);
+    const cleaned = raw.replace(/```json|```/g,'').trim();
+    const s = cleaned.indexOf('{'), e = cleaned.lastIndexOf('}');
+    const parsed = JSON.parse(s>-1&&e>-1 ? cleaned.slice(s,e+1) : cleaned);
+    currentData = { ...parsed, meta: `AI refreshed  ${new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}` };
+    renderAll(currentData);
+  } catch(_) {
+    err.textContent = 'AI refresh unavailable  showing this morning\'s verified data.';
+    err.style.display = 'block';
+    renderAll(currentData);
+  }
+  btn.disabled = false; btn.textContent = 'Refresh';
+}
+
+renderAll(currentData);
+const glossSearchEl = document.getElementById('glossSearch');
+if (glossSearchEl) glossSearchEl.addEventListener('input', e => { glossQuery = e.target.value; renderGlossaryUI(glossData); });
+loadTermQueue();
+</script>
+</body>
+</html>
