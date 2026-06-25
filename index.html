@@ -141,7 +141,7 @@ body {
 .gloss-pills { display: flex; gap: 6px; flex-wrap: wrap; }
 .pill { background: #161b22; border: 1px solid #30363d; color: #8b949e; font-size: 11px; padding: 4px 10px; border-radius: 12px; cursor: pointer; font-family: inherit; }
 .pill.active { background: #1c2a3a; border-color: #1f6feb; color: #58a6ff; }
-@media print { .suggest-btn, .gloss-controls, #termQueueSection { display: none !important; } }
+@media print { .suggest-btn, .gloss-controls, #termQueueSection, #archiveSection { display: none !important; } }
 
 /* Pulse skeleton */
 .pulse-line { height: 12px; background: #21262d; border-radius: 4px; margin-bottom: 8px; animation: fp 1.5s ease-in-out infinite; }
@@ -162,6 +162,15 @@ body {
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #8b949e; }
 .legend-swatch { width: 20px; height: 3px; border-radius: 2px; flex-shrink: 0; }
 .chart-note { font-size: 10px; color: #30363d; margin-top: 8px; }
+
+/* Archive pills */
+.archive-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.archive-pill {
+  font-size: 11.5px; color: #8b949e; padding: 4px 10px;
+  border-radius: 12px; border: 1px solid #30363d; background: #161b22;
+  text-decoration: none; white-space: nowrap; transition: border-color 0.15s, color 0.15s;
+}
+.archive-pill:hover { color: #58a6ff; border-color: #1f6feb; }
 
 /* Footer */
 .footer { font-size: 11px; color: #30363d; padding-top: 24px; border-top: 1px solid #21262d; }
@@ -314,6 +323,13 @@ body {
     </div>
   </div>
 
+  <hr class="divider">
+
+  <div class="section" id="archiveSection">
+    <div class="section-label">Past Briefs</div>
+    <div class="archive-pills" id="archivePills"><span style="font-size:12px;color:#484f58">Loading...</span></div>
+  </div>
+
   <div class="footer">Sources: EIA &nbsp;&nbsp; ERCOT CDR &nbsp;&nbsp; EOX Live &nbsp;&nbsp; NGI &nbsp;&nbsp; refreshed daily via scheduled task</div>
 </div>
 
@@ -353,7 +369,7 @@ body {
 const SEED = {
   date: "Thursday, June 25, 2026",
   meta: {
-    marketTakeaway: "Natural gas climbed this morning — EOX Live reported $3.284/MMBtu (+1.96%) at 6:11 AM CST — even as a surge in ERCOT renewables is displacing gas-fired generation and keeping Texas power prices moderate. Crude oil fell sharply: WTI dropped to $69.51/bbl and Brent to $72.68, reflecting softening demand expectations. Watch the EIA storage report for the week ending June 19, due this morning, for the next near-term gas price signal."
+    marketTakeaway: "Natural gas climbed this morning â EOX Live reported $3.284/MMBtu (+1.96%) at 6:11 AM CST â even as a surge in ERCOT renewables is displacing gas-fired generation and keeping Texas power prices moderate. Crude oil fell sharply: WTI dropped to $69.51/bbl and Brent to $72.68, reflecting softening demand expectations. Watch the EIA storage report for the week ending June 19, due this morning, for the next near-term gas price signal."
   },
   prices: [
     { name: "HH Spot", price: "$3.284", change: "+1.96%", direction: "up" },
@@ -383,9 +399,9 @@ const SEED = {
   ],
   knowledgeBuilder: {
     topic: "How Interval Data and AMI Meters Enable Smarter Energy Procurement for Commercial Customers",
-    tldr: "Advanced metering infrastructure (AMI) meters record electricity usage every 15 or 30 minutes rather than monthly totals, producing interval data that reveals exactly when a customer's demand peaks. Suppliers and consultants use this granular load profile to price competitive supply accurately, choose the right contract structure, and find opportunities to cut demand charges — details a monthly kWh bill cannot reveal."
+    tldr: "Advanced metering infrastructure (AMI) meters record electricity usage every 15 or 30 minutes rather than monthly totals, producing interval data that reveals exactly when a customer's demand peaks. Suppliers and consultants use this granular load profile to price competitive supply accurately, choose the right contract structure, and find opportunities to cut demand charges â details a monthly kWh bill cannot reveal."
   },
-  procurementTip: "Today's EIA storage report for the week ending June 19 hits this morning — if the injection comes in larger than the seasonal five-year average, expect continued downward pressure on near-term gas prices and a potential edge for customers still on index contracts.",
+  procurementTip: "Today's EIA storage report for the week ending June 19 hits this morning â if the injection comes in larger than the seasonal five-year average, expect continued downward pressure on near-term gas prices and a potential edge for customers still on index contracts.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
     natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.28],
@@ -397,25 +413,25 @@ const SEED = {
   },
   deepDive: null,
   glossary: [
-    { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate — the benchmark a competitive supplier must beat to show savings for a customer." },
+    { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate â the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
     { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO." },
     { term: "Capacity Charge", category: "Power Markets", definition: "A utility pass-through on electric bills covering the cost of reserving generation capacity in the ISO/RTO forward capacity auction." },
-    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes through changes in the utility's fuel costs for generation — primarily the cost of natural gas burned at power plants." },
+    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes through changes in the utility's fuel costs for generation â primarily the cost of natural gas burned at power plants." },
     { term: "Index Price", category: "Contract Terms", definition: "A natural gas or electricity price tied to a published market benchmark (e.g., Henry Hub daily spot), meaning the customer's commodity cost floats with the market." },
     { term: "Fixed Price", category: "Contract Terms", definition: "A locked-in supply rate for the full contract term. Protects the customer from market spikes but foregoes savings if prices fall." },
     { term: "Demand Charge", category: "Bill Components", definition: "A monthly fee on commercial electric bills based on the customer's peak 15- or 30-minute interval demand (kW), not total consumption (kWh)." },
     { term: "Henry Hub", category: "Gas Markets", definition: "The primary natural gas pricing benchmark in the U.S., located in Erath, Louisiana, where several interstate pipelines interconnect." },
     { term: "NYMEX Settlement", category: "Gas Markets", definition: "The official closing price of the front-month natural gas futures contract on the New York Mercantile Exchange, used to mark-to-market positions and set financial obligations." },
-    { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for delivering energy through local pipes or wires to a customer's meter — separate from the commodity supply cost." },
+    { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for delivering energy through local pipes or wires to a customer's meter â separate from the commodity supply cost." },
     { term: "Evergreen Clause", category: "Contract Terms", definition: "A provision that automatically renews a supply contract for a set period if the customer does not provide timely written notice of cancellation." },
-    { term: "Transmission Charge", category: "Bill Components", definition: "A utility fee for moving electricity or gas across high-voltage or high-pressure interstate systems to the local distribution network — a non-bypassable cost in most markets." },
+    { term: "Transmission Charge", category: "Bill Components", definition: "A utility fee for moving electricity or gas across high-voltage or high-pressure interstate systems to the local distribution network â a non-bypassable cost in most markets." },
     { term: "Block-and-Index", category: "Contract Terms", definition: "A hybrid pricing structure where a portion of a customer's energy volume is fixed-price (the block) and the remainder floats with a market index." },
-    { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A utility fee that all customers pay regardless of their energy supplier — typically funding public benefit programs, infrastructure, or prior regulatory commitments." },
-    { term: "ESI ID", category: "Data & Enrollment", definition: "Electric Service Identifier — a unique number assigned to each electric meter in ERCOT used to identify the service point in all EDI transactions and supplier registrations." },
-    { term: "Reconciliation Charge", category: "Bill Components", definition: "An adjustment applied when actual metered usage differs from the estimated or scheduled quantities used for billing — common in natural gas markets with daily scheduling." },
+    { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A utility fee that all customers pay regardless of their energy supplier â typically funding public benefit programs, infrastructure, or prior regulatory commitments." },
+    { term: "ESI ID", category: "Data & Enrollment", definition: "Electric Service Identifier â a unique number assigned to each electric meter in ERCOT used to identify the service point in all EDI transactions and supplier registrations." },
+    { term: "Reconciliation Charge", category: "Bill Components", definition: "An adjustment applied when actual metered usage differs from the estimated or scheduled quantities used for billing â common in natural gas markets with daily scheduling." },
     { term: "Peak Load Contribution (PLC)", category: "Power Markets", definition: "A customer's share of the ISO/RTO system peak demand, measured during specific high-demand hours; determines the customer's capacity obligation and associated charges for the next planning year." },
-    { term: "Generation Charge", category: "Bill Components", definition: "The portion of a utility bill attributed to electricity production — what competitive suppliers replace when a customer switches from default service." },
+    { term: "Generation Charge", category: "Bill Components", definition: "The portion of a utility bill attributed to electricity production â what competitive suppliers replace when a customer switches from default service." },
     { term: "Swing Supply", category: "Contract Terms", definition: "A natural gas supply arrangement allowing the buyer to take more or less than contracted volume, typically at a premium to the daily spot index." },
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
@@ -713,10 +729,36 @@ async function doRefresh() {
   btn.disabled = false; btn.textContent = 'Refresh';
 }
 
+async function loadArchive() {
+  const el = document.getElementById('archivePills');
+  if (!el) return;
+  try {
+    const resp = await fetch('https://api.github.com/repos/noaherdem-alt/energy-morning-brief/contents/archive');
+    const files = await resp.json();
+    if (!Array.isArray(files) || !files.length) {
+      el.innerHTML = '<span style="font-size:12px;color:#484f58">No past briefs yet.</span>';
+      return;
+    }
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const sorted = files
+      .filter(f => /^\d{4}-\d{2}-\d{2}\.html$/.test(f.name))
+      .sort((a, b) => b.name.localeCompare(a.name));
+    el.innerHTML = sorted.map(f => {
+      const d = f.name.replace('.html','');
+      const [y, m, dd] = d.split('-');
+      const label = months[parseInt(m)-1] + ' ' + parseInt(dd) + ', ' + y;
+      return '<a class="archive-pill" href="https://noaherdem-alt.github.io/energy-morning-brief/archive/' + f.name + '" target="_blank" rel="noopener">' + label + '</a>';
+    }).join('');
+  } catch(_) {
+    el.innerHTML = '<span style="font-size:12px;color:#484f58">Could not load archive.</span>';
+  }
+}
+
 renderAll(currentData);
 const glossSearchEl = document.getElementById('glossSearch');
 if (glossSearchEl) glossSearchEl.addEventListener('input', e => { glossQuery = e.target.value; renderGlossaryUI(glossData); });
 loadTermQueue();
+loadArchive();
 </script>
 </body>
 </html>
