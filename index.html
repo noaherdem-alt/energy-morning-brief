@@ -343,55 +343,54 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
 // LAST KB TOPICS -- avoid repeating recent ones:
-//   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Day-Ahead and Real-Time Markets Set Wholesale Electricity Prices
+//   How Rate Classes Determine a Commercial Customer's Base Utility Charges
 const SEED = {
-  date: "Wednesday, June 24, 2026",
+  date: "Thursday, June 25, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures edged up to $3.165/MMBtu this morning as LNG export flows reached 17.2 Bcfd in June and early-July heat forecasts supported power burn expectations. WTI crude fell nearly 2% to $71.82/bbl as demand uncertainty weighed on oil markets, while Brent slipped to $75.59. ERCOT is seeing a surge in renewable generation that is softening natural gas power burn in Texas even as summer cooling load builds."
+    marketTakeaway: "Natural gas firmed to $3.28/MMBtu this morning as heat across Florida and the Southern Plains boosted power burn, while Cheniere Energy's announcement of Train 7 commissioning at Corpus Christi Stage 3 highlights the growing LNG export pull on domestic supply. Crude oil sold off sharply — WTI dropped to $69.51/bbl — as progress in U.S.-Iran peace talks and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported oil prices through the spring."
   },
   prices: [
-    { name: "HH Spot", price: "~$3.09", change: "+0.5%", direction: "up" },
-    { name: "NYMEX NG Jul", price: "$3.165", change: "+0.57%", direction: "up" },
-    { name: "WTI Crude", price: "$71.82", change: "-1.90%", direction: "down" },
-    { name: "Brent Crude", price: "$75.59", change: "-1.93%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$35", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.28", change: "+1.96%", direction: "up" },
+    { name: "NYMEX NG", price: "$3.23", change: "+0.8%", direction: "up" },
+    { name: "WTI Crude", price: "$69.51", change: "-1.18%", direction: "down" },
+    { name: "Brent Crude", price: "$72.68", change: "-1.44%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$45", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Franchise Fee",
-    abbr: "",
+    term: "Load Factor",
+    abbr: "LF",
     category: "Bill Components",
-    tldr: "A municipal charge utilities pass through on bills for the right to use public rights-of-way.",
-    usedInSentence: "A customer who switches to a competitive gas or electric supplier still sees a franchise fee on their utility bill -- it compensates the municipality for the utility's use of public streets and easements, and it is non-bypassable regardless of which supplier the customer has chosen."
+    tldr: "Ratio of average energy use to peak demand -- measures how evenly a customer draws power over a billing period.",
+    usedInSentence: "A manufacturing plant running three shifts around the clock will have a high load factor, making it an attractive customer for competitive suppliers who can price more aggressively because the facility's demand rarely spikes unpredictably."
   },
   headlines: [
     {
-      title: "Renewables Surge in ERCOT, Softening Natural Gas Power Burn Despite Summer Heat",
-      tag: "Grid Operations",
-      summary: "A sharp weekly increase in solar and wind output cut into natural gas-fired generation in ERCOT this week, even as above-average temperatures pushed summer cooling load higher."
+      title: "Cheniere Begins Commissioning of Train 7 at Corpus Christi LNG Stage 3",
+      tag: "LNG Supply",
+      summary: "Cheniere told Texas regulators it is beginning startup and commissioning operations on Train 7, the final unit of its Corpus Christi Stage 3 expansion, adding the last increment of the project's more than 10 mtpa of new export capacity."
     },
     {
-      title: "WTI Crude Slides Nearly 2% to $71.82 While Natural Gas Holds on LNG and Heat Outlook",
-      tag: "Commodities",
-      summary: "Oil prices fell sharply Wednesday on demand uncertainty while natural gas held near $3.165, supported by climbing LNG export flows to 17.2 Bcfd and a hot early-July weather forecast."
+      title: "Crude Oil Slides Below $70 as U.S.-Iran Peace Talks Ease Supply Fears",
+      tag: "Crude Markets",
+      summary: "WTI fell to $69.51/bbl as progress in U.S.-Iran negotiations and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported crude prices through the spring."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Day-Ahead and Real-Time Markets Set Wholesale Electricity Prices",
-    tldr: "ISO/RTOs run two interconnected electricity markets: a day-ahead auction where generators submit bids for each hour of the next day, and a real-time market that clears every five minutes to balance actual supply and demand. Day-ahead prices reflect expected conditions 24 hours out; real-time prices reflect what is actually happening on the grid -- large divergences between the two typically signal unexpected demand spikes, generator outages, or transmission constraints that the day-ahead auction could not anticipate."
+    topic: "How Rate Classes Determine a Commercial Customer's Base Utility Charges",
+    tldr: "Utilities assign each customer to a rate class -- such as small commercial, medium commercial, or large industrial -- based on usage volume and demand characteristics, and the rate class sets the tariff structure a customer pays for distribution, transmission, and other non-bypassable charges. Because competitive suppliers use the rate class tariff as the baseline for pricing a supply offer, getting the rate class right at enrollment is essential: a misclassified account will have a cost structure that doesn't match the contract, leading to billing errors and unexpected reconciliation charges."
   },
-  procurementTip: "With WTI crude sliding nearly 2% today while natural gas futures hold steady near $3.165, the two commodity markets are decoupling -- customers approaching contract renewals should watch gas-specific fundamentals like storage levels and LNG flows rather than assuming oil price moves will pull gas rates lower.",
+  procurementTip: "With the EIA storage report for week ending June 19 releasing today and natural gas already bid higher on heat-driven power burn, buyers on index-priced contracts should watch for intraday cash price volatility if the injection number comes in below expectations.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
-    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.165],
-    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 71.82],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 35],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 38],
+    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.28],
+    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.50],
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
     miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
     nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
   },
@@ -420,9 +419,10 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A municipal charge that utilities collect from customers and remit to local governments as compensation for using public rights-of-way -- it appears on gas and electric bills regardless of which supplier the customer has chosen." }
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average power consumption over a billing period to their peak demand, expressed as a percentage. A high load factor (steady usage) typically results in lower per-unit demand charges; a low load factor (large demand spikes) increases them." }
   ]
 };
+
 
 // AI Prompt (AI Refresh button)
 const AI_PROMPT = `You are writing an early-career energy markets daily newsletter for junior analysts at an energy brokerage. Informational tone  explain what is happening and why. No task-list language.
