@@ -361,84 +361,84 @@ body {
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
 //   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
 // LAST KB TOPICS -- avoid repeating recent ones:
-//   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Interval Data and AMI Meters Enable Smarter Energy Procurement for Commercial Customers
+//   How Rate Classes Determine a Commercial Customer's Base Utility Charges
 const SEED = {
   date: "Thursday, June 25, 2026",
   meta: {
-    marketTakeaway: "Natural gas climbed this morning Ã¢ÂÂ EOX Live reported $3.284/MMBtu (+1.96%) at 6:11 AM CST Ã¢ÂÂ even as a surge in ERCOT renewables is displacing gas-fired generation and keeping Texas power prices moderate. Crude oil fell sharply: WTI dropped to $69.51/bbl and Brent to $72.68, reflecting softening demand expectations. Watch the EIA storage report for the week ending June 19, due this morning, for the next near-term gas price signal."
+    marketTakeaway: "Natural gas firmed to $3.28/MMBtu this morning as heat across Florida and the Southern Plains boosted power burn, while Cheniere Energy's announcement of Train 7 commissioning at Corpus Christi Stage 3 highlights the growing LNG export pull on domestic supply. Crude oil sold off sharply — WTI dropped to $69.51/bbl — as progress in U.S.-Iran peace talks and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported oil prices through the spring."
   },
   prices: [
-    { name: "HH Spot", price: "$3.284", change: "+1.96%", direction: "up" },
-    { name: "NYMEX NG", price: "$3.19", change: "+0.8%", direction: "up" },
+    { name: "HH Spot", price: "$3.28", change: "+1.96%", direction: "up" },
+    { name: "NYMEX NG", price: "$3.23", change: "+0.8%", direction: "up" },
     { name: "WTI Crude", price: "$69.51", change: "-1.18%", direction: "down" },
     { name: "Brent Crude", price: "$72.68", change: "-1.44%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$32*", change: "", direction: "neutral" }
+    { name: "ERCOT RT Hub", price: "~$45", change: "", direction: "neutral" }
   ],
   wordOfDay: {
     term: "Load Factor",
     abbr: "LF",
-    category: "Energy Analytics",
-    tldr: "Load factor measures how consistently a customer uses energy relative to their peak demand.",
-    usedInSentence: "A manufacturing plant running three shifts has a high load factor because its electricity use stays close to its peak all day, making its effective cost per kWh lower than a similar facility that only spikes at midday."
+    category: "Bill Components",
+    tldr: "Ratio of average energy use to peak demand -- measures how evenly a customer draws power over a billing period.",
+    usedInSentence: "A manufacturing plant running three shifts around the clock will have a high load factor, making it an attractive customer for competitive suppliers who can price more aggressively because the facility's demand rarely spikes unpredictably."
   },
   headlines: [
     {
-      title: "Renewables Surge in ERCOT Squeezes Natural Gas Power Burn as Summer Load Climbs",
-      tag: "Grid Operations",
-      summary: "A sharp week-over-week jump in wind and solar generation in ERCOT is displacing gas-fired power even as Texas summer load climbs, keeping real-time hub prices moderate."
+      title: "Cheniere Begins Commissioning of Train 7 at Corpus Christi LNG Stage 3",
+      tag: "LNG Supply",
+      summary: "Cheniere told Texas regulators it is beginning startup and commissioning operations on Train 7, the final unit of its Corpus Christi Stage 3 expansion, adding the last increment of the project's more than 10 mtpa of new export capacity."
     },
     {
-      title: "Cheniere Launches Commissioning of Corpus Christi LNG Train 7, Expanding Gulf Coast Export Capacity",
-      tag: "LNG Supply",
-      summary: "Cheniere Energy notified Texas regulators it will begin startup and commissioning of Train 7 at Corpus Christi Stage 3, adding several hundred MMcfd of new U.S. liquefaction capacity."
+      title: "Crude Oil Slides Below $70 as U.S.-Iran Peace Talks Ease Supply Fears",
+      tag: "Crude Markets",
+      summary: "WTI fell to $69.51/bbl as progress in U.S.-Iran negotiations and rising Strait of Hormuz tanker traffic unwound the geopolitical risk premium that had supported crude prices through the spring."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Interval Data and AMI Meters Enable Smarter Energy Procurement for Commercial Customers",
-    tldr: "Advanced metering infrastructure (AMI) meters record electricity usage every 15 or 30 minutes rather than monthly totals, producing interval data that reveals exactly when a customer's demand peaks. Suppliers and consultants use this granular load profile to price competitive supply accurately, choose the right contract structure, and find opportunities to cut demand charges Ã¢ÂÂ details a monthly kWh bill cannot reveal."
+    topic: "How Rate Classes Determine a Commercial Customer's Base Utility Charges",
+    tldr: "Utilities assign each customer to a rate class -- such as small commercial, medium commercial, or large industrial -- based on usage volume and demand characteristics, and the rate class sets the tariff structure a customer pays for distribution, transmission, and other non-bypassable charges. Because competitive suppliers use the rate class tariff as the baseline for pricing a supply offer, getting the rate class right at enrollment is essential: a misclassified account will have a cost structure that doesn't match the contract, leading to billing errors and unexpected reconciliation charges."
   },
-  procurementTip: "Today's EIA storage report for the week ending June 19 hits this morning Ã¢ÂÂ if the injection comes in larger than the seasonal five-year average, expect continued downward pressure on near-term gas prices and a potential edge for customers still on index contracts.",
+  procurementTip: "With the EIA storage report for week ending June 19 releasing today and natural gas already bid higher on heat-driven power burn, buyers on index-priced contracts should watch for intraday cash price volatility if the injection number comes in below expectations.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
     natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.28],
-    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.51],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 32],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 38],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 30],
-    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 52]
+    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.50],
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
+    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
   },
   deepDive: null,
   glossary: [
-    { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate Ã¢ÂÂ the benchmark a competitive supplier must beat to show savings for a customer." },
+    { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
     { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO." },
     { term: "Capacity Charge", category: "Power Markets", definition: "A utility pass-through on electric bills covering the cost of reserving generation capacity in the ISO/RTO forward capacity auction." },
-    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes through changes in the utility's fuel costs for generation Ã¢ÂÂ primarily the cost of natural gas burned at power plants." },
+    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes through changes in the utility's fuel costs for generation -- primarily the cost of natural gas burned at power plants." },
     { term: "Index Price", category: "Contract Terms", definition: "A natural gas or electricity price tied to a published market benchmark (e.g., Henry Hub daily spot), meaning the customer's commodity cost floats with the market." },
     { term: "Fixed Price", category: "Contract Terms", definition: "A locked-in supply rate for the full contract term. Protects the customer from market spikes but foregoes savings if prices fall." },
     { term: "Demand Charge", category: "Bill Components", definition: "A monthly fee on commercial electric bills based on the customer's peak 15- or 30-minute interval demand (kW), not total consumption (kWh)." },
     { term: "Henry Hub", category: "Gas Markets", definition: "The primary natural gas pricing benchmark in the U.S., located in Erath, Louisiana, where several interstate pipelines interconnect." },
     { term: "NYMEX Settlement", category: "Gas Markets", definition: "The official closing price of the front-month natural gas futures contract on the New York Mercantile Exchange, used to mark-to-market positions and set financial obligations." },
-    { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for delivering energy through local pipes or wires to a customer's meter Ã¢ÂÂ separate from the commodity supply cost." },
+    { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for delivering energy through local pipes or wires to a customer's meter -- separate from the commodity supply cost." },
     { term: "Evergreen Clause", category: "Contract Terms", definition: "A provision that automatically renews a supply contract for a set period if the customer does not provide timely written notice of cancellation." },
-    { term: "Transmission Charge", category: "Bill Components", definition: "A utility fee for moving electricity or gas across high-voltage or high-pressure interstate systems to the local distribution network Ã¢ÂÂ a non-bypassable cost in most markets." },
+    { term: "Transmission Charge", category: "Bill Components", definition: "A utility fee for moving electricity or gas across high-voltage or high-pressure interstate systems to the local distribution network -- a non-bypassable cost in most markets." },
     { term: "Block-and-Index", category: "Contract Terms", definition: "A hybrid pricing structure where a portion of a customer's energy volume is fixed-price (the block) and the remainder floats with a market index." },
-    { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A utility fee that all customers pay regardless of their energy supplier Ã¢ÂÂ typically funding public benefit programs, infrastructure, or prior regulatory commitments." },
-    { term: "ESI ID", category: "Data & Enrollment", definition: "Electric Service Identifier Ã¢ÂÂ a unique number assigned to each electric meter in ERCOT used to identify the service point in all EDI transactions and supplier registrations." },
-    { term: "Reconciliation Charge", category: "Bill Components", definition: "An adjustment applied when actual metered usage differs from the estimated or scheduled quantities used for billing Ã¢ÂÂ common in natural gas markets with daily scheduling." },
+    { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A utility fee that all customers pay regardless of their energy supplier -- typically funding public benefit programs, infrastructure, or prior regulatory commitments." },
+    { term: "ESI ID", category: "Data & Enrollment", definition: "Electric Service Identifier -- a unique number assigned to each electric meter in ERCOT used to identify the service point in all EDI transactions and supplier registrations." },
+    { term: "Reconciliation Charge", category: "Bill Components", definition: "An adjustment applied when actual metered usage differs from the estimated or scheduled quantities used for billing -- common in natural gas markets with daily scheduling." },
     { term: "Peak Load Contribution (PLC)", category: "Power Markets", definition: "A customer's share of the ISO/RTO system peak demand, measured during specific high-demand hours; determines the customer's capacity obligation and associated charges for the next planning year." },
-    { term: "Generation Charge", category: "Bill Components", definition: "The portion of a utility bill attributed to electricity production Ã¢ÂÂ what competitive suppliers replace when a customer switches from default service." },
+    { term: "Generation Charge", category: "Bill Components", definition: "The portion of a utility bill attributed to electricity production -- what competitive suppliers replace when a customer switches from default service." },
     { term: "Swing Supply", category: "Contract Terms", definition: "A natural gas supply arrangement allowing the buyer to take more or less than contracted volume, typically at a premium to the daily spot index." },
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Load Factor", category: "Energy Analytics", definition: "The ratio of a customer's average energy demand to their peak demand over a given period, expressed as a percentage. A high load factor indicates steady, predictable usage; a low load factor suggests sharp peaks relative to the baseline." }
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average power consumption over a billing period to their peak demand, expressed as a percentage. A high load factor (steady usage) typically results in lower per-unit demand charges; a low load factor (large demand spikes) increases them." }
   ]
 };
+
 
 
 // AI Prompt (AI Refresh button)
