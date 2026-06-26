@@ -284,7 +284,7 @@ body {
         </div>
         <div class="chart-subtitle" id="chartCommoditySubtitle"></div>
         <canvas id="chartCommodity" height="170"></canvas>
-        <div class="chart-note">Monthly averages · approximate seed data</div>
+        <div class="chart-note">Monthly averages  approximate seed data</div>
       </div>
       <div class="chart-panel">
         <div class="chart-panel-header">
@@ -298,7 +298,7 @@ body {
         </div>
         <div class="chart-subtitle" id="chartPowerSubtitle"></div>
         <canvas id="chartPower" height="160"></canvas>
-        <div class="chart-note">Monthly averages · approximate seed data</div>
+        <div class="chart-note">Monthly averages  approximate seed data</div>
       </div>
     </div>
   </div>
@@ -362,60 +362,78 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee,
-//   WTI (West Texas Intermediate)
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
 // LAST KB TOPICS -- avoid repeating recent ones:
-//   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How AMI Meters Enable Interval Data Collection and Why Granular Usage Data Matters for Procurement
+//   How EDI Transactions Connect Competitive Suppliers to the Utility Enrollment System
+// LAST HEADLINES:
+//   ERCOT Power Load Hits Records as Data Centers Drive Structural Gas Demand,
+//   WTI Crude Dips Below $70 as Strait of Hormuz Reopening Eases Supply Fears
 const SEED = {
-  date: "Thursday, June 25, 2026",
+  date: "Friday, June 26, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures rose nearly 2% to $3.284/MMBtu this morning as Cheniere Energy began commissioning a new Corpus Christi LNG liquefaction train, boosting export demand optimism even as today's EIA storage report showed a larger-than-expected +76 Bcf injection for the week ending June 19, keeping inventories 5.8% above the five-year average. WTI crude dropped sharply below $70/bbl for the first time in months, extending a four-session slide as U.S.-Iran peace talks showed meaningful progress toward reopening the Strait of Hormuz and unwinding the war premium that had been embedded in oil markets since the spring."
+    marketTakeaway: "Natural gas futures climbed to $3.40/MMBtu as above-normal temperatures forecast through July 4 lift power burn and LNG feedgas deliveries hit 17.3 Bcf/d -- the highest level since the start of summer. WTI crude fell nearly 3% to $69.82 as tanker transits resumed through the Strait of Hormuz, signaling easing supply risk and raising expectations for OPEC+ output increases. The divergence between rising gas and falling oil is a reminder that these markets are driven by different fundamentals right now: summer heat drives the gas market, while geopolitics drove the oil market."
   },
   prices: [
-    { name: "HH Spot", price: "$3.28", change: "+1.9%", direction: "up" },
-    { name: "NYMEX NG", price: "$3.284", change: "+1.96%", direction: "up" },
-    { name: "WTI Crude", price: "$69.51", change: "-1.18%", direction: "down" },
-    { name: "Brent Crude", price: "$72.68", change: "-1.44%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$28", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.25", change: "+0.9%", direction: "up" },
+    { name: "NYMEX NG", price: "$3.40", change: "+1.6%", direction: "up" },
+    { name: "WTI Crude", price: "$69.82", change: "-2.9%", direction: "down" },
+    { name: "Brent Crude", price: "$72.87", change: "-3.2%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$30*", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "WTI",
-    abbr: "West Texas Intermediate",
-    category: "Oil Markets",
-    tldr: "The primary U.S. crude oil benchmark priced at Cushing, Oklahoma, and the reference contract traded on the NYMEX.",
-    usedInSentence: "When a commodity desk reports crude at $69.51 today, they're quoting WTI -- the light, sweet benchmark that prices U.S. oil futures and historically moves in tandem with natural gas, though today's decoupling shows the two markets responding to very different supply signals."
+    term: "Load Factor",
+    abbr: "LF",
+    category: "Bill Components",
+    tldr: "The ratio of a customer's average demand to their peak demand -- a measure of how consistently they use energy.",
+    usedInSentence: "A factory running equipment at steady output 24 hours a day has a high load factor and typically pays lower per-unit energy costs than an office building whose consumption spikes at 9 AM and drops to near-zero overnight, because consistent usage exposes the supplier to far less peak-period risk."
   },
   headlines: [
     {
-      title: "Cheniere Begins Commissioning Corpus Christi LNG Train 7, Expanding U.S. Export Capacity",
-      tag: "LNG",
-      summary: "Cheniere Energy notified Texas regulators it is starting startup operations on Corpus Christi Stage 3 Train 7, adding to U.S. LNG export infrastructure as global demand stays elevated."
+      title: "ERCOT Power Load Hits Records as Data Centers Drive Structural Gas Demand",
+      tag: "Grid / ERCOT",
+      summary: "Texas grid operator projects summer 2026 peak load up to 98 GW, with data center growth adding persistent new demand that is keeping natural gas generation elevated even as renewables expand."
     },
     {
-      title: "WTI Crude Drops Below $70 as U.S.-Iran Peace Talks Unwind War Premium",
-      tag: "Oil Markets",
-      summary: "Crude oil fell for a fourth straight session Thursday as diplomatic progress raised prospects of the Strait of Hormuz reopening and restoring global oil supply disrupted since the spring conflict."
+      title: "WTI Crude Dips Below $70 as Strait of Hormuz Reopening Eases Supply Fears",
+      tag: "Crude Oil",
+      summary: "Oil fell nearly 3% Friday as tanker transits resumed through the Strait of Hormuz, removing the geopolitical risk premium that had supported prices above $71 earlier in the week."
     }
   ],
   knowledgeBuilder: {
-    topic: "How AMI Meters Enable Interval Data Collection and Why Granular Usage Data Matters for Procurement",
-    tldr: "Advanced Metering Infrastructure (AMI) meters record a customer's electricity consumption in 15- or 30-minute intervals rather than just a monthly total, creating a detailed load profile that shows when and how intensely a facility uses power. For procurement, interval data reveals usage patterns -- peak demand windows, load factor, and hourly shape -- that determine whether a flat-rate, time-of-use, or block-and-index contract structure will best fit that customer's actual consumption behavior and risk tolerance."
+    topic: "How EDI Transactions Connect Competitive Suppliers to the Utility Enrollment System",
+    tldr: "When a commercial customer switches to a competitive electricity supplier, the handoff happens through Electronic Data Interchange (EDI) -- standardized transaction files exchanged between the supplier, the utility, and the ISO/RTO. The EDI 814 initiates enrollment or a drop, the EDI 867 delivers interval usage history, and the EDI 810 handles invoice transactions. Every supplier switch, renewal, or cancellation triggers a chain of these messages, and a rejected EDI file can delay a customer's service start by a full enrollment cycle -- sometimes weeks."
   },
-  procurementTip: "With natural gas rising on LNG export demand while crude oil falls on geopolitical de-escalation, the two commodities are decoupling -- customers evaluating gas-linked electricity contracts should track Henry Hub independently from oil headlines this summer, as the correlation that normally ties them together has broken down.",
+  procurementTip: "With WTI crude dropping nearly 3% on easing Mideast supply fears while natural gas climbs on summer heat, customers approaching contract renewals are seeing a rare divergence -- gas-linked supply costs are rising even as broader energy sentiment softens, which makes this a natural window to evaluate whether a fixed-price contract offers better insulation than riding index prices through peak cooling season.",
   priceHistory: {
     labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26"],
-    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.28],
-    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 69.51],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 28],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 38],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 32],
-    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 52]
+    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.25],
+    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 70.50],
+    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 35],
+    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44],
+    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36],
+    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59]
   },
-  deepDive: null,
+  deepDive: {
+    topic: "How ERCOT Manages Summer Peak Demand -- and What It Means for Energy Buyers",
+    sections: [
+      {
+        title: "Why ERCOT Peak Hours Drive Extreme Price Volatility",
+        body: "ERCOT is an <strong>energy-only market</strong> -- unlike PJM or MISO, it has no separate capacity market where generators are paid year-round to be available. Instead, generators recover their fixed costs through prices during scarcity events, which can spike to the systemwide offer cap of $5,000/MWh when supply runs tight. In summer 2026, ERCOT forecasts peak loads between 90,500 and 98,000 MW. Data center growth and residential air conditioning demand converging on the same afternoon hours has compressed the grid's reserve margin, making afternoon price spikes both more frequent and more severe than in previous summers."
+      },
+      {
+        title: "How ERCOT Signals Stress Before Prices Spike",
+        body: "Before prices reach extreme levels, ERCOT issues a public alert sequence that market participants watch closely. A <strong>Weather Watch</strong> flags near-term heat risk. A <strong>Conservation Appeal</strong> asks for voluntary demand reductions as reserves tighten. An <strong>Energy Emergency Alert (EEA)</strong> signals that operator-directed load shedding may be imminent. Each step up this ladder typically triggers significant real-time price increases. Commercial and industrial customers who have pre-enrolled in demand response programs can earn payments by curtailing during these events, effectively getting paid to reduce load when the grid most needs relief."
+      },
+      {
+        title: "What This Means for Commercial and Industrial Customers",
+        body: "For C&I customers in ERCOT on index or real-time pricing, the hours between <strong>3 and 8 PM on weekdays</strong> carry the greatest cost exposure in summer. Customers on interruptible service contracts pay lower base rates but must be prepared to curtail on short notice when ERCOT calls. Those on fixed-price contracts are insulated from real-time spikes, but supplier fixed rates embed a view of peak-hour risk -- summer renewals typically carry a premium over winter-contracted prices for exactly this reason. Understanding the alert sequence also matters for peak load contribution (PLC) tags: voluntary curtailment during ERCOT's highest-demand hours can reduce a customer's capacity cost obligation going into the next planning year."
+      }
+    ],
+    takeaway: "In ERCOT's energy-only design, summer afternoons are when supply scarcity becomes price spikes -- there is no capacity payment backstop smoothing costs across the year. Data center load growth is adding a new structural demand floor being priced into both real-time markets and forward fixed-rate contracts. Buyers who understand the alert sequence and know their own demand flexibility are better positioned to manage both cost and grid risk as peak season intensifies."
+  },
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -440,7 +458,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "WTI (West Texas Intermediate)", category: "Oil Markets", definition: "The primary U.S. crude oil benchmark, priced at the Cushing, Oklahoma delivery hub and traded as the front-month NYMEX futures contract. WTI is light (low density) and sweet (low sulfur), making it easy to refine, and it serves as the reference price for U.S. oil production and a key input for energy cost forecasting." }
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand to their peak demand over a billing period, expressed as a percentage. A high load factor indicates steady, consistent usage; a low load factor indicates sharp peaks relative to average consumption. Suppliers use load factor to assess cost risk when pricing contracts." }
   ]
 };
 
@@ -579,7 +597,7 @@ function buildCommodityChart(h) {
   if (!ctx || !h) return;
   if (chartCommodityInst) { chartCommodityInst.destroy(); chartCommodityInst = null; }
   const subC = document.getElementById('chartCommoditySubtitle');
-  if (subC && h.labels && h.labels.length > 1) subC.textContent = `${h.labels[0]} – ${h.labels[h.labels.length-1]}  ·  13-month rolling  ·  updated daily`;
+  if (subC && h.labels && h.labels.length > 1) subC.textContent = `${h.labels[0]}  ${h.labels[h.labels.length-1]}    13-month rolling    updated daily`;
   chartCommodityInst = new Chart(ctx, {
     type: 'line',
     data: {
@@ -606,7 +624,7 @@ function buildPowerChart(h) {
   if (!ctx || !h) return;
   if (chartPowerInst) { chartPowerInst.destroy(); chartPowerInst = null; }
   const subP = document.getElementById('chartPowerSubtitle');
-  if (subP && h.labels && h.labels.length > 1) subP.textContent = `${h.labels[0]} – ${h.labels[h.labels.length-1]}  ·  13-month rolling  ·  updated daily`;
+  if (subP && h.labels && h.labels.length > 1) subP.textContent = `${h.labels[0]}  ${h.labels[h.labels.length-1]}    13-month rolling    updated daily`;
   chartPowerInst = new Chart(ctx, {
     type: 'line',
     data: {
