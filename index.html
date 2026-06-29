@@ -362,7 +362,7 @@ body {
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee, Load Factor
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -382,11 +382,11 @@ const SEED = {
     { name: "ERCOT RT Hub", price: "~$38", change: "est.", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Franchise Fee",
-    abbr: "",
-    category: "Bill Components",
-    tldr: "A local government charge on utility bills compensating cities for use of public rights-of-way.",
-    usedInSentence: "When comparing a competitive supply quote to the utility's default rate, analysts strip out non-bypassable pass-through costs like the franchise fee, which appears on the bill regardless of which supplier a customer chooses."
+    term: "Load Factor",
+    abbr: "LF",
+    category: "Contract Terms",
+    tldr: "The ratio of actual energy used to maximum possible usage over a period, expressed as a percentage.",
+    usedInSentence: "A commercial customer with a high load factor uses energy at a steady, predictable rate throughout the month — suppliers reward this with tighter pricing because it reduces the risk of having to buy expensive spot volumes to cover unexpected spikes."
   },
   headlines: [
     {
@@ -439,7 +439,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A monthly charge collected by the utility on behalf of a local government as compensation for using public rights-of-way -- passed through to customers on both gas and electric bills and cannot be bypassed by switching suppliers." }
+    { term: "Load Factor", category: "Contract Terms", definition: "The ratio of a customer's actual energy consumption over a billing period to its theoretical maximum (peak demand times hours). A high load factor means steady, predictable usage -- which suppliers price more favorably than spiky, hard-to-hedge load profiles." }
   ]
 };
 
