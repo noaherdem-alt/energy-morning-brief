@@ -339,14 +339,11 @@ body {
 <script>
 // SEED verified July 14, 2026 (Tuesday)
 // Sources: EOX Live Morning Report 7:46 AM CST Jul 14: Nat Gas $2.867 (-$0.030, -1.04%), WTI $80.07 (+$1.93, +2.47%), Brent $86.60 (+$3.30, +3.96%) |
-//          ERCOT CDR last updated Jul 14 08:17  HB_HUBAVG $29.03 at 0815 (off-peak); earlier peak $35.57 at 0715 |
-//          NYMEX NG down sharply in prior session on cooler weather forecasts + Freeport LNG major maintenance turnaround reducing feedgas demand |
-//          EIA storage wk/e Jul 3 (released Jul 9): 2,983 Bcf, +61 Bcf build; 185 Bcf above 5-yr avg; 15 Bcf below year-ago |
-//          Wind/solar >40% of ERCOT generation; gas-fired burn ~10% below year-ago; ERCOT summer peak projected 90,500-98,000 MW |
-//          Lazard: U.S. gas-fired power LCOE at 17-year high as data center demand drives record capacity requirements (Bloomberg Jul 13) |
-//          ERCOT Batch Zero large-load interconnection rules effective Jul 11; 90% of 438 GW queue are data centers |
-//          LNG feedgas YTD avg 18.1 Bcf/d (wk/e Jul 7, +19% YoY); Freeport LNG in major maintenance turnaround |
-//          Next EIA storage report: wk/e Jul 10, due Thu Jul 17 |
+//          ERCOT CDR unavailable (page timeout) -- ERCOT RT Hub ~$25/MWh estimated (off-peak, lower gas) |
+//          PJM ComEd zone DA ~$38/MWh estimated (EIA $45/MWh summer avg; cooler weather + lower gas) |
+//          EIA storage wk/e Jul 3: 2,983 Bcf, +61 Bcf injection, 185 Bcf above 5-yr avg, 15 Bcf below year-ago |
+//          Freeport LNG maintenance Jul 10 through late August -- feedgas ~1 Bcf/d (2 of 3 trains offline) |
+//          Lazard: gas-fired power cost 17-year high driven by AI/data center demand (Bloomberg Jul 13) |
 // WORD OF DAY USED -- never repeat:
 //   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
@@ -358,51 +355,51 @@ body {
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How LNG Export Terminals Connect U.S. Natural Gas Prices to Global Markets
+//   How Capacity Tags (ICAP) Are Set and Why They Drive a Significant Share of a Commercial Customer's Electric Bill
 const SEED = {
   date: "Tuesday, July 14, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures fell to $2.87/MMBtu as cooler weather forecasts and Freeport LNG's maintenance turnaround reduced export feedgas demand, pushing storage inventories to 185 Bcf above the five-year average. WTI crude moved sharply higher to $80.07/bbl on tightening global supply signals. ERCOT real-time prices are running in the high $20s this morning as wind generation -- now delivering over 40% of Texas grid output -- offsets summer heat load and limits gas-fired power burn."
+    marketTakeaway: "Natural gas futures fell to a six-week low near $2.87/MMBtu as Freeport LNG's maintenance outage cut feedgas demand to roughly 1 Bcf/d through late August, amplifying an already well-supplied market sitting 185 Bcf above the five-year average. WTI crude bucked the trend, jumping to $80/bbl as Middle East tensions around the Strait of Hormuz tightened global LNG shipping and lifted oil prices."
   },
   prices: [
-    { name: "NYMEX NG", price: "$2.87", change: "-1.04%", direction: "down" },
-    { name: "HH Spot (est.)", price: "~$2.90", change: "", direction: "neutral" },
-    { name: "WTI Crude", price: "$80.07", change: "+2.47%", direction: "up" },
-    { name: "Brent", price: "$86.60", change: "+3.96%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$29.03", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.87", change: "-1.0%", direction: "down" },
+    { name: "NYMEX NG", price: "$2.87", change: "-1.0%", direction: "down" },
+    { name: "WTI Crude", price: "$80.07", change: "+2.5%", direction: "up" },
+    { name: "Brent Crude", price: "$86.60", change: "+4.0%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "~$25", change: "", direction: "neutral" }
   ],
   wordOfDay: {
     term: "Load Factor",
-    abbr: "",
-    category: "Billing & Analytics",
-    tldr: "The ratio of a customer's average electricity demand to their peak demand over a billing period.",
-    usedInSentence: "A data center with a very high load factor -- running at consistent power draw around the clock -- is more predictable for suppliers and grid operators than a facility with sharp afternoon peaks, which is one reason ERCOT's rapidly growing data center queue is reshaping how the Texas grid plans for future capacity."
+    abbr: "LF",
+    category: "Data & Enrollment",
+    tldr: "The ratio of a customer's average demand to their peak demand over a billing period.",
+    usedInSentence: "A factory running three shifts will have a higher load factor than an office building that peaks midday and goes dark at night -- and typically pays a lower effective rate per kilowatt-hour, because its peak demand charges are spread across far more total consumption."
   },
   headlines: [
     {
-      title: "U.S. Gas-Fired Power Cost Hits 17-Year High as Data Center Demand Surges, Lazard Finds",
-      tag: "Power Markets",
-      summary: "The levelized cost of energy from natural gas plants reached a 17-year high in 2026 as surging data center electricity demand drives up required utilization rates and fuel costs."
+      title: "Freeport LNG Maintenance Cuts Feedgas to 1 Bcf/d, Pulling Natural Gas Futures to Six-Week Lows",
+      tag: "Gas Supply",
+      summary: "Planned maintenance sidelining two of Freeport's three liquefaction trains through late August reduced U.S. LNG export flows and drove Henry Hub futures down nearly 20 cents this week."
     },
     {
-      title: "ERCOT Activates Batch Zero Rules for Large-Load Interconnection as Data Centers Dominate 438 GW Queue",
-      tag: "Grid Operations",
-      summary: "Texas rules allowing ERCOT to study large-load interconnection requests in batches took effect July 11, with data centers comprising nearly 90% of a record 438 GW interconnection queue."
+      title: "Gas-Fired Power Costs Hit 17-Year High as U.S. Data Center Buildout Accelerates",
+      tag: "Power Markets",
+      summary: "Lazard's latest analysis shows the cost of natural gas generation reached its highest level since 2009, driven by surging electricity demand from AI data centers across the country."
     }
   ],
   knowledgeBuilder: {
-    topic: "How LNG Export Terminals Connect U.S. Natural Gas Prices to Global Markets",
-    tldr: "U.S. LNG export terminals are the direct link between domestic natural gas prices and international demand -- when terminals like Freeport LNG go offline for maintenance, feedgas deliveries drop, domestic storage builds faster, and Henry Hub prices soften. Conversely, when global gas prices spike or overseas demand rises, U.S. exports increase, drawing down domestic supply and pulling Henry Hub prices higher. Today's price decline is a direct example: Freeport LNG's maintenance turnaround is removing roughly 2 Bcf/d of feedgas demand from the market."
+    topic: "How Capacity Tags (ICAP) Are Set and Why They Drive a Significant Share of a Commercial Customer's Electric Bill",
+    tldr: "In PJM and other capacity markets, each customer is assigned a capacity tag based on how much load they put on the grid during the system's highest-demand hours of the year -- typically five to ten specific hours in summer. Suppliers pass these capacity costs through on contracts, so a customer who actively reduces load during those critical peak hours can permanently lower their capacity obligation and save thousands of dollars per year on the fixed portion of their electricity bill."
   },
-  procurementTip: "With NYMEX natural gas futures down sharply on cooler forecasts and Freeport LNG maintenance reducing export demand, customers on floating index-priced gas contracts may see short-term cost relief -- though the approaching winter injection season and record U.S. LNG export capacity could reverse that direction quickly as Q4 nears.",
+  procurementTip: "With Freeport LNG offline through late August and storage running 185 Bcf above the five-year average, near-term fixed supply prices are trading at a discount to NYMEX -- customers with natural gas volume to lock in for late summer should explore fixed offers before maintenance concludes and LNG flows recover.",
   priceHistory: {
     labels: ["Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
     natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.87],
     wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 80.07],
-    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 32],
-    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 45],
-    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 38],
-    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 55]
+    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 25],
+    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 38],
+    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 33],
+    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 52]
   },
   deepDive: null,
   glossary: [
@@ -429,7 +426,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Load Factor", category: "Billing & Analytics", definition: "The ratio of a customer's average electricity demand to their peak demand over a billing period, expressed as a percentage. A higher load factor indicates steadier, more consistent usage -- generally favorable for pricing and grid planning." }
+    { term: "Load Factor", category: "Data & Enrollment", definition: "The ratio of a customer's average demand (kW) to their peak demand (kW) over a billing period, expressed as a percentage. High-load-factor customers use energy more consistently and generally pay less per kWh than customers with sharp demand spikes." }
   ]
 };
 
