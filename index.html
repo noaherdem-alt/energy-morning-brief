@@ -338,72 +338,70 @@ body {
 
 <script>
 // SEED verified July 15, 2026 (Wednesday)
-// Sources: EOX Live Morning Report 7:39 AM CST Jul 15: Nat Gas $2.893 (prev $2.904, -0.38%), WTI $79.62 (+0.35%), Brent $84.95 (+0.26%) |
-//          ERCOT CDR 09:00 CST HB_HUBAVG $22.75/MWh (off-peak morning; overnight high $46 at 0015 during demand ramp) |
-//          NYMEX Aug NG futures $2.902/MMBtu (range $2.896-$2.940) |
-//          EIA storage wk/e Jul 3 (released Jul 9): 2,983 Bcf, +61 Bcf build, 185 Bcf above 5-yr avg, 15 Bcf below year-ago |
-//          Eastern U.S. heat wave driving power burn to 45.6 Bcf/d (wk/e Jul 7), +15% week-over-week |
-//          U.S. dry gas output 110.2 Bcf/d in early July; record production capping gas price gains |
-//          PJM day-ahead est. ~$47/MWh (heat wave conditions; early July spikes exceeded $2,000/MWh) |
-//          Lazard: U.S. gas-fired power generation costs at 17-year high, driven by data center demand surge |
-//          ERCOT approved batch interconnection study rules for large load; ~90% of 438 GW queue is data centers |
-//          Next EIA storage report: wk/e Jul 10, due Thu Jul 16 |
+// Sources: EOX Live Morning Report 7:39 AM CST Jul 15: Nat Gas (NYMEX Aug) $2.893 (-$0.011, -0.38%), WTI $79.62 (+$0.28, +0.35%), Brent $84.95 (+$0.22, +0.26%) |
+//          Henry Hub spot price: $2.88/MMBtu (Jul 14 confirmed via EIA/FRED; new release due today Jul 15) |
+//          ERCOT CDR last updated Jul 15 10:02  HB_HUBAVG $24.90/MWh at 1000 (off-peak morning, afternoon heat build expected) |
+//          PJM DA energy price: estimated ~$45/MWh (no confirmed real-time DA price available) |
+//          PJM 2028/2029 Base Residual Auction (announced Jul 14): cleared at $325/MW-day FERC cap, 138,318 MW UCAP -- third consecutive year at cap |
+//          EIA storage wk/e Jul 3 (released Jul 9): 2,983 Bcf, +61 Bcf build, 185 Bcf above 5-yr avg of 2,798 Bcf; 15 Bcf below year-ago |
+//          Next EIA storage report: wk/e Jul 10, due Thu Jul 16, 2026 |
+//          Bloomberg (Jul 13): US gas-fired power costs at 17-year high, driven by data center demand |
 // WORD OF DAY USED -- never repeat:
 //   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Load Factor
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, ICAP (Installed Capacity)
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Day-Ahead and Real-Time Electricity Markets Work and Why the Price Spread Matters for Commercial Customers
+//   How PJM's Forward Capacity Market Works and Why Clearing Prices Matter for Future Electric Bills
 const SEED = {
   date: "Wednesday, July 15, 2026",
   meta: {
-    marketTakeaway: "Natural gas spot slipped to $2.89/MMBtu this morning as record U.S. production near 110 Bcf/d absorbed a significant surge in power burn demand driven by an intense eastern heat wave. ERCOT real-time prices are in the low-$20s/MWh during the off-peak morning window but may climb sharply into the afternoon peak as Texas summer load builds. With storage running 185 Bcf above the five-year average, plentiful supply is keeping futures range-bound near $2.90/MMBtu even as physical prices see daily heat-driven bumps."
+    marketTakeaway: "Natural gas futures slipped to $2.89/MMBtu as robust production and storage well above seasonal norms continue to weigh on prices, with ERCOT off-peak prices near $25/MWh ahead of the afternoon heat build. The bigger structural story is PJM's capacity auction clearing at the $325/MW-day price cap for the third straight year -- a signal that new power supply isn't keeping pace with surging demand from data centers and AI infrastructure, and those costs will eventually flow to commercial customers' utility bills."
   },
   prices: [
-    { name: "HH Spot", price: "$2.89", change: "-0.4%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.90", change: "-0.1%", direction: "down" },
+    { name: "HH Spot", price: "$2.88", change: "-1.4%", direction: "down" },
+    { name: "NYMEX NG", price: "$2.89", change: "-0.4%", direction: "down" },
     { name: "WTI Crude", price: "$79.62", change: "+0.4%", direction: "up" },
     { name: "Brent Crude", price: "$84.95", change: "+0.3%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$22.75", change: "", direction: "neutral" }
+    { name: "ERCOT RT Hub", price: "$24.90", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Load Factor",
-    abbr: "LF",
-    category: "Contract Terms",
-    tldr: "The ratio of a customer's average energy use to their peak demand -- higher means more consistent, predictable consumption.",
-    usedInSentence: "A 24/7 manufacturer with a high load factor is attractive to competitive suppliers because their energy draw is steady and predictable, allowing the supplier to hedge the position more efficiently and often offer a lower per-unit price."
+    term: "ICAP",
+    abbr: "Installed Capacity",
+    category: "Power Markets",
+    tldr: "Megawatts of generation capacity committed to be available during peak demand in an ISO capacity market.",
+    usedInSentence: "When PJM's 2028/2029 capacity auction cleared at the $325/MW-day price cap, generators offering ICAP locked in revenue for guaranteeing their availability during future peak demand events -- costs that ultimately flow to customers as capacity charges on their utility bills."
   },
   headlines: [
     {
-      title: "Dangerous Heat Drives Natural Gas Cash Prices Higher as Futures Stay Range-Bound",
-      tag: "Gas Markets",
-      summary: "An intense eastern U.S. heat wave lifted physical gas prices above futures this week as power sector demand hit 45.6 Bcf/d, a 15% weekly jump, while record production kept the futures market pinned near $2.90/MMBtu."
+      title: "PJM 2028/2029 Capacity Auction Hits $325/MW-Day Cap for Third Consecutive Year",
+      tag: "Power Markets",
+      summary: "PJM procured 138,318 MW for 2028/2029 delivery at the FERC price cap, reflecting persistent supply tightness as data center load growth strains future grid adequacy planning."
     },
     {
-      title: "U.S. Gas-Fired Power Generation Costs Hit 17-Year High as Data Center Demand Surges",
-      tag: "Power Markets",
-      summary: "Lazard reports the cost of electricity from natural gas plants has reached its highest level in at least 17 years, driven by surging data center power demand and tightening generation capacity across multiple grid regions."
+      title: "US Gas-Fired Power Costs Reach 17-Year High as Data Center Demand Surges",
+      tag: "Energy Costs",
+      summary: "Lazard analysis shows generating electricity from gas plants costs more than at any point in 17 years, driven by AI infrastructure buildout pushing load growth across major grid regions."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Day-Ahead and Real-Time Electricity Markets Work and Why the Price Spread Matters for Commercial Customers",
-    tldr: "In organized wholesale power markets like PJM and ERCOT, the day-ahead market clears a full day in advance based on load forecasts and generator bids -- locking in hourly prices before the delivery day. The real-time market then settles every five minutes based on actual grid conditions, and when demand unexpectedly spikes or a generator trips offline, real-time prices can surge far above the day-ahead clearing price. For commercial customers, this spread matters because suppliers managing real-time exposure during extreme events like heat waves can face significant cost volatility, which often gets factored into supply contract pricing."
+    topic: "How PJM's Forward Capacity Market Works and Why Clearing Prices Matter for Future Electric Bills",
+    tldr: "PJM runs a Base Residual Auction three years ahead of each delivery year to lock in commitments from generators that they will be available during peak demand periods -- generators that clear receive a fixed $/MW-day payment, and those costs flow to customers as capacity charges on utility bills. When the auction clears at or near the price cap three years running, it signals that new supply isn't keeping pace with demand growth, meaning capacity-related costs for PJM-territory customers are likely to rise even if natural gas spot prices stay low."
   },
-  procurementTip: "With natural gas near $2.90/MMBtu and storage 185 Bcf above the five-year average, today's market conditions offer customers approaching renewals a favorable window to evaluate fixed-price options before any late-summer heat event tightens the basis.",
+  procurementTip: "With storage 185 Bcf above the five-year average and gas futures near $2.89/MMBtu, index customers are in a favorable commodity position right now -- but PJM's third consecutive capacity auction at the price cap is a reminder that non-commodity charges are heading structurally higher regardless of where spot prices trade.",
   priceHistory: {
     labels: ["Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
     natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.89],
     wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 79.62],
-    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 32],
-    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 47],
+    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 25],
+    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 45],
     miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 38],
-    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 62]
+    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 55]
   },
   deepDive: null,
   glossary: [
@@ -430,7 +428,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Load Factor", category: "Contract Terms", definition: "The ratio of a customer's average power demand to their peak demand over a billing period, expressed as a percentage. High load-factor customers use energy consistently and are typically offered better pricing by competitive suppliers." }
+    { term: "ICAP (Installed Capacity)", category: "Power Markets", definition: "The total megawatts of generation capacity a resource commits to make available in an ISO/RTO forward capacity market; obligations are secured in auctions like PJM's Base Residual Auction, and resulting costs flow to customers as capacity charges on utility bills." }
   ]
 };
 
