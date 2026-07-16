@@ -337,71 +337,70 @@ body {
 </div>
 
 <script>
-// SEED verified July 15, 2026 (Wednesday)
-// Sources: EOX Live Morning Report 7:39 AM CST Jul 15: Nat Gas (NYMEX Aug) $2.893 (-$0.011, -0.38%), WTI $79.62 (+$0.28, +0.35%), Brent $84.95 (+$0.22, +0.26%) |
-//          Henry Hub spot price: $2.88/MMBtu (Jul 14 confirmed via EIA/FRED; new release due today Jul 15) |
-//          ERCOT CDR last updated Jul 15 10:02  HB_HUBAVG $24.90/MWh at 1000 (off-peak morning, afternoon heat build expected) |
-//          PJM DA energy price: estimated ~$45/MWh (no confirmed real-time DA price available) |
-//          PJM 2028/2029 Base Residual Auction (announced Jul 14): cleared at $325/MW-day FERC cap, 138,318 MW UCAP -- third consecutive year at cap |
+// SEED verified July 16, 2026 (Thursday)
+// Sources: EOX Live Morning Report 6:38 AM CST Jul 16: Nat Gas $2.913 (-$0.011, -0.38%), WTI $79.49 (-$0.11, -0.14%), Brent $84.58 (-$0.37, -0.44%) |
+//          ERCOT CDR unavailable -- ERCOT RT price estimated ~$55/MWh based on July heat conditions |
 //          EIA storage wk/e Jul 3 (released Jul 9): 2,983 Bcf, +61 Bcf build, 185 Bcf above 5-yr avg of 2,798 Bcf; 15 Bcf below year-ago |
-//          Next EIA storage report: wk/e Jul 10, due Thu Jul 16, 2026 |
-//          Bloomberg (Jul 13): US gas-fired power costs at 17-year high, driven by data center demand |
+//          HH spot ~$2.90 (2-month low); Freeport LNG maintenance extended through late August; NGPL Texas-Louisiana Expansion at full service |
+//          PJM demand surged ~163 GW on Jul 16 heat dome; DOE issued 3rd emergency order of 2026; intraday prices exceeded $2,000/MWh |
+//          EU gas at 55.11 EUR/MWh (+1.10%) for 4th consecutive session; US-Iran tensions raising LNG supply fears |
+//          PJM day-ahead price estimated -- elevated due to heat wave, not confirmed from live feed |
 // WORD OF DAY USED -- never repeat:
 //   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
-//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, ICAP (Installed Capacity)
-// LAST KB TOPICS -- avoid repeating recent ones:
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Capacity Tag (ICAP)
+// LAST KB TOPICS -- avoid repeating:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How PJM's Forward Capacity Market Works and Why Clearing Prices Matter for Future Electric Bills
+//   How EDI Transactions Move Account Data Between Utilities and Competitive Suppliers
 const SEED = {
-  date: "Wednesday, July 15, 2026",
+  date: "Thursday, July 16, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures slipped to $2.89/MMBtu as robust production and storage well above seasonal norms continue to weigh on prices, with ERCOT off-peak prices near $25/MWh ahead of the afternoon heat build. The bigger structural story is PJM's capacity auction clearing at the $325/MW-day price cap for the third straight year -- a signal that new power supply isn't keeping pace with surging demand from data centers and AI infrastructure, and those costs will eventually flow to commercial customers' utility bills."
+    marketTakeaway: "Natural gas prices fell to a two-month low near $2.90/MMBtu as Kinder Morgan's expanded Texas-Louisiana pipeline added domestic supply and Freeport LNG's extended maintenance outage -- now pushed through late August -- keeps more gas at home rather than flowing to export. Crude oil dipped slightly even as European gas surged above EUR 55/MWh for a fourth consecutive session, lifted by fears that U.S.-Iran tensions could disrupt LNG flows. On the power side, a brutal heat dome pushed PJM demand toward all-time highs, triggering a federal emergency order and sending intraday prices past $2,000/MWh in parts of the grid."
   },
   prices: [
-    { name: "HH Spot", price: "$2.88", change: "-1.4%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.89", change: "-0.4%", direction: "down" },
-    { name: "WTI Crude", price: "$79.62", change: "+0.4%", direction: "up" },
-    { name: "Brent Crude", price: "$84.95", change: "+0.3%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$24.90", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "~$2.90", change: "~-1.2%", direction: "down" },
+    { name: "NYMEX NG", price: "$2.913", change: "-0.38%", direction: "down" },
+    { name: "WTI Crude", price: "$79.49", change: "-0.14%", direction: "down" },
+    { name: "Brent Crude", price: "$84.58", change: "-0.44%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$55", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "ICAP",
-    abbr: "Installed Capacity",
+    term: "Capacity Tag (ICAP)",
+    abbr: "ICAP",
     category: "Power Markets",
-    tldr: "Megawatts of generation capacity committed to be available during peak demand in an ISO capacity market.",
-    usedInSentence: "When PJM's 2028/2029 capacity auction cleared at the $325/MW-day price cap, generators offering ICAP locked in revenue for guaranteeing their availability during future peak demand events -- costs that ultimately flow to customers as capacity charges on their utility bills."
+    tldr: "A customer's share of the grid's peak demand, setting their annual capacity obligation and cost.",
+    usedInSentence: "A commercial building's capacity tag is calculated from its electricity use during the handful of highest-demand hours of the prior summer, which means reducing load on a few critical hot afternoons can significantly lower capacity charges for the entire following year."
   },
   headlines: [
     {
-      title: "PJM 2028/2029 Capacity Auction Hits $325/MW-Day Cap for Third Consecutive Year",
-      tag: "Power Markets",
-      summary: "PJM procured 138,318 MW for 2028/2029 delivery at the FERC price cap, reflecting persistent supply tightness as data center load growth strains future grid adequacy planning."
+      title: "PJM Grid Hits Federal Emergency as Heat Dome Pushes Demand Toward All-Time Record",
+      tag: "Grid Operations",
+      summary: "The DOE issued its third emergency order of 2026 as PJM demand surged toward 163 GW, authorizing plants to exceed normal output limits."
     },
     {
-      title: "US Gas-Fired Power Costs Reach 17-Year High as Data Center Demand Surges",
-      tag: "Energy Costs",
-      summary: "Lazard analysis shows generating electricity from gas plants costs more than at any point in 17 years, driven by AI infrastructure buildout pushing load growth across major grid regions."
+      title: "Freeport LNG Outage Extended Through Late August, Flooding Domestic Supply",
+      tag: "Gas Supply",
+      summary: "A prolonged Freeport outage and new NGPL pipeline capacity are keeping domestic gas supply elevated, pulling Henry Hub spot to two-month lows."
     }
   ],
   knowledgeBuilder: {
-    topic: "How PJM's Forward Capacity Market Works and Why Clearing Prices Matter for Future Electric Bills",
-    tldr: "PJM runs a Base Residual Auction three years ahead of each delivery year to lock in commitments from generators that they will be available during peak demand periods -- generators that clear receive a fixed $/MW-day payment, and those costs flow to customers as capacity charges on utility bills. When the auction clears at or near the price cap three years running, it signals that new supply isn't keeping pace with demand growth, meaning capacity-related costs for PJM-territory customers are likely to rise even if natural gas spot prices stay low."
+    topic: "How EDI Transactions Move Account Data Between Utilities and Competitive Suppliers",
+    tldr: "Electronic Data Interchange (EDI) is the standardized messaging system that utilities and competitive energy suppliers use to exchange account-level information -- from enrollments (814 transactions) to usage data (867) to invoices (810). When a customer switches suppliers, an 814 transaction initiates the enrollment request and the utility responds with a confirmation or rejection, all automatically without manual data entry on either side."
   },
-  procurementTip: "With storage 185 Bcf above the five-year average and gas futures near $2.89/MMBtu, index customers are in a favorable commodity position right now -- but PJM's third consecutive capacity auction at the price cap is a reminder that non-commodity charges are heading structurally higher regardless of where spot prices trade.",
+  procurementTip: "With Freeport LNG sidelined through late August, domestic supply pressure is holding Henry Hub near $2.90 -- customers renewing index-priced gas contracts in this window are capturing near-term price relief, but the same market that is soft on gas is volatile on power, so buyers with both exposures should evaluate the full commodity portfolio before locking in.",
   priceHistory: {
     labels: ["Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
-    natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.89],
-    wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 79.62],
-    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 25],
-    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 45],
-    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 38],
-    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 55]
+    natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.91],
+    wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 79.49],
+    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55],
+    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 80],
+    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50],
+    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 75]
   },
   deepDive: null,
   glossary: [
@@ -428,7 +427,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "ICAP (Installed Capacity)", category: "Power Markets", definition: "The total megawatts of generation capacity a resource commits to make available in an ISO/RTO forward capacity market; obligations are secured in auctions like PJM's Base Residual Auction, and resulting costs flow to customers as capacity charges on utility bills." }
+    { term: "Capacity Tag (ICAP)", category: "Power Markets", definition: "A customer's installed capacity obligation in an ISO/RTO capacity market, set based on their contribution to the system peak demand; determines their share of capacity costs for the upcoming planning year." }
   ]
 };
 
