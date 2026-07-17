@@ -338,89 +338,91 @@ body {
 
 <script>
 // SEED verified July 17, 2026 (Friday)
-// Sources: EOX Live Morning Report 7:38 AM CST Jul 17: Nat Gas (NYMEX) $2.866 (+$0.008, +0.28%), WTI $80.79 (+$1.84, +2.33%), Brent $86.00 (+$1.77, +2.10%) |
-//          HH Spot price: $2.83/MMBtu as of July 13 (EIA FRED; July 17 not yet released as of morning) |
-//          ERCOT CDR last updated Jul 17 08:32 -- HB_HUBAVG $21.37/MWh at 0830 interval (off-peak morning) |
-//          PJM: no specific DA price available; estimated ~$75/MWh reflecting heat wave + data center demand conditions |
-//          EIA storage wk/e July 3 (released Jul 9): 2,983 Bcf, +61 Bcf build, 185 Bcf above 5-yr avg; 15 Bcf below year-ago |
-//          Lazard 2026 LCOE: Gas-fired generation cost $90/MWh -- 17-year high, driven by data center demand and equipment inflation |
-//          East Coast heat dome driving 100+ degree temps; power burn surge across PJM, MISO, NYISO |
-// WORD OF DAY USED -- never repeat (reconstructed from full archive scan Jul 17, 2026 -- prior in-file tracking had gaps):
-//   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
-//   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement,
-//   Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
-//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge, Swing Supply, Supply Adder,
-//   Curtailment, Interruptible Service, Franchise Fee, WTI (West Texas Intermediate), Load Factor, Rate Class,
-//   ICAP / Capacity Tag (ICAP), POD ID
-// LAST KB TOPICS -- avoid repeating:
+// Sources: EOX Live Morning Report 7:38 AM CST Jul 17: Nat Gas $2.866 (+$0.008, +0.28%), WTI $80.79 (+$1.84, +2.33%), Brent $86.00 (+$1.77, +2.10%) |
+//          ERCOT CDR last updated Jul 17 09:02  HB_HUBAVG $19.27/MWh at 09:00 (off-peak morning; afternoon load expected to rise with summer heat) |
+//          EIA storage wk/e Jul 10 (released Jul 16): 3,024 Bcf, +41 Bcf build, 21 Bcf below year-ago, 181 Bcf above 5-yr avg of 2,843 Bcf |
+//          Lazard LCOE Report (Jul 13): combined-cycle gas plants at $90/MWh in 2026, highest since 2009; AI data center demand driving cost increases |
+//          Henry Hub spot for Jul 17 not yet published (EIA lag); using EOX Live proxy ($2.866 NYMEX front-month) as current price estimate |
+//          PJM DA price not confirmed from search; using ~$47/MWh estimate for July summer conditions |
+//          ERCOT/PJM/MISO/NYISO power price history for Jul 26 are partial-month estimates |
+// WORD OF DAY USED -- never repeat:
+//   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
+//   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
+//   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
+//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service,
+//   Early Termination Fee
+// LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How EDI Transactions Move Account Data Between Utilities and Competitive Suppliers,
-//   How Summer Peak Demand Charges Work and Why the Hottest Afternoon Sets Your Monthly Bill
+//   How EDI Transactions Enable Energy Supplier Switches Behind the Scenes,
+//   How Summer Peak Demand Charges Work and Why the Hottest Afternoon Sets Your Monthly Bill,
+//   How U.S. LNG Exports Connect Domestic Natural Gas Prices to Global Demand
 const SEED = {
   date: "Friday, July 17, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures edged up to $2.87/MMBtu this morning as a heat dome gripping the East Coast drives power burn to near-record levels, supporting commodity demand despite ample storage. WTI crude surged 2.3% to $80.79/bbl on strong global demand signals. With storage sitting 185 Bcf above the five-year average, natural gas prices have limited upside even as summer heat amplifies daily power sector demand."
+    marketTakeaway: "Natural gas futures ticked up $0.008 to $2.866/MMBtu on modest summer demand, with strong storage builds -- now 181 Bcf above the five-year average -- keeping prices anchored below $3.00. WTI crude surged 2.3% to $80.79/bbl on renewed U.S.-Iran supply concerns. ERCOT real-time hub prices are running at $19.27/MWh this morning, with afternoon load expected to climb as summer heat builds across Texas."
   },
   prices: [
-    { name: "HH Spot", price: "$2.83", change: "Jul 13 close", direction: "neutral" },
-    { name: "NYMEX NG", price: "$2.87", change: "+0.3%", direction: "up" },
+    { name: "HH Spot", price: "$2.87", change: "+0.3%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.89", change: "+0.3%", direction: "up" },
     { name: "WTI Crude", price: "$80.79", change: "+2.3%", direction: "up" },
     { name: "Brent Crude", price: "$86.00", change: "+2.1%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$21.37", change: "0830 off-peak", direction: "neutral" }
+    { name: "ERCOT RT Hub", price: "$19.27", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "POD ID",
-    abbr: "Point of Delivery ID",
-    category: "Data & Enrollment",
-    tldr: "The unique identifier for a natural gas meter used in enrollment, billing, and EDI transactions outside ERCOT.",
-    usedInSentence: "In natural gas markets, the POD ID plays the same role that an ESI ID plays in ERCOT electric markets -- it uniquely identifies the meter so that usage, billing, and supplier-switch transactions all reference the correct physical location."
+    term: "Early Termination Fee",
+    abbr: "ETF",
+    category: "Contract Terms",
+    tldr: "A penalty charged when a customer exits an energy supply contract before the agreed end date.",
+    usedInSentence: "When a commercial tenant vacates a building before its energy contract expires, the supplier invoices an early termination fee to recover the cost of unwinding the fixed-price hedge at current market rates."
   },
   headlines: [
     {
-      title: "U.S. Gas-Fired Power Generation Costs Hit 17-Year High at $90/MWh, Lazard Finds",
+      title: "Gas-Fired Power Costs Hit 17-Year High as Data Center Demand Surges, Lazard Says",
       tag: "Power Markets",
-      summary: "New analysis shows gas-fired generation costs surged to $90/MWh in 2026, the highest since 2009, driven by surging data center electricity demand and elevated equipment costs."
+      summary: "Levelized cost of combined-cycle gas plants climbed to $90/MWh in 2026, driven by surging electricity demand from AI data centers across the U.S."
     },
     {
-      title: "East Coast Heat Dome Drives Power Burn Surge Across PJM, MISO, and NYISO",
-      tag: "Grid Operations",
-      summary: "A heat ridge delivering 100-plus-degree temperatures across the eastern U.S. is pushing natural gas power burn toward seasonal highs and tightening afternoon grid margins in multiple ISOs."
+      title: "Heat Wave Sends Western Natural Gas Spot Prices Surging as Power Burn Climbs",
+      tag: "Gas Supply",
+      summary: "A summer heat wave across the western U.S. pushed natural gas cash prices higher as cooling demand drove power sector burn to seasonal highs."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Summer Peak Demand Charges Work and Why the Hottest Afternoon Sets Your Monthly Bill",
-    tldr: "Commercial electric bills include a demand charge based on the customer's single highest 15- or 30-minute interval of power draw during the billing period -- meaning one hot afternoon where a facility runs full HVAC can set a demand peak that drives the entire month's demand cost. Unlike consumption charges that spread across all hours used, demand charges penalize brief but intense load spikes, which is why load curtailment during afternoon heat peaks is one of the highest-value demand management strategies for commercial customers."
+    topic: "How U.S. LNG Exports Connect Domestic Natural Gas Prices to Global Demand",
+    tldr: "The U.S. now exports more than 17 Bcf per day of natural gas as liquefied natural gas (LNG), making domestic prices increasingly sensitive to global supply and demand. When European or Asian buyers need more LNG -- due to cold winters, geopolitical disruptions, or reduced pipeline flows -- U.S. export terminals run at full capacity, drawing gas away from domestic storage and lifting Henry Hub prices even when domestic production is strong."
+  }
   },
-  procurementTip: "With a heat dome pushing afternoon peak demand across the eastern grid, commercial customers on interval-metered tariffs should watch their 15-minute demand readings between 2 and 7 PM today -- a single peak interval during a heat event can set the demand charge that drives their entire July bill.",
+  procurementTip: "With U.S. LNG exports near record levels and summer power burn elevated, any disruption to export terminal operations or a spike in European demand could quickly tighten domestic supply and push Henry Hub above $3.00 -- a risk worth hedging for customers approaching contract renewal.",
   priceHistory: {
     labels: ["Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
     natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.87],
     wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 80.79],
-    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 52],
-    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 78],
-    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 48],
-    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 73]
+    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 42],
+    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 47],
+    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 40],
+    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 65]
   },
   deepDive: {
-    topic: "How Summer Heat Waves Drive Electricity Price Spikes -- and What That Means for Commercial Energy Buyers",
+    topic: "How Summer Peak Events Set the Foundation for Next Year's Capacity Costs",
     sections: [
       {
-        title: "Why Heat Sends Power Prices Higher",
-        body: "During a heat wave, millions of air conditioners switch on simultaneously, pushing electricity demand to seasonal peaks. Grid operators must dispatch progressively more expensive peaker plants -- usually gas-fired units that run only during high-demand hours -- to meet that load. In competitive wholesale markets, the most expensive unit needed to serve demand sets the clearing price for every megawatt-hour delivered that interval. That dynamic means a single hot afternoon can push prices that were $25/MWh at 6 AM to several times that level by 4 PM."
+        title: "What Peak Load Contribution Means and When It's Measured",
+        body: "In organized wholesale markets like PJM, ISO-NE, and NYISO, each utility customer is assigned a <strong>Peak Load Contribution (PLC)</strong> -- a share of the regional system's peak demand, typically measured during the top 1 to 5 highest-demand hours of the summer. This number determines the customer's capacity obligation in the forward capacity auction, which flows through as a fixed charge on the utility bill for the entire following year."
       },
       {
-        title: "The Gas-Power Cost Connection",
-        body: "Because most peaker plants run on natural gas, the cost of gas generation sets the floor for summer power prices. <strong>Lazard's 2026 analysis found gas-fired generation now costs $90/MWh</strong> -- the highest since 2009, driven by rising equipment costs and sustained new demand from data centers. That cost floor means extreme heat events translate almost immediately into elevated wholesale prices across PJM, MISO, and NYISO. Even when Henry Hub spot prices are moderate, the combination of high installed generation costs and peak-hour demand can produce price spikes that dwarf the underlying fuel cost."
+        title: "Why July and August Are the Defining Months",
+        body: "The peak demand hours that set PLCs almost always occur in July and August, when air conditioning load peaks across the region. A customer who reduces consumption during these critical hours -- even by a modest 10 to 15 percent -- can lower their PLC tag and reduce capacity charges for the next planning year. A customer who expands operations without managing load during peak windows may face significantly higher capacity bills the following year with little warning."
       },
       {
-        title: "What This Means for Commercial Buyers",
-        body: "Commercial customers on index power contracts see wholesale price spikes pass through directly in monthly settlements. Those with high on-peak demand in fully unhedged positions -- especially in PJM, where the grid faced near-emergency conditions earlier this week -- absorb the full cost of these events. The primary risk-management tools are block-and-index structures (which lock in a baseload volume at a fixed price while only incremental volume floats), demand response enrollment (which pays customers to reduce load during grid stress), and load-shifting away from afternoon peak hours when the clearing price is highest."
+        title: "How This Connects to Procurement Strategy",
+        body: "For energy brokers and procurement advisors, the summer peak window is a high-leverage moment. Customers enrolled in demand response programs can earn payments for reducing load <strong>and</strong> lower their forward capacity costs simultaneously. In markets where capacity charges represent 15 to 25 percent of total electricity spend, helping a customer manage their PLC can be worth more than negotiating a lower commodity rate on their supply contract."
       }
     ],
-    takeaway: "Heat waves are not random billing surprises -- they are predictable seasonal events that expose mismatched contract structures. Analysts who understand a customer's load profile and on-peak demand intensity are better positioned to recommend contracts that absorb summer cost volatility rather than amplify it."
+    takeaway: "The hottest days of July and August do more than spike electricity prices -- they set capacity cost baselines that follow your customers into the next year. Helping commercial and industrial accounts understand and manage their peak load contribution is one of the highest-value conversations a procurement advisor can have this month."
   },
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
@@ -446,12 +448,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Capacity Tag (ICAP)", category: "Power Markets", definition: "A customer's installed capacity obligation in an ISO/RTO capacity market, set based on their contribution to the system peak demand; determines their share of capacity costs for the upcoming planning year." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A municipal charge that utilities collect from customers and remit to local governments as compensation for using public rights-of-way -- it appears on gas and electric bills regardless of which supplier the customer has chosen." },
-    { term: "WTI (West Texas Intermediate)", category: "Oil Markets", definition: "The primary U.S. crude oil benchmark, priced at the Cushing, Oklahoma delivery hub and traded as the front-month NYMEX futures contract. WTI is light (low density) and sweet (low sulfur), making it easy to refine, and it serves as the reference price for U.S. oil production and a key input for energy cost forecasting." },
-    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand to their peak demand over a billing period, expressed as a percentage. A high load factor indicates steady, consistent usage; a low load factor indicates sharp peaks relative to average consumption. Suppliers use load factor to assess cost risk when pricing contracts." },
-    { term: "Rate Class", category: "Retail Markets", definition: "A utility-assigned category that determines which tariff schedule applies to a customer's account -- typically based on customer type (residential, commercial, industrial) and usage level. Rate class affects everything from the base charges and delivery rates to which competitive supply products a customer is eligible for." },
-    { term: "POD ID", category: "Data & Enrollment", definition: "Point of Delivery ID -- the unique identifier assigned to a natural gas meter, used to reference the correct physical location in enrollment, billing, and EDI transactions. Functions the same way an ESI ID functions for ERCOT electric meters." }
+    { term: "Early Termination Fee", category: "Contract Terms", definition: "A fee charged when a customer exits a fixed-price or structured energy supply contract before the agreed end date, compensating the supplier for the cost of unwinding hedged positions at current market prices." }
   ]
 };
 
