@@ -343,17 +343,15 @@ body {
 //          ERCOT CDR last updated Jul 17 08:32 -- HB_HUBAVG $21.37/MWh at 0830 interval (off-peak morning) |
 //          PJM: no specific DA price available; estimated ~$75/MWh reflecting heat wave + data center demand conditions |
 //          EIA storage wk/e July 3 (released Jul 9): 2,983 Bcf, +61 Bcf build, 185 Bcf above 5-yr avg; 15 Bcf below year-ago |
-//          Next EIA storage report: wk/e July 10, due Thu Jul 16 (data may now be available; using wk/e Jul 3 as confirmed) |
 //          Lazard 2026 LCOE: Gas-fired generation cost $90/MWh -- 17-year high, driven by data center demand and equipment inflation |
 //          East Coast heat dome driving 100+ degree temps; power burn surge across PJM, MISO, NYISO |
-//          EIA forecasts Henry Hub to avg ~$3.60/MMBtu for full year 2026 |
 // WORD OF DAY USED -- never repeat:
 //   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
 //   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
 //   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
 //   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Capacity Tag (ICAP),
-//   Franchise Fee
+//   Franchise Fee, Load Factor, Rate Class
 // LAST KB TOPICS -- avoid repeating:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -374,11 +372,11 @@ const SEED = {
     { name: "ERCOT RT Hub", price: "$21.37", change: "0830 off-peak", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Franchise Fee",
+    term: "Rate Class",
     abbr: "",
-    category: "Bill Components",
-    tldr: "A municipal fee on utility bills for using public rights-of-way to deliver energy.",
-    usedInSentence: "The franchise fee on a commercial electric bill is collected by the utility on behalf of the local municipality and cannot be eliminated when a customer switches to a competitive supplier -- it remains a non-bypassable pass-through cost regardless of who supplies the energy."
+    category: "Data & Enrollment",
+    tldr: "The utility-assigned classification that determines which tariff schedule and rates apply to a customer's account.",
+    usedInSentence: "When enrolling a commercial customer with a new electric supplier, confirming the correct rate class is essential -- a customer billed under a general service tariff faces very different pricing structures than one on an industrial interruptible tariff, and a mismatch can cause the enrollment to reject."
   },
   headlines: [
     {
@@ -419,7 +417,7 @@ const SEED = {
       },
       {
         title: "What This Means for Commercial Buyers",
-        body: "Commercial customers on index power contracts see wholesale price spikes pass through directly in monthly settlements. Those with high on-peak demand in fully unhedged positions -- especially in PJM, where the grid has faced near-emergency conditions this week -- absorb the full cost of these events. The primary risk-management tools are block-and-index structures (which lock in a baseload volume at a fixed price while only incremental volume floats), demand response enrollment (which pays customers to reduce load during grid stress), and load-shifting away from afternoon peak hours when the clearing price is highest."
+        body: "Commercial customers on index power contracts see wholesale price spikes pass through directly in monthly settlements. Those with high on-peak demand in fully unhedged positions -- especially in PJM, where the grid faced near-emergency conditions earlier this week -- absorb the full cost of these events. The primary risk-management tools are block-and-index structures (which lock in a baseload volume at a fixed price while only incremental volume floats), demand response enrollment (which pays customers to reduce load during grid stress), and load-shifting away from afternoon peak hours when the clearing price is highest."
       }
     ],
     takeaway: "Heat waves are not random billing surprises -- they are predictable seasonal events that expose mismatched contract structures. Analysts who understand a customer's load profile and on-peak demand intensity are better positioned to recommend contracts that absorb summer cost volatility rather than amplify it."
@@ -448,8 +446,10 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Capacity Tag (ICAP)", category: "Power Markets", definition: "The installed capacity tag assigned to a customer by their ISO/RTO, representing their share of the grid's peak demand obligation. Used to calculate capacity costs passed through on utility bills." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A fee collected by the utility on behalf of a local municipality for the right to use public rights-of-way for energy infrastructure. Passed through to all customers on utility bills and cannot be eliminated by switching to a competitive supplier." }
+    { term: "Capacity Tag (ICAP)", category: "Power Markets", definition: "A customer's installed capacity obligation in an ISO/RTO capacity market, set based on their contribution to the system peak demand; determines their share of capacity costs for the upcoming planning year." },
+    { term: "Franchise Fee", category: "Bill Components", definition: "A fee collected by the utility on behalf of a local municipality for the right to use public rights-of-way for energy infrastructure. Passed through to all customers on utility bills and cannot be eliminated by switching to a competitive supplier." },
+    { term: "Load Factor", category: "Bill Analysis", definition: "The ratio of a customer's average demand to their peak demand over a billing period, expressed as a percentage. A high load factor means energy use is steady and efficient; a low load factor signals sharp demand peaks that drive up demand charges relative to consumption." },
+    { term: "Rate Class", category: "Data & Enrollment", definition: "The utility-assigned classification that determines which tariff schedule and rates apply to a customer's account. Rate class determines applicable charges, eligibility for competitive supply, and enrollment rules -- verifying it before submitting an 814 enrollment is a standard quality check." }
   ]
 };
 
