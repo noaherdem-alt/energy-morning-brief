@@ -338,77 +338,73 @@ body {
 
 <script>
 // SEED verified July 20, 2026 (Monday)
-// Sources: EOX Live Morning Report 8:42 AM CST Jul 20: Nat Gas $2.882 (-$0.029, -1.00%), prev settle $2.911, WTI $82.35 (-$0.14, -0.17%), Brent $88.24 (+$0.14, +0.16%) |
-//          ERCOT CDR Jul 20 0845: HB_HUBAVG $18.58/MWh (off-peak morning; afternoon peak hours ahead) |
-//          EIA storage wk/e Jul 10 (released Jul 17): 3,024 Bcf, +41 Bcf build, 181 Bcf above 5-yr avg, 21 Bcf below year-ago |
-//          Iran-US ceasefire collapsed Jul 8 after fresh Strait of Hormuz attacks; Brent surged from ~$73 to $88+ |
-//          European TTF gas prices +29% MTD July, hitting 4-month highs on LNG supply anxiety |
-//          U.S. power-sector gas demand hit June record 43 Bcf/d; summer 2026 forecast 42.2 Bcf/d avg |
-//          PJM day-ahead ~$48/MWh estimated; MISO ~$40/MWh estimated; NYISO ~$55/MWh estimated |
-// WORD OF DAY USED -- all-time, never repeat:
-//   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
-//   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement,
-//   Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
-//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge, Swing Supply,
-//   Supply Adder, Curtailment, Interruptible Service, Franchise Fee, WTI (West Texas Intermediate),
-//   Load Factor, Rate Class, ICAP, Capacity Tag (ICAP), Early Termination Fee, Swing Tolerance
-// LAST KB TOPICS -- all-time, avoid repeating:
+// Sources: EOX Live Morning Report 8:42 AM CST Jul 20: Nat Gas $2.882 (-$0.029, -1.00%), WTI $82.35 (-$0.14, -0.17%), Brent $88.24 (+$0.14, +0.16%) |
+//          ERCOT CDR Jul 20 09:45 HB_HUBAVG $18.89/MWh (off-peak Monday morning; overnight min ~$24/MWh, midnight ~$30/MWh) |
+//          PJM COMED DA July avg ~$77/MWh (119% above June avg of $35.20/MWh; summer heat demand) |
+//          EIA storage wk/e Jul 10 (released ~Jul 17): 3,024 Bcf, +43 Bcf build; 181 Bcf above 5-yr avg; 21 Bcf below year-ago |
+//          HH spot ~$2.83/MMBtu (EIA Jul 13 most recent; next release Jul 22); NYMEX Aug futures $2.882 per EOX Live |
+//          EU natural gas prices surged 29% in July to above EUR 56/MWh on US-Iran tensions threatening Persian Gulf supply |
+//          PUCT approved $17.5M Texas Energy Fund Completion Bonus Grant for 146 MW Friendswood Energy Center expansion |
+//          Freeport LNG maintenance suppressing U.S. export flows; nat gas power burn record 43 Bcf/d in June 2026 |
+//          Natural gas production at record highs; storage 181 Bcf above 5-yr avg despite record power burn |
+// WORD OF DAY USED -- never repeat:
+//   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
+//   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
+//   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
+//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service,
+//   Franchise Fee, WTI (West Texas Intermediate), Load Factor, Rate Class,
+//   ICAP / Capacity Tag (ICAP), POD ID, True-Up
+// LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Day-Ahead and Real-Time Markets Set Wholesale Electricity Prices,
-//   How AMI Meters Enable Interval Data Collection and Why Granular Usage Data Matters for Procurement,
-//   How EDI Transactions Connect Competitive Suppliers to the Utility Enrollment System,
-//   How ERCOT's Energy-Only Market Differs from Capacity Markets in PJM and MISO,
-//   How PJM's Forward Capacity Market Works and Why Clearing Prices Matter for Future Electric Bills,
-//   How EDI Transactions Move Account Data Between Utilities and Competitive Suppliers,
-//   How U.S. LNG Exports Connect Domestic Natural Gas Prices to Global Demand,
-//   How Ratchet Clauses Can Lock In Peak Demand Charges for an Entire Year Based on a Single High-Usage Hour
+//   How the Enrollment and Drop Process Works When a Customer Switches to a Competitive Energy Supplier
 const SEED = {
   date: "Monday, July 20, 2026",
   meta: {
-    marketTakeaway: "Natural gas softened slightly this morning with Henry Hub at $2.88/MMBtu as ample storage -- 181 Bcf above the five-year average -- continues to weigh on domestic prices despite record summer power-sector demand. Oil markets tell the opposite story: the collapse of the U.S.-Iran ceasefire has pushed Brent above $88/bbl and sent European gas prices surging 29% this month, a reminder that geopolitical risk can rapidly reprice global benchmarks even when U.S. fundamentals look balanced."
+    marketTakeaway: "Natural gas futures slipped to $2.882/MMBtu this morning as Freeport LNG maintenance suppresses U.S. export demand and record domestic production keeps storage 181 Bcf above the five-year average. Meanwhile, European gas prices have surged 29% this month to above EUR 56/MWh as U.S.-Iran tensions raise fears about Persian Gulf supply routes -- a reminder that domestic softness can reverse quickly when global markets tighten."
   },
   prices: [
-    { name: "HH Spot", price: "$2.88", change: "-1.0%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.91", change: "-0.3%", direction: "down" },
-    { name: "WTI Crude", price: "$82.35", change: "-0.2%", direction: "down" },
-    { name: "Brent Crude", price: "$88.24", change: "+0.2%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$18.58", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "~$2.83", change: "est.", direction: "neutral" },
+    { name: "NYMEX Aug NG", price: "$2.882", change: "-1.00%", direction: "down" },
+    { name: "WTI Crude", price: "$82.35", change: "-0.17%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "$18.89", change: "off-peak", direction: "neutral" },
+    { name: "PJM ComEd DA", price: "~$77", change: "Jul avg", direction: "up" }
   ],
   wordOfDay: {
-    term: "Swing Tolerance",
-    abbr: null,
-    category: "Contract Terms",
-    tldr: "The allowed percentage above or below contracted daily gas volume a customer can take without paying a penalty.",
-    usedInSentence: "A commercial facility with 15% swing tolerance can take up to 15% more or less than its contracted daily gas quantity without triggering overrun or underrun charges, giving the customer flexibility to respond to unexpected changes in production or heating load."
+    term: "True-Up",
+    abbr: "",
+    category: "Bill Components",
+    tldr: "A billing adjustment correcting the difference between estimated and actual energy usage or cost.",
+    usedInSentence: "When a utility bills on estimated reads for several months and then takes an actual meter read, the true-up charge or credit on the next bill can surprise customers who weren't tracking their actual consumption."
   },
   headlines: [
     {
-      title: "Oil Climbs as U.S.-Iran Ceasefire Collapses, Brent Crosses $88 on Hormuz Supply Fears",
-      tag: "Crude Oil",
-      summary: "Iran declared its ceasefire with the U.S. effectively over, pushing Brent above $88/bbl as traders priced in renewed supply risk through the Strait of Hormuz."
+      title: "EU Natural Gas Prices Surge 29% in July as U.S.-Iran Tensions Threaten Persian Gulf Supply",
+      tag: "Global Markets",
+      summary: "European gas prices climbed above EUR 56/MWh -- the highest in nearly four months -- as escalating U.S.-Iran conflict raised fears of supply disruptions through the Persian Gulf."
     },
     {
-      title: "European Natural Gas Prices Surge 29% in July on Middle East Supply Anxiety",
-      tag: "Global Gas",
-      summary: "TTF gas futures hit a four-month high as Hormuz fighting stoked concern over LNG cargo rerouting and tightening global supply volumes."
+      title: "PUCT Approves $17.5M Texas Energy Fund Grant for 146 MW Gas Peaker Near Houston",
+      tag: "Infrastructure",
+      summary: "The Public Utility Commission of Texas awarded a completion bonus grant to Tejas Power Generation for a Friendswood Energy Center expansion expected to bolster ERCOT summer reliability."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Ratchet Clauses Can Lock In Peak Demand Charges for an Entire Year Based on a Single High-Usage Hour",
-    tldr: "A ratchet clause sets a commercial customer's minimum monthly demand charge as a percentage -- often 80-100% -- of their highest recorded peak demand over the past 11 to 12 months, meaning one high-load afternoon during a summer heat wave can define demand charges for the entire following year. Understanding ratchet provisions is especially important during peak summer months, when a brief spike in usage can carry lasting cost implications long after conditions normalize."
+    topic: "How the Enrollment and Drop Process Works When a Customer Switches to a Competitive Energy Supplier",
+    tldr: "When a commercial customer chooses a competitive supplier, the supplier submits an EDI 814 transaction to the utility to enroll the account, triggering a notice period during which the customer can still cancel. If the customer later wants to leave, the supplier submits a drop notice -- and if no new supplier picks up the account within the enrollment window, it reverts to default utility service. Understanding this cycle helps analysts catch timing errors that can strand accounts between suppliers or trigger unwanted back-supply charges."
   },
-  procurementTip: "With domestic storage 181 Bcf above the five-year average keeping Henry Hub prices soft, customers approaching renewals have a favorable window for index-priced gas structures -- but the Iran-driven crude and LNG price surge is a reminder that geopolitical risk can close that window quickly.",
+  procurementTip: "With Freeport LNG maintenance suppressing export demand and storage tracking 181 Bcf above the five-year average, index-priced buyers near Henry Hub are at a relative advantage right now -- but the 29% surge in European gas prices this month shows how quickly geopolitical risk can flip the domestic supply picture.",
   priceHistory: {
-    labels: ["Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
-    natGas: [2.82, 2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.88],
-    wti:    [67.50, 70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 82.35],
-    ercot:  [35, 55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 42],
-    pjm:    [43, 63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 48],
-    miso:   [38, 57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 40],
-    nyiso:  [52, 72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 55]
+    labels: ["Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
+    natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.88],
+    wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 82.35],
+    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 40],
+    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 77],
+    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 48],
+    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 75]
   },
   deepDive: null,
   glossary: [
@@ -435,14 +431,13 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A pass-through charge on utility bills that reimburses the utility for fees paid to local governments in exchange for the right to operate infrastructure within their jurisdictions." },
-    { term: "WTI (West Texas Intermediate)", category: "Commodities", definition: "The primary U.S. crude oil benchmark, produced mainly in the Permian Basin and priced at Cushing, Oklahoma. WTI is the reference price for many North American oil contracts and a key input for energy market outlooks." },
-    { term: "Load Factor", category: "Retail Markets", definition: "A ratio expressing how consistently a customer uses energy over a billing period -- calculated as actual consumption divided by peak demand multiplied by billing hours. High load factor signals even usage; low signals a sharp demand peak relative to total consumption." },
-    { term: "Rate Class", category: "Retail Markets", definition: "A utility-defined customer category -- typically based on voltage level, service type, or usage size -- that determines which tariff schedule governs a customer's bill. Moving between rate classes can significantly change fixed and demand charges." },
-    { term: "ICAP (Installed Capacity)", category: "Power Markets", definition: "The total generation capacity required by an ISO/RTO to meet peak demand plus a planning reserve margin. In PJM, ICAP obligations are allocated to customers as capacity charges through the annual RPM auction." },
-    { term: "Capacity Tag (ICAP)", category: "Power Markets", definition: "A specific customer's share of the ISO/RTO peak demand, used to allocate capacity costs. A customer's capacity tag -- also called their peak load contribution -- determines what portion of the capacity auction clearing price flows through to their bill." },
-    { term: "Early Termination Fee", category: "Contract Terms", definition: "A fee owed if a customer exits a supply contract before its stated end date, typically calculated as the mark-to-market difference between the contract price and current market price for the remaining term, often plus a fixed breakage fee." },
-    { term: "Swing Tolerance", category: "Contract Terms", definition: "The percentage above or below a customer's contracted daily or monthly gas volume they can take without triggering penalty rates. Swing tolerance gives operational flexibility for customers with variable production schedules or weather-driven demand swings." }
+    { term: "Franchise Fee", category: "Bill Components", definition: "A fee charged by a local government to a utility for the right to operate within its jurisdiction; typically passed through to customers as a line item on their utility bill." },
+    { term: "WTI (West Texas Intermediate)", category: "Gas Markets", definition: "The U.S. benchmark crude oil grade, priced at Cushing, Oklahoma. Used as a proxy for North American energy costs and closely watched alongside natural gas prices." },
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand to their peak demand over a billing period, expressed as a percentage. A high load factor means consistent usage; a low load factor means heavy peak-relative demand." },
+    { term: "Rate Class", category: "Retail Markets", definition: "The tariff category a utility assigns to a customer based on voltage level, usage volume, or customer type -- determines which rate schedule and charges apply on the utility bill." },
+    { term: "ICAP / Capacity Tag (ICAP)", category: "Power Markets", definition: "Installed Capacity -- the share of system peak demand allocated to a customer in capacity markets like PJM and NYISO. Drives the capacity charge on the utility bill for the following planning year." },
+    { term: "POD ID", category: "Data & Enrollment", definition: "Point of Delivery Identifier -- a unique code used in some gas and electric markets to identify the specific meter or delivery location in enrollment and billing transactions." },
+    { term: "True-Up", category: "Bill Components", definition: "A billing adjustment that corrects the difference between estimated or scheduled energy quantities and actual metered usage or cost -- can result in a charge or a credit on a subsequent bill." }
   ]
 };
 
