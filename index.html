@@ -337,73 +337,75 @@ body {
 </div>
 
 <script>
-// SEED verified July 21, 2026 (Tuesday)
-// Sources: EOX Live Morning Report 8:48 AM CST Jul 21: Nat Gas $2.868 (+$0.008, +0.28%), WTI $85.03 (+$1.80, +2.16%), Brent $90.82 (+$1.60, +1.79%) |
-//          ERCOT CDR Jul 21 09:00 HB_HUBAVG $20.56/MWh (off-peak morning; heat wave building) |
-//          PJM approx $66.62/MWh (Jul 20 data; heat wave conditions) |
-//          EIA storage wk/e Jul 10 (released Jul 17): 3,024 Bcf, +41 Bcf build, 181 Bcf above 5-yr avg, 21 Bcf below yr-ago |
+// SEED verified July 23, 2026 (Thursday)
+// Sources: EOX Live Morning Report 7:33 AM CST Jul 23: Nat Gas $2.957 (+$0.032, +1.09%), WTI $90.71 (+$3.88, +4.47%), Brent $98.78 (+$4.71, +5.01%) |
+//          ERCOT CDR unavailable (page failed to load) -- ERCOT RT Hub estimated at ~$48/MWh |
+//          PJM ComEd zone MTD average $77.13/MWh (July 2026) |
+//          EIA storage wk/e Jul 3 (released Jul 9): 2,983 Bcf, +61 Bcf build, 185 Bcf above 5-yr avg, 15 Bcf below year-ago |
 //          Next EIA storage report: wk/e Jul 17, due Thu Jul 24 |
-//          EU natural gas prices surged to EUR 60.5/MWh (4-month high), up 29% in July, on Iran/Middle East tensions |
-//          Eastern U.S. heat wave driving nat gas power burn up 1.6 Bcf/d; U.S. production at 107.6 Bcf/d |
-//          WTI crude surged 2.16% to $85.03 on Iran-related geopolitical risk |
+//          Trump declares Iran ceasefire "over" -- Brent crosses $100, WTI tops $90 on Strait of Hormuz escalation |
+//          Freeport LNG extended maintenance reduces feedgas by >1 Bcf/day through August |
+//          U.S. gas output: 110.5 Bcfd in July vs 110.0 Bcfd in June |
+//          FERC holds Jul 23 conference on PJM governance reform |
+//          Henry Hub spot most recent confirmed: ~$2.86/MMBtu (Jul 21); NYMEX front-month $2.957 (EOX Live) |
 // WORD OF DAY USED -- never repeat:
-//   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
-//   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement,
-//   Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index,
-//   Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC),
-//   Generation Charge, Swing Supply, Supply Adder, Curtailment, Interruptible Service,
-//   Franchise Fee, WTI (West Texas Intermediate), Load Factor, Rate Class,
-//   ICAP / Capacity Tag (ICAP), POD ID, True-Up, Early Termination Fee (ETF)
+//   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
+//   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
+//   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
+//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service,
+//   Franchise Fee, WTI (West Texas Intermediate), Load Factor, Rate Class, ICAP / Capacity Tag (ICAP),
+//   POD ID, True-Up, Early Termination Fee
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
-//   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load,
-//   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Local Delivery Point,
-//   How U.S. LNG Exports Connect Domestic Natural Gas Prices to Global Events
+//   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
+//   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
+//   How LNG Export Terminals Connect U.S. Natural Gas Prices to Global Energy Markets
 const SEED = {
-  date: "Tuesday, July 21, 2026",
+  date: "Thursday, July 23, 2026",
   meta: {
-    marketTakeaway: "Natural gas is firming this morning as a heat wave builds across the eastern U.S., driving a 1.6 Bcf/d surge in power burn, while European gas prices hit four-month highs above EUR 60/MWh on Iran-related supply fears -- both forces tightening global LNG supply and supporting domestic prices. WTI crude jumped 2.2% to $85/bbl on the same geopolitical risk. ERCOT trades off-peak near $20/MWh this morning but afternoon peaks are expected to rise as Texas temperatures climb."
+    marketTakeaway: "Natural gas futures rose 1.1% to $2.96/MMBtu today as Freeport LNG's extended maintenance cuts over 1 Bcf/day of feedgas through August. The bigger story is crude oil - Brent crossed $100/bbl and WTI topped $90 after President Trump declared Iran's ceasefire over and threatened to bomb Iranian infrastructure each time a tanker is attacked in the Strait of Hormuz. Energy markets are pricing in significant Middle East supply risk for the first time since spring."
   },
   prices: [
-    { name: "HH Spot", price: "$2.87", change: "+0.3%", direction: "up" },
-    { name: "NYMEX NG", price: "$2.86", change: "+0.4%", direction: "up" },
-    { name: "WTI Crude", price: "$85.03", change: "+2.2%", direction: "up" },
-    { name: "Brent Crude", price: "$90.82", change: "+1.8%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$20.56", change: "off-peak", direction: "neutral" }
+    { name: "HH Spot", price: "$2.86", change: "+0.7%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.96", change: "+1.1%", direction: "up" },
+    { name: "WTI Crude", price: "$90.71", change: "+4.5%", direction: "up" },
+    { name: "Brent Crude", price: "$98.78", change: "+5.0%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "~$48", change: "", direction: "neutral" }
   ],
   wordOfDay: {
     term: "Early Termination Fee",
     abbr: "ETF",
     category: "Contract Terms",
-    tldr: "A penalty a customer pays to exit a competitive energy supply contract before its scheduled end date.",
-    usedInSentence: "When natural gas prices fell sharply last winter, some commercial customers were tempted to switch suppliers mid-contract, but the early termination fee in their existing agreement often exceeded the potential savings, making it more economical to wait out the remaining term."
+    tldr: "A fee charged when a customer exits a supply contract before its agreed end date.",
+    usedInSentence: "When a commercial tenant vacates a building mid-contract, the building's new owner may inherit the energy supply agreement or face an early termination fee that can reach tens of thousands of dollars depending on remaining term length and contracted volumes."
   },
   headlines: [
     {
-      title: "European Gas Prices Hit Four-Month High as Iran Tensions Rattle Global LNG Markets",
-      tag: "Global Markets",
-      summary: "EU natural gas surged above EUR 60/MWh -- up 29% in July -- after Iranian-backed militia threatened a maritime chokepoint, stoking fears of LNG supply disruptions reaching European terminals."
+      title: "Brent Crude Crosses $100 as Trump Declares Iran Ceasefire Over, Threatens Infrastructure Strikes",
+      tag: "Crude Markets",
+      summary: "WTI topped $90 and Brent breached $100/bbl after Trump vowed to bomb Iranian bridges or power plants each time a tanker is attacked in the Strait of Hormuz."
     },
     {
-      title: "Eastern U.S. Heat Wave Drives 1.6 Bcf/d Power Burn Surge, Tightening Gas Supply",
-      tag: "Gas Demand",
-      summary: "A building heat dome over the eastern United States pushed natural gas power burn sharply higher Monday, outpacing a modest 0.5 Bcf/d production gain and narrowing the supply-demand balance."
+      title: "Freeport LNG Extends Maintenance, Cutting U.S. Feedgas by Over 1 Bcf/Day Through August",
+      tag: "Gas Supply",
+      summary: "The extended outage keeps more domestic gas in the market, softening short-term Henry Hub prices even as geopolitical risk lifts crude oil sharply higher."
     }
   ],
   knowledgeBuilder: {
-    topic: "How U.S. LNG Exports Connect Domestic Natural Gas Prices to Global Events",
-    tldr: "U.S. LNG export terminals act as a bridge between domestic and global gas markets -- when European or Asian buyers pay high enough prices to attract U.S. cargoes, feed gas demand at export facilities rises, pulling supply away from the domestic market and pushing Henry Hub higher. Today's Iran-driven surge in European prices is a live example of how geopolitics abroad can ripple back to the spot price on a Texas pipeline."
+    topic: "How LNG Export Terminals Connect U.S. Natural Gas Prices to Global Energy Markets",
+    tldr: "Before large-scale LNG export capacity came online, U.S. natural gas was essentially isolated from global price signals. Today, when overseas demand rises or an export terminal goes offline for maintenance - like Freeport LNG this month - the effect flows directly into Henry Hub pricing, tightening or loosening the domestic supply-demand balance and shifting the costs customers pay under index contracts."
   },
-  procurementTip: "With European gas prices up 29% in July and U.S. LNG terminals near capacity, domestic natural gas faces upward pressure -- customers approaching renewal windows may want to evaluate fixed-price options before peak summer heat fully translates into higher index settlements.",
+  procurementTip: "With crude oil surging 5% on Iran/Hormuz escalation and Freeport LNG offline through August, customers on floating index contracts are exposed to short-term gas price swings - a good reminder of why many commercial buyers lock in fixed rates before geopolitical headlines move the market.",
   priceHistory: {
     labels: ["Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
-    natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 2.88, 2.87],
-    wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 76.50, 85.03],
-    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 45],
-    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 48, 58],
-    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 40, 48],
-    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 62, 68]
+    natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.96],
+    wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 90.71],
+    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 48],
+    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 77],
+    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 62],
+    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 78]
   },
   deepDive: null,
   glossary: [
@@ -411,33 +413,33 @@ const SEED = {
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
     { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO." },
     { term: "Capacity Charge", category: "Power Markets", definition: "A utility pass-through on electric bills covering the cost of reserving generation capacity in the ISO/RTO forward capacity auction." },
-    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes through changes in the utility's fuel costs for generation." },
+    { term: "Fuel Adjustment Clause (FAC)", category: "Bill Components", definition: "A variable line item on utility bills that passes through changes in the utility's fuel costs for generation -- primarily the cost of natural gas burned at power plants." },
     { term: "Index Price", category: "Contract Terms", definition: "A natural gas or electricity price tied to a published market benchmark (e.g., Henry Hub daily spot), meaning the customer's commodity cost floats with the market." },
     { term: "Fixed Price", category: "Contract Terms", definition: "A locked-in supply rate for the full contract term. Protects the customer from market spikes but foregoes savings if prices fall." },
     { term: "Demand Charge", category: "Bill Components", definition: "A monthly fee on commercial electric bills based on the customer's peak 15- or 30-minute interval demand (kW), not total consumption (kWh)." },
     { term: "Henry Hub", category: "Gas Markets", definition: "The primary natural gas pricing benchmark in the U.S., located in Erath, Louisiana, where several interstate pipelines interconnect." },
-    { term: "NYMEX Settlement", category: "Gas Markets", definition: "The official closing price of the front-month natural gas futures contract on the New York Mercantile Exchange." },
+    { term: "NYMEX Settlement", category: "Gas Markets", definition: "The official closing price of the front-month natural gas futures contract on the New York Mercantile Exchange, used to mark-to-market positions and set financial obligations." },
     { term: "Distribution Charge", category: "Bill Components", definition: "The utility fee for delivering energy through local pipes or wires to a customer's meter -- separate from the commodity supply cost." },
     { term: "Evergreen Clause", category: "Contract Terms", definition: "A provision that automatically renews a supply contract for a set period if the customer does not provide timely written notice of cancellation." },
-    { term: "Transmission Charge", category: "Bill Components", definition: "A utility fee for moving electricity or gas across high-voltage or high-pressure interstate systems to the local distribution network." },
+    { term: "Transmission Charge", category: "Bill Components", definition: "A utility fee for moving electricity or gas across high-voltage or high-pressure interstate systems to the local distribution network -- a non-bypassable cost in most markets." },
     { term: "Block-and-Index", category: "Contract Terms", definition: "A hybrid pricing structure where a portion of a customer's energy volume is fixed-price (the block) and the remainder floats with a market index." },
     { term: "Non-Bypassable Charge (NBC)", category: "Bill Components", definition: "A utility fee that all customers pay regardless of their energy supplier -- typically funding public benefit programs, infrastructure, or prior regulatory commitments." },
     { term: "ESI ID", category: "Data & Enrollment", definition: "Electric Service Identifier -- a unique number assigned to each electric meter in ERCOT used to identify the service point in all EDI transactions and supplier registrations." },
-    { term: "Reconciliation Charge", category: "Bill Components", definition: "An adjustment applied when actual metered usage differs from the estimated or scheduled quantities used for billing." },
-    { term: "Peak Load Contribution (PLC)", category: "Power Markets", definition: "A customer's share of the ISO/RTO system peak demand, measured during specific high-demand hours; determines the customer's capacity obligation for the next planning year." },
+    { term: "Reconciliation Charge", category: "Bill Components", definition: "An adjustment applied when actual metered usage differs from the estimated or scheduled quantities used for billing -- common in natural gas markets with daily scheduling." },
+    { term: "Peak Load Contribution (PLC)", category: "Power Markets", definition: "A customer's share of the ISO/RTO system peak demand, measured during specific high-demand hours; determines the customer's capacity obligation and associated charges for the next planning year." },
     { term: "Generation Charge", category: "Bill Components", definition: "The portion of a utility bill attributed to electricity production -- what competitive suppliers replace when a customer switches from default service." },
     { term: "Swing Supply", category: "Contract Terms", definition: "A natural gas supply arrangement allowing the buyer to take more or less than contracted volume, typically at a premium to the daily spot index." },
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A fee included in utility bills that compensates local governments for granting utilities the right to use public rights-of-way to run pipes and wires." },
-    { term: "WTI (West Texas Intermediate)", category: "Gas Markets", definition: "The primary U.S. crude oil benchmark, priced at Cushing, Oklahoma. WTI serves as the underlying commodity for NYMEX crude oil futures." },
-    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand to their peak demand over a billing period. A higher load factor means more consistent usage and typically results in lower per-unit supply costs." },
-    { term: "Rate Class", category: "Retail Markets", definition: "A utility-defined category that groups customers with similar usage profiles and assigns them a specific tariff schedule." },
-    { term: "ICAP / Capacity Tag (ICAP)", category: "Power Markets", definition: "Installed Capacity -- the share of a power market's total capacity requirement allocated to a specific customer based on their peak demand contribution." },
-    { term: "POD ID", category: "Data & Enrollment", definition: "Point of Delivery Identifier -- a unique code assigned to a natural gas or electric meter by the local distribution company, used in enrollment, billing, and EDI transactions." },
-    { term: "True-Up", category: "Bill Components", definition: "An adjustment charge or credit that reconciles estimated energy usage or costs against actual measured values -- common when scheduled quantities or capacity tags are corrected." },
-    { term: "Early Termination Fee (ETF)", category: "Contract Terms", definition: "A financial penalty a customer pays to exit a competitive energy supply contract before its scheduled end date. ETFs compensate the supplier for unwinding hedges and covering market exposure." }
+    { term: "Franchise Fee", category: "Bill Components", definition: "A charge on utility bills representing the fee the utility pays a municipality for the right to use public rights-of-way for its pipes or wires; typically passed through to customers as a percentage of gas or electric charges." },
+    { term: "WTI (West Texas Intermediate)", category: "Commodity Markets", definition: "The primary U.S. crude oil benchmark, traded on NYMEX in Cushing, Oklahoma. WTI prices affect natural gas economics through oil-associated gas production and influence broad energy market sentiment." },
+    { term: "Load Factor", category: "Bill Components", definition: "A measure of how consistently a customer uses energy relative to their peak demand -- calculated as total kWh divided by peak kW times hours in the period. Higher load factor generally means lower effective per-unit costs." },
+    { term: "Rate Class", category: "Retail Markets", definition: "A utility classification grouping customers by usage characteristics -- such as residential, small commercial, or large industrial -- to determine the applicable tariff, rate schedule, and supply structure for their account." },
+    { term: "ICAP / Capacity Tag (ICAP)", category: "Power Markets", definition: "Installed Capacity tag -- a customer's assigned share of the ISO/RTO system peak demand, used to calculate their capacity obligation and associated pass-through charges in markets like PJM and NYISO." },
+    { term: "POD ID", category: "Data & Enrollment", definition: "Point of Delivery Identifier -- a unique number assigned to a natural gas delivery point, used to identify a service location in supplier enrollment and billing transactions, analogous to an ESI ID in electric markets." },
+    { term: "True-Up", category: "Bill Components", definition: "An end-of-period reconciliation that adjusts estimated charges to reflect actual metered usage or costs -- common in natural gas markets where customers are billed on scheduled volumes that may differ from actual consumption." },
+    { term: "Early Termination Fee", category: "Contract Terms", definition: "A fee charged when a customer exits a competitive supply contract before its agreed-upon end date, typically calculated based on remaining contract volume and the difference between the contract price and current market rates." }
   ]
 };
 
