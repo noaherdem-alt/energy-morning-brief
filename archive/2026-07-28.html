@@ -355,7 +355,7 @@ body {
 //   Generation Charge, Swing Supply, Supply Adder, Curtailment, Interruptible Service,
 //   Franchise Fee, WTI (West Texas Intermediate), Load Factor, Rate Class,
 //   ICAP / Capacity Tag (ICAP), POD ID, True-Up, Early Termination Fee, Ratchet Clause,
-//   Swing Tolerance
+//   Swing Tolerance, Power Factor
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -375,11 +375,11 @@ const SEED = {
     { name: "ERCOT RT Hub", price: "~$55", change: "est.", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Swing Tolerance",
-    abbr: "",
-    category: "Contract Terms",
-    tldr: "The allowable percentage range a customer can take above or below contracted gas volume without incurring penalty pricing.",
-    usedInSentence: "Industrial customers with variable production schedules often negotiate wider swing tolerance bands in their gas supply contracts to avoid penalty pricing on days when actual consumption diverges significantly from scheduled volume."
+    term: "Power Factor",
+    abbr: "PF",
+    category: "Bill Components",
+    tldr: "The ratio of real power used (kW) to total power drawn (kVA) — measures how efficiently a facility converts electricity into useful work.",
+    usedInSentence: "Commercial facilities with a low power factor may face utility penalties or demand charge adjustments because inefficient power use forces the utility to deliver more current than is converted into productive output."
   },
   headlines: [
     {
@@ -432,7 +432,7 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Swing Tolerance", category: "Contract Terms", definition: "The allowable percentage range above or below contracted daily or monthly gas volume a customer can take without incurring penalty pricing. Volumes outside the tolerance band are typically settled at market or penalty rates." }
+    { term: "Power Factor", category: "Bill Components", definition: "The ratio of real power (kW) to apparent power (kVA) in an electrical system. Facilities with low power factor draw more current than they convert into useful work, which strains utility equipment and can trigger demand charge adjustments or utility penalties." }
   ]
 };
 
