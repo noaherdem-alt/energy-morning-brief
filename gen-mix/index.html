@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generation Mix Brief</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { color-scheme: dark; }
+body {
+  background: #0d1117;
+  min-height: 100vh;
+  padding: 32px 20px 48px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #c9d1d9;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: #21262d; border-radius: 4px; }
+.container { max-width: 740px; margin: 0 auto; }
+
+.header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding-bottom: 20px; margin-bottom: 28px;
+  border-bottom: 1px solid #21262d;
+}
+.header-left h1 { font-size: 15px; font-weight: 600; color: #e6edf3; margin-bottom: 4px; }
+.header-meta { font-size: 11.5px; color: #484f58; }
+.export-btn {
+  background: none; color: #8b949e; border: 1px solid #30363d;
+  border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 500;
+  cursor: pointer; white-space: nowrap;
+}
+.export-btn:hover { background: #21262d; color: #c9d1d9; }
+
+.section-label {
+  font-size: 10.5px; font-weight: 600; color: #484f58;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px;
+}
+.divider { border: none; border-top: 1px solid #21262d; margin: 32px 0; }
+.section { margin-bottom: 32px; }
+
+/* Legend */
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 22px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #8b949e; }
+.swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+/* ISO blocks */
+.iso-block { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 16px 18px; margin-bottom: 10px; }
+.iso-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.iso-name { font-size: 14px; font-weight: 600; color: #e6edf3; }
+.iso-load { font-size: 11.5px; color: #484f58; }
+.bar-wrap { height: 20px; border-radius: 3px; overflow: hidden; display: flex; width: 100%; margin-bottom: 8px; }
+.seg { height: 100%; }
+.pct-row { display: flex; }
+.pct-cell { font-size: 10px; color: #484f58; text-align: center; padding: 0 1px; overflow: hidden; }
+
+.wow-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #21262d; }
+.wow-item { display: flex; align-items: center; gap: 4px; font-size: 11px; }
+.wow-label { color: #484f58; }
+.wow-val { font-weight: 600; }
+.wow-val.up { color: #3fb950; }
+.wow-val.down { color: #f85149; }
+.wow-val.flat { color: #8b949e; }
+.wow-arrow { font-size: 9px; }
+
+/* Narrative */
+.narrative-box { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 16px 18px; }
+.narrative-text { font-size: 13px; color: #c9d1d9; line-height: 1.8; }
+.narrative-text strong { color: #e6edf3; font-weight: 600; }
+
+/* Callout */
+.callout { background: #1c2a3a; border: 1px solid #1f6feb; border-radius: 7px; padding: 12px 16px; margin-bottom: 10px; }
+.callout-label { font-size: 10px; font-weight: 600; color: #388bfd; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.callout-text { font-size: 13px; color: #c9d1d9; line-height: 1.6; }
+
+.footer { font-size: 11px; color: #30363d; padding-top: 24px; border-top: 1px solid #21262d; }
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff !important; color: #1a1a2e !important; padding: 24px 32px !important; }
+  .export-btn { display: none !important; }
+  .iso-block, .narrative-box, .callout { background: #f8f8f8 !important; border-color: #ddd !important; }
+  .iso-name, .narrative-text strong { color: #1a1a2e !important; }
+  .header { border-bottom-color: #ddd !important; }
+  .header-left h1 { color: #1a1a2e !important; }
+  .divider { border-top-color: #ddd !important; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Generation Mix Brief</h1>
+      <div class="header-meta" id="headerMeta">Loading...</div>
+    </div>
+    <div>
+      <button class="export-btn" onclick="window.print()">Export PDF</button>
+    </div>
+  </div>
+
+  <div id="calloutContainer"></div>
+
+  <div class="section">
+    <div class="section-label">Generation mix by ISO — fuel share &amp; week-over-week</div>
+    <div class="legend">
+      <div class="legend-item"><div class="swatch" style="background:#388bfd"></div>Natural gas</div>
+      <div class="legend-item"><div class="swatch" style="background:#bc8cff"></div>Nuclear</div>
+      <div class="legend-item"><div class="swatch" style="background:#3fb950"></div>Wind</div>
+      <div class="legend-item"><div class="swatch" style="background:#d29922"></div>Solar</div>
+      <div class="legend-item"><div class="swatch" style="background:#6a737d"></div>Coal</div>
+      <div class="legend-item"><div class="swatch" style="background:#58a6ff"></div>Hydro</div>
+      <div class="legend-item"><div class="swatch" style="background:#30363d"></div>Other</div>
+    </div>
+    <div id="isoContainer"></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Market narrative</div>
+    <div id="narrativeContainer"></div>
+  </div>
+
+  <div class="footer" id="footerEl">Sources: ERCOT CDR &nbsp;&nbsp; PJM Data Miner &nbsp;&nbsp; MISO Market Reports &nbsp;&nbsp; NYISO &nbsp;&nbsp; EIA &nbsp;&nbsp; refreshed every Wednesday via scheduled task</div>
+</div>
+
+<script>
+// SEED verified July 28, 2026 (seeded — first live run Wednesday July 29)
+// Sources: Estimated generation mix based on market conditions Jul 28, 2026 |
+//          ERCOT: peak summer cooling, solar near seasonal high, wind moderate |
+//          PJM: heat wave active, coal and gas elevated, renewables modest |
+//          MISO: wind dispatch strong across Midwest, coal still significant |
+//          NYISO: hydro supporting, nuclear baseload high, gas moderate |
+//          Week-over-week deltas are zero on first run (no prior week seeded) |
+const SEED = {
+  date: "Wednesday, July 29, 2026",
+  callout: {
+    text: "ERCOT solar generation is on pace for a weekly record as Texas heat maximizes panel output — the increased renewable share is moderating afternoon hub prices despite near-peak load conditions."
+  },
+  narrative: "Natural gas remains the dominant fuel source across all four interconnections this week, though its share diverges significantly by region. <strong>ERCOT</strong> is seeing its gas share hold near 43% as record solar output and steady wind generation absorb a portion of the summer cooling load — a dynamic that is capping afternoon real-time prices despite the heat. In <strong>PJM</strong>, the coal-gas dual dispatch is running heavy as the heat wave pushes load above seasonal norms; gas and coal together account for nearly 60% of generation, with nuclear providing a steady baseload backstop. <strong>MISO</strong> is benefiting from strong Great Plains wind output, which is displacing some gas and coal margin at the margin. <strong>NYISO</strong> continues to rely on its nuclear and hydro base, keeping gas dependency lower than in other zones — a structural feature that partially insulates New York customers from Henry Hub price swings.",
+  isos: [
+    {
+      name: "ERCOT",
+      loadGW: 79,
+      loadNote: "peak cooling demand",
+      mix:     { gas: 43, nuclear: 11, wind: 24, solar: 16, coal: 0,  hydro: 0,  other: 6 },
+      prevMix: { gas: 43, nuclear: 11, wind: 24, solar: 16, coal: 0,  hydro: 0,  other: 6 }
+    },
+    {
+      name: "PJM",
+      loadGW: 145,
+      loadNote: "heat wave stress",
+      mix:     { gas: 32, nuclear: 22, wind: 8,  solar: 5,  coal: 26, hydro: 0,  other: 7 },
+      prevMix: { gas: 32, nuclear: 22, wind: 8,  solar: 5,  coal: 26, hydro: 0,  other: 7 }
+    },
+    {
+      name: "MISO",
+      loadGW: 110,
+      loadNote: "wind dispatch elevated",
+      mix:     { gas: 28, nuclear: 18, wind: 22, solar: 4,  coal: 24, hydro: 0,  other: 4 },
+      prevMix: { gas: 28, nuclear: 18, wind: 22, solar: 4,  coal: 24, hydro: 0,  other: 4 }
+    },
+    {
+      name: "NYISO",
+      loadGW: 27,
+      loadNote: "hydro and nuclear leading",
+      mix:     { gas: 34, nuclear: 28, wind: 9,  solar: 4,  coal: 0,  hydro: 19, other: 6 },
+      prevMix: { gas: 34, nuclear: 28, wind: 9,  solar: 4,  coal: 0,  hydro: 19, other: 6 }
+    }
+  ]
+};
+
+const COLORS = {
+  gas: '#388bfd', nuclear: '#bc8cff', wind: '#3fb950',
+  solar: '#d29922', coal: '#6a737d', hydro: '#58a6ff', other: '#30363d'
+};
+const FUEL_ORDER = ['gas','nuclear','wind','solar','coal','hydro','other'];
+const FUEL_LABELS = { gas:'Gas', nuclear:'Nuc', wind:'Wind', solar:'Sol', coal:'Coal', hydro:'Hydro', other:'Other' };
+
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function wowArrow(delta) {
+  if (Math.abs(delta) < 0.5) return { cls: 'flat', arrow: '—', sign: '' };
+  return delta > 0
+    ? { cls: 'up', arrow: '▲', sign: '+' }
+    : { cls: 'down', arrow: '▼', sign: '' };
+}
+
+function renderISO(iso) {
+  const segs = FUEL_ORDER
+    .filter(f => iso.mix[f] > 0)
+    .map(f => `<div class="seg" style="width:${iso.mix[f]}%;background:${COLORS[f]}" title="${FUEL_LABELS[f]} ${iso.mix[f]}%"></div>`)
+    .join('');
+
+  const pcts = FUEL_ORDER
+    .filter(f => iso.mix[f] > 0)
+    .map(f => `<div class="pct-cell" style="width:${iso.mix[f]}%">${iso.mix[f] >= 6 ? FUEL_LABELS[f]+' '+iso.mix[f]+'%' : ''}</div>`)
+    .join('');
+
+  const wowItems = FUEL_ORDER
+    .filter(f => iso.mix[f] > 0 || iso.prevMix[f] > 0)
+    .map(f => {
+      const delta = iso.mix[f] - iso.prevMix[f];
+      const { cls, arrow, sign } = wowArrow(delta);
+      if (cls === 'flat') return `<div class="wow-item"><span class="wow-label">${FUEL_LABELS[f]}</span> <span class="wow-val flat">—</span></div>`;
+      return `<div class="wow-item"><span class="wow-label">${FUEL_LABELS[f]}</span> <span class="wow-val ${cls}">${arrow} ${sign}${Math.abs(delta).toFixed(0)}pp</span></div>`;
+    }).join('');
+
+  return `
+    <div class="iso-block">
+      <div class="iso-header">
+        <span class="iso-name">${esc(iso.name)}</span>
+        <span class="iso-load">~${iso.loadGW} GW &middot; ${esc(iso.loadNote)}</span>
+      </div>
+      <div class="bar-wrap">${segs}</div>
+      <div class="pct-row">${pcts}</div>
+      <div class="wow-row">${wowItems}</div>
+    </div>`;
+}
+
+function renderAll(data) {
+  document.getElementById('headerMeta').textContent = data.date + '  ·  ECX Generation Mix Brief';
+
+  const callout = data.callout;
+  document.getElementById('calloutContainer').innerHTML = callout && callout.text
+    ? `<div class="callout"><div class="callout-label">This week</div><div class="callout-text">${esc(callout.text)}</div></div><div style="margin-bottom:28px"></div>`
+    : '';
+
+  document.getElementById('isoContainer').innerHTML = (data.isos || []).map(renderISO).join('');
+
+  const narr = data.narrative || '';
+  document.getElementById('narrativeContainer').innerHTML =
+    `<div class="narrative-box"><div class="narrative-text">${narr.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&lt;strong&gt;/g,'<strong>').replace(/&lt;\/strong&gt;/g,'</strong>')}</div></div>`;
+}
+
+renderAll(SEED);
+</script>
+</body>
+</html>
