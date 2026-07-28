@@ -76,6 +76,11 @@ body {
 .callout-label { font-size: 10px; font-weight: 600; color: #388bfd; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
 .callout-text { font-size: 13px; color: #c9d1d9; line-height: 1.6; }
 
+/* Week recap */
+.recap-box { background: #161b22; border: 1px solid #21262d; border-radius: 7px; padding: 12px 16px; margin-bottom: 24px; }
+.recap-label { font-size: 10px; font-weight: 600; color: #484f58; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.recap-text { font-size: 13px; color: #c9d1d9; line-height: 1.6; }
+
 .footer { font-size: 11px; color: #30363d; padding-top: 24px; border-top: 1px solid #21262d; }
 
 @media print {
@@ -104,6 +109,7 @@ body {
   </div>
 
   <div id="calloutContainer"></div>
+  <div id="weekRecapContainer"></div>
 
   <div class="section">
     <div class="section-label">Generation mix by ISO — fuel share &amp; week-over-week</div>
@@ -142,7 +148,8 @@ const SEED = {
   callout: {
     text: "ERCOT solar generation is on pace for a weekly record as Texas heat maximizes panel output — the increased renewable share is moderating afternoon hub prices despite near-peak load conditions."
   },
-  narrative: "Natural gas remains the dominant fuel source across all four interconnections this week, though its share diverges significantly by region. <strong>ERCOT</strong> is seeing its gas share hold near 43% as record solar output and steady wind generation absorb a portion of the summer cooling load — a dynamic that is capping afternoon real-time prices despite the heat. In <strong>PJM</strong>, the coal-gas dual dispatch is running heavy as the heat wave pushes load above seasonal norms; gas and coal together account for nearly 60% of generation, with nuclear providing a steady baseload backstop. <strong>MISO</strong> is benefiting from strong Great Plains wind output, which is displacing some gas and coal margin at the margin. <strong>NYISO</strong> continues to rely on its nuclear and hydro base, keeping gas dependency lower than in other zones — a structural feature that partially insulates New York customers from Henry Hub price swings.",
+  weekRecap: "Henry Hub settled near $2.72 this week as mild production kept supply ample despite heat-driven power burn. ERCOT set a new summer demand record mid-week with load touching 85 GW, while PJM activated capacity emergency alerts during Tuesday's heat wave. WTI pushed above $81 on tighter crude inventories reported in Wednesday's EIA release.",
+  narrative: "Natural gas dominates across all four zones this week, though its share diverges by region — <strong>ERCOT</strong> solar is capping afternoon hub prices despite peak cooling load, while <strong>PJM</strong>'s coal-gas dual dispatch is running heavy through the active heat wave. <strong>MISO</strong> wind dispatch is elevated across the Midwest, and <strong>NYISO</strong>'s nuclear-hydro base keeps gas dependency the lowest of the four zones.",
   isos: [
     {
       name: "ERCOT",
@@ -229,6 +236,11 @@ function renderAll(data) {
   const callout = data.callout;
   document.getElementById('calloutContainer').innerHTML = callout && callout.text
     ? `<div class="callout"><div class="callout-label">This week</div><div class="callout-text">${esc(callout.text)}</div></div><div style="margin-bottom:28px"></div>`
+    : '';
+
+  const recap = data.weekRecap || '';
+  document.getElementById('weekRecapContainer').innerHTML = recap
+    ? `<div class="recap-box"><div class="recap-label">This week</div><div class="recap-text">${esc(recap)}</div></div>`
     : '';
 
   document.getElementById('isoContainer').innerHTML = (data.isos || []).map(renderISO).join('');
