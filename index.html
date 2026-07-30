@@ -941,7 +941,8 @@ async function loadTermQueue() {
   const el = document.getElementById('termQueueContainer');
   if (!el) return;
   if (!window.cowork || !window.cowork.callMcpTool) {
-    el.innerHTML = '<div class="tq-empty">The live request queue loads when this brief is opened in Cowork.</div>';
+    el.innerHTML = '';
+    document.getElementById('termQueueSection').style.display = 'none';
     return;
   }
   try {
