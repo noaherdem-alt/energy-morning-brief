@@ -354,7 +354,7 @@ body {
 //   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee,
 //   WTI (West Texas Intermediate), Load Factor, Rate Class, ICAP / Capacity Tag (ICAP),
 //   POD ID, True-Up, Early Termination Fee, Ratchet Clause, Swing Tolerance, Power Factor,
-//   Volumetric Risk
+//   Volumetric Risk, Notice Period
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -374,11 +374,11 @@ const SEED = {
     { name: "ERCOT RT Hub", price: "~$38", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Volumetric Risk",
+    term: "Notice Period",
     abbr: "",
     category: "Contract Terms",
-    tldr: "The risk that actual energy consumption differs from contracted volume, creating spot market exposure.",
-    usedInSentence: "A commercial customer that contracts for 500 MWh per month faces volumetric risk if a mild summer cuts actual usage to 400 MWh -- the 100 MWh surplus must be sold back at spot rates, which may be far below the contracted price."
+    tldr: "The advance written notice a customer must give before canceling or not renewing a supply contract.",
+    usedInSentence: "A customer with a December 31 contract end date and a 90-day notice period must notify their supplier by October 2 to avoid triggering the evergreen clause and rolling into another term."
   },
   headlines: [
     {
@@ -442,7 +442,8 @@ const SEED = {
     { term: "Ratchet Clause", category: "Contract Terms", definition: "A provision that sets a minimum billable demand based on a percentage of the customer's highest recorded peak demand over a rolling period (often 12 months), preventing customers from avoiding demand charges during low-usage months." },
     { term: "Swing Tolerance", category: "Contract Terms", definition: "The percentage above or below a contracted daily or monthly gas volume that a customer may take without incurring imbalance penalties -- defines the flexibility band around the nominated quantity." },
     { term: "Power Factor", category: "Bill Components", definition: "The ratio of real power (kW) to apparent power (kVA) in an electrical system. A low power factor indicates inefficient use of electrical capacity and can trigger penalty charges on commercial and industrial utility bills." },
-    { term: "Volumetric Risk", category: "Contract Terms", definition: "The risk that a customer's actual energy consumption differs from the volume contracted with a supplier -- the surplus or shortfall is settled at prevailing spot market prices, which may be significantly higher or lower than the contracted rate." }
+    { term: "Volumetric Risk", category: "Contract Terms", definition: "The risk that a customer's actual energy consumption differs from the volume contracted with a supplier -- the surplus or shortfall is settled at prevailing spot market prices, which may be significantly higher or lower than the contracted rate." },
+    { term: "Notice Period", category: "Contract Terms", definition: "The number of days of advance written notice a customer must provide to their supplier before canceling or declining to renew a supply contract -- missing this window typically triggers the evergreen clause and extends the contract automatically." }
   ]
 };
 
