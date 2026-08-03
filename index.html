@@ -337,95 +337,76 @@ body {
 </div>
 
 <script>
-// SEED verified July 31, 2026 (Friday)
-// Sources: EOX Live Morning Report 6:40 AM CST Jul 31: Nat Gas (NYMEX front-month) $2.770 (+$0.012, +0.44%), WTI $84.68 (+$1.09, +1.30%), Brent $90.11 (+$1.08, +1.21%) |
-//          Henry Hub spot: ~$2.80/MMBtu estimated (latest confirmed Jul 20 per EIA/FRED; no Jul 31 spot release yet) |
-//          ERCOT CDR last updated Jul 31 15:17 CST — HB_HUBAVG $34.68/MWh at 1515 interval (afternoon peak building; overnight low ~$23/MWh) |
-//          PJM ComEd zone: ~$45/MWh estimated (EIA STEO forecast; no live day-ahead data retrieved) |
-//          EIA storage wk/e Jul 24 (released Jul 30): 3,084 Bcf, +28 Bcf build; 32 Bcf below year-ago; 185 Bcf above 5-yr avg of 2,899 Bcf |
-//          Next EIA storage report: wk/e Jul 31, due Aug 6, 2026 |
-//          US Lower 48 gas production: 110.6 Bcfd in July, matching Dec 2025 record high |
-//          LNG exports: 17.2 Bcfd avg July (down slightly from 17.4 in June due to Freeport maintenance) |
-//          ERCOT approved batch large-load interconnection rules Jul 11 — 90% of 438 GW queue is data centers |
-//          Texas data center load growth expected to drive 50% load growth by end of 2029 (NextEra/utility reports) |
-// WORD OF DAY USED -- never repeat (all-time master list):
-//   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
-//   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
-//   NYMEX Settlement, Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index,
-//   Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC),
-//   Generation Charge, Swing Supply, Supply Adder, Curtailment, Interruptible Service,
-//   Franchise Fee, WTI (West Texas Intermediate), Load Factor, Rate Class,
-//   ICAP / Capacity Tag (ICAP), POD ID, True-Up, Early Termination Fee, Ratchet Clause,
-//   Swing Tolerance, Power Factor, Volumetric Risk
+// SEED verified August 3, 2026 (Monday)
+// Sources: EOX Live Morning Report 6:10 AM CST Aug 3: Nat Gas $2.757 (+$0.010, +0.36%), WTI $79.48 (-$5.19, -6.13%), Brent $83.47 (-$6.65, -7.38%) |
+//          ERCOT RT Hub: estimated ~$38/MWh (CDR page timed out -- estimated based on summer baseline) |
+//          PJM ComEd zone DA: estimated ~$45/MWh |
+//          EIA storage wk/e Jul 24, 2026: 3,084 Bcf, +28 Bcf build, 185 Bcf above 5-yr avg of 2,899 Bcf; 32 Bcf below year-ago |
+//          OPEC+ raised output 548,000 bpd effective Aug 1 (vs. 411,000 bpd expected); WTI fell 6% on oversupply concerns and weak China/U.S. manufacturing PMI data |
+//          U.S. dry gas production averaged 110.6 Bcfd in July (matched Dec 2025 record high) |
+//          LNG feedgas flows averaged 17.2 Bcfd in July, down from 17.4 Bcfd in June (Freeport maintenance) |
+//          Next EIA storage report: wk/e Jul 31, due Thu Aug 6 |
+// WORD OF DAY USED -- never repeat:
+//   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
+//   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
+//   Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
+//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge,
+//   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee,
+//   WTI (West Texas Intermediate), Load Factor, Rate Class, ICAP / Capacity Tag (ICAP),
+//   POD ID, True-Up, Early Termination Fee, Ratchet Clause, Swing Tolerance, Power Factor,
+//   Volumetric Risk
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How EDI Transactions Move Account Data Between Utilities and Suppliers
+//   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customers
 const SEED = {
-  date: "Friday, July 31, 2026",
+  date: "Monday, August 3, 2026",
   meta: {
-    marketTakeaway: "NYMEX natural gas edged up to $2.770/MMBtu as summer power burn demand offset a bearish EIA storage build of 28 Bcf, leaving inventories 185 Bcf above the five-year average. WTI crude rallied to $84.68/bbl on global demand optimism. In ERCOT, afternoon real-time prices climbed to $34.68/MWh by mid-afternoon as Friday peak load built, consistent with typical July cooling demand patterns."
+    marketTakeaway: "WTI crude tumbled 6% to $79.48 today as OPEC+ raised output by 548,000 bpd effective August 1 -- well above market expectations -- while weak manufacturing data from China and the U.S. amplified recession fears. Natural gas held near $2.76/MMBtu, essentially flat, as record U.S. production and comfortable storage kept a lid on prices. The crude selloff signals a broad risk-off session in energy markets, though fixed-price retail supply contracts are unaffected by intraday wholesale swings."
   },
   prices: [
-    { name: "HH Spot", price: "~$2.80", change: "est.", direction: "neutral" },
-    { name: "NYMEX NG", price: "$2.770", change: "+0.44%", direction: "up" },
-    { name: "WTI Crude", price: "$84.68", change: "+1.30%", direction: "up" },
-    { name: "Brent Crude", price: "$90.11", change: "+1.21%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$34.68", change: "peak building", direction: "up" }
+    { name: "HH Spot", price: "$2.76", change: "~+0.4%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.79", change: "+1.1%", direction: "up" },
+    { name: "WTI Crude", price: "$79.48", change: "-6.1%", direction: "down" },
+    { name: "Brent Crude", price: "$83.47", change: "-7.4%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$38", change: "", direction: "neutral" }
   ],
   wordOfDay: {
     term: "Volumetric Risk",
     abbr: "",
     category: "Contract Terms",
-    tldr: "The risk that actual energy usage will differ from contracted volumes, creating unexpected costs or shortfalls.",
-    usedInSentence: "An industrial customer who locks in 10,000 MMBtu per month but then runs production at half capacity faces volumetric risk — they have committed to paying for more gas than they will actually consume, and may need to sell the excess back into a lower-priced spot market."
+    tldr: "The risk that actual energy consumption differs from contracted volume, creating spot market exposure.",
+    usedInSentence: "A commercial customer that contracts for 500 MWh per month faces volumetric risk if a mild summer cuts actual usage to 400 MWh -- the 100 MWh surplus must be sold back at spot rates, which may be far below the contracted price."
   },
   headlines: [
     {
-      title: "EIA Reports 28 Bcf Build, Stocks Remain 185 Bcf Above Five-Year Average",
-      tag: "Storage",
-      summary: "Working gas inventories reached 3,084 Bcf for the week ending July 24, staying well above seasonal norms despite robust summer power burn demand."
+      title: "OPEC+ Raises Output 548,000 bpd Effective August 1, Sending WTI to a Six-Month Low",
+      tag: "Crude Oil",
+      summary: "OPEC+ exceeded market expectations with its latest production hike, triggering a 6% crude selloff as traders priced in oversupply risk amid softening global demand."
     },
     {
-      title: "ERCOT Launches Batch Interconnection Review as Data Center Queue Hits 438 GW",
-      tag: "Grid Operations",
-      summary: "Texas approved rules for processing large-load interconnection requests in batches, with nearly 90% of the queue comprising data centers driving unprecedented long-term load growth expectations."
+      title: "Natural Gas Falls Near Three-Month Low as U.S. Output Hits Record and LNG Demand Softens",
+      tag: "Gas Markets",
+      summary: "U.S. dry gas production averaged a record 110.6 Bcfd in July while comfortable storage and softer LNG feedgas flows kept Henry Hub prices below $2.80/MMBtu."
     }
   ],
   knowledgeBuilder: {
-    topic: "How EDI Transactions Move Account Data Between Utilities and Suppliers",
-    tldr: "Electronic Data Interchange (EDI) is the standardized messaging system that utilities and competitive energy suppliers use to exchange account and billing data. When a commercial customer switches to a new supplier, the supplier sends an EDI 814 transaction to the utility to initiate the enrollment; the utility responds with an EDI 867 containing the account's historical usage data; and ongoing billing flows through EDI 810 invoices. These structured, automated transactions are what make competitive retail energy markets operationally possible at scale — every switch, drop, and renewal you process in Salesforce ultimately triggers one or more of these EDI messages behind the scenes."
+    topic: "How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customers",
+    tldr: "During extreme heat events, electricity demand can outpace available generation, sending real-time prices from a typical $30-$60/MWh to several hundred dollars per MWh in minutes. Commercial customers on variable-rate or real-time pricing tariffs absorb these spikes directly in their bills, while those with fixed-price supply contracts are insulated -- though even fixed-price customers still see utility transmission and distribution charges rise when grid operators invoke emergency procedures."
   },
-  procurementTip: "With U.S. gas production matching all-time records at 110.6 Bcfd and storage sitting 185 Bcf above the five-year average, the supply-side fundamentals favor buyers locking in index contracts heading into a shoulder season — but watch LNG export flows, which remain the swing variable that could quickly tighten the basis between Henry Hub and Gulf Coast delivery points.",
+  procurementTip: "With WTI down 6% and natural gas near a three-month low on supply-side pressure, customers approaching contract renewals are entering a favorable pricing window -- though soft prices reflect macro demand concerns more than structural energy abundance, so locking in now may hedge against a reversal if economic conditions stabilize.",
   priceHistory: {
-    labels: ["Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26"],
-    natGas: [2.35, 2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.77],
-    wti:    [70.20, 73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 84.68],
-    ercot:  [55, 62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 34],
-    pjm:    [63, 70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 45],
-    miso:   [57, 64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 38],
-    nyiso:  [72, 78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 55]
+    labels: ["Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26"],
+    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.76],
+    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 79.48],
+    ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 38],
+    pjm:    [70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45],
+    miso:   [64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38],
+    nyiso:  [78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55]
   },
-  deepDive: {
-    topic: "How Summer Heat Drives Power Price Spikes — and What It Means for Energy Buyers",
-    sections: [
-      {
-        title: "Temperature, Load, and the Air Conditioning Effect",
-        body: "Electricity demand in deregulated markets tracks temperature more closely than almost any other variable. In Texas, cooling load can represent over half of ERCOT's peak summer demand — and a single degree of temperature above normal can add 500 MW or more of system load during peak afternoon hours. This is why ERCOT's load forecasts for days like today spike between 3 and 7 PM: commercial buildings, industrial facilities, and millions of households running air conditioners simultaneously create a sharp, predictable demand curve that grid operators plan around months in advance. The same dynamic plays out across PJM, MISO, and NYISO, though building stock, industrial mix, and humidity levels create regional differences in just how sensitive each market is to heat."
-      },
-      {
-        title: "The Merit Order and How Peakers Set the Price",
-        body: "ISOs like ERCOT dispatch generators from cheapest to most expensive to meet real-time demand — a process called the <strong>merit order</strong>. Baseload resources like nuclear and large combined-cycle gas plants run nearly all the time because their fuel and operating costs are low. But when summer demand peaks, the ISO must call on <strong>peaker plants</strong> — older, less efficient gas turbines that only run a few hundred hours per year and carry much higher per-MWh costs. The critical market mechanic is that the most expensive unit dispatched sets the price for the entire market at that interval. So when ERCOT needs to call even one gas peaker to balance the grid, all other generators — including nuclear plants that cost pennies to run — also receive that higher price. This is why real-time prices can jump from $25/MWh at midnight to $50-60/MWh on a hot Friday afternoon, as seen in today's ERCOT data."
-      },
-      {
-        title: "What This Means for Your Accounts",
-        body: "Customers on <strong>fixed-price contracts</strong> are fully insulated from real-time heat spikes — their rate doesn't change regardless of what ERCOT or PJM does on a hot day. Customers on <strong>index or real-time priced contracts</strong> pay the market rate at each interval, which means today's afternoon peak directly hits their bill. For accounts you're actively monitoring, the most useful signals are: (1) the ISO's day-ahead demand forecast versus available capacity margin, (2) whether any major generation units are on outage going into a heat event, and (3) the EIA's 7-day weather outlook, which moves NYMEX gas futures and forward power curves simultaneously. The rapid growth of data center load in Texas — now representing the majority of ERCOT's interconnection queue — means these dynamics will intensify over the next several years."
-      }
-    ],
-    takeaway: "Summer heat events are the primary driver of short-term power price volatility in deregulated markets. As data center growth pushes peak demand higher and older peaker fleets age out, understanding the relationship between temperature, merit-order dispatch, and real-time pricing is increasingly essential for any analyst helping commercial customers choose between fixed and index supply structures."
-  },
+  deepDive: null,
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -450,18 +431,18 @@ const SEED = {
     { term: "Supply Adder", category: "Contract Terms", definition: "A fixed fee layered on top of the wholesale energy cost in a competitive supply contract, covering the supplier's margin, credit risk, and overhead." },
     { term: "Curtailment", category: "Grid Operations", definition: "A grid operator-ordered reduction in power output or customer load to maintain system reliability, typically invoked during extreme weather events or supply shortfalls." },
     { term: "Interruptible Service", category: "Contract Terms", definition: "A lower-cost gas or power supply arrangement that allows the supplier or utility to curtail delivery during periods of peak demand or pipeline constraints." },
-    { term: "Franchise Fee", category: "Bill Components", definition: "A fee charged by a municipality on utility bills, compensating local governments for the utility's use of public rights-of-way to run pipes and wires." },
-    { term: "WTI (West Texas Intermediate)", category: "Gas Markets", definition: "The primary U.S. crude oil benchmark, priced at Cushing, Oklahoma. WTI prices influence natural gas markets indirectly through energy substitution dynamics and producer economics." },
-    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand to their peak demand over a billing period, expressed as a percentage. A higher load factor generally indicates more efficient, consistent energy use and often results in lower per-unit supply costs." },
-    { term: "Rate Class", category: "Retail Markets", definition: "A utility classification that groups customers by usage profile, voltage level, or customer type (residential, small commercial, large commercial, industrial). Rate class determines which tariff, non-bypassable charges, and capacity tags apply to an account." },
-    { term: "ICAP / Capacity Tag (ICAP)", category: "Power Markets", definition: "Installed Capacity -- the share of the ISO's peak capacity requirement allocated to each load-serving entity based on customer peak demand during designated measurement hours. ICAP obligations drive the capacity component of a customer's electric supply cost." },
-    { term: "POD ID", category: "Data & Enrollment", definition: "Point of Delivery Identifier -- a unique ID assigned to a natural gas or electric service point in non-ERCOT markets, used in EDI transactions and utility enrollment processes. Analogous to ESI ID in ERCOT." },
-    { term: "True-Up", category: "Bill Components", definition: "An adjustment to reconcile estimated or scheduled energy quantities against actual metered usage. True-ups appear as credits or charges on utility or supplier invoices when actual consumption differs from the amount originally billed." },
-    { term: "Early Termination Fee", category: "Contract Terms", definition: "A charge assessed when a customer exits a fixed-price energy supply contract before its scheduled end date. The fee typically reflects the supplier's cost to unwind the hedged position at current market prices." },
-    { term: "Ratchet Clause", category: "Contract Terms", definition: "A provision that sets a minimum billable demand level -- often a percentage of the customer's highest recent peak -- regardless of actual usage in a given month. Common in industrial gas transport and some electric supply contracts." },
-    { term: "Swing Tolerance", category: "Contract Terms", definition: "The contractually defined band within which a customer can vary daily or monthly gas nominations without incurring penalties or paying spot-index rates for excess volume." },
-    { term: "Power Factor", category: "Bill Components", definition: "The ratio of real power (kW) to apparent power (kVA) drawn by a customer's equipment. A low power factor means the customer is drawing more current than necessary for the work performed, which increases losses on the utility's distribution system and often triggers a surcharge on commercial bills." },
-    { term: "Volumetric Risk", category: "Contract Terms", definition: "The risk that a customer's actual energy consumption will differ from the volumes committed to in a supply contract. If usage falls short of contracted quantities, the customer may be obligated to pay for energy they do not use; if usage exceeds the contract, they must purchase the overage at spot prices, which may be higher or lower than their contract rate." }
+    { term: "Franchise Fee", category: "Bill Components", definition: "A fee charged by a local government (city or municipality) on utility revenues, passed through to customers on their utility bills as a percentage of the total bill or a fixed per-unit charge." },
+    { term: "WTI (West Texas Intermediate)", category: "Gas Markets", definition: "The primary U.S. crude oil benchmark, priced at Cushing, Oklahoma. WTI is lighter and sweeter than Brent crude and serves as the reference price for NYMEX crude oil futures." },
+    { term: "Load Factor", category: "Bill Components", definition: "The ratio of a customer's average demand to their peak demand over a billing period, expressed as a percentage. High load factor customers use energy more consistently and typically receive better supply pricing." },
+    { term: "Rate Class", category: "Retail Markets", definition: "A utility-defined category that groups customers by usage characteristics (residential, small commercial, large commercial, industrial) and determines which tariff schedule, rates, and terms apply to their account." },
+    { term: "ICAP / Capacity Tag", category: "Power Markets", definition: "Installed Capacity (ICAP) is the total nameplate generating capacity registered in an ISO/RTO. A customer's Capacity Tag is their share of the system peak, used to allocate capacity charges in the forward capacity market." },
+    { term: "POD ID", category: "Data & Enrollment", definition: "Point of Delivery Identifier -- a unique code assigned to a customer's delivery point in certain deregulated markets (particularly PJM states) used for supplier registration and EDI transactions." },
+    { term: "True-Up", category: "Bill Components", definition: "A periodic reconciliation charge or credit on a utility bill that adjusts for the difference between estimated charges billed throughout a period and the actual costs incurred -- common in natural gas transportation and capacity-reservation contracts." },
+    { term: "Early Termination Fee", category: "Contract Terms", definition: "A penalty charged when a customer exits a supply contract before its scheduled end date, typically calculated as the market-to-contract price difference on remaining volume or a fixed per-unit fee." },
+    { term: "Ratchet Clause", category: "Contract Terms", definition: "A provision that sets a minimum billable demand based on a percentage of the customer's highest recorded peak demand over a rolling period (often 12 months), preventing customers from avoiding demand charges during low-usage months." },
+    { term: "Swing Tolerance", category: "Contract Terms", definition: "The percentage above or below a contracted daily or monthly gas volume that a customer may take without incurring imbalance penalties -- defines the flexibility band around the nominated quantity." },
+    { term: "Power Factor", category: "Bill Components", definition: "The ratio of real power (kW) to apparent power (kVA) in an electrical system. A low power factor indicates inefficient use of electrical capacity and can trigger penalty charges on commercial and industrial utility bills." },
+    { term: "Volumetric Risk", category: "Contract Terms", definition: "The risk that a customer's actual energy consumption differs from the volume contracted with a supplier -- the surplus or shortfall is settled at prevailing spot market prices, which may be significantly higher or lower than the contracted rate." }
   ]
 };
 
