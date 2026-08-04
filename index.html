@@ -337,15 +337,15 @@ body {
 </div>
 
 <script>
-// SEED verified August 3, 2026 (Monday)
-// Sources: EOX Live Morning Report 6:10 AM CST Aug 3: Nat Gas $2.757 (+$0.010, +0.36%), WTI $79.48 (-$5.19, -6.13%), Brent $83.47 (-$6.65, -7.38%) |
-//          ERCOT RT Hub: estimated ~$38/MWh (CDR page timed out -- estimated based on summer baseline) |
-//          PJM ComEd zone DA: estimated ~$45/MWh |
-//          EIA storage wk/e Jul 24, 2026: 3,084 Bcf, +28 Bcf build, 185 Bcf above 5-yr avg of 2,899 Bcf; 32 Bcf below year-ago |
-//          OPEC+ raised output 548,000 bpd effective Aug 1 (vs. 411,000 bpd expected); WTI fell 6% on oversupply concerns and weak China/U.S. manufacturing PMI data |
-//          U.S. dry gas production averaged 110.6 Bcfd in July (matched Dec 2025 record high) |
-//          LNG feedgas flows averaged 17.2 Bcfd in July, down from 17.4 Bcfd in June (Freeport maintenance) |
-//          Next EIA storage report: wk/e Jul 31, due Thu Aug 6 |
+// SEED verified August 4, 2026 (Tuesday)
+// Sources: EOX Live Morning Report 6:10 AM CST Aug 4: Nat Gas $2.733 (-$0.048, -1.73% vs prev settle $2.781), WTI $80.93 (+$0.59, +0.73%), Brent $84.63 (EOX prev-settle field anomalous at $90.12; change shown vs Mon Aug 3 EOX $83.47, ~+1.4% -- estimated) |
+//          ERCOT CDR last updated Aug 04 09:02 -- HB_HUBAVG $14.11/MWh at interval ending 0900; morning peak $21.94 at 0715 (live data) |
+//          PJM ComEd zone DA: estimated ~$45/MWh (no current DA figure via web search; carried prior estimate) |
+//          EIA storage wk/e Jul 24, 2026: 3,084 Bcf, +28 Bcf build (below ~35 Bcf consensus); inventories ~6.4% above 5-yr avg; next report wk/e Jul 31 due Thu Aug 6 |
+//          U.S. dry gas production averaged record 110.6 Bcfd in July (matches Dec 2025 high) |
+//          Chevron 20-year power deal with Microsoft signals broader gas-fired power business for AI data centers |
+//          Northeast physical gas prices firm on regional power demand while producing regions stay weak |
+//          priceHistory Aug '26: natGas and wti updated with today's EOX data; ercot/pjm/miso/nyiso carried (0900 off-peak reading not representative of monthly avg) |
 // WORD OF DAY USED -- never repeat:
 //   Locational Marginal Price (LMP), Capacity Charge, Fuel Adjustment Clause (FAC),
 //   Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement, Distribution Charge,
@@ -354,53 +354,54 @@ body {
 //   Swing Supply, Supply Adder, Curtailment, Interruptible Service, Franchise Fee,
 //   WTI (West Texas Intermediate), Load Factor, Rate Class, ICAP / Capacity Tag (ICAP),
 //   POD ID, True-Up, Early Termination Fee, Ratchet Clause, Swing Tolerance, Power Factor,
-//   Volumetric Risk, Notice Period
+//   Volumetric Risk, Notice Period, Interval Data
 // LAST KB TOPICS -- avoid repeating recent ones:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customers
+//   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customers,
+//   How the Weekly EIA Storage Report Moves Natural Gas Prices
 const SEED = {
-  date: "Monday, August 3, 2026",
+  date: "Tuesday, August 4, 2026",
   meta: {
-    marketTakeaway: "WTI crude tumbled 6% to $79.48 today as OPEC+ raised output by 548,000 bpd effective August 1 -- well above market expectations -- while weak manufacturing data from China and the U.S. amplified recession fears. Natural gas held near $2.76/MMBtu, essentially flat, as record U.S. production and comfortable storage kept a lid on prices. The crude selloff signals a broad risk-off session in energy markets, though fixed-price retail supply contracts are unaffected by intraday wholesale swings."
+    marketTakeaway: "Natural gas eased to $2.73/MMBtu as record production keeps the market well supplied even in peak cooling season, with storage about 6% above the five-year average. Crude steadied after Monday's OPEC+ selloff, with WTI back near $81. Power markets are calm this morning -- ERCOT's hub average was around $14/MWh at 9 AM Central with no major heat stress on the grid."
   },
   prices: [
-    { name: "HH Spot", price: "$2.76", change: "~+0.4%", direction: "up" },
-    { name: "NYMEX NG", price: "$2.79", change: "+1.1%", direction: "up" },
-    { name: "WTI Crude", price: "$79.48", change: "-6.1%", direction: "down" },
-    { name: "Brent Crude", price: "$83.47", change: "-7.4%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$38", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.77", change: "-0.3%", direction: "down" },
+    { name: "NYMEX NG", price: "$2.733", change: "-1.7%", direction: "down" },
+    { name: "WTI Crude", price: "$80.93", change: "+0.7%", direction: "up" },
+    { name: "Brent Crude", price: "$84.63", change: "~+1.4%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$14.11", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Notice Period",
+    term: "Interval Data",
     abbr: "",
-    category: "Contract Terms",
-    tldr: "The advance written notice a customer must give before canceling or not renewing a supply contract.",
-    usedInSentence: "A customer with a December 31 contract end date and a 90-day notice period must notify their supplier by October 2 to avoid triggering the evergreen clause and rolling into another term."
+    category: "Data & Enrollment",
+    tldr: "Meter usage recorded in short increments -- typically 15 minutes -- showing when a customer uses energy, not just how much.",
+    usedInSentence: "Suppliers typically request twelve months of interval data before quoting a large commercial account, because two customers with identical total kWh can have very different peak-hour usage and therefore very different costs to serve."
   },
   headlines: [
     {
-      title: "OPEC+ Raises Output 548,000 bpd Effective August 1, Sending WTI to a Six-Month Low",
-      tag: "Crude Oil",
-      summary: "OPEC+ exceeded market expectations with its latest production hike, triggering a 6% crude selloff as traders priced in oversupply risk amid softening global demand."
+      title: "Chevron's 20-Year Power Deal with Microsoft Points to a Gas-Fired Buildout for AI Data Centers",
+      tag: "Power Markets",
+      summary: "Chevron expects the agreement to anchor a broader natural gas power business as data center demand grows faster than the grid can expand."
     },
     {
-      title: "Natural Gas Falls Near Three-Month Low as U.S. Output Hits Record and LNG Demand Softens",
-      tag: "Gas Markets",
-      summary: "U.S. dry gas production averaged a record 110.6 Bcfd in July while comfortable storage and softer LNG feedgas flows kept Henry Hub prices below $2.80/MMBtu."
+      title: "WTI Steadies Near $81 After Monday's OPEC+ Selloff",
+      tag: "Crude Oil",
+      summary: "Crude recovered modestly as traders weighed the 548,000 bpd OPEC+ output increase against oversold conditions following Monday's 6% slide."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customers",
-    tldr: "During extreme heat events, electricity demand can outpace available generation, sending real-time prices from a typical $30-$60/MWh to several hundred dollars per MWh in minutes. Commercial customers on variable-rate or real-time pricing tariffs absorb these spikes directly in their bills, while those with fixed-price supply contracts are insulated -- though even fixed-price customers still see utility transmission and distribution charges rise when grid operators invoke emergency procedures."
+    topic: "How the Weekly EIA Storage Report Moves Natural Gas Prices",
+    tldr: "Every Thursday morning the EIA reports how much natural gas was injected into or withdrawn from underground storage the prior week, and prices react to the gap between the actual figure and trader expectations. Last week's +28 Bcf build came in under the roughly 35 Bcf consensus and prices firmed slightly -- smaller builds suggest the current surplus, about 6% above the five-year average, is narrowing."
   },
-  procurementTip: "With WTI down 6% and natural gas near a three-month low on supply-side pressure, customers approaching contract renewals are entering a favorable pricing window -- though soft prices reflect macro demand concerns more than structural energy abundance, so locking in now may hedge against a reversal if economic conditions stabilize.",
+  procurementTip: "With Henry Hub in the low $2.70s and a storage surplus still in place, near-term supply pricing remains soft heading into Thursday's EIA report, which will show whether smaller injection builds keep narrowing that cushion.",
   priceHistory: {
     labels: ["Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26"],
-    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.76],
-    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 79.48],
+    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.73],
+    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 80.93],
     ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 38],
     pjm:    [70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45],
     miso:   [64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38],
@@ -443,7 +444,8 @@ const SEED = {
     { term: "Swing Tolerance", category: "Contract Terms", definition: "The percentage above or below a contracted daily or monthly gas volume that a customer may take without incurring imbalance penalties -- defines the flexibility band around the nominated quantity." },
     { term: "Power Factor", category: "Bill Components", definition: "The ratio of real power (kW) to apparent power (kVA) in an electrical system. A low power factor indicates inefficient use of electrical capacity and can trigger penalty charges on commercial and industrial utility bills." },
     { term: "Volumetric Risk", category: "Contract Terms", definition: "The risk that a customer's actual energy consumption differs from the volume contracted with a supplier -- the surplus or shortfall is settled at prevailing spot market prices, which may be significantly higher or lower than the contracted rate." },
-    { term: "Notice Period", category: "Contract Terms", definition: "The number of days of advance written notice a customer must provide to their supplier before canceling or declining to renew a supply contract -- missing this window typically triggers the evergreen clause and extends the contract automatically." }
+    { term: "Notice Period", category: "Contract Terms", definition: "The number of days of advance written notice a customer must provide to their supplier before canceling or declining to renew a supply contract -- missing this window typically triggers the evergreen clause and extends the contract automatically." },
+    { term: "Interval Data", category: "Data & Enrollment", definition: "Energy usage recorded by a meter in short increments -- typically 15 or 30 minutes -- rather than a single monthly total. Suppliers price large commercial accounts from 12 months of interval data because it shows when a customer uses energy, not just how much." }
   ]
 };
 
