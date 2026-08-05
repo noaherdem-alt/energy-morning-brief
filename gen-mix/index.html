@@ -144,40 +144,40 @@ body {
 //          NYISO: hydro supporting, nuclear baseload high, gas moderate |
 //          Week-over-week deltas are zero on first run (no prior week seeded) |
 const SEED = {
-  date: "Wednesday, July 29, 2026",
+  date: "Wednesday, August 5, 2026",
   callout: {
-    text: "ERCOT wind generation is falling to very low levels this week as Texas heat persists near all-time records — the drop in wind share is pushing gas-fired generation back above 44% as the grid holds within striking distance of its 91,090 MW all-time peak set July 22."
+    text: "ERCOT solar supplied 35-45% of instantaneous generation during Monday and Tuesday afternoons - matching or exceeding gas-fired output for the first sustained stretch this summer, even as triple-digit heat pushed load toward record territory."
   },
-  weekRecap: "Henry Hub weakened to near $2.85 this week as cooler late-July forecasts and recovering wind generation offset heat-driven power burn, holding the front of the curve in the $2.80–$2.95 range. ERCOT set an all-time peak of 91,090 MW on July 22, while PJM's July 2 record of 168 GW prompted capacity emergency alerts across the East. Wind suppression during peak heat conditions has been the recurring story of summer 2026, periodically boosting gas dispatch well above baseline levels.",
-  narrative: "Gas leads all four zones as a multi-region heat wave keeps cooling demand elevated, but the story diverges at the margins — <strong>ERCOT</strong> wind is falling to very low levels this week, adding gas displacement pressure even as solar output holds at a seasonal high near record load conditions. <strong>PJM</strong> and <strong>MISO</strong> remain in heavy dual coal-gas dispatch through the ongoing eastern heat, while <strong>NYISO</strong>'s nuclear baseload and hydro contribution give New York the lowest thermal dependency of the four markets.",
+  weekRecap: "Henry Hub slipped to roughly $2.69 this week, its lowest level in more than three months, as record production and ample storage outweighed heat-driven power burn. ERCOT is bracing for record demand as triple-digit heat returns to Texas and a tropical storm develops in the Gulf. Balance-of-summer gas is holding below $3.00, and EIA trimmed its summer wholesale power price outlook to about $45/MWh.",
+  narrative: "Renewables are doing the heavy lifting this week - <strong>ERCOT</strong> solar is rivaling gas during afternoon peaks and strong wind across <strong>MISO</strong> is muting gas dispatch despite some of the hottest weather in years. <strong>PJM</strong> continues to lean on its coal-gas-nuclear core through steady summer load, while <strong>NYISO</strong>'s nuclear-hydro base keeps its gas share the most stable of the four zones.",
   isos: [
     {
       name: "ERCOT",
-      loadGW: 90,
-      loadNote: "record-near heat peak",
-      mix:     { gas: 44, nuclear: 11, wind: 21, solar: 18, coal: 0,  hydro: 0,  other: 6 },
-      prevMix: { gas: 40, nuclear: 11, wind: 26, solar: 17, coal: 0,  hydro: 0,  other: 6 }
+      loadGW: 87,
+      loadNote: "record heat demand",
+      mix:     { gas: 39, nuclear: 10, wind: 23, solar: 20, coal: 0,  hydro: 0,  other: 8 },
+      prevMix: { gas: 43, nuclear: 11, wind: 24, solar: 16, coal: 0,  hydro: 0,  other: 6 }
     },
     {
       name: "PJM",
-      loadGW: 152,
-      loadNote: "eastern heat wave",
-      mix:     { gas: 35, nuclear: 22, wind: 6,  solar: 5,  coal: 25, hydro: 1,  other: 6 },
-      prevMix: { gas: 36, nuclear: 22, wind: 6,  solar: 4,  coal: 25, hydro: 1,  other: 6 }
+      loadGW: 138,
+      loadNote: "steady summer load",
+      mix:     { gas: 33, nuclear: 22, wind: 7,  solar: 6,  coal: 25, hydro: 0,  other: 7 },
+      prevMix: { gas: 32, nuclear: 22, wind: 8,  solar: 5,  coal: 26, hydro: 0,  other: 7 }
     },
     {
       name: "MISO",
-      loadGW: 110,
-      loadNote: "heat wave gas surge",
-      mix:     { gas: 39, nuclear: 13, wind: 15, solar: 5,  coal: 24, hydro: 0,  other: 4 },
-      prevMix: { gas: 38, nuclear: 13, wind: 16, solar: 5,  coal: 24, hydro: 0,  other: 4 }
+      loadGW: 105,
+      loadNote: "strong wind dispatch",
+      mix:     { gas: 26, nuclear: 18, wind: 25, solar: 5,  coal: 22, hydro: 0,  other: 4 },
+      prevMix: { gas: 28, nuclear: 18, wind: 22, solar: 4,  coal: 24, hydro: 0,  other: 4 }
     },
     {
       name: "NYISO",
-      loadGW: 29,
-      loadNote: "elevated summer peak",
-      mix:     { gas: 36, nuclear: 27, wind: 8,  solar: 5,  coal: 0,  hydro: 18, other: 6 },
-      prevMix: { gas: 37, nuclear: 27, wind: 8,  solar: 5,  coal: 0,  hydro: 17, other: 6 }
+      loadGW: 26,
+      loadNote: "summer cooling load",
+      mix:     { gas: 36, nuclear: 25, wind: 7,  solar: 5,  coal: 0,  hydro: 18, other: 9 },
+      prevMix: { gas: 34, nuclear: 28, wind: 9,  solar: 4,  coal: 0,  hydro: 19, other: 6 }
     }
   ]
 };
