@@ -337,13 +337,13 @@ body {
 </div>
 
 <script>
-// SEED verified August 10, 2026 (Monday)
-// Sources: EOX Live Morning Report 6:09 AM CST Aug 10: Nat Gas $2.762 (prev settle $2.662, +3.76%, +$0.100), WTI $79.27 (+$1.09, +1.39%), Brent $84.78 (+$1.23, +1.47%) |
-//          NYMEX front-month ~$2.73-2.76 intraday per Investing.com; EOX Live used as primary price source; HH spot $2.66 Aug 9 (weekend) per Buckhead Energy |
-//          ERCOT CDR live Aug 10 -- HB_HUBAVG $18.33/MWh at interval ending 0915 (mild morning load; overnight high $31.93 at 0030) |
-//          PJM ComEd zone DA ~$45/MWh ESTIMATED (no public DA print found this morning; carried forward from Aug 7 estimate) |
-//          EIA storage wk/e Jul 31 (released Aug 6): 3,117 Bcf, +33 Bcf build; 195 Bcf above 5-yr avg; 12 Bcf below year-ago; next report wk/e Aug 7 due Thu Aug 13 |
-//          Lower 48 dry gas production ~110.6 Bcf/d August-to-date vs record 110.7 in July; EU gas (TTF) 58.34 EUR/MWh +5.0% on Strait of Hormuz LNG shipping disruptions |
+// SEED verified August 11, 2026 (Tuesday)
+// Sources: EOX Live Morning Report 6:14 AM CST Aug 11: Nat Gas $2.753 (prev settle $2.794, -1.47%, -$0.041), WTI $83.38 (+$1.25, +1.52%), Brent $88.86 (+$1.14, +1.30%) |
+//          HH spot $2.66 Aug 9 per Buckhead Energy (latest print); NYMEX front-month ~$2.75-2.77 intraday |
+//          ERCOT CDR live Aug 11 08:47 -- HB_HUBAVG $13.32/MWh at interval ending 0845 (mild morning load) |
+//          PJM ComEd zone DA ~$45/MWh ESTIMATED (no public DA print this morning; carried forward from Aug 10 estimate) |
+//          EIA storage wk/e Jul 31 (released Aug 6): 3,117 Bcf, +33 Bcf build; 195 Bcf above 5-yr avg of 2,922 Bcf; 12 Bcf below year-ago; next report wk/e Aug 7 due Thu Aug 13, surplus seen narrowing to ~6.6% |
+//          EIA STEO Aug: Lower-48 dry gas production record 111.2 Bcf/d in August vs 110.7 in July; above-normal temps forecast through Aug 25; gas-fired capacity to reach 508 GW by end-2027 |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement,
@@ -352,8 +352,8 @@ body {
 //   Supply Adder, Curtailment, Interruptible Service, Franchise Fee, WTI (West Texas Intermediate),
 //   Load Factor, Rate Class, ICAP / Capacity Tag (ICAP), POD ID, True-Up, Early Termination Fee,
 //   Ratchet Clause, Swing Tolerance, Power Factor, Volumetric Risk, Notice Period, Interval Data,
-//   Renewal Window, AMI Meter, EDI 814
-// LAST KB TOPICS -- avoid repeating recent ones:
+//   Renewal Window, AMI Meter, EDI 814, Reinstatement
+// LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
@@ -362,47 +362,50 @@ body {
 //   How the Weekly EIA Storage Report Moves Natural Gas Prices,
 //   How Day-Ahead and Real-Time Power Markets Settle Separately and Why Most Volume Trades a Day Early,
 //   How LNG Export Terminals Link U.S. Natural Gas Prices to Global Markets,
-//   How Suppliers Hedge a Fixed-Price Contract the Moment It Is Signed
+//   How Suppliers Hedge a Fixed-Price Contract the Moment It Is Signed,
+//   How Utility Rate Cases Turn Into the Delivery Charges on a Customer's Bill
+// DEEP DIVE USED -- never repeat:
+//   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows)
 const SEED = {
-  date: "Monday, August 10, 2026",
+  date: "Tuesday, August 11, 2026",
   meta: {
-    marketTakeaway: "Natural gas futures rebounded nearly 4% this morning to $2.76/MMBtu after sliding to their lowest levels since spring, as above-normal heat through late August put demand back in focus. Storage sits 195 Bcf above the five-year average and production is running near record levels, which keeps a ceiling on rallies. Crude moved higher too, with WTI up 1.4% to $79.27 on renewed Strait of Hormuz shipping risk."
+    marketTakeaway: "Natural gas is giving back a slice of Monday's heat-driven rally, with the prompt month near $2.75 as record production of 111.2 Bcf/d blunts hotter forecasts running through August 25. Crude is moving the other way -- WTI is up 1.5% to $83.38 this morning. Storage sits 195 Bcf above the five-year average, and Thursday's EIA report is expected to show that surplus narrowing."
   },
   prices: [
+    { name: "NYMEX NG", price: "$2.75", change: "-1.5%", direction: "down" },
     { name: "HH Spot", price: "$2.66", change: "", direction: "neutral" },
-    { name: "NYMEX NG", price: "$2.76", change: "+3.8%", direction: "up" },
-    { name: "WTI Crude", price: "$79.27", change: "+1.4%", direction: "up" },
-    { name: "Brent Crude", price: "$84.78", change: "+1.5%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$18.33", change: "", direction: "neutral" }
+    { name: "WTI Crude", price: "$83.38", change: "+1.5%", direction: "up" },
+    { name: "Brent Crude", price: "$88.86", change: "+1.3%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$13.32", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "EDI 814",
+    term: "Reinstatement",
     abbr: "",
     category: "Data & Enrollment",
-    tldr: "The standard electronic transaction suppliers and utilities exchange to start, switch, or drop a customer's energy enrollment.",
-    usedInSentence: "When a customer signs with a new supplier, an EDI 814 enrollment request goes to the utility, which accepts or rejects it -- and a rejected 814 is one of the most common reasons a contract start date slips."
+    tldr: "The process of returning a dropped customer to their retail supplier's service without a full new enrollment.",
+    usedInSentence: "When an account is dropped in error -- a mistyped account number or a mistaken non-payment flag -- the supplier submits a reinstatement so the customer keeps flowing on their contract rate instead of falling back to utility default service."
   },
   headlines: [
     {
-      title: "Natural Gas Futures Rebound Nearly 4% as Heat Builds Back Into Forecasts",
-      tag: "Gas Markets",
-      summary: "Front-month gas climbed to $2.76/MMBtu from a $2.66 settle, off spring lows, as above-normal temperatures through late August lifted cooling demand expectations."
+      title: "EIA Sees Record 111.2 Bcf/d of August Gas Production",
+      tag: "Gas Supply",
+      summary: "Lower-48 output averaged a record 111.2 Bcf/d in August per EIA, keeping inventories above the five-year average even as heat sustains power burn."
     },
     {
-      title: "European Gas Jumps 5% as Strait of Hormuz Disruptions Tighten Global LNG",
-      tag: "Global LNG",
-      summary: "TTF rose to 58 EUR/MWh as shipping delays and Asian buying complicate Europe's winter stockpiling, keeping U.S. export demand firmly in focus."
+      title: "WTI Crude Climbs 1.5% to $83 in Morning Trade",
+      tag: "Crude Oil",
+      summary: "WTI rose $1.25 to $83.38 with Brent near $89 on the EOX Live morning marks, diverging from gas as crude extends its recent gains."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Suppliers Hedge a Fixed-Price Contract the Moment It Is Signed",
-    tldr: "When a customer locks a fixed rate, the supplier immediately buys futures, basis, and capacity to pin down its own costs -- the quoted price is essentially that day's forward curve plus an adder. That is why supply quotes expire in days or even hours: once the market moves, the old price no longer covers the supplier's hedge."
+    topic: "How Utility Rate Cases Turn Into the Delivery Charges on a Customer's Bill",
+    tldr: "A rate case is the regulatory proceeding where a utility justifies its delivery revenue: it files its costs and requested return, intervenors challenge them, and the commission's ruling resets distribution rates for every customer in the territory. Delivery charges only move through this process -- no competitive supplier can beat them -- which is why a savings quote always compares supply rates, never total bills."
   },
-  procurementTip: "With gas near its lowest levels since spring and storage 195 Bcf above the five-year average, forward curves are pricing in comfort -- a backdrop where fixed-price offers tend to look their most competitive even as global LNG risk builds.",
+  procurementTip: "Record supply is pinning prompt gas near $2.75 even with heat in the 15-day outlook -- the kind of tension that keeps forward curves flat and supplier fixed-price offers aggressive.",
   priceHistory: {
     labels: ["Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26"],
-    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.76],
-    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 79.27],
+    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.75],
+    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 80.00],
     ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 37],
     pjm:    [70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45],
     miso:   [64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38],
@@ -449,7 +452,8 @@ const SEED = {
     { term: "Interval Data", category: "Data & Enrollment", definition: "Energy usage recorded by a meter in short increments -- typically 15 or 30 minutes -- rather than a single monthly total. Suppliers price large commercial accounts from 12 months of interval data because it shows when a customer uses energy, not just how much." },
     { term: "Renewal Window", category: "Contract Terms", definition: "The defined period -- often 90 to 180 days before contract end -- when a customer can renew or renegotiate a supply agreement before auto-renewal or holdover provisions take effect." },
     { term: "AMI Meter", category: "Data & Enrollment", definition: "Advanced Metering Infrastructure -- a digital meter that records usage in 15-minute or hourly intervals and transmits it to the utility automatically, enabling interval-based billing, accurate load profiling, and faster enrollment transactions." },
-    { term: "EDI 814", category: "Data & Enrollment", definition: "The standard electronic data interchange transaction used to request, accept, or reject a customer enrollment, switch, or drop between a retail supplier and the utility -- the workhorse transaction that starts and ends every competitive supply relationship." }
+    { term: "EDI 814", category: "Data & Enrollment", definition: "The standard electronic data interchange transaction used to request, accept, or reject a customer enrollment, switch, or drop between a retail supplier and the utility -- the workhorse transaction that starts and ends every competitive supply relationship." },
+    { term: "Reinstatement", category: "Data & Enrollment", definition: "The transaction that returns a dropped customer to their retail supplier without a new enrollment -- used to correct erroneous drops so the customer stays on their contract rate rather than reverting to utility default service." }
   ]
 };
 
