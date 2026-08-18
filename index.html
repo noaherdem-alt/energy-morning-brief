@@ -337,12 +337,12 @@ body {
 </div>
 
 <script>
-// SEED verified August 17, 2026 (Monday)
-// Sources: EOX Live Morning Report 6:38 AM CST Aug 17: Nat Gas $2.653 (-$0.080, -2.93% vs prev settle $2.733), WTI $82.77 (+$0.37, +0.45%), Brent $89.27 (+$0.75, +0.85%) |
-//          ERCOT CDR last updated Aug 17 09:02 -- HB_HUBAVG $16.40/MWh at 0900 interval; calm morning load through the solar ramp |
-//          NYMEX front-month NG ~$2.67/MMBtu, -2.5% -- record Lower 48 production 111.2 Bcf/d in August weighing on prices despite heat through Aug 28 |
+// SEED verified August 18, 2026 (Tuesday)
+// Sources: EOX Live Morning Report 6:15 AM CST Aug 18: Nat Gas $2.695 (+$0.005, +0.19% vs prev settle $2.690), WTI $84.81 (+$0.31, +0.37%), Brent $90.69 (-$0.18, -0.20%) |
+//          ERCOT CDR last updated Aug 18 09:02 -- HB_HUBAVG $14.30/MWh at 0900 interval; mild morning prices through the solar ramp |
+//          NYMEX front-month NG ~$2.70/MMBtu, +0.5% -- Lower 48 production 111.6 Bcf/d August-to-date, topping July's monthly record of 110.7 Bcf/d |
 //          EIA storage wk/e Aug 7 (released Thu Aug 13): 3,153 Bcf, +36 Bcf build, 198 Bcf above 5-yr avg of 2,955 Bcf; 25 Bcf below year-ago; next report (wk/e Aug 14) due Thu Aug 20 |
-//          LNG feed gas eased to 17.1 Bcf/d in August (Freeport maintenance through late Aug); ~490,000 Midwest customers without power after severe weekend storms |
+//          LNG feed gas averaging 17.3 Bcf/d in August vs 17.2 in July; U.S. battery storage +8.3 GW in H1 2026 to ~52 GW nameplate |
 //          PJM day-ahead: no usable public quote found this morning -- Aug '26 PJM/MISO/NYISO history values carried forward as estimates
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
@@ -354,7 +354,8 @@ body {
 //   Ratchet Clause, Swing Tolerance, Power Factor, Volumetric Risk, Notice Period, Interval Data,
 //   Renewal Window, AMI Meter, EDI 814, Reinstatement, Meter Data Management (MDM),
 //   Contract Start Date vs. Flow Date,
-//   Purchase of Receivables (POR)
+//   Purchase of Receivables (POR),
+//   Renewable Energy Certificate (REC)
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -368,51 +369,52 @@ body {
 //   How Utility Rate Cases Turn Into the Delivery Charges on a Customer's Bill,
 //   How Material Change Clauses Let Suppliers Reprice a Fixed Contract When a Customer's Load Changes,
 //   How Mid-August System Peaks Set Next Year's Capacity Costs,
-//   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price
+//   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price,
+//   How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill)
 const SEED = {
-  date: "Monday, August 17, 2026",
+  date: "Tuesday, August 18, 2026",
   meta: {
-    marketTakeaway: "Natural gas slid nearly 3% to $2.65/MMBtu as record Lower 48 production of 111.2 Bcf/d and a 198 Bcf storage surplus outweighed heat forecast to run through late August. Crude moved the other way, with WTI up to $82.77 and Brent near $89.27. ERCOT opened the week calm, with the hub average around $16/MWh through the morning solar ramp."
+    marketTakeaway: "Natural gas is holding just under $2.70/MMBtu, essentially flat as record Lower 48 production of 111.6 Bcf/d and a 198 Bcf storage surplus continue to cap prices despite late-August heat. Crude keeps firming, with WTI at $84.81 and Brent near $90.69. ERCOT is quiet this morning, with the hub average around $14/MWh as solar carries the midday load."
   },
   prices: [
-    { name: "HH Spot", price: "$2.65", change: "-2.9%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.67", change: "-2.5%", direction: "down" },
-    { name: "WTI Crude", price: "$82.77", change: "+0.5%", direction: "up" },
-    { name: "Brent Crude", price: "$89.27", change: "+0.9%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "~$16", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.70", change: "+0.2%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.70", change: "+0.5%", direction: "up" },
+    { name: "WTI Crude", price: "$84.81", change: "+0.4%", direction: "up" },
+    { name: "Brent Crude", price: "$90.69", change: "-0.2%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "~$14", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Purchase of Receivables (POR)",
-    abbr: "POR",
-    category: "Retail Markets",
-    tldr: "A utility program that buys suppliers' billed receivables at a small discount, taking on the customer credit risk.",
-    usedInSentence: "In POR markets like Illinois and New York, the utility guarantees payment on supplier invoices, which is why quotes there often carry thinner credit adders than in non-POR markets where the supplier collects directly and absorbs bad debt itself."
+    term: "Renewable Energy Certificate (REC)",
+    abbr: "REC",
+    category: "Renewables",
+    tldr: "A tradable certificate representing one megawatt-hour of renewable generation, sold separately from the electricity itself.",
+    usedInSentence: "When a supplier quotes a 100% green product, it is usually layering REC costs of a fraction of a cent per kWh onto a standard supply rate rather than delivering physically different power."
   },
   headlines: [
     {
-      title: "Natural Gas Falls Below $2.70 as Record Production Outweighs Late-August Heat",
+      title: "LNG Feed Gas Flows Climb to 17.3 Bcf/d in August",
       tag: "Gas Markets",
-      summary: "Lower 48 output averaged a record 111.2 Bcf/d in August, keeping storage above the five-year average despite heat forecast through August 28."
+      summary: "Average deliveries to the nine major U.S. export terminals edged up from 17.2 Bcf/d in July, absorbing part of record production."
     },
     {
-      title: "Storms Leave About 490,000 Midwest Customers Without Power",
+      title: "U.S. Battery Storage Nears 52 GW After Record First-Half Additions",
       tag: "Grid Operations",
-      summary: "Severe weekend storms knocked out service across the Midwest, with roughly 490,000 homes and businesses still dark as utilities work through restoration."
+      summary: "Operators added 8.3 GW of battery capacity in the first half of 2026, reshaping evening peak pricing in solar-heavy markets."
     }
   ],
   knowledgeBuilder: {
-    topic: "How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price",
-    tldr: "Suppliers price a deal off 12 months of billed or interval usage pulled from the utility, using it to model the customer's load shape against the forward curve. When months are missing or estimated, the supplier cannot see peak behavior and prices the uncertainty in -- incomplete usage data almost always produces a worse quote, not a neutral one."
+    topic: "How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve",
+    tldr: "ERCOT's solar fleet now pushes midday real-time prices into the teens or lower, then hands the evening peak to gas and batteries as the sun sets. The cheapest hours of a summer day often land in early afternoon instead of overnight -- and it is the evening solar drop-off, not afternoon heat alone, that drives most price spikes."
   },
-  procurementTip: "With gas back near $2.65 and storage running 198 Bcf above the five-year average, suppliers are quoting fixed offers off a soft forward curve -- late-August cooling demand has not been enough to move the market against buyers.",
+  procurementTip: "With prompt-month gas under $2.70 and storage running 198 Bcf above the five-year average, forward power curves are soft -- late August has historically been a favorable window to lock winter terms before weather risk gets priced back in.",
   priceHistory: {
     labels: ["Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26"],
     natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.70],
-    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 82.30],
-    ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 36],
+    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.30],
+    ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 35],
     pjm:    [70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45],
     miso:   [64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38],
     nyiso:  [78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55]
@@ -462,7 +464,8 @@ const SEED = {
     { term: "Reinstatement", category: "Data & Enrollment", definition: "The transaction that returns a dropped customer to their retail supplier without a new enrollment -- used to correct erroneous drops so the customer stays on their contract rate rather than reverting to utility default service." },
     { term: "Meter Data Management (MDM)", category: "Data & Enrollment", definition: "The utility system that collects, validates, and stores raw meter reads before passing them to billing, settlement, and EDI transactions. Estimated bills -- and the true-ups that follow -- typically originate from reads that failed MDM validation." },
     { term: "Contract Start Date vs. Flow Date", category: "Contract Terms", definition: "Two distinct dates in a supply agreement: the date the contract is executed and binding, and the date the supplier actually begins serving the meter. The customer remains on their existing supply until the flow date, which usually lands on a meter read, so weeks or months can pass between signing and the new rate taking effect." },
-    { term: "Purchase of Receivables (POR)", category: "Retail Markets", definition: "A utility program that purchases competitive suppliers' billed receivables at a small discount, assuming the customer credit risk. Common in Illinois, New York, and much of the Northeast; it lets suppliers serve customers they would otherwise decline on credit grounds." }
+    { term: "Purchase of Receivables (POR)", category: "Retail Markets", definition: "A utility program that purchases competitive suppliers' billed receivables at a small discount, assuming the customer credit risk. Common in Illinois, New York, and much of the Northeast; it lets suppliers serve customers they would otherwise decline on credit grounds." },
+    { term: "Renewable Energy Certificate (REC)", category: "Renewables", definition: "A tradable certificate representing the environmental attributes of one megawatt-hour of renewable generation -- sold separately from the power itself, and the mechanism behind most green supply products." }
   ]
 };
 
