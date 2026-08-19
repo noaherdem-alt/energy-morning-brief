@@ -144,39 +144,39 @@ body {
 //          NYISO: hydro supporting, nuclear baseload high, gas moderate |
 //          Week-over-week deltas are zero on first run (no prior week seeded) |
 const SEED = {
-  date: "Wednesday, August 12, 2026",
+  date: "Wednesday, August 19, 2026",
   callout: {
-    text: "PJM is running its heaviest thermal dispatch of the summer as an intense heat wave settles over the eastern U.S. — gas and coal are covering roughly 85% of load while renewables contribute under 10%."
+    text: "ERCOT solar is holding near a seasonal high (~18% of the mix) as Texas-focused heat lingers into late August — solar output continues to cap afternoon hub prices even with load running in the mid-80 GW range."
   },
-  weekRecap: "Henry Hub held near $2.81 this week as heat-driven power burn met ample supply, with EIA forecasting a $2.87 Q3 average. An intense heat wave across the eastern U.S. lifted cooling demand and prompted PJM emergency procedures, while EIA reported 1H26 solar generation up 21% year-over-year.",
-  narrative: "<strong>ERCOT</strong>'s deep solar fleet is capping afternoon prices even with load running near record territory, while <strong>PJM</strong> leans hard on gas and coal through the eastern heat wave with renewables under a tenth of supply. <strong>MISO</strong>'s mix is little changed with wind and coal sharing the base, and <strong>NYISO</strong>'s gas share climbs seasonally as cooling load runs ahead of its nuclear-hydro baseload.",
+  weekRecap: "Henry Hub held below $3 all month, settling near $2.79 early this week as robust production (~122 Bcf/d) and ample storage offset heat-driven power burn. Lingering heat anomalies remain focused on Texas and the Southeast into late August. EIA's August STEO flagged solar as the leading source of generation growth in 2026, up 21% in the first half.",
+  narrative: "Gas leads in all four zones this week as late-summer heat keeps thermal dispatch heavy — <strong>ERCOT</strong> is leaning on near-record solar to blunt afternoon peaks, while <strong>PJM</strong> runs its gas-coal-nuclear stack through sustained cooling load. <strong>MISO</strong> coal remains a large slice of Midwest supply with wind moderating, and <strong>NYISO</strong>'s nuclear-hydro base again keeps its gas share the most contained of the four.",
   isos: [
     {
       name: "ERCOT",
       loadGW: 85,
-      loadNote: "late-summer peak demand",
-      mix:     { gas: 44, nuclear: 10, wind: 21, solar: 18, coal: 0,  hydro: 0,  other: 7 },
+      loadNote: "late-summer heat",
+      mix:     { gas: 45, nuclear: 10, wind: 20, solar: 18, coal: 0,  hydro: 0,  other: 7 },
       prevMix: { gas: 43, nuclear: 11, wind: 24, solar: 16, coal: 0,  hydro: 0,  other: 6 }
     },
     {
       name: "PJM",
-      loadGW: 150,
-      loadNote: "heat wave stress",
-      mix:     { gas: 36, nuclear: 21, wind: 4,  solar: 4,  coal: 28, hydro: 0,  other: 7 },
+      loadGW: 140,
+      loadNote: "sustained cooling load",
+      mix:     { gas: 36, nuclear: 21, wind: 6,  solar: 6,  coal: 22, hydro: 2,  other: 7 },
       prevMix: { gas: 32, nuclear: 22, wind: 8,  solar: 5,  coal: 26, hydro: 0,  other: 7 }
     },
     {
       name: "MISO",
-      loadGW: 112,
-      loadNote: "summer cooling load",
-      mix:     { gas: 28, nuclear: 18, wind: 22, solar: 4,  coal: 24, hydro: 0,  other: 4 },
+      loadGW: 105,
+      loadNote: "warm, wind moderating",
+      mix:     { gas: 34, nuclear: 15, wind: 16, solar: 6,  coal: 25, hydro: 0,  other: 4 },
       prevMix: { gas: 28, nuclear: 18, wind: 22, solar: 4,  coal: 24, hydro: 0,  other: 4 }
     },
     {
       name: "NYISO",
-      loadGW: 30,
-      loadNote: "heat-driven cooling load",
-      mix:     { gas: 42, nuclear: 24, wind: 5,  solar: 4,  coal: 0,  hydro: 18, other: 7 },
+      loadGW: 28,
+      loadNote: "warm downstate load",
+      mix:     { gas: 38, nuclear: 24, wind: 6,  solar: 7,  coal: 0,  hydro: 17, other: 8 },
       prevMix: { gas: 34, nuclear: 28, wind: 9,  solar: 4,  coal: 0,  hydro: 19, other: 6 }
     }
   ]
