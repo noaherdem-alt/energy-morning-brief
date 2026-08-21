@@ -337,13 +337,13 @@ body {
 </div>
 
 <script>
-// SEED verified August 20, 2026 (Thursday)
-// Sources: EOX Live Morning Report 7:19 AM CST Aug 20: Nat Gas $2.756 (-$0.058, -2.06% vs prev settle $2.814), WTI $88.67 (+$2.84, +3.31%), Brent $94.31 (+$2.69, +2.94%) |
-//          ERCOT CDR last updated Aug 20 09:02 -- HB_HUBAVG $14.85/MWh at 0900 interval, peak so far $25.87; possible record peak demand this afternoon as Houston heat nears 100F and wind fades |
-//          NYMEX front month ~$2.75/MMBtu -- slid ~2% on record Lower 48 production 111.6 Bcf/d in August (tops July record 110.7) |
+// SEED verified August 21, 2026 (Friday)
+// Sources: EOX Live Morning Report 7:16 AM CST Aug 21: Nat Gas $2.780 (+$0.047, +1.72% vs prev settle $2.733), WTI $86.83 (-$1.00, -1.14%), Brent $93.79 (+$0.01, +0.01%) |
+//          ERCOT CDR last updated Aug 21 09:17 -- HB_HUBAVG $22.12/MWh at 0915 interval, today's range $20.10-$35.43 |
+//          NYMEX front month ~$2.78/MMBtu, up ~1.7% after light storage build |
 //          PJM day-ahead: no current print found -- ~$45/MWh ESTIMATE carried from prior data |
-//          EIA storage wk/e Aug 7 (released Aug 13): 3,153 Bcf, +36 Bcf build, 198 Bcf above 5-yr avg, 25 Bcf below year-ago; next report (wk/e Aug 14) due Thu Aug 20 10:30 ET |
-//          Freeport LNG maintenance (2.0 Bcf/d, started Jul 10) expected complete late August; 3Q26 LNG exports forecast 16.5 Bcf/d |
+//          EIA storage wk/e Aug 14 (released Aug 20): 3,169 Bcf, +16 Bcf build (vs 29 Bcf 5-yr avg), 185 Bcf above 5-yr avg, 28 Bcf below year-ago |
+//          TTF above EUR 65/MWh, highest since Jan 2023, on Strait of Hormuz restrictions stranding Qatari LNG; EU storage 62%, record seasonal low |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement,
@@ -355,7 +355,8 @@ body {
 //   Renewal Window, AMI Meter, EDI 814, Reinstatement, Meter Data Management (MDM),
 //   Contract Start Date vs. Flow Date,
 //   Purchase of Receivables (POR),
-//   Renewable Energy Certificate (REC), Letter of Authorization (LOA)
+//   Renewable Energy Certificate (REC), Letter of Authorization (LOA),
+//   Utility Consolidated Billing (UCB)
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -371,56 +372,76 @@ body {
 //   How Mid-August System Peaks Set Next Year's Capacity Costs,
 //   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price,
 //   How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve,
-//   Why Record Production Can Push Gas Prices Down Even During a Heat Wave
+//   Why Record Production Can Push Gas Prices Down Even During a Heat Wave,
+//   How Load Profiling Estimates When Non-Interval Customers Use Power
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
-//   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill)
+//   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
+//   The Regulatory Pass-Through Provision (Aug 21 -- Anatomy of a Contract Clause)
+
 const SEED = {
-  date: "Thursday, August 20, 2026",
+  date: "Friday, August 21, 2026",
   meta: {
-    marketTakeaway: "Natural gas slipped about 2% to the mid-$2.70s as record Lower 48 production of 111.6 Bcf/d outweighed another round of Texas heat, while WTI crude jumped more than 3% to near $89. ERCOT morning prices are soft, but peak demand could test a record this afternoon as Houston heat builds toward 100F and wind output fades."
+    marketTakeaway: "Natural gas climbed about 1.7% to $2.78 after Thursday's storage report showed a light 16 Bcf build -- well under the 29 Bcf five-year average -- a sign strong power burn is finally chipping at the surplus. Overseas, European gas held above EUR 65/MWh, its highest since January 2023, as Strait of Hormuz restrictions keep Qatari LNG cargoes stranded. WTI eased about 1% to near $87, and ERCOT morning prices sit in the low $20s ahead of another hot Texas afternoon."
   },
   prices: [
-    { name: "HH Spot", price: "$2.75", change: "-2.1%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.76", change: "-2.1%", direction: "down" },
-    { name: "WTI Crude", price: "$88.67", change: "+3.3%", direction: "up" },
-    { name: "Brent Crude", price: "$94.31", change: "+2.9%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "~$15", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.77", change: "+1.6%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.78", change: "+1.7%", direction: "up" },
+    { name: "WTI Crude", price: "$86.83", change: "-1.1%", direction: "down" },
+    { name: "Brent Crude", price: "$93.79", change: "+0.0%", direction: "neutral" },
+    { name: "ERCOT RT Hub", price: "~$22", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Letter of Authorization",
-    abbr: "LOA",
-    category: "Data & Enrollment",
-    tldr: "A customer-signed form authorizing a broker to request usage data and account details from the utility or supplier.",
-    usedInSentence: "Utilities will not release interval data or account details to a broker without a signed LOA on file, so an expired or mismatched one stalls pricing before a quote can even be built."
+    term: "Utility Consolidated Billing",
+    abbr: "UCB",
+    category: "Billing & Payments",
+    tldr: "A billing setup where the utility puts the supplier's charges on its own bill and collects payment.",
+    usedInSentence: "Under UCB a customer keeps receiving a single utility bill after switching suppliers, which is why many never notice the supply line change -- and why payment and dispute questions route through the utility first."
   },
   headlines: [
     {
-      title: "ERCOT Braces for Possible Record Peak as Houston Heat Nears 100 Degrees",
-      tag: "Grid Operations",
-      summary: "Houston temperatures near 100F through Saturday are lifting air-conditioning load, and fading wind output could push Texas grid demand to a new record."
+      title: "European Gas Tops EUR 65 as Hormuz Standoff Strands Qatari LNG",
+      tag: "Global LNG",
+      summary: "TTF hit its highest since January 2023 as shipping restrictions leave Qatari cargoes stranded and Europe's storage sits at a record-low 62% for the season."
     },
     {
-      title: "Record 111.6 Bcf/d Production Caps Gas Prices Despite Southern Heat",
+      title: "Light 16 Bcf Storage Build Lifts Gas Futures Toward $2.80",
       tag: "Gas Markets",
-      summary: "Front-month futures slid about 2% as August output topped July's record, keeping storage injections strong and inventories nearly 7% above the five-year norm."
+      summary: "The injection came in well below the 29 Bcf five-year average as strong power burn offset record production, trimming the surplus to 185 Bcf."
     }
   ],
   knowledgeBuilder: {
-    topic: "Why Record Production Can Push Gas Prices Down Even During a Heat Wave",
-    tldr: "Heat lifts power burn, but when dry gas production runs at record levels the extra supply refills storage faster than demand can drain it, so prices fall anyway. Traders watch the supply-demand balance, not temperature alone -- a hot forecast only turns bullish when production or LNG exports tighten the other side of the ledger."
+    topic: "How Load Profiling Estimates When Non-Interval Customers Use Power",
+    tldr: "Meters without interval data get assigned a rate-class load profile that spreads each month's kWh across the hours of the day for market settlement. Suppliers price profiled accounts with an extra cushion because the profile, not actual behavior, determines the hourly costs they are billed for."
   },
-  procurementTip: "With prompt-month gas in the mid-$2.70s and storage roughly 200 Bcf above the five-year average, forward gas and power quotes are sitting near summer lows even as crude rallies 3% -- pricing tracks the gas balance, not the oil headlines.",
+  procurementTip: "Gas under $2.80 with a shrinking storage surplus keeps forward quotes near summer lows, but Europe's LNG squeeze is a live reminder of how quickly export-linked markets can reprice.",
   priceHistory: {
     labels: ["Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26"],
-    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.73],
-    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 84.50],
-    ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 35],
+    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.78],
+    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 86.83],
+    ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 30],
     pjm:    [70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45],
     miso:   [64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38],
     nyiso:  [78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55]
   },
-  deepDive: null,
+  deepDive: {
+    topic: "Anatomy of a Contract Clause: The Regulatory Pass-Through Provision",
+    sections: [
+      {
+        title: "What the Clause Says",
+        body: "Nearly every fixed-price supply agreement includes language letting the supplier pass through new or changed charges imposed by a regulator, ISO, or utility after signing. The fixed price is fixed only for cost components the supplier controls -- changes in law, tariffs, and market rules are carved out."
+      },
+      {
+        title: "Why Suppliers Include It",
+        body: "A supplier can hedge energy the day a deal signs, but it cannot hedge a future commission ruling or ISO rule change that adds a new charge mid-term. Without the carve-out, every quote would have to bake in years of open-ended regulatory risk, so the clause keeps prices lower by shifting rare but unbounded costs to the customer."
+      },
+      {
+        title: "How It Plays Out for the Customer",
+        body: "Most contracts run full term with no pass-through at all; when one lands, it appears as a new line item citing the triggering rule change. Capacity and transmission cost shifts are the most common real-world triggers, and the friction usually comes from budgets that assumed a truly all-in fixed rate."
+      }
+    ],
+    takeaway: "A fixed-price contract fixes the market components, not the rulebook -- the pass-through clause defines exactly which rulebook changes the customer absorbs."
+  },
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -467,7 +488,8 @@ const SEED = {
     { term: "Contract Start Date vs. Flow Date", category: "Contract Terms", definition: "Two distinct dates in a supply agreement: the date the contract is executed and binding, and the date the supplier actually begins serving the meter. The customer remains on their existing supply until the flow date, which usually lands on a meter read, so weeks or months can pass between signing and the new rate taking effect." },
     { term: "Purchase of Receivables (POR)", category: "Retail Markets", definition: "A utility program that purchases competitive suppliers' billed receivables at a small discount, assuming the customer credit risk. Common in Illinois, New York, and much of the Northeast; it lets suppliers serve customers they would otherwise decline on credit grounds." },
     { term: "Renewable Energy Certificate (REC)", category: "Renewables", definition: "A tradable certificate representing the environmental attributes of one megawatt-hour of renewable generation -- sold separately from the power itself, and the mechanism behind most green supply products." },
-    { term: "Letter of Authorization (LOA)", category: "Data & Enrollment", definition: "A customer-signed document authorizing a broker or third party to obtain account information, usage history, and interval data from a utility or supplier on the customer's behalf. Most utilities reject data requests without a current one on file." }
+    { term: "Letter of Authorization (LOA)", category: "Data & Enrollment", definition: "A customer-signed document authorizing a broker or third party to obtain account information, usage history, and interval data from a utility or supplier on the customer's behalf. Most utilities reject data requests without a current one on file." },
+    { term: "Utility Consolidated Billing (UCB)", category: "Billing & Payments", definition: "A billing arrangement in which the utility includes the competitive supplier's charges on its own bill, collects payment from the customer, and remits the supplier's share. The alternative is dual billing, where the supplier invoices its charges separately." }
   ]
 };
 
