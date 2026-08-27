@@ -337,91 +337,87 @@ body {
 </div>
 
 <script>
-// SEED verified August 24, 2026 (Monday)
-// Sources: EOX Live Morning Report 6:16 AM CST Aug 24: Nat Gas $2.774 (+$0.001, +0.04% vs prev settle $2.773), WTI $85.23 (-$1.83, -2.10%), Brent $92.95 (-$1.44, -1.53%) |
-//          ERCOT CDR last updated Aug 24 09:32 -- HB_HUBAVG $16.64/MWh at 0930 interval, today's range $16.40-$27.55 (strong midday solar ramp) |
-//          NYMEX front month ~$2.73/MMBtu, down ~1.5% on the day |
+// SEED verified August 27, 2026 (Thursday)
+// Sources: EOX Live Morning Report 6:19 AM CST Aug 27: Nat Gas $2.872 (+$0.030, +1.06% vs prev settle $2.842), WTI $82.35 (+$0.12, +0.15%), Brent $88.46 (+$0.62, +0.71%) |
+//          ERCOT CDR last updated Aug 27 09:02 -- HB_HUBAVG $27.96/MWh at the 0900 interval; overnight peak $81.18 at 0030, falling through the morning as solar ramped |
+//          NYMEX front month ~$2.90/MMBtu, +0.99% -- highest in a month on an extended hot forecast |
 //          PJM day-ahead: no current print found -- ~$45/MWh ESTIMATE carried from prior data |
-//          EIA storage wk/e Aug 14 (released Aug 20): 3,169 Bcf, +16 Bcf build (vs 29 Bcf 5-yr avg), 185 Bcf above 5-yr avg, 28 Bcf below year-ago |
-//          ERCOT expects daily peaks Fri-Tue to exceed the July record; warmer-than-normal forecast through Sep 3 |
-//          Freeport LNG maintenance (since Jul 10, ~2.0 Bcf/d) wrapping up late August; LNG feed gas ~17.2 Bcf/d in August |
+//          EIA storage wk/e Aug 14 (released Aug 20): 3,169 Bcf, +16 Bcf build, 185 Bcf above 5-yr avg, 28 Bcf below year-ago; next report (wk/e Aug 21) due Thu Aug 27 10:30 ET, after this run |
+//          Well-above-normal temperatures forecast across the eastern two-thirds of the U.S. Aug 31 - Sep 4, sustaining power-burn demand |
+//          2026 marketed gas production on track for a record annual average near 123 Bcf/d |
+//          Battery storage: 8.3 GW added in H1 2026, ~52 GW nameplate installed nationally |
+//          NOTE: raw.githubusercontent.com again served a stale Jun 24 copy this run; current file read via the GitHub Contents API
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
-//   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub, NYMEX Settlement,
-//   Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index, Non-Bypassable Charge (NBC),
-//   ESI ID, Reconciliation Charge, Peak Load Contribution (PLC), Generation Charge, Swing Supply,
-//   Supply Adder, Curtailment, Interruptible Service, Franchise Fee, WTI (West Texas Intermediate),
-//   Load Factor, Rate Class, ICAP / Capacity Tag (ICAP), POD ID, True-Up, Early Termination Fee,
-//   Ratchet Clause, Swing Tolerance, Power Factor, Volumetric Risk, Notice Period, Interval Data,
-//   Renewal Window, AMI Meter, EDI 814, Reinstatement, Meter Data Management (MDM),
-//   Contract Start Date vs. Flow Date,
-//   Purchase of Receivables (POR),
-//   Renewable Energy Certificate (REC), Letter of Authorization (LOA),
-//   Utility Consolidated Billing (UCB), Heat Rate
+//   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
+//   NYMEX Settlement, Distribution Charge, Evergreen Clause, Transmission Charge, Block-and-Index,
+//   Non-Bypassable Charge (NBC), ESI ID, Reconciliation Charge, Peak Load Contribution (PLC),
+//   Generation Charge, Swing Supply, Supply Adder, Curtailment, Interruptible Service,
+//   Franchise Fee, WTI (West Texas Intermediate), Load Factor, Rate Class, ICAP / Capacity Tag (ICAP),
+//   POD ID, True-Up, Early Termination Fee, Ratchet Clause, Swing Tolerance, Power Factor,
+//   Volumetric Risk, Notice Period, Interval Data, Renewal Window, AMI Meter, EDI 814,
+//   Reinstatement, Meter Data Management (MDM), Contract Start Date vs. Flow Date,
+//   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
+//   Utility Consolidated Billing (UCB), Heat Rate, Nomination
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
 //   How Demand Response Programs Let Commercial and Industrial Customers Get Paid to Reduce Load During Grid Stress Events,
 //   How Basis Risk Creates Price Uncertainty Between Henry Hub and a Customer's Local Delivery Point,
-//   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customers,
-//   How the Weekly EIA Storage Report Moves Natural Gas Prices,
-//   How Day-Ahead and Real-Time Power Markets Settle Separately and Why Most Volume Trades a Day Early,
-//   How LNG Export Terminals Link U.S. Natural Gas Prices to Global Markets,
-//   How Suppliers Hedge a Fixed-Price Contract the Moment It Is Signed,
-//   How Utility Rate Cases Turn Into the Delivery Charges on a Customer's Bill,
-//   How Material Change Clauses Let Suppliers Reprice a Fixed Contract When a Customer's Load Changes,
+//   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customer Changes,
 //   How Mid-August System Peaks Set Next Year's Capacity Costs,
 //   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price,
 //   How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve,
 //   Why Record Production Can Push Gas Prices Down Even During a Heat Wave,
 //   How Load Profiling Estimates When Non-Interval Customers Use Power,
-//   Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves
+//   Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves,
+//   How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
 //   The Regulatory Pass-Through Provision (Aug 21 -- Anatomy of a Contract Clause)
 
 const SEED = {
-  date: "Monday, August 24, 2026",
+  date: "Thursday, August 27, 2026",
   meta: {
-    marketTakeaway: "Natural gas eased to the low $2.70s on the front month as record production and a 185 Bcf storage surplus to the five-year average outweighed lingering heat. Crude sold off harder, with WTI down about 2% to $85. ERCOT enters the week expecting record late-August peaks, though a strong morning solar ramp held Monday real-time prices in the teens."
+    marketTakeaway: "Natural gas pushed to a one-month high near $2.90 on the front month as forecasters extended well-above-normal heat across the eastern two-thirds of the country through September 4, keeping power burn elevated in what is normally the start of shoulder season. Crude eased over the week, with WTI at $82.35 after trading above $85 on Monday. ERCOT told the solar-grid story in miniature overnight: real-time hub prices held above $80/MWh in the small hours, then fell to the high $20s by 9 a.m. as panels came online."
   },
   prices: [
-    { name: "HH Spot", price: "$2.77", change: "+0.04%", direction: "neutral" },
-    { name: "NYMEX NG", price: "$2.73", change: "-1.5%", direction: "down" },
-    { name: "WTI Crude", price: "$85.23", change: "-2.1%", direction: "down" },
-    { name: "Brent Crude", price: "$92.95", change: "-1.5%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "$16.64", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.87", change: "+1.1%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.90", change: "+1.0%", direction: "up" },
+    { name: "WTI Crude", price: "$82.35", change: "+0.2%", direction: "up" },
+    { name: "Brent Crude", price: "$88.46", change: "+0.7%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$27.96", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Heat Rate",
-    abbr: "",
-    category: "Power Markets",
-    tldr: "The fuel a power plant burns per unit of electricity generated -- the conversion rate between gas prices and power prices.",
-    usedInSentence: "With gas near $2.77, a typical 7,000 Btu/kWh combined-cycle plant runs at roughly $19/MWh in fuel cost, which is why cheap gas keeps wholesale power offers soft across ERCOT and PJM."
+    term: "Nomination",
+    abbr: "Nom",
+    category: "Gas Markets",
+    tldr: "The daily volume a shipper tells a pipeline it will deliver and take at each point.",
+    usedInSentence: "Nominations are submitted a day ahead against a forecast, so when a customer's actual burn runs hotter than what was nominated, the difference surfaces later as an imbalance or reconciliation charge rather than in the commodity rate itself."
   },
   headlines: [
     {
-      title: "ERCOT Braces for Record Late-August Peaks as Heat Extends Into September",
-      tag: "Grid Operations",
-      summary: "ERCOT expects daily peak demand through Tuesday to top the July record, with warmer-than-normal forecasts supporting cooling load through September 3."
+      title: "Natural Gas Hits One-Month High as Heat Forecast Stretches Into September",
+      tag: "Gas Markets",
+      summary: "Front-month gas rose about 1% to near $2.90/MMBtu on forecasts of well-above-normal temperatures across the eastern two-thirds of the U.S. through September 4."
     },
     {
-      title: "Freeport LNG Maintenance Winds Down, Set to Restore 2 Bcf/d of Export Demand",
-      tag: "Gas Supply",
-      summary: "Feed gas flows averaged 17.2 Bcf/d in August as Freeport's maintenance, underway since July 10, wraps up in late August."
+      title: "U.S. Battery Storage Fleet Nears 52 GW After Record First-Half Additions",
+      tag: "Grid Operations",
+      summary: "Operators added 8.3 GW of battery storage in the first half of 2026, extending a buildout that is reshaping evening price formation in solar-heavy markets."
     }
   ],
   knowledgeBuilder: {
-    topic: "Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves",
-    tldr: "A supplier prices a fixed-rate quote off the forward curve at the moment it is generated, so most quotes are valid for only 1-5 business days -- sometimes just until market close. Sign after the window lapses and the supplier reprices, because it hedges the contract the moment it is executed and cannot absorb whatever the market did in between."
+    topic: "How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them",
+    tldr: "Delivery rates are set by a state regulator in a rate case, a months-long proceeding in which the utility documents its costs and the commission approves a new tariff that applies to every customer on the system. A competitive supplier only replaces the generation or commodity portion of the bill, so when delivery rates step up after a rate case, a customer holding a locked supply rate still sees the total bill rise, and the supply contract had nothing to do with it."
   },
-  procurementTip: "With front-month gas in the low $2.70s and ERCOT's solar ramp printing morning real-time prices in the teens even during a record-peak week, soft wholesale costs are keeping fixed-rate offers attractive heading into September.",
+  procurementTip: "Front-month gas at a one-month high alongside a lengthening heat forecast has nudged fall and calendar-2027 offers up from the lows suppliers were quoting a week ago.",
   priceHistory: {
     labels: ["Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26"],
-    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.77],
-    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 85.23],
-    ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 30],
+    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87],
+    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 82.35],
+    ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32],
     pjm:    [70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45],
     miso:   [64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38],
     nyiso:  [78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55]
@@ -475,7 +471,8 @@ const SEED = {
     { term: "Renewable Energy Certificate (REC)", category: "Renewables", definition: "A tradable certificate representing the environmental attributes of one megawatt-hour of renewable generation -- sold separately from the power itself, and the mechanism behind most green supply products." },
     { term: "Letter of Authorization (LOA)", category: "Data & Enrollment", definition: "A customer-signed document authorizing a broker or third party to obtain account information, usage history, and interval data from a utility or supplier on the customer's behalf. Most utilities reject data requests without a current one on file." },
     { term: "Utility Consolidated Billing (UCB)", category: "Billing & Payments", definition: "A billing arrangement in which the utility includes the competitive supplier's charges on its own bill, collects payment from the customer, and remits the supplier's share. The alternative is dual billing, where the supplier invoices its charges separately." },
-    { term: "Heat Rate", category: "Power Markets", definition: "How much fuel (in Btu) a power plant burns to generate one kWh of electricity. Multiplied by the gas price, it converts fuel cost into a wholesale power price -- the main reason gas and power prices move together." }
+    { term: "Heat Rate", category: "Power Markets", definition: "How much fuel (in Btu) a power plant burns to generate one kWh of electricity. Multiplied by the gas price, it converts fuel cost into a wholesale power price -- the main reason gas and power prices move together." },
+    { term: "Nomination", category: "Gas Markets", definition: "The daily volume a shipper tells a pipeline it will deliver into the system and take out at each delivery point, submitted a day ahead against forecast usage. Differences between nominated and actual volumes settle later as imbalance or reconciliation charges." }
   ]
 };
 
