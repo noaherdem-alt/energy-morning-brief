@@ -337,16 +337,18 @@ body {
 </div>
 
 <script>
-// SEED verified August 28, 2026 (Friday)
-// Sources: EOX Live Morning Report 7:20 AM CST Aug 28: Nat Gas $2.864 (-$0.043, -1.48% vs prev settle $2.907), WTI $82.91 (-$0.62, -0.74%), Brent $89.56 (-$0.14, -0.16%) |
-//          ERCOT CDR last updated Aug 28 09:17 -- HB_HUBAVG $24.71/MWh at the 0915 interval; morning peak $75.72 at 0715, falling through the morning as solar ramped |
-//          NYMEX front month settled near $2.90/MMBtu Thu Aug 27, a five-week high, before easing Friday morning; HH Spot shown equals the EOX front-month print (no separate cash spot quote located) |
-//          PJM day-ahead: no current print found -- ~$45/MWh ESTIMATE carried from prior data |
-//          EIA storage wk/e Aug 21 (released Thu Aug 27): 3,184 Bcf, +15 Bcf build -- below the ~20 Bcf consensus and well under the 33 Bcf five-year average build for the week |
-//          Lower 48 dry gas output averaging a record 111.4 Bcf/d in August, up from 110.7 Bcf/d in July, capping upside |
-//          Commodity Weather Group: above-average temperatures across nearly the entire U.S. Sept 1-10 |
-//          Freeport LNG feedgas nominations neared 2 Bcf/d Thursday, returning roughly 0.8 Bcf/d of Gulf Coast demand as maintenance wraps up |
-//          September Southeast basis strengthening versus October as lingering cooling demand presses pipelines already near capacity |
+// SEED verified August 31, 2026 (Monday)
+// Sources: EOX Live Morning Report 6:58 AM CST Aug 31: Nat Gas $2.927 (+$0.039, +1.35%), WTI $86.62 (+$3.22, +3.86%), Brent $91.19 (+$1.88, +2.11%) |
+//          ERCOT CDR last updated Aug 31 09:17 -- HB_HUBAVG $20.01 at the 0915 interval; overnight peak $43.36; day average so far $25.61 |
+//          Henry Hub spot ~$2.91/MMBtu; front-month gas at a five-week high, capped by record Lower 48 output of 111.4 Bcf/d in August vs 110.7 Bcf/d in July |
+//          EIA storage wk/e Aug 21 (released Aug 27): 3,184 Bcf, +15 Bcf build, 167 Bcf above 5-yr avg of 3,017 Bcf; 30 Bcf below year-ago |
+//          Next EIA storage report: wk/e Aug 28, due Thu Sep 3 |
+//          Crude: renewed fighting in the Strait of Hormuz Aug 30-31, U.S. strikes on Iranian rocket launchers; Brent Nov above $90, WTI near $86 |
+//          Global LNG: ~20% of world LNG transited Hormuz in 2025; damage to Qatari liquefaction trims projected 2026-2030 supply growth by ~140 bcm cumulative |
+//          Europe: EU gas 69.91 EUR/MWh (+4.38% d/d); EU storage 63% full in the final week of August, among the lowest on record for the date |
+//          Weather: well-above-normal temperatures across the eastern two-thirds of the U.S. Aug 31 - Sep 4, sustaining power burn |
+//          PJM ComEd zone DA not published at run time -- ~$45/MWh ESTIMATE carried from the August average |
+//          NOTE: raw.githubusercontent.com served a stale June copy of index.html; current file read via GitHub Contents API instead |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -358,7 +360,7 @@ body {
 //   Volumetric Risk, Notice Period, Interval Data, Renewal Window, AMI Meter, EDI 814,
 //   Reinstatement, Meter Data Management (MDM), Contract Start Date vs. Flow Date,
 //   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
-//   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay
+//   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -372,67 +374,60 @@ body {
 //   How Load Profiling Estimates When Non-Interval Customers Use Power,
 //   Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves,
 //   How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them,
-//   Why the Final Weeks of Injection Season Set the Tone for Winter Gas Prices
+//   Why the Final Weeks of Injection Season Set the Tone for Winter Gas Prices,
+//   How Sales Tax Exemptions Work on Commercial Energy Bills and Why Manufacturers Often Overpay
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
 //   The Regulatory Pass-Through Provision (Aug 21 -- Anatomy of a Contract Clause),
 //   What Happens When an Enrollment Gets Rejected (Aug 28 -- What Happens When)
-
+//   NEXT FRIDAY (Sep 4): category 4 -- How the Money Flows
 const SEED = {
-  date: "Friday, August 28, 2026",
+  date: "Monday, August 31, 2026",
   meta: {
-    marketTakeaway: "Natural gas gave back part of Thursday's rally, easing to $2.86 after settling near $2.90 -- a five-week high driven by a lean 15 Bcf storage build that came in well under the 33 Bcf normal for the week. Record Lower 48 production averaging 111.4 Bcf/d in August is capping the upside even with above-average temperatures forecast across nearly the entire country through the first third of September. ERCOT ran quiet by mid-morning at $24.71/MWh after an early peak of $75.72 as solar output climbed."
+    marketTakeaway: "Crude did the heavy lifting overnight: renewed fighting in the Strait of Hormuz pushed WTI up 3.9% to $86.62 and Brent above $91, and roughly a fifth of the world's LNG normally moves through that same waterway. Domestic gas is firmer but contained at $2.93 on the front month, held down by record Lower 48 production near 111.4 Bcf/d even as well-above-normal heat lingers across the eastern two-thirds of the country. ERCOT is quiet this morning around $20/MWh after an overnight peak near $43."
   },
   prices: [
-    { name: "HH Spot", price: "$2.86", change: "-1.5%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.86", change: "-1.5%", direction: "down" },
-    { name: "WTI Crude", price: "$82.91", change: "-0.7%", direction: "down" },
-    { name: "Brent Crude", price: "$89.56", change: "-0.2%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "$24.71", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.91", change: "+0.7%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.93", change: "+1.4%", direction: "up" },
+    { name: "WTI Crude", price: "$86.62", change: "+3.9%", direction: "up" },
+    { name: "Brent Crude", price: "$91.19", change: "+2.1%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$20.01", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Take-or-Pay",
-    abbr: "TOP",
-    category: "Contract Terms",
-    tldr: "A clause requiring the buyer to pay for a minimum contracted volume whether or not they take it.",
-    usedInSentence: "Take-or-pay minimums are how a supplier recovers gas it has already committed to upstream, which is why a customer that idles a plant for two months can still be billed for volume that never moved through the meter."
+    term: "Backwardation",
+    abbr: "",
+    category: "Market Structure",
+    tldr: "A forward curve where near-term prices sit above later ones, signaling supply is tight right now.",
+    usedInSentence: "When a supply shock throws the front of the curve into backwardation, a 12-month fixed price can screen cheaper than a 3-month deal, because the later months blended into the average are still trading well below the panic in the prompt month."
   },
   headlines: [
     {
-      title: "Lean 15 Bcf Storage Build Sends Gas to a Five-Week High",
-      tag: "Gas Markets",
-      summary: "EIA reported a 15 Bcf injection for the week ending August 21, well under the 33 Bcf five-year average, lifting front-month gas near $2.90."
+      title: "Renewed Strait of Hormuz Fighting Sends WTI Up Nearly 4%",
+      tag: "Crude Oil",
+      summary: "U.S. strikes on Iranian rocket launchers over the weekend lifted WTI to $86.62 and Brent above $91 on supply-disruption fears."
     },
     {
-      title: "Freeport LNG Feedgas Climbs Back Toward 2 Bcf/d as Maintenance Wraps",
-      tag: "LNG",
-      summary: "Feedgas nominations to the Texas terminal neared 2 Bcf/d Thursday, returning about 0.8 Bcf/d of Gulf Coast demand as heat lingers into September."
+      title: "European Storage Ends August 63% Full as Qatari LNG Growth Slips",
+      tag: "Global LNG",
+      summary: "Damage to Qatari liquefaction trims projected LNG supply growth through 2030, leaving Europe entering winter with unusually thin inventory cover."
     }
   ],
   knowledgeBuilder: {
-    topic: "Why the Final Weeks of Injection Season Set the Tone for Winter Gas Prices",
-    tldr: "Injection season runs roughly April through October, and the storage level reached at the end of it is the cushion the market carries into winter. When late-summer builds come in lean, as this week's did, traders mark up the winter strip because there is less gas banked to absorb a cold snap -- which is why a single weekly storage number can move a January contract far more than it moves next-day cash."
+    topic: "How Sales Tax Exemptions Work on Commercial Energy Bills and Why Manufacturers Often Overpay",
+    tldr: "Most states exempt energy consumed directly in manufacturing or processing from sales tax, and many apply the exemption only to the share of a meter's usage that qualifies -- so a plant can be exempt on 80% of its consumption and taxed on the rest. The exemption is not automatic: it takes effect from the date a certificate is on file with the utility or supplier, which is why facilities that have qualified for years are often still paying tax on every bill."
   },
-  procurementTip: "Lean end-of-season storage builds tend to show up in winter-strip pricing before they show up in prompt-month gas, which is why a fixed offer for a term starting in January can drift higher on a day when spot prices are falling.",
+  procurementTip: "With the front of the crude curve backwardated on Hormuz risk while gas sits near $2.90 under record production, the two fuels are telling different stories this morning -- and U.S. power prices are following gas, not oil.",
   priceHistory: {
     labels: ["Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26"],
-    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.86],
-    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 82.91],
+    natGas: [2.55, 2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87],
+    wti:    [73.40, 71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15],
     ercot:  [62, 40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32],
     pjm:    [70, 45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45],
     miso:   [64, 41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38],
     nyiso:  [78, 58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55]
   },
-  deepDive: {
-    topic: "What Happens When an Enrollment Gets Rejected",
-    sections: [
-      { title: "The Submission", body: "Once a contract is signed, the supplier sends an enrollment request to the utility identifying the account by its service point number -- an <strong>ESI ID</strong> in Texas, a POD ID or utility account number elsewhere. The utility validates that identifier against its own records and either accepts the account onto the supplier's roll or returns it with a rejection code." },
-      { title: "Why It Comes Back", body: "The reasons are usually mundane: a digit dropped or a leading zero stripped from the account number, a customer name that does not match the name of record, an unpaid balance that triggers a hold, or a prior supplier contract that has not yet been dropped. None of these are visible at signature, so the rejection is often the first moment anyone learns the identifier or the customer of record was wrong." },
-      { title: "The Cost of the Delay", body: "Enrollments are processed against the utility's meter-read cycle, so a rejection rarely costs a day -- it costs a cycle. A contract meant to begin with the September read slides to October, the customer stays on utility default supply at whatever that rate happens to be, and the supplier's <strong>hedge</strong> sits against a start date that has moved." }
-    ],
-    takeaway: "A rejected enrollment is rarely a pricing or credit problem -- it is a data problem. Because the utility only validates on submission, the cost of a wrong identifier is paid in weeks of default-rate supply rather than in a same-day correction."
-  },
+  deepDive: null,
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -483,7 +478,8 @@ const SEED = {
     { term: "Utility Consolidated Billing (UCB)", category: "Billing & Payments", definition: "A billing arrangement in which the utility includes the competitive supplier's charges on its own bill, collects payment from the customer, and remits the supplier's share. The alternative is dual billing, where the supplier invoices its charges separately." },
     { term: "Heat Rate", category: "Power Markets", definition: "How much fuel (in Btu) a power plant burns to generate one kWh of electricity. Multiplied by the gas price, it converts fuel cost into a wholesale power price -- the main reason gas and power prices move together." },
     { term: "Nomination", category: "Gas Markets", definition: "The daily volume a shipper tells a pipeline it will deliver into the system and take out at each delivery point, submitted a day ahead against forecast usage. Differences between nominated and actual volumes settle later as imbalance or reconciliation charges." },
-    { term: "Take-or-Pay", category: "Contract Terms", definition: "A supply contract provision obligating the buyer to pay for a minimum contracted volume regardless of how much is actually consumed, covering the seller's upstream commitments." }
+    { term: "Take-or-Pay", category: "Contract Terms", definition: "A supply contract provision obligating the buyer to pay for a minimum contracted volume regardless of how much is actually consumed, covering the seller's upstream commitments." },
+    { term: "Backwardation", category: "Market Structure", definition: "A forward curve shape where near-term contract prices sit above later-dated ones, usually signaling immediate supply tightness; the opposite of contango, and a reason a longer fixed term can price below a short one." }
   ]
 };
 
