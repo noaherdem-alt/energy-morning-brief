@@ -146,37 +146,37 @@ body {
 const SEED = {
   date: "Wednesday, September 2, 2026",
   callout: {
-    text: "ERCOT solar is now carrying a larger share of the fuel mix than coal, with early-September output holding near seasonal highs — 2026 is on track to be the first year utility-scale solar out-generates coal in Texas on an annual basis."
+    text: "Tropical Storm Edouard is reshuffling the ERCOT stack this week — outer-band winds are lifting wind output while cloud cover trims solar, the first meaningful wind-over-solar swing in Texas since early summer."
   },
-  weekRecap: "Henry Hub slipped to roughly $2.85/MMBtu early in the week, retreating from a five-week high as Lower 48 production held near a record 111.5 Bcf/d in August. Storage sits about 6.7% above the five-year average, with EIA projecting a record ~3,985 Bcf end-of-October carryout. Energy Transfer's Hugh Brinson Pipeline entered service September 1, adding roughly 2.2 Bcf/d of Permian takeaway, while forecasts point to above-normal temperatures across the eastern two-thirds of the country through September 11.",
-  narrative: "Cheap gas near $2.85 and above-normal early-September temperatures are keeping <strong>ERCOT</strong> and <strong>PJM</strong> gas-heavy, with ERCOT solar near seasonal highs capping afternoon hub prices and PJM dispatching gas ahead of coal as fuel-cost economics favor combined cycle. <strong>MISO</strong> is running a balanced coal-gas-wind stack as shoulder-season wind picks up, while <strong>NYISO</strong> remains the least gas-flexible of the four — nuclear and hydro together still cover roughly 40% of its mix.",
+  weekRecap: "Henry Hub front-month settled near $2.67 with the 2026 forward curve holding under $3.00, as working gas storage sits about 6.7% above the five-year average and Lower-48 production runs near record levels. Hugh Brinson reached full capacity September 1, adding 1.5 Bcf/d of Permian supply to the Gulf Coast, and Cheniere brought the final train of Corpus Christi Stage 3 online. ERCOT weekly average load eased to an estimated 71.6 GW from the prior week's 74.5 GW record as Edouard delivered rain and cloud cover across Texas.",
+  narrative: "Gas still sets the margin in all four zones, but the shoulder season is starting to show — <strong>ERCOT</strong> is rolling off its late-August load record as Edouard adds wind and subtracts solar, while <strong>PJM</strong>'s nuclear share rises largely because gas and coal back down as cooling demand fades. <strong>MISO</strong> wind is climbing into its autumn ramp, and <strong>NYISO</strong> remains the least gas-dependent of the four on the strength of its nuclear-plus-hydro base.",
   isos: [
     {
       name: "ERCOT",
-      loadGW: 82,
-      loadNote: "late summer cooling",
-      mix:     { gas: 42, nuclear: 8,  wind: 19, solar: 17, coal: 11, hydro: 0,  other: 3 },
+      loadGW: 86,
+      loadNote: "post-peak, storm cooling",
+      mix:     { gas: 38, nuclear: 9,  wind: 27, solar: 13, coal: 9,  hydro: 0,  other: 4 },
       prevMix: { gas: 43, nuclear: 11, wind: 24, solar: 16, coal: 0,  hydro: 0,  other: 6 }
     },
     {
       name: "PJM",
-      loadGW: 122,
-      loadNote: "warm, above-normal temps",
-      mix:     { gas: 40, nuclear: 24, wind: 7,  solar: 5,  coal: 18, hydro: 2,  other: 4 },
+      loadGW: 112,
+      loadNote: "cooling demand fading",
+      mix:     { gas: 40, nuclear: 30, wind: 4,  solar: 3,  coal: 17, hydro: 2,  other: 4 },
       prevMix: { gas: 32, nuclear: 22, wind: 8,  solar: 5,  coal: 26, hydro: 0,  other: 7 }
     },
     {
       name: "MISO",
-      loadGW: 98,
-      loadNote: "shoulder-season wind rising",
-      mix:     { gas: 32, nuclear: 16, wind: 16, solar: 5,  coal: 26, hydro: 1,  other: 4 },
+      loadGW: 88,
+      loadNote: "mild load, wind ramping",
+      mix:     { gas: 30, nuclear: 14, wind: 20, solar: 4,  coal: 27, hydro: 2,  other: 3 },
       prevMix: { gas: 28, nuclear: 18, wind: 22, solar: 4,  coal: 24, hydro: 0,  other: 4 }
     },
     {
       name: "NYISO",
-      loadGW: 25,
-      loadNote: "moderate cooling load",
-      mix:     { gas: 45, nuclear: 22, wind: 5,  solar: 5,  coal: 0,  hydro: 20, other: 3 },
+      loadGW: 19,
+      loadNote: "mild late-summer load",
+      mix:     { gas: 42, nuclear: 23, wind: 5,  solar: 4,  coal: 0,  hydro: 21, other: 5 },
       prevMix: { gas: 34, nuclear: 28, wind: 9,  solar: 4,  coal: 0,  hydro: 19, other: 6 }
     }
   ]
