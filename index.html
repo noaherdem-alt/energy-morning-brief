@@ -337,17 +337,16 @@ body {
 </div>
 
 <script>
-// SEED verified September 1, 2026 (Tuesday)
-// Sources: EOX Live Morning Report 7:09 AM CST Sep 1: Nat Gas $2.881 (-$0.054, -1.84%, prev settle $2.935), WTI $87.55 (+$1.79, +2.09%), Brent $91.85 (+$2.53, +2.83%) |
-//          ERCOT CDR last updated Sep 1 09:02 -- HB_HUBAVG $24.51 at the 0900 interval; overnight peak $42.23; day average so far $30.94 |
-//          Henry Hub spot ~$2.86/MMBtu ESTIMATED (no confirmed spot print; derived from EOX front-month move off yesterday's ~$2.91) |
-//          Energy Transfer Hugh Brinson Pipeline entered commercial service, adding ~2.2 Bcf/d of Permian takeaway toward Henry Hub; front-month gas off ~2.5% |
-//          EIA storage wk/e Aug 21 (released Aug 27): 3,184 Bcf, +15 Bcf build, 167 Bcf above 5-yr avg of 3,017 Bcf; 30 Bcf below year-ago |
-//          Next EIA storage report: wk/e Aug 28, due Thu Sep 3 |
-//          Crude: renewed U.S.-Iran strikes around Larak Island and the Strait of Hormuz; Brent above $91, WTI near $87.55 |
-//          Asian spot LNG at a five-month high near $24.61/MMBtu on Hormuz disruption concerns |
-//          PJM ComEd zone DA ~$46/MWh ESTIMATED (no confirmed print available this morning) |
-//          EIA STEO: Henry Hub expected to average ~$2.87/MMBtu in Q3 2026; storage projected to reach a record 3,985 Bcf by end-October
+// SEED verified September 10, 2026 (Thursday)
+// Sources: EOX Live Morning Report 6:47 AM CST Sep 10: Nat Gas $2.795 (-$0.027, -0.96%, prev settle $2.822), WTI $97.47 (+$1.42, +1.48%), Brent $102.20 (+$0.99, +0.98%) |
+//          ERCOT CDR last updated Sep 10 09:17 -- HB_HUBAVG $26.06 at the 0915 interval; overnight peak $41.40 at 0730; day average so far $33.00 across 37 intervals |
+//          Henry Hub spot ~$2.79/MMBtu ESTIMATED (no confirmed cash spot print; derived from EOX front-month) |
+//          PJM ComEd zone DA ~$46/MWh ESTIMATED (no confirmed print found); MISO IL Hub and NYISO Zone A monthly points carried forward as estimates |
+//          EIA storage wk/e Aug 28 (released Sep 3): 3,214 Bcf, +30 Bcf build, 160 Bcf above 5-yr avg of 3,054 Bcf; 50 Bcf below year-ago |
+//          Next EIA storage report: wk/e Sep 4, due Thu Sep 10 |
+//          U.S. LNG feedgas 18.1 Bcf/d in September vs. 17.2 Bcf/d in August; European TTF near EUR 80/MWh, highest since December 2022, on Middle East strike escalation |
+//          EIA press release Sep 9: record U.S. electricity generation expected 2026 and 2027; 2026 electricity sales forecast 4,135 BkWh, up almost 2% vs. 2025 |
+//          GAP NOTE: no brief published Sep 2 - Sep 9, 2026; prior live index.html and latest archive were both dated Sep 1, 2026 |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -359,7 +358,8 @@ body {
 //   Volumetric Risk, Notice Period, Interval Data, Renewal Window, AMI Meter, EDI 814,
 //   Reinstatement, Meter Data Management (MDM), Contract Start Date vs. Flow Date,
 //   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
-//   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming
+//   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming,
+//   Citygate
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -375,54 +375,55 @@ body {
 //   How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them,
 //   Why the Final Weeks of Injection Season Set the Tone for Winter Gas Prices,
 //   How Sales Tax Exemptions Work on Commercial Energy Bills and Why Manufacturers Often Overpay,
-//   How New Pipeline Capacity Reshapes Regional Gas Prices and Why One Project Can Move a Whole Basin's Quotes
+//   How New Pipeline Capacity Reshapes Regional Gas Prices and Why One Project Can Move a Whole Basin's Quotes,
+//   Why Data Center Growth Shows Up in Commercial Power Quotes Years Before the Load Arrives
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
 //   The Regulatory Pass-Through Provision (Aug 21 -- Anatomy of a Contract Clause),
 //   What Happens When an Enrollment Gets Rejected (Aug 28 -- What Happens When)
-//   NEXT FRIDAY (Sep 4): category 4 -- How the Money Flows
+//   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Sep 11): category 4 -- How the Money Flows
 const SEED = {
-  date: "Tuesday, September 1, 2026",
+  date: "Thursday, September 10, 2026",
   meta: {
-    marketTakeaway: "Gas and crude are pulling in opposite directions this morning. The front-month gas contract is off 1.8% to $2.88 after Energy Transfer's Hugh Brinson pipeline entered service, opening roughly 2.2 Bcf/d of additional Permian takeaway toward Henry Hub on top of already record Lower 48 output. Crude went the other way -- WTI up 2.1% to $87.55 and Brent above $91 on renewed U.S.-Iran strikes near the Strait of Hormuz, which also lifted Asian spot LNG to a five-month high around $24.61/MMBtu. ERCOT is soft at $24.51/MWh after an overnight peak of $42.23."
+    marketTakeaway: "Natural gas eased to $2.795/MMBtu this morning, down a penny from yesterday's settle and off its eight-week high, as record domestic production and storage 160 Bcf above the five-year average outweigh a strong export pull. Crude is running the other way: WTI jumped to $97.47 and Brent cleared $102 on renewed Middle East supply disruption, with European gas at its highest since December 2022. ERCOT stayed calm overnight, with the hub average at $26.06/MWh after a $41.40 pre-dawn peak."
   },
   prices: [
-    { name: "HH Spot", price: "$2.86", change: "-1.7%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.88", change: "-1.8%", direction: "down" },
-    { name: "WTI Crude", price: "$87.55", change: "+2.1%", direction: "up" },
-    { name: "Brent Crude", price: "$91.85", change: "+2.8%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$24.51", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.79", change: "-1.0%", direction: "down" },
+    { name: "NYMEX NG", price: "$2.795", change: "-1.0%", direction: "down" },
+    { name: "WTI Crude", price: "$97.47", change: "+1.5%", direction: "up" },
+    { name: "Brent Crude", price: "$102.20", change: "+1.0%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$26.06", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Slamming",
+    term: "Citygate",
     abbr: "",
-    category: "Retail Markets",
-    tldr: "Switching a customer to a new energy supplier without their clear authorization -- an enrollment they never agreed to.",
-    usedInSentence: "State regulators treat slamming as a serious violation, which is why suppliers keep a signed letter of authorization or a recorded third-party verification on file for every enrollment they submit to the utility."
+    category: "Gas Markets",
+    tldr: "The point where an interstate pipeline hands natural gas off to a local distribution utility.",
+    usedInSentence: "A Chicago customer's gas quote is usually built off the local citygate index rather than Henry Hub, so pipeline congestion on a cold morning can lift their delivered cost even when the Henry Hub headline barely moves."
   },
   headlines: [
     {
-      title: "Hugh Brinson Pipeline Starts Service, Adding 2.2 Bcf/d of Permian Takeaway",
-      tag: "Gas Supply",
-      summary: "Energy Transfer's new line began commercial service, routing more Permian gas toward Henry Hub and pressuring front-month futures down roughly 2.5%."
+      title: "U.S. Gas Retreats From Eight-Week High as Production Outpaces Export Demand",
+      tag: "Gas Markets",
+      summary: "Front-month gas eased to $2.795/MMBtu with inventories 5.2% above the five-year average, even as LNG feedgas climbed to 18.1 Bcf/d in September."
     },
     {
-      title: "Asian Spot LNG Hits Five-Month High on Hormuz Disruption Fears",
-      tag: "Global LNG",
-      summary: "Renewed U.S.-Iran attacks lifted Asian spot LNG to $24.61/MMBtu as buyers questioned how long Strait of Hormuz flows stay impaired."
+      title: "EIA Projects Record U.S. Electricity Generation in 2026 and 2027",
+      tag: "Power Demand",
+      summary: "Electricity sales are forecast at 4,135 billion kWh this year, up almost 2%, driven by data center buildout and rising manufacturing activity."
     }
   ],
   knowledgeBuilder: {
-    topic: "How New Pipeline Capacity Reshapes Regional Gas Prices and Why One Project Can Move a Whole Basin's Quotes",
-    tldr: "When a basin produces more gas than its pipelines can carry out, local prices trade at a steep discount to Henry Hub -- that gap is basis, and it exists because the molecules physically cannot reach a better market. Bringing new takeaway capacity online, as Hugh Brinson does for the Permian this week, narrows the discount at the wellhead while adding supply at the destination hub, which is why one pipeline can lift prices in one region and soften them in another at the same time."
+    topic: "Why Data Center Growth Shows Up in Commercial Power Quotes Years Before the Load Arrives",
+    tldr: "EIA now expects record U.S. electricity generation in 2026 and 2027, with sales reaching 4,135 billion kWh this year on data center and manufacturing growth. Suppliers price multi-year deals off forward curves rather than today's spot market, so anticipated load growth lifts the out-year blocks in a quote long before a single new server rack draws power -- which is why a three-year term can price above a one-year term in an otherwise soft market."
   },
-  procurementTip: "Domestic gas falling while crude and Asian LNG climb is a useful reminder that U.S. commercial supply pricing keys off Henry Hub and regional basis rather than the headline oil price, so fixed-rate offers are quietly cheaper this week even as the geopolitical news gets louder.",
+  procurementTip: "Gas and crude are pulling in opposite directions today -- ample U.S. supply is capping Henry Hub near $2.80 while Brent above $102 lifts fuel costs for oil-linked and international buyers.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
-    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.88],
-    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 87.55],
-    ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 31],
+    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.80],
+    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 97.47],
+    ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 33],
     pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 46],
     miso:   [41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38, 39],
     nyiso:  [58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55, 56]
@@ -480,7 +481,8 @@ const SEED = {
     { term: "Nomination", category: "Gas Markets", definition: "The daily volume a shipper tells a pipeline it will deliver into the system and take out at each delivery point, submitted a day ahead against forecast usage. Differences between nominated and actual volumes settle later as imbalance or reconciliation charges." },
     { term: "Take-or-Pay", category: "Contract Terms", definition: "A supply contract provision obligating the buyer to pay for a minimum contracted volume regardless of how much is actually consumed, covering the seller's upstream commitments." },
     { term: "Backwardation", category: "Market Structure", definition: "A forward curve shape where near-term contract prices sit above later-dated ones, usually signaling immediate supply tightness; the opposite of contango, and a reason a longer fixed term can price below a short one." },
-    { term: "Slamming", category: "Retail Markets", definition: "Switching a customer to a new energy supplier without their clear authorization. Regulators treat it as a serious violation, which is why suppliers retain a signed letter of authorization or a recorded third-party verification for every enrollment." }
+    { term: "Slamming", category: "Retail Markets", definition: "Switching a customer to a new energy supplier without their clear authorization. Regulators treat it as a serious violation, which is why suppliers retain a signed letter of authorization or a recorded third-party verification for every enrollment." },
+    { term: "Citygate", category: "Gas Markets", definition: "The interconnection where an interstate pipeline delivers natural gas to a local distribution utility. Citygate index prices reflect regional pipeline constraints and local demand, so they can diverge sharply from Henry Hub." }
   ]
 };
 
