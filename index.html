@@ -337,16 +337,17 @@ body {
 </div>
 
 <script>
-// SEED verified September 11, 2026 (Friday)
-// Sources: EOX Live Morning Report 6:23 AM CST Sep 11: Nat Gas $2.797 (-$0.037, -1.31%), WTI $98.87 (-$3.61, -3.52%), Brent $103.57 (-$4.06, -3.77%) |
-//          Henry Hub spot $2.83/MMBtu (Trading Economics, -0.12% d/d; three-week low) |
-//          ERCOT CDR Sep 11 HB_HUBAVG $25.93/MWh at 0915 interval (overnight range roughly $25-$34; mild shoulder-season load) |
-//          PJM ComEd zone DA ~$46/MWh ESTIMATE -- no live PJM data returned by search this run |
-//          EIA storage wk/e Sep 4 (released Sep 10): 3,254 Bcf, +40 Bcf build, 148 Bcf above 5-yr avg of 3,106 Bcf; 79 Bcf below year-ago |
-//          Lower 48 dry gas production averaging 112.9 Bcf/d in September, above August's high |
-//          Above-average temperatures forecast across the South and Southeast through Sep 18 |
-//          EU gas 80.75 EUR/MWh (-1.57%), near highest since Dec 2022; Persian Gulf blockade disrupting roughly 20% of global LNG flows |
-//          EIA STEO: U.S. electricity sales forecast at 4,135 billion kWh in 2026 on data center and manufacturing growth |
+// SEED verified September 14, 2026 (Monday)
+// Sources: EOX Live Morning Report 6:19 AM CST Sep 14: Nat Gas $2.895 (+$0.064, +2.26%), WTI $102.41 (+$2.36, +2.36%), Brent $107.39 (+$2.78, +2.66%) |
+//          Henry Hub spot $2.88/MMBtu (Trading Economics, +1.78% d/d) |
+//          ERCOT CDR last updated Sep 14 09:02 -- HB_HUBAVG $12.17/MWh at 0900 interval; overnight range roughly $12-$33, session avg $26.68 (solar ramp collapsing morning prices) |
+//          PJM ComEd zone DA ~$47/MWh ESTIMATE -- no live PJM data returned by search this run |
+//          EIA storage wk/e Sep 4 (released Sep 10): 3,254 Bcf, +40 Bcf build vs. 31 Bcf expected, 148 Bcf above 5-yr avg of 3,106 Bcf; 79 Bcf below year-ago |
+//          Lower 48 dry gas production averaging 112.9 Bcf/d in September, above August's monthly high |
+//          U.S. LNG feedgas hit 19.6 Bcf/d Friday Sep 11 -- strongest single gas day since late April |
+//          EU gas 79.52 EUR/MWh (-3.08% on Sep 11) with Middle East supply risk still in the market |
+//          EIA STEO (Sep 9): U.S. generation to a record 4,368 billion kWh in 2026, +2.2%; gas generation +2%, coal -8% |
+//          Storage forecast to reach 3,969 Bcf on Oct 31, 2026, 5% above the 5-yr average |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -359,7 +360,7 @@ body {
 //   Reinstatement, Meter Data Management (MDM), Contract Start Date vs. Flow Date,
 //   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
 //   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming,
-//   Citygate, Weather Normalization Adjustment (WNA)
+//   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -377,7 +378,8 @@ body {
 //   How Sales Tax Exemptions Work on Commercial Energy Bills and Why Manufacturers Often Overpay,
 //   How New Pipeline Capacity Reshapes Regional Gas Prices and Why One Project Can Move a Whole Basin's Quotes,
 //   Why Data Center Growth Shows Up in Commercial Power Quotes Years Before the Load Arrives,
-//   How a Credit Review Shapes the Supply Terms a Customer Is Actually Offered
+//   How a Credit Review Shapes the Supply Terms a Customer Is Actually Offered,
+//   How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -386,69 +388,52 @@ body {
 //   Upfront vs. Residual: How Broker Compensation Is Structured (Sep 11 -- How the Money Flows)
 //   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Sep 18): category 1 -- Anatomy of a Bill
 const SEED = {
-  date: "Friday, September 11, 2026",
+  date: "Monday, September 14, 2026",
   meta: {
-    marketTakeaway: "Natural gas slipped to a three-week low near $2.80/MMBtu after the EIA reported a 40 Bcf injection, leaving storage 148 Bcf above the five-year average heading into the last weeks of injection season. Crude took the bigger hit overnight, with WTI down $3.61 to $98.87 and Brent off $4.06. ERCOT stayed quiet, printing about $26/MWh through the morning as shoulder-season load keeps the grid comfortable."
+    marketTakeaway: "Natural gas opened higher at $2.895/MMBtu, up 2.26% from Friday's settle, as record LNG feedgas of 19.6 Bcf/d pulled molecules away from a domestic market already carrying 148 Bcf more in storage than the five-year average. Crude ran harder still, with WTI up 2.36% to $102.41 on renewed Middle East supply risk. ERCOT told the opposite story -- hub average prices fell to $12.17/MWh by the 9 a.m. interval as the solar ramp overwhelmed mild shoulder-season load."
   },
   prices: [
-    { name: "HH Spot", price: "$2.83", change: "-0.1%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.797", change: "-1.3%", direction: "down" },
-    { name: "WTI Crude", price: "$98.87", change: "-3.5%", direction: "down" },
-    { name: "Brent Crude", price: "$103.57", change: "-3.8%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "$25.93", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.88", change: "+1.8%", direction: "up" },
+    { name: "NYMEX NG", price: "$2.90", change: "+2.3%", direction: "up" },
+    { name: "WTI Crude", price: "$102.41", change: "+2.4%", direction: "up" },
+    { name: "Brent Crude", price: "$107.39", change: "+2.7%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$12.17", change: "", direction: "down" }
   ],
   wordOfDay: {
-    term: "Weather Normalization Adjustment",
-    abbr: "WNA",
-    category: "Bill Components",
-    tldr: "A utility bill adjustment that strips weather swings out of delivery charges to stabilize utility revenue.",
-    usedInSentence: "In a mild month a WNA credit can shrink a customer's delivery charges even when usage looks ordinary, which is why comparing two bills from different seasons rarely tells you whether a supply rate is working."
+    term: "Blend and Extend",
+    abbr: "B&E",
+    category: "Contract Terms",
+    tldr: "Reworking an existing contract by averaging its old rate into a longer new term.",
+    usedInSentence: "A customer locked in at a high rate two years ago can blend and extend: the supplier folds the remaining above-market volume into a longer deal at today's lower prices, which lowers the monthly rate immediately but carries the old position's loss forward in the new term."
   },
   headlines: [
     {
-      title: "Gas Slides to Three-Week Low After 40 Bcf Storage Build",
-      tag: "Gas Storage",
-      summary: "Inventories reached 3,254 Bcf, 148 Bcf above the five-year average, pushing front-month gas below $2.80 as Lower 48 production held near 112.9 Bcf/d."
+      title: "U.S. LNG Feedgas Sets Post-April Record as Export Demand Outpaces Domestic Softness",
+      tag: "Gas Supply",
+      summary: "Deliveries to U.S. export terminals reached 19.6 Bcf/d Friday, the strongest single gas day since late April, tightening the domestic balance."
     },
     {
-      title: "Crude Sells Off Nearly 4% While Gulf LNG Disruption Persists",
-      tag: "Crude Oil",
-      summary: "WTI fell $3.61 to $98.87 and Brent to $103.57; separately, the Persian Gulf blockade still affects roughly 20% of global LNG flows."
+      title: "EIA Projects Record U.S. Electricity Generation in 2026 and 2027 on Data Center Load",
+      tag: "Power Demand",
+      summary: "Generation is set to rise 2.2% to a record 4,368 billion kWh this year and another 1.7% next year, with gas up 2% and coal down 8%."
     }
   ],
   knowledgeBuilder: {
-    topic: "How a Credit Review Shapes the Supply Terms a Customer Is Actually Offered",
-    tldr: "Before a supplier quotes, it runs the customer through credit review, and the result sets more than price: it drives the maximum term available, whether a deposit or letter of credit is required, and how much risk premium gets layered into the rate. That is why two customers with nearly identical load and start date can receive offers that differ by several dollars per MWh and by a year or more of available term."
+    topic: "How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules",
+    tldr: "An LNG terminal is just a very large, very inflexible gas customer: once a liquefaction train is running, it pulls a steady several Bcf/d off the interstate pipeline system regardless of what U.S. buyers are willing to pay. That demand is why a domestic market can look comfortable on storage -- 148 Bcf above the five-year average right now -- and still see Henry Hub firm up, because export terminals are bidding against domestic utilities for the same pipeline capacity and the same supply basins."
   },
-  procurementTip: "With storage comfortably above the five-year average and production at a September high, the front of the gas curve is soft while winter months hold their premium -- the widest part of the curve this year sits between October and January.",
+  procurementTip: "With record feedgas absorbing record production, the domestic surplus is showing up in storage rather than in the front of the curve -- which is why gas rose today even though inventories sit comfortably above the five-year average.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
-    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.81],
-    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 97.60],
-    ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 31],
+    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.84],
+    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 98.60],
+    ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 29],
     pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 46],
     miso:   [41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38, 39],
     nyiso:  [58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55, 56]
   },
-  deepDive: {
-    topic: "Upfront vs. Residual: How Broker Compensation Is Structured",
-    sections: [
-      {
-        title: "The fee lives inside the rate",
-        body: "A broker almost never invoices the customer. The compensation is an <strong>adder</strong> built into the supply rate the supplier quotes, expressed in mills per kWh on power or cents per therm on gas. A customer signing at $0.0685/kWh where the broker fee is 3 mills is really buying a $0.0655 supply cost plus $0.003 of brokerage, and the single number on the contract hides that split."
-      },
-      {
-        title: "Upfront versus residual",
-        body: "Suppliers pay that adder one of two ways. <strong>Upfront</strong> compensation discounts the full expected contract value to a lump sum paid shortly after flow begins, which front-loads cash but means the broker carries the risk that the customer's volume comes in lighter than forecast. <strong>Residual</strong> compensation pays monthly as meters are read, so the broker earns only on delivered volume and the income tracks actual usage over the term."
-      },
-      {
-        title: "Why the structure changes the deal",
-        body: "Upfront payments are calculated off forecast volume, so suppliers protect themselves with clawback language triggered by early termination, load dropping below a threshold, or meters leaving the contract. Residual structures avoid clawback risk but expose the broker to the customer's business cycle. This is also why a supplier quoting a 36-month upfront deal may price it a shade higher than the same deal on residual: the supplier has advanced cash and needs to recover the carrying cost."
-      }
-    ],
-    takeaway: "The broker fee is a component of the quoted rate, not a separate charge, and the choice between upfront and residual payment changes who carries volume risk -- which is part of why two suppliers can quote the same load differently."
-  },
-  glossary: [
+  deepDive: null,
+    glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
     { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO." },
@@ -502,7 +487,8 @@ const SEED = {
     { term: "Backwardation", category: "Market Structure", definition: "A forward curve shape where near-term contract prices sit above later-dated ones, usually signaling immediate supply tightness; the opposite of contango, and a reason a longer fixed term can price below a short one." },
     { term: "Slamming", category: "Retail Markets", definition: "Switching a customer to a new energy supplier without their clear authorization. Regulators treat it as a serious violation, which is why suppliers retain a signed letter of authorization or a recorded third-party verification for every enrollment." },
     { term: "Citygate", category: "Gas Markets", definition: "The interconnection where an interstate pipeline delivers natural gas to a local distribution utility. Citygate index prices reflect regional pipeline constraints and local demand, so they can diverge sharply from Henry Hub." },
-    { term: "Weather Normalization Adjustment (WNA)", category: "Bill Components", definition: "A utility mechanism that adjusts delivery charges up or down to remove the effect of unusually warm or cold weather, stabilizing utility revenue and smoothing customer bills across seasons." }
+    { term: "Weather Normalization Adjustment (WNA)", category: "Bill Components", definition: "A utility mechanism that adjusts delivery charges up or down to remove the effect of unusually warm or cold weather, stabilizing utility revenue and smoothing customer bills across seasons." },
+    { term: "Blend and Extend", category: "Contract Terms", definition: "A renegotiation that merges the remaining term of an existing supply contract into a new, longer agreement at a single averaged rate -- lowering the near-term price while carrying the original position's above-market cost into the extended term." }
   ]
 };
 
