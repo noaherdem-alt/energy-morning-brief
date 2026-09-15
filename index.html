@@ -337,17 +337,14 @@ body {
 </div>
 
 <script>
-// SEED verified September 14, 2026 (Monday)
-// Sources: EOX Live Morning Report 6:19 AM CST Sep 14: Nat Gas $2.895 (+$0.064, +2.26%), WTI $102.41 (+$2.36, +2.36%), Brent $107.39 (+$2.78, +2.66%) |
-//          Henry Hub spot $2.88/MMBtu (Trading Economics, +1.78% d/d) |
-//          ERCOT CDR last updated Sep 14 09:02 -- HB_HUBAVG $12.17/MWh at 0900 interval; overnight range roughly $12-$33, session avg $26.68 (solar ramp collapsing morning prices) |
-//          PJM ComEd zone DA ~$47/MWh ESTIMATE -- no live PJM data returned by search this run |
-//          EIA storage wk/e Sep 4 (released Sep 10): 3,254 Bcf, +40 Bcf build vs. 31 Bcf expected, 148 Bcf above 5-yr avg of 3,106 Bcf; 79 Bcf below year-ago |
-//          Lower 48 dry gas production averaging 112.9 Bcf/d in September, above August's monthly high |
-//          U.S. LNG feedgas hit 19.6 Bcf/d Friday Sep 11 -- strongest single gas day since late April |
-//          EU gas 79.52 EUR/MWh (-3.08% on Sep 11) with Middle East supply risk still in the market |
-//          EIA STEO (Sep 9): U.S. generation to a record 4,368 billion kWh in 2026, +2.2%; gas generation +2%, coal -8% |
-//          Storage forecast to reach 3,969 Bcf on Oct 31, 2026, 5% above the 5-yr average |
+// SEED verified September 15, 2026 (Tuesday)
+// Sources: EOX Live Morning Report 6:47 AM CST Sep 15: Nat Gas $2.897 (+$0.001, +0.03%), WTI $102.49 (+$1.10, +1.08%), Brent $106.08 (+$0.40, +0.38%) |
+//          ERCOT CDR last updated Sep 15 09:00 -- HB_HUBAVG $14.82/MWh at the 0900 interval; overnight held $25-$26, morning peak $36.70 at 0745, then the solar ramp cut prices roughly 60% in 75 minutes |
+//          PJM ComEd zone DA ~$46/MWh ESTIMATE -- no live PJM data returned by search this run |
+//          EIA storage wk/e Sep 4 (released Sep 10): 3,254 Bcf, +40 Bcf build, 148 Bcf above 5-yr avg of 3,106 Bcf; next report wk/e Sep 11 due Thu Sep 17 |
+//          Southeast and Gulf Coast physical gas vaulted toward $7/MMBtu Monday as pipeline capacity cuts and operational flow orders stacked up against lingering heat |
+//          Lower 48 dry gas production averaging about 112.9 Bcf/d in September, near record; storage 5.2% above the 5-yr seasonal average |
+//          Crude strength continues -- WTI above $102 with Persian Gulf supply disruptions still unresolved |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -360,7 +357,7 @@ body {
 //   Reinstatement, Meter Data Management (MDM), Contract Start Date vs. Flow Date,
 //   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
 //   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming,
-//   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend
+//   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -369,8 +366,7 @@ body {
 //   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customer Changes,
 //   How Mid-August System Peaks Set Next Year's Capacity Costs,
 //   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price,
-//   How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve,
-//   Why Record Production Can Push Gas Prices Down Even During a Heat Wave,
+//   How the Midday Solar Ramp Reshapes When Power Is Cheap in ERCOT,
 //   How Load Profiling Estimates When Non-Interval Customers Use Power,
 //   Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves,
 //   How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them,
@@ -379,7 +375,8 @@ body {
 //   How New Pipeline Capacity Reshapes Regional Gas Prices and Why One Project Can Move a Whole Basin's Quotes,
 //   Why Data Center Growth Shows Up in Commercial Power Quotes Years Before the Load Arrives,
 //   How a Credit Review Shapes the Supply Terms a Customer Is Actually Offered,
-//   How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules
+//   How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules,
+//   Why Suppliers Quote a Different Rate for Every Contract Length and Why Longer Is Not Always More Expensive
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -388,52 +385,52 @@ body {
 //   Upfront vs. Residual: How Broker Compensation Is Structured (Sep 11 -- How the Money Flows)
 //   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Sep 18): category 1 -- Anatomy of a Bill
 const SEED = {
-  date: "Monday, September 14, 2026",
+  date: "Tuesday, September 15, 2026",
   meta: {
-    marketTakeaway: "Natural gas opened higher at $2.895/MMBtu, up 2.26% from Friday's settle, as record LNG feedgas of 19.6 Bcf/d pulled molecules away from a domestic market already carrying 148 Bcf more in storage than the five-year average. Crude ran harder still, with WTI up 2.36% to $102.41 on renewed Middle East supply risk. ERCOT told the opposite story -- hub average prices fell to $12.17/MWh by the 9 a.m. interval as the solar ramp overwhelmed mild shoulder-season load."
+    marketTakeaway: "Natural gas is going nowhere on the screen -- $2.897 this morning, up a tenth of a cent -- but the physical market is doing something very different. Capacity cuts and operational flow orders across Southeast and Gulf Coast pipelines sent cash prices toward $7/MMBtu Monday while the national benchmark sat under $3. Crude is the other story: WTI added $1.10 to $102.49 with Persian Gulf supply still disrupted."
   },
   prices: [
-    { name: "HH Spot", price: "$2.88", change: "+1.8%", direction: "up" },
-    { name: "NYMEX NG", price: "$2.90", change: "+2.3%", direction: "up" },
-    { name: "WTI Crude", price: "$102.41", change: "+2.4%", direction: "up" },
-    { name: "Brent Crude", price: "$107.39", change: "+2.7%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$12.17", change: "", direction: "down" }
+    { name: "HH Spot", price: "$2.90", change: "+0.0%", direction: "neutral" },
+    { name: "NYMEX NG", price: "$2.90", change: "+0.0%", direction: "neutral" },
+    { name: "WTI Crude", price: "$102.49", change: "+1.1%", direction: "up" },
+    { name: "Brent Crude", price: "$106.08", change: "+0.4%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$14.82", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Blend and Extend",
-    abbr: "B&E",
-    category: "Contract Terms",
-    tldr: "Reworking an existing contract by averaging its old rate into a longer new term.",
-    usedInSentence: "A customer locked in at a high rate two years ago can blend and extend: the supplier folds the remaining above-market volume into a longer deal at today's lower prices, which lowers the monthly rate immediately but carries the old position's loss forward in the new term."
+    term: "Cash-Out",
+    abbr: "",
+    category: "Gas Supply",
+    tldr: "The pipeline's penalty settlement when the gas a shipper delivers does not match what the customer burned.",
+    usedInSentence: "Cash-out provisions turn a scheduling miss into a real dollar figure: the pipeline settles the imbalance at a punitive index -- often the highest price of the month if the shipper was short and the lowest if long -- which is why a customer whose usage swings unexpectedly can see an imbalance charge that dwarfs the commodity savings on the deal."
   },
   headlines: [
     {
-      title: "U.S. LNG Feedgas Sets Post-April Record as Export Demand Outpaces Domestic Softness",
+      title: "Southeast and Gulf Coast Cash Gas Vaults Toward $7 as Pipeline Restrictions Stack Up",
       tag: "Gas Supply",
-      summary: "Deliveries to U.S. export terminals reached 19.6 Bcf/d Friday, the strongest single gas day since late April, tightening the domestic balance."
+      summary: "Capacity cuts and operational flow orders collided with lingering heat, pushing regional spot prices above $7/MMBtu while Henry Hub stayed under $3."
     },
     {
-      title: "EIA Projects Record U.S. Electricity Generation in 2026 and 2027 on Data Center Load",
-      tag: "Power Demand",
-      summary: "Generation is set to rise 2.2% to a record 4,368 billion kWh this year and another 1.7% next year, with gas up 2% and coal down 8%."
+      title: "WTI Holds Above $102 as Persian Gulf Supply Disruptions Persist",
+      tag: "Crude Markets",
+      summary: "WTI rose $1.10 to $102.49 and Brent reached $106.08, extending a rally driven by unresolved supply interruptions rather than demand strength."
     }
   ],
   knowledgeBuilder: {
-    topic: "How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules",
-    tldr: "An LNG terminal is just a very large, very inflexible gas customer: once a liquefaction train is running, it pulls a steady several Bcf/d off the interstate pipeline system regardless of what U.S. buyers are willing to pay. That demand is why a domestic market can look comfortable on storage -- 148 Bcf above the five-year average right now -- and still see Henry Hub firm up, because export terminals are bidding against domestic utilities for the same pipeline capacity and the same supply basins."
+    topic: "Why Suppliers Quote a Different Rate for Every Contract Length and Why Longer Is Not Always More Expensive",
+    tldr: "A 12-month and a 36-month quote are not the same rate plus a risk markup -- each one is priced off the forward curve for the months it actually covers, so a 36-month deal that spans two cheap shoulder seasons can price below a 12-month deal that loads entirely into winter. The term that looks cheapest on the quote sheet is mostly telling you what the market thinks about those specific delivery months, not how much risk the supplier is taking."
   },
-  procurementTip: "With record feedgas absorbing record production, the domestic surplus is showing up in storage rather than in the front of the curve -- which is why gas rose today even though inventories sit comfortably above the five-year average.",
+  procurementTip: "When the national benchmark is flat and regional cash is running $4 above it, the spread is basis and pipeline constraint -- not a Henry Hub story -- which is why customers in constrained Southeast zones are seeing quotes move while Gulf Coast headlines say gas is cheap.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
-    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.84],
-    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 98.60],
-    ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 29],
+    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.85],
+    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 99.20],
+    ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 28],
     pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 46],
     miso:   [41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38, 39],
     nyiso:  [58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55, 56]
   },
   deepDive: null,
-    glossary: [
+  glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
     { term: "Locational Marginal Price (LMP)", category: "Power Markets", definition: "The real-time electricity price at a specific grid location, recalculated every 5 minutes by the ISO/RTO." },
@@ -488,7 +485,8 @@ const SEED = {
     { term: "Slamming", category: "Retail Markets", definition: "Switching a customer to a new energy supplier without their clear authorization. Regulators treat it as a serious violation, which is why suppliers retain a signed letter of authorization or a recorded third-party verification for every enrollment." },
     { term: "Citygate", category: "Gas Markets", definition: "The interconnection where an interstate pipeline delivers natural gas to a local distribution utility. Citygate index prices reflect regional pipeline constraints and local demand, so they can diverge sharply from Henry Hub." },
     { term: "Weather Normalization Adjustment (WNA)", category: "Bill Components", definition: "A utility mechanism that adjusts delivery charges up or down to remove the effect of unusually warm or cold weather, stabilizing utility revenue and smoothing customer bills across seasons." },
-    { term: "Blend and Extend", category: "Contract Terms", definition: "A renegotiation that merges the remaining term of an existing supply contract into a new, longer agreement at a single averaged rate -- lowering the near-term price while carrying the original position's above-market cost into the extended term." }
+    { term: "Blend and Extend", category: "Contract Terms", definition: "A renegotiation that merges the remaining term of an existing supply contract into a new, longer agreement at a single averaged rate -- lowering the near-term price while carrying the original position's above-market cost into the extended term." },
+    { term: "Cash-Out", category: "Gas Supply", definition: "The settlement a pipeline applies when a shipper's delivered gas does not match actual customer usage, priced at a punitive index that penalizes both shortfalls and overdeliveries." }
   ]
 };
 
