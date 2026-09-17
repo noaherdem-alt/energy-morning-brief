@@ -366,7 +366,8 @@ body {
 //   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customer Changes,
 //   How Mid-August System Peaks Set Next Year's Capacity Costs,
 //   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price,
-//   How Record Production Can Push Gas Prices Down Even During a Heat Wave,
+//   How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve,
+//   Why Record Production Can Push Gas Prices Down Even During a Heat Wave,
 //   How Load Profiling Estimates When Non-Interval Customers Use Power,
 //   Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves,
 //   How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them,
@@ -377,7 +378,7 @@ body {
 //   How a Credit Review Shapes the Supply Terms a Customer Is Actually Offered,
 //   How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules,
 //   Why Suppliers Quote a Different Rate for Every Contract Length and Why Longer Is Not Always More Expensive,
-//   How the Solar Ramp Reshaped the Daily Shape of ERCOT Prices and Where the New Peak Sits
+//   Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -395,7 +396,7 @@ const SEED = {
     { name: "NYMEX NG", price: "$2.88", change: "-0.2%", direction: "down" },
     { name: "WTI Crude", price: "$100.75", change: "-1.6%", direction: "down" },
     { name: "Brent Crude", price: "$103.59", change: "-2.1%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "~$27", change: "", direction: "neutral" }
+    { name: "ERCOT RT Hub", price: "$27.41", change: "", direction: "neutral" }
   ],
   wordOfDay: {
     term: "Ancillary Services",
@@ -417,10 +418,10 @@ const SEED = {
     }
   ],
   knowledgeBuilder: {
-    topic: "How the Solar Ramp Reshaped the Daily Shape of ERCOT Prices and Where the New Peak Sits",
-    tldr: "Texas now has enough utility-scale solar that midday prices collapse even on hot days -- this morning the hub average fell from $40.84 at 0745 to $27.41 by 0900 as panels came online. The expensive hours have migrated to the evening net-peak, roughly 6 to 9 p.m., when solar fades faster than load does, which is why a customer's cost profile depends less on how much power they use than on when they use it."
+    topic: "Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers",
+    tldr: "An index customer's rate is usually set by a published first-of-month index priced during the last few trading days of the prior month, then applied to gas that flows over the following 30 days and billed weeks after that. So a customer watching the screen in mid-September is seeing prices that will not reach their invoice until late October -- which is why a falling market can arrive alongside a higher bill and still be working exactly as the contract says."
   },
-  procurementTip: "With gas flat near $2.88 and October NYMEX settling next week, the thing moving retail power quotes in ERCOT right now is not the commodity strip but the widening spread between collapsed midday prices and a firming evening net-peak.",
+  procurementTip: "With gas flat near $2.88 and the October NYMEX contract settling next week, the number that will set most index customers' November rate is being formed right now, several weeks before it shows up on anyone's invoice.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
     natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.86],
