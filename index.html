@@ -337,14 +337,14 @@ body {
 </div>
 
 <script>
-// SEED verified September 17, 2026 (Thursday)
-// Sources: EOX Live Morning Report 6:20 AM CST Sep 17: Nat Gas $2.884 (-$0.007, -0.24%), WTI $100.75 (-$1.68, -1.64%), Brent $103.59 (-$2.24, -2.12%) |
-//          ERCOT CDR last updated Sep 17 09:00 -- HB_HUBAVG $27.41/MWh at the 0900 interval; overnight held near $34.89, morning peak $40.84 at 0745, then the solar ramp cut prices about 33% in 75 minutes |
-//          PJM ComEd zone DA ~$46/MWh ESTIMATE -- no live PJM data returned by search this run (carried forward from Sep 15) |
-//          EIA storage wk/e Sep 4 (released Sep 10): 3,254 Bcf, +40 Bcf build, 148 Bcf above 5-yr avg and 79 Bcf below year-ago; next report wk/e Sep 11 due TODAY Thu Sep 17 |
-//          EIA September STEO: U.S. electricity sales 4,135 BkWh in 2026, +2% to 4,211 BkWh in 2027; end-October working gas forecast 3,969 Bcf, above the 5-yr average |
-//          BloombergNEF now sees U.S. data centers burning 15 Bcf/d of gas for power by 2035, up from 6.9 Bcf/d estimated in Dec 2025; Moody's puts the required buildout above 30 GW / $110 billion |
-//          Lower 48 gas power burn off to its strongest September start on record as summerlike heat lingers across the South |
+// SEED verified September 18, 2026 (Friday)
+// Sources: EOX Live Morning Report 6:17 AM CST Sep 18: Nat Gas $2.854 (-$0.047, -1.62%, prev settle $2.901), WTI $100.65 (-$1.26, -1.24%), Brent $102.73 (-$2.09, -1.99%) |
+//          ERCOT CDR last updated Sep 18 10:17 -- HB_HUBAVG $23.41/MWh at the 1015 interval; overnight held near $30-34, morning peak $41.67 at 0730, then the solar ramp cut the hub average to $23.14 by 0930 (-44% in two hours) |
+//          PJM ComEd zone DA ~$46/MWh ESTIMATE -- no live PJM data returned by search this run (carried forward from Sep 17, which itself carried from Sep 15; three runs stale) |
+//          EIA storage wk/e Sep 11 (released Thu Sep 17): 3,298 Bcf, +44 Bcf build, 118 Bcf above the 5-yr average of 3,180 Bcf (+3.7%); next report wk/e Sep 18 due Thu Sep 24 |
+//          EPA finalized the Partial Repeal of the Carbon Pollution Standards for Fossil Fuel-Fired EGUs on Sep 14 (Administrator Zeldin); strikes the Jan 1, 2032 90% CCS requirement for new baseload gas turbines and the CCS standards for existing coal undertaking large modifications; 91 FR 58954 |
+//          EIA September STEO: end-October working gas forecast 3,969 Bcf, 5% above the 5-yr average; U.S. electricity sales 4,135 BkWh in 2026; gas generation +2% in 2026, coal generation -8% |
+//          Lower-48 September power burn running at its strongest start on record as summerlike heat lingers over the South; gas touched its highest since Sep 4 on Thu before easing Fri morning |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -357,7 +357,8 @@ body {
 //   Reinstatement, Meter Data Management (MDM), Contract Start Date vs. Flow Date,
 //   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
 //   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming,
-//   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out, Ancillary Services
+//   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out, Ancillary Services,
+//   Firm Transportation (FT)
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -366,10 +367,7 @@ body {
 //   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customer Changes,
 //   How Mid-August System Peaks Set Next Year's Capacity Costs,
 //   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price,
-//   How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve,
-//   Why Record Production Can Push Gas Prices Down Even During a Heat Wave,
-//   How Load Profiling Estimates When Non-Interval Customers Use Power,
-//   Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves,
+//   How Suppliers Protect Themselves from Market Moves,
 //   How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them,
 //   Why the Final Weeks of Injection Season Set the Tone for Winter Gas Prices,
 //   How Sales Tax Exemptions Work on Commercial Energy Bills and Why Manufacturers Often Overpay,
@@ -378,60 +376,79 @@ body {
 //   How a Credit Review Shapes the Supply Terms a Customer Is Actually Offered,
 //   How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules,
 //   Why Suppliers Quote a Different Rate for Every Contract Length and Why Longer Is Not Always More Expensive,
-//   Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers
+//   Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers,
+//   Why the Solar Ramp Has Made ERCOT's Cheapest and Riskiest Hours Only a Few Hours Apart
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
 //   The Regulatory Pass-Through Provision (Aug 21 -- Anatomy of a Contract Clause),
 //   What Happens When an Enrollment Gets Rejected (Aug 28 -- What Happens When),
-//   Upfront vs. Residual: How Broker Compensation Is Structured (Sep 11 -- How the Money Flows)
-//   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Sep 18): category 1 -- Anatomy of a Bill
+//   Upfront vs. Residual: How Broker Compensation Is Structured (Sep 11 -- How the Money Flows),
+//   Anatomy of the Delivery Charges Section of a Commercial Electric Bill (Sep 18 -- Anatomy of a Bill)
+//   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Sep 25): category 2 -- Anatomy of a Contract Clause
 const SEED = {
-  date: "Thursday, September 17, 2026",
+  date: "Friday, September 18, 2026",
   meta: {
-    marketTakeaway: "Natural gas is holding just under $2.89/MMBtu, essentially flat on the day, as record-strong September power burn in the South offsets storage that still sits 148 Bcf above the five-year average. Crude gave back Tuesday's gains, with WTI down $1.68 to $100.75 as the Persian Gulf risk premium eased. ERCOT opened firm near $41/MWh at 0745 before the solar ramp knocked the hub average down to $27.41 by 9 a.m."
+    marketTakeaway: "Natural gas slipped 1.6% to $2.854/MMBtu this morning, giving back Thursday's move to a two-week high after EIA reported a 44 Bcf build that pushed inventories to 118 Bcf above the five-year average. Record-strong September power burn in the South is the main thing holding the front month above $2.80. WTI fell $1.26 to $100.65, and ERCOT's $41.67/MWh morning peak gave way to $23.41 once solar ramped in."
   },
   prices: [
-    { name: "HH Spot", price: "$2.88", change: "-0.2%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.88", change: "-0.2%", direction: "down" },
-    { name: "WTI Crude", price: "$100.75", change: "-1.6%", direction: "down" },
-    { name: "Brent Crude", price: "$103.59", change: "-2.1%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "$27.41", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$2.85", change: "-1.6%", direction: "down" },
+    { name: "NYMEX NG", price: "$2.85", change: "-1.6%", direction: "down" },
+    { name: "WTI Crude", price: "$100.65", change: "-1.2%", direction: "down" },
+    { name: "Brent Crude", price: "$102.73", change: "-2.0%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "$23.41", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Ancillary Services",
-    abbr: "A/S",
-    category: "Power Markets",
-    tldr: "Reserve and frequency products a grid operator buys alongside energy to keep supply and demand balanced.",
-    usedInSentence: "Ancillary service costs are small in a mild month and enormous in a scarcity event, and because most retail contracts pass them through rather than fixing them, a quiet line item can become the reason a customer's bill jumps in a week the energy price barely moved."
+    term: "Firm Transportation",
+    abbr: "FT",
+    category: "Gas Supply",
+    tldr: "Pipeline capacity a shipper pays for year-round and cannot be cut when the system gets tight.",
+    usedInSentence: "Firm transportation is the reason two suppliers quoting the same building can land far apart in January: the one holding FT to that citygate already owns its path and prices the risk cheaply, while the one relying on released or interruptible capacity has to price in the days it may not get there at all."
   },
   headlines: [
     {
-      title: "EIA Sees Record U.S. Power Generation in 2026 and 2027 as Data Center Load Builds",
-      tag: "Demand Outlook",
-      summary: "The September STEO projects electricity sales of 4,135 billion kWh this year and 4,211 billion in 2027, driven by data centers and manufacturing."
+      title: "EPA Finalizes Partial Repeal of Power Plant Carbon Standards, Dropping the 2032 Capture Deadline",
+      tag: "Regulation",
+      summary: "The rule strikes the 90% carbon capture requirement for new baseload gas turbines, removing a compliance cost developers had been pricing into new build."
     },
     {
-      title: "Data Center Gas Burn Projected at 15 Bcf/d by 2035, More Than Double Prior Estimate",
-      tag: "Gas Demand",
-      summary: "BloombergNEF raised its 2035 forecast from 6.9 Bcf/d; Moody's pegs the required buildout above 30 GW of new gas-fired capacity."
+      title: "Gas Storage Builds 44 Bcf, Widening the Surplus to 118 Bcf Above the Five-Year Average",
+      tag: "Storage",
+      summary: "Inventories reached 3,298 Bcf as of September 11, and EIA still forecasts 3,969 Bcf at the end of October, about 5% above normal."
     }
   ],
   knowledgeBuilder: {
-    topic: "Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers",
-    tldr: "An index customer's rate is usually set by a published first-of-month index priced during the last few trading days of the prior month, then applied to gas that flows over the following 30 days and billed weeks after that. So a customer watching the screen in mid-September is seeing prices that will not reach their invoice until late October -- which is why a falling market can arrive alongside a higher bill and still be working exactly as the contract says."
+    topic: "Why the Solar Ramp Has Made ERCOT's Cheapest and Riskiest Hours Only a Few Hours Apart",
+    tldr: "As Texas solar capacity has grown, midday has become structurally cheap: this morning the hub average fell from $41.67 at 0730 to $23.14 by 0930 purely because the sun came up, not because load dropped. The risk moved to the late-afternoon hours when solar output falls faster than demand does, which is why a customer on real-time pricing can see a very low daily average and still take almost all of its cost in three or four hours."
   },
-  procurementTip: "With gas flat near $2.88 and the October NYMEX contract settling next week, the number that will set most index customers' November rate is being formed right now, several weeks before it shows up on anyone's invoice.",
+  procurementTip: "With storage above normal and the front month unable to hold $2.90, the near-term gas story is weather rather than supply, and the curve prices winter risk far more aggressively than the prompt.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
-    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.86],
-    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 99.60],
+    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.87],
+    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 100.10],
     ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 29],
     pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 46],
     miso:   [41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38, 39],
     nyiso:  [58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55, 56]
   },
-  deepDive: null,
+  deepDive: {
+    topic: "Anatomy of the Delivery Charges Section of a Commercial Electric Bill",
+    sections: [
+      {
+        title: "What the delivery block actually contains",
+        body: "The delivery side of a commercial bill usually breaks into four pieces: a flat <strong>customer charge</strong> for having a metered service point at all, a volumetric <strong>distribution charge</strong> per kWh for the local wires, a <strong>transmission charge</strong> for the high-voltage system that moved the power into the utility's territory, and a <strong>demand charge</strong> set by the single highest 15- or 30-minute interval in the billing period. The first three are predictable, scaling with either nothing or total consumption. The demand charge is the one that surprises people, because one unusually heavy quarter hour sets the number for the entire month."
+      },
+      {
+        title: "Who sets these numbers",
+        body: "Distribution rates and the customer charge come out of a state rate case, where the utility files a revenue requirement and the commission approves tariffed rates that apply identically to every customer in a rate class. Transmission charges are largely federal, set through FERC-approved formula rates that true up annually as transmission owners spend on new lines. Neither number is negotiable by a customer or a supplier, and both move on a regulatory calendar rather than a market one."
+      },
+      {
+        title: "What a supplier can and cannot touch",
+        body: "A competitive supplier replaces the supply side of the bill and nothing on the delivery side, which is why a customer who switches sees the generation line change and the delivery block stay identical. Delivery is commonly 30 to 50 percent of a commercial invoice, so a supply rate that looks like a large percentage saving is a considerably smaller percentage of the total bill. The one place supplier-side work reaches delivery is indirect: shaving peak demand lowers the demand charge, and in capacity markets it lowers next year's capacity obligation as well."
+      }
+    ],
+    takeaway: "Delivery charges are set by regulators, apply uniformly across a rate class, and survive a supplier switch untouched. Knowing that split is what keeps a savings number honest, because the supply line is the only part of the invoice competition actually reaches."
+  },
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -489,7 +506,8 @@ const SEED = {
     { term: "Weather Normalization Adjustment (WNA)", category: "Bill Components", definition: "A utility mechanism that adjusts delivery charges up or down to remove the effect of unusually warm or cold weather, stabilizing utility revenue and smoothing customer bills across seasons." },
     { term: "Blend and Extend", category: "Contract Terms", definition: "A renegotiation that merges the remaining term of an existing supply contract into a new, longer agreement at a single averaged rate -- lowering the near-term price while carrying the original position's above-market cost into the extended term." },
     { term: "Cash-Out", category: "Gas Supply", definition: "The settlement a pipeline applies when a shipper's delivered gas does not match actual customer usage, priced at a punitive index that penalizes both shortfalls and overdeliveries." },
-    { term: "Ancillary Services", category: "Power Markets", definition: "Reserve, frequency regulation, and voltage support products that a grid operator procures alongside energy to keep the system balanced second to second; their cost is passed through to retail supply rates." }
+    { term: "Ancillary Services", category: "Power Markets", definition: "Reserve, frequency regulation, and voltage support products that a grid operator procures alongside energy to keep the system balanced second to second; their cost is passed through to retail supply rates." },
+    { term: "Firm Transportation (FT)", category: "Gas Supply", definition: "Pipeline capacity a shipper reserves and pays a demand charge for year-round, which the pipeline cannot curtail when the system is constrained. Contrasts with interruptible capacity, which is cheaper but first to be cut on peak days." }
   ]
 };
 
