@@ -367,7 +367,10 @@ body {
 //   How Summer Heat Waves Drive Real-Time Electricity Price Spikes and What That Means for Commercial Customer Changes,
 //   How Mid-August System Peaks Set Next Year's Capacity Costs,
 //   How Historical Usage Data Shapes a Supplier's Quote and Why Missing Months Raise the Price,
-//   How Suppliers Protect Themselves from Market Moves,
+//   How the Midday Solar Ramp Reshapes ERCOT's Daily Price Curve,
+//   Why Record Production Can Push Gas Prices Down Even During a Heat Wave,
+//   How Load Profiling Estimates When Non-Interval Customers Use Power,
+//   Why a Quoted Rate Expires in Days: How Quote Validity Windows Protect Suppliers from Market Moves,
 //   How a Utility Rate Case Resets Delivery Charges and Why Switching Suppliers Never Changes Them,
 //   Why the Final Weeks of Injection Season Set the Tone for Winter Gas Prices,
 //   How Sales Tax Exemptions Work on Commercial Energy Bills and Why Manufacturers Often Overpay,
@@ -377,7 +380,7 @@ body {
 //   How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules,
 //   Why Suppliers Quote a Different Rate for Every Contract Length and Why Longer Is Not Always More Expensive,
 //   Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers,
-//   Why the Solar Ramp Has Made ERCOT's Cheapest and Riskiest Hours Only a Few Hours Apart
+//   How a Grid Operator Decides Which Plants Run Each Hour and Why the Last One Sets the Price for Everyone
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -418,8 +421,8 @@ const SEED = {
     }
   ],
   knowledgeBuilder: {
-    topic: "Why the Solar Ramp Has Made ERCOT's Cheapest and Riskiest Hours Only a Few Hours Apart",
-    tldr: "As Texas solar capacity has grown, midday has become structurally cheap: this morning the hub average fell from $41.67 at 0730 to $23.14 by 0930 purely because the sun came up, not because load dropped. The risk moved to the late-afternoon hours when solar output falls faster than demand does, which is why a customer on real-time pricing can see a very low daily average and still take almost all of its cost in three or four hours."
+    topic: "How a Grid Operator Decides Which Plants Run Each Hour and Why the Last One Sets the Price for Everyone",
+    tldr: "A grid operator stacks available generation from cheapest to most expensive and dispatches up that stack until supply meets demand; the final unit needed sets the clearing price paid to every generator in the interval. That is why a market with gas near $2.85 can clear at $23/MWh when solar is filling the middle of the stack, and clear several times higher in the late afternoon when an inefficient peaker becomes the marginal unit."
   },
   procurementTip: "With storage above normal and the front month unable to hold $2.90, the near-term gas story is weather rather than supply, and the curve prices winter risk far more aggressively than the prompt.",
   priceHistory: {
