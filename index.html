@@ -337,14 +337,16 @@ body {
 </div>
 
 <script>
-// SEED verified September 18, 2026 (Friday)
-// Sources: EOX Live Morning Report 6:17 AM CST Sep 18: Nat Gas $2.854 (-$0.047, -1.62%, prev settle $2.901), WTI $100.65 (-$1.26, -1.24%), Brent $102.73 (-$2.09, -1.99%) |
-//          ERCOT CDR last updated Sep 18 10:17 -- HB_HUBAVG $23.41/MWh at the 1015 interval; overnight held near $30-34, morning peak $41.67 at 0730, then the solar ramp cut the hub average to $23.14 by 0930 (-44% in two hours) |
-//          PJM ComEd zone DA ~$46/MWh ESTIMATE -- no live PJM data returned by search this run (carried forward from Sep 17, which itself carried from Sep 15; three runs stale) |
-//          EIA storage wk/e Sep 11 (released Thu Sep 17): 3,298 Bcf, +44 Bcf build, 118 Bcf above the 5-yr average of 3,180 Bcf (+3.7%); next report wk/e Sep 18 due Thu Sep 24 |
-//          EPA finalized the Partial Repeal of the Carbon Pollution Standards for Fossil Fuel-Fired EGUs on Sep 14 (Administrator Zeldin); strikes the Jan 1, 2032 90% CCS requirement for new baseload gas turbines and the CCS standards for existing coal undertaking large modifications; 91 FR 58954 |
-//          EIA September STEO: end-October working gas forecast 3,969 Bcf, 5% above the 5-yr average; U.S. electricity sales 4,135 BkWh in 2026; gas generation +2% in 2026, coal generation -8% |
-//          Lower-48 September power burn running at its strongest start on record as summerlike heat lingers over the South; gas touched its highest since Sep 4 on Thu before easing Fri morning |
+// SEED verified September 24, 2026 (Thursday)
+// Sources: EOX Live Morning Report 6:17 AM CST Sep 24: Nat Gas $3.052 (+$0.029, +0.96%, prev settle $3.023), WTI $92.93 (+$0.77, +0.84%), Brent $104.35 (+$1.27, +1.23%) |
+//          Henry Hub spot $3.06/MMBtu (+1.24% d/d) per market data; front month up about 8.5% over the past month |
+//          ERCOT CDR Sep 24 -- HB_HUBAVG $64.83/MWh at the 1530 interval; overnight held $32-34, morning peak $36.98 at 0730, solar ramp took the hub to a $17.31 low at 1215, then the evening ramp lifted it to $64.83 by 1530; day average to that point $29.16 |
+//          PJM $27.28/MWh from search -- SYSTEM-WIDE figure, not a confirmed ComEd zone day-ahead print; replaces the stale $46 estimate carried from Sep 15-18 |
+//          EIA storage wk/e Sep 18 (released Thu Sep 24): 3,351 Bcf, +53 Bcf build, 95 Bcf above the 5-yr average of 3,256 Bcf (+2.9%), 146 Bcf below year-ago; surplus narrowed from +118 Bcf (+3.7%) a week earlier |
+//          Lower-48 dry gas output slipped toward an 11-week low near 109.8 Bcf/d; LNG feedgas 18.3 Bcf/d Wednesday per NGI Entropic Analytics, vs 17.2 Bcf/d average in August |
+//          Expand Energy (largest U.S. gas producer) said it expects power demand growth to arrive more slowly than consensus as local resistance to data centers builds, and sees LNG exports driving most of the industry's growth |
+//          EIA September STEO: U.S. electricity sales 4,135 BkWh in 2026 and 4,211 BkWh in 2027 |
+//          GAP NOTE: no brief published Sep 21, 22, or 23 -- the live file sat on the Sep 18 edition for four business days
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -358,7 +360,7 @@ body {
 //   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
 //   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming,
 //   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out, Ancillary Services,
-//   Firm Transportation (FT)
+//   Firm Transportation (FT), Weighted Average Cost of Gas (WACOG)
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -380,7 +382,8 @@ body {
 //   How LNG Export Terminals Compete with Domestic Buyers for the Same Gas Molecules,
 //   Why Suppliers Quote a Different Rate for Every Contract Length and Why Longer Is Not Always More Expensive,
 //   Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers,
-//   How a Grid Operator Decides Which Plants Run Each Hour and Why the Last One Sets the Price for Everyone
+//   How a Grid Operator Decides Which Plants Run Each Hour and Why the Last One Sets the Price for Everyone,
+//   Why the Weekly Storage Number Moves the Gas Curve Less Than the Surprise Against the Forecast
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -390,68 +393,51 @@ body {
 //   Anatomy of the Delivery Charges Section of a Commercial Electric Bill (Sep 18 -- Anatomy of a Bill)
 //   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Sep 25): category 2 -- Anatomy of a Contract Clause
 const SEED = {
-  date: "Friday, September 18, 2026",
+  date: "Thursday, September 24, 2026",
   meta: {
-    marketTakeaway: "Natural gas slipped 1.6% to $2.854/MMBtu this morning, giving back Thursday's move to a two-week high after EIA reported a 44 Bcf build that pushed inventories to 118 Bcf above the five-year average. Record-strong September power burn in the South is the main thing holding the front month above $2.80. WTI fell $1.26 to $100.65, and ERCOT's $41.67/MWh morning peak gave way to $23.41 once solar ramped in."
+    marketTakeaway: "Natural gas firmed to $3.05/MMBtu, up about 1% and roughly 8.5% higher over the past month, as Lower-48 output drifted toward an 11-week low near 109.8 Bcf/d and LNG feedgas ran at 18.3 Bcf/d. EIA reported a 53 Bcf injection that lifted inventories to 3,351 Bcf, but because the build came in light against normal, the storage surplus narrowed from 118 Bcf to 95 Bcf above the five-year average. ERCOT traced a textbook duck curve, falling to $17.31/MWh at midday before the evening ramp carried the hub average to $64.83."
   },
   prices: [
-    { name: "HH Spot", price: "$2.85", change: "-1.6%", direction: "down" },
-    { name: "NYMEX NG", price: "$2.85", change: "-1.6%", direction: "down" },
-    { name: "WTI Crude", price: "$100.65", change: "-1.2%", direction: "down" },
-    { name: "Brent Crude", price: "$102.73", change: "-2.0%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "$23.41", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.06", change: "+1.2%", direction: "up" },
+    { name: "NYMEX NG", price: "$3.05", change: "+1.0%", direction: "up" },
+    { name: "WTI Crude", price: "$92.93", change: "+0.8%", direction: "up" },
+    { name: "Brent Crude", price: "$104.35", change: "+1.2%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$64.83", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Firm Transportation",
-    abbr: "FT",
-    category: "Gas Supply",
-    tldr: "Pipeline capacity a shipper pays for year-round and cannot be cut when the system gets tight.",
-    usedInSentence: "Firm transportation is the reason two suppliers quoting the same building can land far apart in January: the one holding FT to that citygate already owns its path and prices the risk cheaply, while the one relying on released or interruptible capacity has to price in the days it may not get there at all."
+    term: "Weighted Average Cost of Gas",
+    abbr: "WACOG",
+    category: "Utility Rates",
+    tldr: "The blended cost of all the gas a utility bought, which sets its regulated supply rate.",
+    usedInSentence: "A utility does not buy gas at today's price, it buys all year and averages the cost, so a WACOG-based rate can still look cheap weeks after the market has run up -- and painfully expensive months after it has collapsed, which is why a competitive quote can win or lose on timing alone rather than on the quality of the offer."
   },
   headlines: [
     {
-      title: "EPA Finalizes Partial Repeal of Power Plant Carbon Standards, Dropping the 2032 Capture Deadline",
-      tag: "Regulation",
-      summary: "The rule strikes the 90% carbon capture requirement for new baseload gas turbines, removing a compliance cost developers had been pricing into new build."
+      title: "Storage Surplus Narrows to 95 Bcf as a Light 53 Bcf Build Meets an 11-Week Low in Production",
+      tag: "Storage",
+      summary: "Inventories reached 3,351 Bcf for the week ended September 18, trimming the surplus from 3.7% to 2.9% above the five-year average."
     },
     {
-      title: "Gas Storage Builds 44 Bcf, Widening the Surplus to 118 Bcf Above the Five-Year Average",
-      tag: "Storage",
-      summary: "Inventories reached 3,298 Bcf as of September 11, and EIA still forecasts 3,969 Bcf at the end of October, about 5% above normal."
+      title: "Expand Energy Sees LNG, Not Data Centers, Carrying the Next Leg of Gas Demand Growth",
+      tag: "Demand",
+      summary: "The largest U.S. gas producer expects power demand to build slower than consensus as local opposition to data centers grows."
     }
   ],
   knowledgeBuilder: {
-    topic: "How a Grid Operator Decides Which Plants Run Each Hour and Why the Last One Sets the Price for Everyone",
-    tldr: "A grid operator stacks available generation from cheapest to most expensive and dispatches up that stack until supply meets demand; the final unit needed sets the clearing price paid to every generator in the interval. That is why a market with gas near $2.85 can clear at $23/MWh when solar is filling the middle of the stack, and clear several times higher in the late afternoon when an inefficient peaker becomes the marginal unit."
+    topic: "Why the Weekly Storage Number Moves the Gas Curve Less Than the Surprise Against the Forecast",
+    tldr: "Traders position ahead of every Thursday storage release against a consensus estimate, so the headline injection is already in the price before it prints; what moves the market is the gap between the actual number and what was expected. Today's 53 Bcf build was an increase in absolute inventory, yet it still tightened the balance because it came in below what normal weather would produce, which is why gas rose on a report that technically added supply."
   },
-  procurementTip: "With storage above normal and the front month unable to hold $2.90, the near-term gas story is weather rather than supply, and the curve prices winter risk far more aggressively than the prompt.",
+  procurementTip: "Gas has climbed roughly 8.5% in a month on softening production rather than on weather, and that kind of supply-led move tends to hold longer than a heat-driven spike because it does not reverse when the forecast changes.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
-    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 2.87],
-    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 100.10],
+    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 3.05],
+    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 92.93],
     ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 29],
-    pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 46],
+    pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 27],
     miso:   [41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38, 39],
     nyiso:  [58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55, 56]
   },
-  deepDive: {
-    topic: "Anatomy of the Delivery Charges Section of a Commercial Electric Bill",
-    sections: [
-      {
-        title: "What the delivery block actually contains",
-        body: "The delivery side of a commercial bill usually breaks into four pieces: a flat <strong>customer charge</strong> for having a metered service point at all, a volumetric <strong>distribution charge</strong> per kWh for the local wires, a <strong>transmission charge</strong> for the high-voltage system that moved the power into the utility's territory, and a <strong>demand charge</strong> set by the single highest 15- or 30-minute interval in the billing period. The first three are predictable, scaling with either nothing or total consumption. The demand charge is the one that surprises people, because one unusually heavy quarter hour sets the number for the entire month."
-      },
-      {
-        title: "Who sets these numbers",
-        body: "Distribution rates and the customer charge come out of a state rate case, where the utility files a revenue requirement and the commission approves tariffed rates that apply identically to every customer in a rate class. Transmission charges are largely federal, set through FERC-approved formula rates that true up annually as transmission owners spend on new lines. Neither number is negotiable by a customer or a supplier, and both move on a regulatory calendar rather than a market one."
-      },
-      {
-        title: "What a supplier can and cannot touch",
-        body: "A competitive supplier replaces the supply side of the bill and nothing on the delivery side, which is why a customer who switches sees the generation line change and the delivery block stay identical. Delivery is commonly 30 to 50 percent of a commercial invoice, so a supply rate that looks like a large percentage saving is a considerably smaller percentage of the total bill. The one place supplier-side work reaches delivery is indirect: shaving peak demand lowers the demand charge, and in capacity markets it lowers next year's capacity obligation as well."
-      }
-    ],
-    takeaway: "Delivery charges are set by regulators, apply uniformly across a rate class, and survive a supplier switch untouched. Knowing that split is what keeps a savings number honest, because the supply line is the only part of the invoice competition actually reaches."
-  },
+  deepDive: null,
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -510,7 +496,8 @@ const SEED = {
     { term: "Blend and Extend", category: "Contract Terms", definition: "A renegotiation that merges the remaining term of an existing supply contract into a new, longer agreement at a single averaged rate -- lowering the near-term price while carrying the original position's above-market cost into the extended term." },
     { term: "Cash-Out", category: "Gas Supply", definition: "The settlement a pipeline applies when a shipper's delivered gas does not match actual customer usage, priced at a punitive index that penalizes both shortfalls and overdeliveries." },
     { term: "Ancillary Services", category: "Power Markets", definition: "Reserve, frequency regulation, and voltage support products that a grid operator procures alongside energy to keep the system balanced second to second; their cost is passed through to retail supply rates." },
-    { term: "Firm Transportation (FT)", category: "Gas Supply", definition: "Pipeline capacity a shipper reserves and pays a demand charge for year-round, which the pipeline cannot curtail when the system is constrained. Contrasts with interruptible capacity, which is cheaper but first to be cut on peak days." }
+    { term: "Firm Transportation (FT)", category: "Gas Supply", definition: "Pipeline capacity a shipper reserves and pays a demand charge for year-round, which the pipeline cannot curtail when the system is constrained. Contrasts with interruptible capacity, which is cheaper but first to be cut on peak days." },
+    { term: "Weighted Average Cost of Gas (WACOG)", category: "Utility Rates", definition: "The blended per-unit cost of all the natural gas a utility has purchased and stored, used to set its regulated gas supply rate. Because it averages months of buying, it lags the market in both directions -- cheap-looking after a rally, expensive-looking after a selloff." }
   ]
 };
 
