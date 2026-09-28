@@ -337,13 +337,15 @@ body {
 </div>
 
 <script>
-// SEED verified September 25, 2026 (Friday)
-// Sources: EOX Live Morning Report 6:21 AM CST Sep 25: Nat Gas $3.173 (-$0.124, -3.76%, prev settle $3.297), WTI $92.95 (-$1.66, -1.75%), Brent $105.52 (-$1.08, -1.01%) |
-//          ERCOT CDR Sep 25 -- HB_HUBAVG $20.47/MWh at the 1015 interval; overnight held $38-39, then the solar ramp cut the hub average to roughly $20 through the 0930-1015 intervals (-48% from the overnight level) |
-//          PJM: no usable day-ahead print returned by search this run -- priceHistory pjm carried forward at 40; not shown in the price strip |
-//          EIA storage wk/e Sep 18 (released Thu Sep 24): 3,351 Bcf, +53 Bcf build, 95 Bcf above the 5-yr average (surplus narrowed from +118 Bcf a week earlier), 146 Bcf below year-ago |
-//          TC Energy's Columbia Gas Transmission declared force majeure in West Virginia on an unexpected mechanical issue; the outage drove the biggest single-day gain in gas since January and a 13-week high on Thu, with Fri giving back 3.8% on profit-taking |
-//          Lower-48 September production near record at about 112.8 Bcf/d on average, though daily output has been slipping on Louisiana and West Virginia declines
+// SEED verified September 28, 2026 (Monday)
+// Sources: EOX Live Morning Report 6:51 AM CST Sep 28: Nat Gas $3.065 (-$0.131, -4.10%, prev settle $3.196), WTI $95.77 (+$3.36, +3.64%), Brent $107.81 (+$3.49, +3.35%) |
+//          ERCOT CDR Sep 28 -- HB_HUBAVG $27.60/MWh at the 0900 interval; morning peak $53.78 at 0745, then the solar ramp cut the hub average roughly in half by 0900 |
+//          PJM: no usable day-ahead print returned by search this run -- priceHistory pjm carried forward at 40; not shown in the price strip (fourth consecutive run without live PJM data) |
+//          EIA storage wk/e Sep 18 (released Thu Sep 24): 3,351 Bcf, +53 Bcf build, 95 Bcf above the 5-yr average of 3,256 Bcf, 146 Bcf below year-ago; next report wk/e Sep 25 due Thu Oct 1 |
+//          Trump rejected Iran's proposal to reopen the Strait of Hormuz in exchange for lifting the naval blockade, unfreezing assets and ending the war; Brent climbed back above $106 and WTI above $94 on the news |
+//          Gas gave back last week's Columbia Gas Transmission force majeure premium as the West Virginia outage risk faded; LNG feedgas to the nine major export plants averaged 17.8 Bcf/d in September vs 17.2 Bcf/d in August |
+//          EIA September STEO: end-October working gas forecast 3,969 Bcf, 5% above the 5-yr average
+// NOTE: raw.githubusercontent.com again served a stale copy (Sep 18 SEED) on this run; the Sep 25 file was read via the GitHub Contents API instead. Sep 21, 22 and 23 runs did not publish.
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -357,7 +359,8 @@ body {
 //   Purchase of Receivables (POR), Renewable Energy Certificate (REC), Letter of Authorization (LOA),
 //   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming,
 //   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out, Ancillary Services,
-//   Firm Transportation (FT), Weighted Average Cost of Gas (WACOG), Operational Flow Order (OFO)
+//   Firm Transportation (FT), Weighted Average Cost of Gas (WACOG), Operational Flow Order (OFO),
+//   Gross Receipts Tax (GRT)
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -381,7 +384,8 @@ body {
 //   Why a Gas Bill Reflects Last Month's Market and How the Timing Lag Confuses Index Customers,
 //   How a Grid Operator Decides Which Plants Run Each Hour and Why the Last One Sets the Price for Everyone,
 //   Why the Weekly Storage Number Moves the Gas Curve Less Than the Surprise Against the Forecast,
-//   Why Shoulder Season Pipeline Maintenance and Outages Move Gas Prices More Than the Lost Volume Suggests
+//   Why Shoulder Season Pipeline Maintenance and Outages Move Gas Prices More Than the Lost Volume Suggests,
+//   How a Meter Read Cycle Decides Which Month's Rate Lands on a Customer's Bill
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -392,68 +396,43 @@ body {
 //   The Force Majeure Clause (Sep 25 -- Anatomy of a Contract Clause)
 //   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Oct 2): category 3 -- What Happens When
 const SEED = {
-  date: "Friday, September 25, 2026",
+  date: "Monday, September 28, 2026",
   meta: {
-    marketTakeaway: "Natural gas fell 3.8% to $3.173/MMBtu this morning, giving back part of Thursday's surge after TC Energy's Columbia Gas Transmission declared force majeure in West Virginia -- an outage that produced the biggest single-day gain in gas since January and a 13-week high. Thursday's EIA report showed a 53 Bcf build, narrowing the storage surplus to 95 Bcf above the five-year average from 118 Bcf a week earlier. WTI eased $1.66 to $92.95, and ERCOT's hub average slid from $38-39 overnight to $20.47 once solar ramped."
+    marketTakeaway: "Natural gas fell 4.1% to $3.065/MMBtu as the premium built into last week's Columbia Gas force majeure drained back out and traders refocused on a storage surplus sitting 95 Bcf above the five-year average. Crude went the other way: WTI jumped 3.6% to $95.77 and Brent 3.4% to $107.81 after the White House rejected Iran's terms for reopening the Strait of Hormuz. ERCOT opened firm at $53.78/MWh before the solar ramp cut the hub average to $27.60 by 9 a.m."
   },
   prices: [
-    { name: "HH Spot", price: "$3.17", change: "-3.8%", direction: "down" },
-    { name: "NYMEX NG", price: "$3.17", change: "-3.8%", direction: "down" },
-    { name: "WTI Crude", price: "$92.95", change: "-1.8%", direction: "down" },
-    { name: "Brent Crude", price: "$105.52", change: "-1.0%", direction: "down" },
-    { name: "ERCOT RT Hub", price: "$20.47", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.07", change: "-4.1%", direction: "down" },
+    { name: "NYMEX NG", price: "$3.07", change: "-4.1%", direction: "down" },
+    { name: "WTI Crude", price: "$95.77", change: "+3.6%", direction: "up" },
+    { name: "Brent Crude", price: "$107.81", change: "+3.4%", direction: "up" },
+    { name: "ERCOT RT Hub", price: "$27.60", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Operational Flow Order",
-    abbr: "OFO",
-    category: "Gas Supply",
-    tldr: "A pipeline directive requiring shippers to match deliveries to usage tightly, with steep penalties for missing.",
-    usedInSentence: "When a mechanical failure takes capacity out of service, the pipeline often issues an operational flow order, and a customer whose supplier was running a loose imbalance all month suddenly faces penalty pricing on the exact days the market is most expensive."
+    term: "Gross Receipts Tax",
+    abbr: "GRT",
+    category: "Bill Components",
+    tldr: "A state tax on an energy seller's revenue, passed to the customer as a percentage of the bill.",
+    usedInSentence: "Because GRT applies to the whole bill rather than to kWh, a customer who cuts usage sees the tax shrink proportionally, and a supplier quote that excludes it will always look cheaper than one that folds it in."
   },
   headlines: [
-    {
-      title: "Columbia Gas Force Majeure in West Virginia Drives Biggest One-Day Gas Gain Since January",
-      tag: "Supply",
-      summary: "An unexpected mechanical issue on TC Energy's Appalachian system pushed the front month to a 13-week high before Friday profit-taking pared the move."
-    },
-    {
-      title: "Storage Builds 53 Bcf as the Five-Year Surplus Narrows to 95 Bcf",
-      tag: "Storage",
-      summary: "Inventories reached 3,351 Bcf for the week ended September 18, with late-season heat trimming the cushion from 118 Bcf a week earlier."
-    }
+    { title: "Oil Surges After Trump Rejects Iran's Strait of Hormuz Proposal", tag: "Crude", summary: "Brent climbed back above $106 and WTI above $94 after the White House turned down Tehran's offer to reopen the waterway in exchange for lifting the blockade." },
+    { title: "Gas Slides 4% as Columbia Gas Outage Premium Unwinds", tag: "Natural Gas", summary: "Last week's force majeure in West Virginia drove a 13-week high; with the outage risk fading, the front month gave the move back despite record September LNG feedgas." }
   ],
   knowledgeBuilder: {
-    topic: "Why Shoulder Season Pipeline Maintenance and Outages Move Gas Prices More Than the Lost Volume Suggests",
-    tldr: "Fall is when pipelines schedule the work they cannot do in winter, and an outage that removes a modest slice of capacity can still reprice a region because the gas behind it has nowhere else to go on short notice. The market reacts less to the Bcf lost today than to what the outage implies about deliverability if it is still unresolved when heating demand arrives."
+    topic: "How a Meter Read Cycle Decides Which Month's Rate Lands on a Customer's Bill",
+    tldr: "A utility reads each meter on its own cycle date, not on the first of the month, so a bill labeled September often covers usage from mid-August to mid-September. When a contract starts or a rate changes mid-cycle, the utility splits the period and prorates, which is why a customer's first invoice under a new supply deal rarely matches the quoted rate cleanly."
   },
-  procurementTip: "A single Appalachian outage moving the national front month nearly 10 percent in a day is a reminder that with storage comfortable, the gas market is now trading deliverability rather than supply.",
+  procurementTip: "With the front month back near $3.05 and the storage surplus intact, the gas curve is being set by inventory rather than by weather -- the opposite of the setup that drove last week's spike.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
-    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 3.00],
-    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 95.40],
+    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 3.07],
+    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 95.77],
     ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 28],
     pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 40],
     miso:   [41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38, 37],
     nyiso:  [58, 44, 55, 72, 88, 78, 52, 45, 62, 59, 72, 55, 54]
   },
-  deepDive: {
-    topic: "The Force Majeure Clause",
-    sections: [
-      {
-        title: "What the clause actually says",
-        body: "A force majeure provision excuses a party from performing when an event outside its reasonable control makes performance impossible -- a pipeline rupture, a hurricane, a compressor station failure, a regulatory order. Most retail supply agreements define it by listing qualifying events and then adding a catch-all, and nearly all of them carve out one thing explicitly: <strong>the obligation to pay for gas or power already delivered is never excused</strong>. Economic hardship is also carved out, so a supplier that simply finds the contract unprofitable cannot invoke it."
-      },
-      {
-        title: "Why suppliers insist on it",
-        body: "A retail supplier has promised a fixed price on volume it does not own outright; it owns contracts to acquire that volume through specific pipelines and delivery points. When an upstream event severs that path, the supplier's own supply agreements are typically excused first, and without a matching clause downstream it would be left buying replacement molecules at panic prices to serve a rate signed months earlier. The clause pushes that tail risk back to the customer rather than pricing it into every quote."
-      },
-      {
-        title: "How it plays out in practice",
-        body: "Invocation is rarer than the clause's prominence suggests, and when it happens the practical result is usually partial: the supplier serves what it can and the customer buys the shortfall at the utility's or the market's price for the affected days. The details that matter are in the mechanics -- how quickly notice must be given, whether the customer may terminate if the event runs past a stated number of days, and whether the term extends by the length of the outage. The Columbia Gas event this week is the ordinary version of this: force majeure declared upstream, prices spike for a day, and nothing reaches the retail contract at all."
-      }
-    ],
-    takeaway: "Force majeure is not a general escape hatch; it is a narrow allocation of who eats the cost when physical delivery becomes impossible. What makes one version of the clause better than another is the notice mechanics and the customer's right to exit if the disruption drags on."
-  },
+  deepDive: null,
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -514,7 +493,8 @@ const SEED = {
     { term: "Ancillary Services", category: "Power Markets", definition: "Reserve, frequency regulation, and voltage support products that a grid operator procures alongside energy to keep the system balanced second to second; their cost is passed through to retail supply rates." },
     { term: "Firm Transportation (FT)", category: "Gas Supply", definition: "Pipeline capacity a shipper reserves and pays a demand charge for year-round, which the pipeline cannot curtail when the system is constrained. Contrasts with interruptible capacity, which is cheaper but first to be cut on peak days." },
     { term: "Weighted Average Cost of Gas (WACOG)", category: "Utility Rates", definition: "The blended per-unit cost of all the natural gas a utility has purchased and stored, used to set its regulated gas supply rate. Because it averages months of buying, it lags the market in both directions -- cheap-looking after a rally, expensive-looking after a selloff." },
-    { term: "Operational Flow Order (OFO)", category: "Gas Supply", definition: "A directive a pipeline or utility issues when the system is constrained, requiring shippers to keep deliveries closely matched to actual usage for the duration. Imbalances that are tolerated in normal operation are penalized at punitive rates while an OFO is in effect." }
+    { term: "Operational Flow Order (OFO)", category: "Gas Supply", definition: "A directive a pipeline or utility issues when the system is constrained, requiring shippers to keep deliveries closely matched to actual usage for the duration. Imbalances that are tolerated in normal operation are penalized at punitive rates while an OFO is in effect." },
+    { term: "Gross Receipts Tax (GRT)", category: "Bill Components", definition: "A state tax levied on a utility or supplier's revenue from energy sales, usually passed through to the customer as a percentage of the total bill rather than a per-unit charge." }
   ]
 };
 
