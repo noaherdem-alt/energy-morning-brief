@@ -337,15 +337,16 @@ body {
 </div>
 
 <script>
-// SEED verified September 28, 2026 (Monday)
-// Sources: EOX Live Morning Report 6:51 AM CST Sep 28: Nat Gas $3.065 (-$0.131, -4.10%, prev settle $3.196), WTI $95.77 (+$3.36, +3.64%), Brent $107.81 (+$3.49, +3.35%) |
-//          ERCOT CDR Sep 28 -- HB_HUBAVG $27.60/MWh at the 0900 interval; morning peak $53.78 at 0745, then the solar ramp cut the hub average roughly in half by 0900 |
-//          PJM: no usable day-ahead print returned by search this run -- priceHistory pjm carried forward at 40; not shown in the price strip (fourth consecutive run without live PJM data) |
-//          EIA storage wk/e Sep 18 (released Thu Sep 24): 3,351 Bcf, +53 Bcf build, 95 Bcf above the 5-yr average of 3,256 Bcf, 146 Bcf below year-ago; next report wk/e Sep 25 due Thu Oct 1 |
-//          Trump rejected Iran's proposal to reopen the Strait of Hormuz in exchange for lifting the naval blockade, unfreezing assets and ending the war; Brent climbed back above $106 and WTI above $94 on the news |
-//          Gas gave back last week's Columbia Gas Transmission force majeure premium as the West Virginia outage risk faded; LNG feedgas to the nine major export plants averaged 17.8 Bcf/d in September vs 17.2 Bcf/d in August |
-//          EIA September STEO: end-October working gas forecast 3,969 Bcf, 5% above the 5-yr average
-// NOTE: raw.githubusercontent.com again served a stale copy (Sep 18 SEED) on this run; the Sep 25 file was read via the GitHub Contents API instead. Sep 21, 22 and 23 runs did not publish.
+// SEED verified September 29, 2026 (Tuesday)
+// Sources: EOX Live Morning Report 6:33 AM CST Sep 29: Nat Gas $3.086 (+$0.086, +2.87%, prev settle $3.000), WTI $91.85 (-$0.75, -0.81%), Brent $104.56 (-$0.72, -0.68%) |
+//          ERCOT CDR Sep 29 -- HB_HUBAVG $27.51/MWh at the 0900 interval; morning peak $48.50 at 0745, then the solar ramp cut the hub average by roughly 43% in 75 minutes |
+//          Henry Hub spot approximately $3.11/MMBtu per market data, essentially flat day over day |
+//          PJM: no usable day-ahead print returned by search this run and the ComEd hourly page was not reachable -- priceHistory pjm carried forward at 40; not shown in the price strip (fifth consecutive run without live PJM data) |
+//          EIA storage wk/e Sep 18 (released Thu Sep 24): 3,351 Bcf, +53 Bcf build, 95 Bcf above the 5-yr average of 3,256 Bcf, 146 Bcf below year-ago; no new report today, next (wk/e Sep 25) due Thu Oct 1 |
+//          October NYMEX gas contract expired Mon Sep 28; November is now the front month and sat only about $0.055 above October, so the roll was muted |
+//          TC Energy resolved the Mountaineer Xpress / TCO failure, erasing the outage risk premium; roughly 700,000 Dth reportedly still offline and not reaching the Gulf |
+//          LNG tankers including QatarEnergy-linked vessels reported moving outside the Strait of Hormuz; EU gas fell 1.39% to EUR 72.23/MWh on Sep 29, trimming Monday's crude surge |
+//          NOTE: raw.githubusercontent.com served a stale Sep 18 copy again this run; current file was read via the GitHub Contents API instead
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -360,7 +361,7 @@ body {
 //   Utility Consolidated Billing (UCB), Heat Rate, Nomination, Take-or-Pay, Backwardation, Slamming,
 //   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out, Ancillary Services,
 //   Firm Transportation (FT), Weighted Average Cost of Gas (WACOG), Operational Flow Order (OFO),
-//   Gross Receipts Tax (GRT)
+//   Gross Receipts Tax (GRT), Line Loss Factor (LLF)
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -385,7 +386,8 @@ body {
 //   How a Grid Operator Decides Which Plants Run Each Hour and Why the Last One Sets the Price for Everyone,
 //   Why the Weekly Storage Number Moves the Gas Curve Less Than the Surprise Against the Forecast,
 //   Why Shoulder Season Pipeline Maintenance and Outages Move Gas Prices More Than the Lost Volume Suggests,
-//   How a Meter Read Cycle Decides Which Month's Rate Lands on a Customer's Bill
+//   How a Meter Read Cycle Decides Which Month's Rate Lands on a Customer's Bill,
+//   Why the Front-Month Gas Contract Changes Every Month and What the Roll Does to a Quoted Price
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -396,37 +398,45 @@ body {
 //   The Force Majeure Clause (Sep 25 -- Anatomy of a Contract Clause)
 //   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Oct 2): category 3 -- What Happens When
 const SEED = {
-  date: "Monday, September 28, 2026",
+  date: "Tuesday, September 29, 2026",
   meta: {
-    marketTakeaway: "Natural gas fell 4.1% to $3.065/MMBtu as the premium built into last week's Columbia Gas force majeure drained back out and traders refocused on a storage surplus sitting 95 Bcf above the five-year average. Crude went the other way: WTI jumped 3.6% to $95.77 and Brent 3.4% to $107.81 after the White House rejected Iran's terms for reopening the Strait of Hormuz. ERCOT opened firm at $53.78/MWh before the solar ramp cut the hub average to $27.60 by 9 a.m."
+    marketTakeaway: "Natural gas opened at $3.086/MMBtu, up 2.9% against a $3.000 prior settle, as November took over as the front month and the last of the Mountaineer Xpress outage premium came out of the price. Crude gave back part of Monday's Hormuz-driven surge, with WTI off $0.75 to $91.85 and Brent down to $104.56, after LNG tankers were reported moving outside the strait again. ERCOT peaked at $48.50/MWh at 7:45 a.m. before the solar ramp pulled the hub average down to $27.51 by 9:00."
   },
   prices: [
-    { name: "HH Spot", price: "$3.07", change: "-4.1%", direction: "down" },
-    { name: "NYMEX NG", price: "$3.07", change: "-4.1%", direction: "down" },
-    { name: "WTI Crude", price: "$95.77", change: "+3.6%", direction: "up" },
-    { name: "Brent Crude", price: "$107.81", change: "+3.4%", direction: "up" },
-    { name: "ERCOT RT Hub", price: "$27.60", change: "", direction: "neutral" }
+    { name: "HH Spot", price: "$3.11", change: "0.0%", direction: "neutral" },
+    { name: "NYMEX NG", price: "$3.09", change: "+2.9%", direction: "up" },
+    { name: "WTI Crude", price: "$91.85", change: "-0.8%", direction: "down" },
+    { name: "Brent Crude", price: "$104.56", change: "-0.7%", direction: "down" },
+    { name: "ERCOT RT Hub", price: "$27.51", change: "", direction: "neutral" }
   ],
   wordOfDay: {
-    term: "Gross Receipts Tax",
-    abbr: "GRT",
-    category: "Bill Components",
-    tldr: "A state tax on an energy seller's revenue, passed to the customer as a percentage of the bill.",
-    usedInSentence: "Because GRT applies to the whole bill rather than to kWh, a customer who cuts usage sees the tax shrink proportionally, and a supplier quote that excludes it will always look cheaper than one that folds it in."
+    term: "Line Loss Factor",
+    abbr: "LLF",
+    category: "Power Markets",
+    tldr: "The extra volume a supplier must buy because some energy disappears as heat between the generator and the meter.",
+    usedInSentence: "A rate quoted at the meter and a rate quoted at the delivery point are not the same number, because the second one already carries the line loss factor -- which is how a headline price that looks a fraction of a cent cheaper can end up costing more once the utility grosses the volumes up."
   },
   headlines: [
-    { title: "Oil Surges After Trump Rejects Iran's Strait of Hormuz Proposal", tag: "Crude", summary: "Brent climbed back above $106 and WTI above $94 after the White House turned down Tehran's offer to reopen the waterway in exchange for lifting the blockade." },
-    { title: "Gas Slides 4% as Columbia Gas Outage Premium Unwinds", tag: "Natural Gas", summary: "Last week's force majeure in West Virginia drove a 13-week high; with the outage risk fading, the front month gave the move back despite record September LNG feedgas." }
+    {
+      title: "LNG Tankers Reappear Outside Hormuz, Pulling European Gas Back Toward 72 Euros",
+      tag: "Global Gas",
+      summary: "Reported QatarEnergy-linked vessel movement near the strait eased supply fears, sending EU gas down 1.4% and trimming Monday's crude surge."
+    },
+    {
+      title: "Gas Gains 2.9% as November Takes Over as the Front Month",
+      tag: "Futures",
+      summary: "October expired Monday with November only about five cents above it, leaving the roll muted while record September production caps the upside."
+    }
   ],
   knowledgeBuilder: {
-    topic: "How a Meter Read Cycle Decides Which Month's Rate Lands on a Customer's Bill",
-    tldr: "A utility reads each meter on its own cycle date, not on the first of the month, so a bill labeled September often covers usage from mid-August to mid-September. When a contract starts or a rate changes mid-cycle, the utility splits the period and prorates, which is why a customer's first invoice under a new supply deal rarely matches the quoted rate cleanly."
+    topic: "Why the Front-Month Gas Contract Changes Every Month and What the Roll Does to a Quoted Price",
+    tldr: "Natural gas futures stop trading a few business days before the delivery month begins, so the front month everyone quotes off becomes a different contract after each expiry -- October went off the board Monday and November took its place. When the incoming month sits close to the outgoing one, as it does now at roughly five cents apart, the handoff barely moves the screen; when the spread is wide, a customer can watch a quote jump overnight with no news behind it at all."
   },
-  procurementTip: "With the front month back near $3.05 and the storage surplus intact, the gas curve is being set by inventory rather than by weather -- the opposite of the setup that drove last week's spike.",
+  procurementTip: "With inventories 95 Bcf above the five-year average and the front month freshly rolled, the prompt price is saying very little about a winter quote -- the November-through-March strip is where the risk is actually being priced.",
   priceHistory: {
     labels: ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26","May '26","Jun '26","Jul '26","Aug '26","Sep '26"],
-    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 3.07],
-    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 95.77],
+    natGas: [2.95, 3.15, 3.45, 4.20, 4.65, 4.10, 3.45, 2.77, 2.94, 3.26, 2.80, 2.87, 3.09],
+    wti:    [71.85, 74.20, 78.35, 81.50, 83.20, 85.40, 87.10, 89.30, 91.85, 74.10, 85.00, 83.15, 91.85],
     ercot:  [40, 28, 32, 42, 55, 45, 30, 27, 38, 45, 55, 32, 28],
     pjm:    [45, 35, 42, 55, 68, 58, 40, 36, 50, 44, 58, 45, 40],
     miso:   [41, 29, 35, 48, 61, 52, 32, 27, 44, 36, 50, 38, 37],
@@ -494,7 +504,8 @@ const SEED = {
     { term: "Firm Transportation (FT)", category: "Gas Supply", definition: "Pipeline capacity a shipper reserves and pays a demand charge for year-round, which the pipeline cannot curtail when the system is constrained. Contrasts with interruptible capacity, which is cheaper but first to be cut on peak days." },
     { term: "Weighted Average Cost of Gas (WACOG)", category: "Utility Rates", definition: "The blended per-unit cost of all the natural gas a utility has purchased and stored, used to set its regulated gas supply rate. Because it averages months of buying, it lags the market in both directions -- cheap-looking after a rally, expensive-looking after a selloff." },
     { term: "Operational Flow Order (OFO)", category: "Gas Supply", definition: "A directive a pipeline or utility issues when the system is constrained, requiring shippers to keep deliveries closely matched to actual usage for the duration. Imbalances that are tolerated in normal operation are penalized at punitive rates while an OFO is in effect." },
-    { term: "Gross Receipts Tax (GRT)", category: "Bill Components", definition: "A state tax levied on a utility or supplier's revenue from energy sales, usually passed through to the customer as a percentage of the total bill rather than a per-unit charge." }
+    { term: "Gross Receipts Tax (GRT)", category: "Bill Components", definition: "A state tax levied on a utility or supplier's revenue from energy sales, usually passed through to the customer as a percentage of the total bill rather than a per-unit charge." },
+    { term: "Line Loss Factor (LLF)", category: "Power Markets", definition: "The share of electricity lost as heat on transmission and distribution wires between the generator and the customer's meter. A supplier has to buy more energy than the meter records, and that gross-up is built into the quoted rate." }
   ]
 };
 
