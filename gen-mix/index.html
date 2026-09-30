@@ -144,40 +144,40 @@ body {
 //          NYISO: hydro supporting, nuclear baseload high, gas moderate |
 //          Week-over-week deltas are zero on first run (no prior week seeded) |
 const SEED = {
-  date: "Thursday, September 17, 2026",
+  date: "Wednesday, September 30, 2026",
   callout: {
-    text: "PJM is the story today: a Maximum Generation Alert and Load Management Alert are in effect with load forecast to peak at 133,355 MW, driven by unusually warm September weather colliding with over 35,000 MW of planned maintenance-season generation outages — more than 16,000 MW above the July peak-heat outage level. PJM also secured a DOE emergency order through Sept. 18 for environmental permit relief and authority to shift large loads to backup generation."
+    text: "ERCOT wind is expected to average 13.49 GW this week — just above the five-year band and up roughly 47% from last week's 9.18 GW — pushing wind past solar as the zone's largest renewable source and displacing about 4.6 GW of gas burn."
   },
-  weekRecap: "Henry Hub rose to $2.92/MMBtu after EIA reported a 44 Bcf storage injection for the week ended Sept. 11, well below the 87 Bcf year-ago build and the 74 Bcf five-year average, as late-season cooling demand ate into supply; inventories stand at 3.298 Tcf, 3.7% above the five-year average. MISO declared Conservative Operations with marginal energy cost spiking to $285/MWh on very weak wind. ERCOT is running comfortably by comparison, with roughly 17,000 MW of operating reserves at the afternoon peak.",
-  narrative: "Late-season heat is stressing the eastern ISOs while the renewable-heavy west absorbs it — <strong>PJM</strong> is under a Maximum Generation Alert with maintenance outages tightening supply, and <strong>MISO</strong> is leaning on coal at 32% because wind collapsed to just 3%, which is what drove its marginal cost spike. <strong>ERCOT</strong> shows the contrast with solar at 28% and wind at 9% covering more than a third of the afternoon peak, while <strong>NYISO</strong> remains the outlier on fuel type, with gas and dual-fuel units combined at about 65% and hydro steady near 22%.",
+  weekRecap: "Henry Hub traded near $3.11/MMBtu on Sept 29, up from about $2.93 a week earlier as softer supply and firm power burn tightened the spot market heading into fall. ERCOT's weekly average load eased to 66.6 GW from 68.55 GW, still running 9% above year-ago levels (4.5% after temperature adjustment) on continued demand growth. Strong Texas wind and wet weather are expected to keep ERCOT real-time prices soft through the end of the week.",
+  narrative: "Shoulder-season load has pulled gas down the stack across the board: <strong>ERCOT</strong> gas burn falls to roughly 30 GW as wind climbs above its five-year band, and <strong>MISO</strong> follows the same pattern with autumn wind taking share from coal. <strong>PJM</strong> leans harder on nuclear as mild temperatures unwind the coal-and-gas dual dispatch that carried the summer, while <strong>NYISO</strong> remains the least gas-dependent of the four on its nuclear and hydro base.",
   isos: [
     {
       name: "ERCOT",
-      loadGW: 83,
-      loadNote: "afternoon peak, reserves ample",
-      mix:     { gas: 44, nuclear: 6, wind: 9, solar: 28, coal: 13, hydro: 0, other: 0 },
-      prevMix: { gas: 40, nuclear: 8, wind: 22, solar: 18, coal: 8, hydro: 0, other: 4 }
+      loadGW: 67,
+      loadNote: "mild load, high wind",
+      mix:     { gas: 46, nuclear: 7,  wind: 20, solar: 14, coal: 12, hydro: 0,  other: 1 },
+      prevMix: { gas: 51, nuclear: 7,  wind: 13, solar: 16, coal: 13, hydro: 0,  other: 0 }
     },
     {
       name: "PJM",
-      loadGW: 133,
-      loadNote: "max gen alert",
-      mix:     { gas: 44, nuclear: 22, wind: 2, solar: 5, coal: 22, hydro: 2, other: 3 },
-      prevMix: { gas: 44, nuclear: 26, wind: 4, solar: 4, coal: 17, hydro: 2, other: 3 }
+      loadGW: 88,
+      loadNote: "mild shoulder load",
+      mix:     { gas: 40, nuclear: 30, wind: 5,  solar: 4,  coal: 15, hydro: 2,  other: 4 },
+      prevMix: { gas: 40, nuclear: 30, wind: 5,  solar: 4,  coal: 15, hydro: 2,  other: 4 }
     },
     {
       name: "MISO",
-      loadGW: 103,
-      loadNote: "conservative operations",
-      mix:     { gas: 36, nuclear: 12, wind: 3, solar: 11, coal: 32, hydro: 0, other: 6 },
-      prevMix: { gas: 32, nuclear: 14, wind: 20, solar: 6, coal: 23, hydro: 1, other: 4 }
+      loadGW: 72,
+      loadNote: "autumn wind strong",
+      mix:     { gas: 31, nuclear: 15, wind: 24, solar: 4,  coal: 22, hydro: 1,  other: 3 },
+      prevMix: { gas: 31, nuclear: 15, wind: 24, solar: 4,  coal: 22, hydro: 1,  other: 3 }
     },
     {
       name: "NYISO",
-      loadGW: 23,
-      loadNote: "warm, hydro steady",
-      mix:     { gas: 65, nuclear: 12, wind: 0, solar: 0, coal: 0, hydro: 22, other: 1 },
-      prevMix: { gas: 42, nuclear: 21, wind: 3, solar: 3, coal: 0, hydro: 26, other: 5 }
+      loadGW: 17,
+      loadNote: "mild load, hydro steady",
+      mix:     { gas: 41, nuclear: 24, wind: 4,  solar: 3,  coal: 0,  hydro: 23, other: 5 },
+      prevMix: { gas: 41, nuclear: 24, wind: 4,  solar: 3,  coal: 0,  hydro: 23, other: 5 }
     }
   ]
 };
