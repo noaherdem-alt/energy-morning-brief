@@ -337,13 +337,13 @@ body {
 </div>
 
 <script>
-// SEED verified October 6, 2026 (Tuesday)
-// Sources: EOX Live Morning Report 6:18 AM CST Oct 6: Nat Gas $3.078 (+$0.012, +0.39%, prev settle $3.066), WTI $87.38 (-$2.05, -2.29%), Brent $98.08 (-$2.24, -2.23%) |
-//          ERCOT CDR page would not finish loading this run -- ERCOT RT Hub $25.18/MWh is an ESTIMATE carried forward from Oct 5 |
-//          PJM ~$62/MWh ESTIMATE -- no live PJM data returned by search this run (carried forward from Oct 5 history) |
-//          HH Spot shown as front-month proxy ($3.08) -- no separate spot print returned |
-//          EIA storage wk/e Sep 25 (released Oct 1): 3,415 Bcf, +64 Bcf build, 79 Bcf above 5-yr avg of 3,336 Bcf, 138 Bcf below last year; next report Thu Oct 8; EIA STEO end-October forecast 3,969 Bcf |
-//          Headlines: Xcel Energy agreement (Oct 6) to transfer Michigan gas/electric operations to SEMCO ENERGY Gas and UPPCO; BGE/Delmarva/Pepco told Maryland PSC a PJM-compliant peak-shaving program is not viable before the October deadline to opt out of PJM's Reliability Backstop Procurement |
+// SEED verified October 9, 2026 (Friday)
+// Sources: EOX Live Morning Report NOT FOUND in Gmail -- Nat Gas shown is NYMEX Nov settle $3.192 (-$0.011, -0.3%, Thu Oct 8; intraday high $3.298); WTI $87.38 / Brent $98.08 are ESTIMATES carried from Oct 6 |
+//          ERCOT CDR would not load -- ERCOT RT Hub $25.18/MWh is an ESTIMATE carried from Oct 6 |
+//          PJM ~$62/MWh ESTIMATE carried from Oct 6 -- no live PJM data returned |
+//          HH Spot shown as front-month proxy ($3.19) -- no separate spot print returned |
+//          EIA storage wk/e Oct 2 (released Thu Oct 8): 3,500 Bcf, +85 Bcf build, 68 Bcf above 5-yr avg, 130 Bcf below last year |
+//          Headlines: EIA 85 Bcf build (Oct 8); US power costs at multi-year highs ahead of midterms (article date unconfirmed) |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -359,7 +359,7 @@ body {
 //   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out, Ancillary Services,
 //   Firm Transportation (FT), Weighted Average Cost of Gas (WACOG), Operational Flow Order (OFO),
 //   Gross Receipts Tax (GRT), Line Loss Factor (LLF), Provider of Last Resort (POLR),
-//   Heating Degree Day (HDD), Day-Ahead Market (DAM)
+//   Heating Degree Day (HDD), Day-Ahead Market (DAM), Holdover Rate
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -388,7 +388,8 @@ body {
 //   Why the Front-Month Gas Contract Changes Every Month and What the Roll Does to a Quoted Price,
 //   How a Utility Assigns a Commercial Account to a Rate Class and Why the Wrong One Quietly Costs Money,
 //   How Capacity and Transmission Costs Get Passed Through on Some Supply Contracts and Fixed Into the Rate on Others,
-//   Why Mild Weather Can Cost a Supplier Money on Fixed-Price Load
+//   Why Mild Weather Can Cost a Supplier Money on Fixed-Price Load,
+//   How Transmission Congestion Splits Prices Between Nearby Locations on the Same Grid
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -397,37 +398,38 @@ body {
 //   Upfront vs. Residual: How Broker Compensation Is Structured (Sep 11 -- How the Money Flows),
 //   Anatomy of the Delivery Charges Section of a Commercial Electric Bill (Sep 18 -- Anatomy of a Bill),
 //   The Force Majeure Clause (Sep 25 -- Anatomy of a Contract Clause),
-//   What Happens When a Customer Adds a Meter Mid-Term (Oct 2 -- What Happens When)
-//   NOTE: Sep 4 Friday slot was missed (no run published). NEXT FRIDAY (Oct 9): category 4 -- How the Money Flows
+//   What Happens When a Customer Adds a Meter Mid-Term (Oct 2 -- What Happens When),
+//   Why Two Suppliers Quote the Same Load Differently (Oct 9 -- How the Money Flows)
+//   NOTE: Sep 4 Friday slot was missed. NEXT FRIDAY (Oct 16): category 1 -- Anatomy of a Bill
 const SEED = {
-  "date": "Tuesday, October 6, 2026",
+  "date": "Friday, October 9, 2026",
   "meta": {
-    "marketTakeaway": "Natural gas edged up to about $3.08/MMBtu, a few cents above Monday's settle, as the front month tested its 200-day average with mild weather still in the forecast. Storage stands 79 Bcf above the five-year average after a 64 Bcf build, and the next EIA report lands Thursday. WTI dropped 2.3% to $87.38 while Brent held near $98."
+    "marketTakeaway": "Front-month natural gas settled Thursday at $3.192/MMBtu, down 0.3% after reversing from a $3.298 intraday high, as EIA's 85 Bcf build for the week ended Oct 2 narrowed the surplus to the five-year average to 68 Bcf. Inventories stand at 3,500 Bcf, 130 Bcf below last year, so the market is treating winter supply as comfortable but not abundant. Oil and power levels shown are the latest confirmed readings."
   },
   "prices": [
     {
       "name": "HH Spot",
-      "price": "$3.08",
-      "change": "+0.4%",
-      "direction": "up"
+      "price": "$3.19",
+      "change": "-0.3%",
+      "direction": "down"
     },
     {
       "name": "NYMEX NG",
-      "price": "$3.08",
-      "change": "+0.4%",
-      "direction": "up"
+      "price": "$3.19",
+      "change": "-0.3%",
+      "direction": "down"
     },
     {
       "name": "WTI Crude",
       "price": "$87.38",
-      "change": "-2.3%",
-      "direction": "down"
+      "change": "",
+      "direction": "neutral"
     },
     {
       "name": "Brent Crude",
       "price": "$98.08",
-      "change": "-2.2%",
-      "direction": "down"
+      "change": "",
+      "direction": "neutral"
     },
     {
       "name": "ERCOT RT Hub",
@@ -437,29 +439,29 @@ const SEED = {
     }
   ],
   "wordOfDay": {
-    "term": "Day-Ahead Market",
-    "abbr": "DAM",
-    "category": "Power Market",
-    "tldr": "The forward market where power for each hour of tomorrow is bought and sold at prices set today.",
-    "usedInSentence": "Index-priced customers are billed off day-ahead and real-time settlements, and the gap between the two is where a quiet shoulder-season day can still produce a surprising hourly spike."
+    "term": "Holdover Rate",
+    "abbr": "",
+    "category": "Contract Terms",
+    "tldr": "The price a supplier charges when service continues after a contract term ends without a signed renewal.",
+    "usedInSentence": "A customer whose fixed term expired in September was moved to a month-to-month holdover rate that tracked the supplier's index plus a premium."
   },
   "headlines": [
     {
-      "title": "Xcel Energy to Transfer Michigan Gas and Electric Operations to SEMCO and UPPCO",
-      "tag": "Utilities",
-      "summary": "The agreement moves Xcel's Michigan customers to new owners, pending regulatory approval, continuing a wave of utility portfolio reshuffling."
+      "title": "EIA Reports 85 Bcf Storage Build, Trimming Surplus to 68 Bcf Above Five-Year Average",
+      "tag": "Natural Gas",
+      "summary": "Inventories reached 3,500 Bcf for the week ended Oct 2, 130 Bcf below last year, as November futures slipped to $3.192."
     },
     {
-      "title": "Maryland Utilities Say PJM Peak-Shaving Opt-Out Is Not Viable by the October Deadline",
-      "tag": "PJM",
-      "summary": "BGE, Delmarva and Pepco told regulators they cannot build a compliant program in time, leaving customers exposed to PJM's backstop procurement costs."
+      "title": "U.S. Power Costs Hit Multi-Year Highs as Data-Center Demand Lifts Generation Costs",
+      "tag": "Power",
+      "summary": "Rising wholesale costs are feeding into utility bills, and several states are weighing credits and rebates ahead of the November midterms."
     }
   ],
   "knowledgeBuilder": {
-    "topic": "Why Mild Weather Can Cost a Supplier Money on Fixed-Price Load",
-    "tldr": "A supplier hedges fixed-price load in advance based on expected usage, so unusually mild weather leaves it holding extra power or gas that must be resold, sometimes below its cost."
+    "topic": "How Transmission Congestion Splits Prices Between Nearby Locations on the Same Grid",
+    "tldr": "When transmission lines hit their limits, cheaper power cannot reach every location, so each node settles at its own price. Two customers in the same grid can see different energy costs."
   },
-  "procurementTip": "With gas pinned near $3.08 and near-normal weather in the outlook, forward curves are being priced more on storage surplus than on any weather scare, which keeps quote spreads between suppliers tight.",
+  "procurementTip": "With gas near $3.19 and storage 68 Bcf above the five-year average, the winter curve is pricing a cushion rather than a shortage, which keeps heating-season quotes anchored to a calm gas market.",
   "priceHistory": {
     "labels": [
       "Oct '25",
@@ -489,7 +491,7 @@ const SEED = {
       2.8,
       2.87,
       3.09,
-      3.08
+      3.19
     ],
     "wti": [
       74.2,
@@ -567,7 +569,24 @@ const SEED = {
       54
     ]
   },
-  "deepDive": null,
+  "deepDive": {
+    "topic": "Why Two Suppliers Quote the Same Load Differently",
+    "sections": [
+      {
+        "title": "Same Load, Different Hedges",
+        "body": "Each supplier prices the same usage profile against its own forward purchases and hedge book. A supplier already long power at a lower cost can quote below one buying fresh at today's curve, even when both use identical forward prices on paper."
+      },
+      {
+        "title": "Risk Premiums Are Judgment Calls",
+        "body": "Suppliers add margin for weather, usage swings, credit exposure and the chance a customer walks away before the term ends. Each firm sizes those premiums from its own loss history and appetite, so the stack of small adders produces different totals."
+      },
+      {
+        "title": "Broker Fees and Timing Layer On Top",
+        "body": "Any broker compensation is built into the quoted rate, and suppliers structure it differently, as an upfront payment or a residual per kWh or therm. Quotes also reflect when each supplier last priced, so a desk that refreshed its curve an hour earlier can sit a few cents apart."
+      }
+    ],
+    "takeaway": "A quoted price is the sum of a supplier's hedge position, risk judgments and fee structure, so two honest quotes on identical load can differ without either being wrong."
+  },
   glossary: [
     { term: "Price to Compare (PTC)", category: "Retail Markets", definition: "The utility's default electricity generation rate -- the benchmark a competitive supplier must beat to show savings for a customer." },
     { term: "Basis Differential", category: "Gas Supply", definition: "The price spread between a local natural gas delivery point and Henry Hub. Reflects pipeline distance, congestion, and local supply/demand. Can be positive or negative." },
@@ -633,7 +652,8 @@ const SEED = {
     { term: "Line Loss Factor (LLF)", category: "Power Markets", definition: "The share of electricity lost as heat on transmission and distribution wires between the generator and the customer's meter. A supplier has to buy more energy than the meter records, and that gross-up is built into the quoted rate." },
     { term: "Provider of Last Resort (POLR)", category: "Retail Supply", definition: "The default supplier of record that serves a customer when no competitive supplier does, whether because a retailer failed, a contract lapsed, or the customer never shopped. POLR rates are set to cover the utility's procurement risk rather than to compete, so they typically sit above market." },
     { term: "Heating Degree Day (HDD)", category: "Gas Market", definition: "A measure of how cold a day was relative to a 65F baseline, calculated as 65 minus the day average temperature, with warmer days counting zero. Summed over a month or a season, HDDs are the standard proxy for heating demand, and shifts in HDD forecasts are the single biggest short-term driver of the winter natural gas strip." },
-    {"term":"Day-Ahead Market (DAM)","category":"Power Market","definition":"The forward market in which electricity for each hour of the next operating day is bought and sold at prices set the day before. Day-ahead prices are the baseline for index-priced supply, with the real-time market settling any deviation from what cleared."}
+    {"term":"Day-Ahead Market (DAM)","category":"Power Market","definition":"The forward market in which electricity for each hour of the next operating day is bought and sold at prices set the day before. Day-ahead prices are the baseline for index-priced supply, with the real-time market settling any deviation from what cleared."},
+    {"term":"Holdover Rate","category":"Contract Terms","definition":"The rate a supplier charges when service continues past the end of a contract term without a signed renewal. It is typically month-to-month, tied to an index plus a premium, and often higher than the expired fixed price."}
   ]
 };
 
