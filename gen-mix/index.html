@@ -144,17 +144,17 @@ body {
 //          NYISO: hydro supporting, nuclear baseload high, gas moderate |
 //          Week-over-week deltas are zero on first run (no prior week seeded) |
 const SEED = {
-  "date": "Wednesday, October 7, 2026",
+  "date": "Wednesday, October 14, 2026",
   "callout": {
-    "text": "Fuel-mix percentages are carried forward from the prior seeded run this week because no live ISO breakdown was retrievable; week-over-week deltas read flat. ERCOT's 2026 summer peak of 91,134 MW (July 22) marked the season's high-water mark for load."
+    "text": "Data notice: live fuel-mix readings were not available this week, so the shares below are carried forward from the July 29 brief and week-over-week deltas read flat. Treat the mix as indicative, not current."
   },
-  "weekRecap": "Henry Hub front-month traded around $3.02–$3.30 in late September, per the most recent data available. ERCOT's August peak demand reached 90,817 MW, just under its July 22 record of 91,134 MW. Current-week PJM, MISO and NYISO load and storage data were not retrievable.",
-  "narrative": "Natural gas remains the largest single source across all four zones in this carried-forward view, though shares differ by region — <strong>ERCOT</strong> leans on wind and solar, while <strong>PJM</strong> keeps a coal-gas-nuclear mix. <strong>MISO</strong> pairs wind with coal, and <strong>NYISO</strong>'s nuclear-hydro base keeps its gas share the lowest of the four.",
+  "weekRecap": "Live Henry Hub and ISO load data were not retrievable for this run. The most recent Henry Hub figure found was a front-month near $3.00 on September 29, after $3.30 on September 25. Check ERCOT, PJM, MISO and NYISO dashboards for current conditions.",
+  "narrative": "Natural gas remains the largest single fuel in <strong>ERCOT</strong>, <strong>PJM</strong>, <strong>MISO</strong> and <strong>NYISO</strong> on the carried-forward figures, with wind and solar significant in ERCOT and MISO, coal still meaningful in PJM and MISO, and nuclear and hydro anchoring NYISO. Shares shown are from July and will differ in autumn shoulder-season conditions.",
   "isos": [
     {
       "name": "ERCOT",
       "loadGW": 79,
-      "loadNote": "prior-week estimate",
+      "loadNote": "carried forward",
       "mix": {
         "gas": 43,
         "nuclear": 11,
@@ -177,7 +177,7 @@ const SEED = {
     {
       "name": "PJM",
       "loadGW": 145,
-      "loadNote": "prior-week estimate",
+      "loadNote": "carried forward",
       "mix": {
         "gas": 32,
         "nuclear": 22,
@@ -200,7 +200,7 @@ const SEED = {
     {
       "name": "MISO",
       "loadGW": 110,
-      "loadNote": "prior-week estimate",
+      "loadNote": "carried forward",
       "mix": {
         "gas": 28,
         "nuclear": 18,
@@ -223,7 +223,7 @@ const SEED = {
     {
       "name": "NYISO",
       "loadGW": 27,
-      "loadNote": "prior-week estimate",
+      "loadNote": "carried forward",
       "mix": {
         "gas": 34,
         "nuclear": 28,
