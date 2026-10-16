@@ -337,13 +337,13 @@ body {
 </div>
 
 <script>
-// SEED verified October 15, 2026 (Thursday)
-// Sources: EOX Live Morning Report 7:28 AM CST Oct 15: Nat Gas $3.270 (+$0.072, +2.25%, prev settle $3.198), WTI $95.46 (+$0.37, +0.39%), Brent $104.83 (-$1.23, -1.16%) |
-//          ERCOT CDR last updated Oct 15 11:17 -- HB_HUBAVG $26.10/MWh at the 1115 interval |
-//          PJM ~$62/MWh ESTIMATE carried from Oct 6 -- no live PJM data returned; MISO/NYISO history carried unchanged |
-//          HH Spot shown as front-month proxy -- no separate spot print returned |
-//          EIA storage wk/e Oct 9 (released Thu Oct 15): 3,567 Bcf, +67 Bcf build (IndexBox/NGI via web search); 5-yr avg comparison not confirmed |
-//          Headlines: derived from EIA storage figure and EOX prices -- no dated news stories returned by search |
+// SEED verified October 16, 2026 (Friday)
+// Sources: EOX Live Morning Report 7:18 AM CST Oct 16: Nat Gas $3.191 (-$0.045, -1.39%, prev settle $3.236), WTI $98.45 (+$0.48, +0.49%), Brent $106.53 (+$0.61, +0.58%) |
+//          ERCOT CDR last updated Oct 16 09:17 -- HB_HUBAVG $16.17/MWh at 0915 interval; overnight $27.53 at 0030 falling to $15-16 by 0400-0500, low $12.06 at 0900 |
+//          PJM $62/MWh ESTIMATE carried forward from Oct 15 -- no live data returned |
+//          HH Spot $3.27 ESTIMATE carried forward from Oct 15 -- no live data returned |
+//          EIA storage: 3,567 Bcf (+67 Bcf) from Oct 15 report (latest confirmed) |
+//          Headlines built from EOX Live prices -- web search returned no usable dated news this run |
 // WORD OF DAY USED -- never repeat:
 //   Price to Compare (PTC), Basis Differential, Locational Marginal Price (LMP), Capacity Charge,
 //   Fuel Adjustment Clause (FAC), Index Price, Fixed Price, Demand Charge, Henry Hub,
@@ -359,7 +359,7 @@ body {
 //   Citygate, Weather Normalization Adjustment (WNA), Blend and Extend, Cash-Out, Ancillary Services,
 //   Firm Transportation (FT), Weighted Average Cost of Gas (WACOG), Operational Flow Order (OFO),
 //   Gross Receipts Tax (GRT), Line Loss Factor (LLF), Provider of Last Resort (POLR),
-//   Heating Degree Day (HDD), Day-Ahead Market (DAM), Holdover Rate, Meter Multiplier, Billing Determinant
+//   Heating Degree Day (HDD), Day-Ahead Market (DAM), Holdover Rate, Meter Multiplier, Billing Determinant, Minimum Bill
 // LAST KB TOPICS -- never repeat:
 //   How Contract Start Dates Differ from Flow Dates and Why the Gap Matters,
 //   How True-Ups Work on Utility Gas Bills and Why Customers See Surprise Credits or Charges,
@@ -390,7 +390,8 @@ body {
 //   How Capacity and Transmission Costs Get Passed Through on Some Supply Contracts and Fixed Into the Rate on Others,
 //   Why Mild Weather Can Cost a Supplier Money on Fixed-Price Load,
 //   How Transmission Congestion Splits Prices Between Nearby Locations on the Same Grid,
-//   How Hedging Works Behind a Fixed-Price Quote and Why Volume Changes Create Gains or Losses, Why Account Numbers, Meter Numbers, and Service Points Are Different Identifiers and How Mixing Them Up Stalls Enrollments
+//   How Hedging Works Behind a Fixed-Price Quote and Why Volume Changes Create Gains or Losses, Why Account Numbers, Meter Numbers, and Service Points Are Different Identifiers and How Mixing Them Up Stalls Enrollments,
+//   How ISO Settlement Revises Last Month's Usage and Why Supplier Costs Change Months Later
 // DEEP DIVE USED -- never repeat:
 //   How a Supplier Builds a Fixed Retail Rate (Aug 7 -- How the Money Flows),
 //   Anatomy of the Riders and Surcharges Section of a Commercial Electric Bill (Aug 14 -- Anatomy of a Bill),
@@ -401,68 +402,69 @@ body {
 //   The Force Majeure Clause (Sep 25 -- Anatomy of a Contract Clause),
 //   What Happens When a Customer Adds a Meter Mid-Term (Oct 2 -- What Happens When),
 //   Why Two Suppliers Quote the Same Load Differently (Oct 9 -- How the Money Flows)
-//   NOTE: Sep 4 Friday slot was missed. NEXT FRIDAY (Oct 16): category 1 -- Anatomy of a Bill
+//   Anatomy of the Supply Charges Section of a Commercial Electric Bill (Oct 16 -- Anatomy of a Bill),
+//   NOTE: Sep 4 Friday slot was missed. NEXT FRIDAY (Oct 23): category 2 -- Anatomy of a Contract Clause
 const SEED = {
-  "date": "Thursday, October 15, 2026",
+  "date": "Friday, October 16, 2026",
   "meta": {
-    "marketTakeaway": "Front-month natural gas traded at $3.270/MMBtu early Thursday, up 2.3% from the $3.198 prior settle, as EIA's 67 Bcf build for the week ended Oct. 9 lifted storage to 3,567 Bcf, a smaller injection than the prior week's 85 Bcf. WTI rose 0.4% to $95.46 while Brent eased 1.2% to $104.83. ERCOT's hub average stood at $26.10/MWh at 11:15 AM."
+    "marketTakeaway": "Natural gas slipped 1.4% to $3.191/MMBtu in early trading, giving back part of Thursday's gain after yesterday's EIA report showed a 67 Bcf injection that lifted storage to 3,567 Bcf. Crude held firm, with WTI at $98.45 and Brent at $106.53. In ERCOT, the hub average sat near $16/MWh by mid-morning after overnight prices drifted from the mid-$20s to the mid-teens as wind and early solar covered demand."
   },
   "prices": [
     {
       "name": "HH Spot",
       "price": "$3.27",
-      "change": "+2.3%",
-      "direction": "up"
+      "change": "",
+      "direction": "neutral"
     },
     {
       "name": "NYMEX NG",
-      "price": "$3.27",
-      "change": "+2.3%",
-      "direction": "up"
+      "price": "$3.19",
+      "change": "-1.4%",
+      "direction": "down"
     },
     {
       "name": "WTI Crude",
-      "price": "$95.46",
-      "change": "+0.4%",
+      "price": "$98.45",
+      "change": "+0.5%",
       "direction": "up"
     },
     {
       "name": "Brent Crude",
-      "price": "$104.83",
-      "change": "-1.2%",
-      "direction": "down"
+      "price": "$106.53",
+      "change": "+0.6%",
+      "direction": "up"
     },
     {
       "name": "ERCOT RT Hub",
-      "price": "$26.10",
+      "price": "$16.17",
       "change": "",
       "direction": "neutral"
     }
   ],
   "wordOfDay": {
-    "term": "Billing Determinant",
+    "term": "Minimum Bill",
     "abbr": "",
-    "category": "Bill Components",
-    "tldr": "The metered quantity -- kWh, kW, or therms -- that a rate is multiplied by to produce a charge.",
-    "usedInSentence": "A single commercial bill can carry three billing determinants at once: kWh for energy, peak kW for demand, and a ratcheted kW for delivery."
+    "category": "Contract Terms",
+    "tldr": "A floor charge a customer owes each month even when usage is below the contract's threshold.",
+    "usedInSentence": "A shuttered seasonal site still received a monthly invoice because the contract's minimum bill applied regardless of actual consumption."
   },
   "headlines": [
     {
-      "title": "EIA: 67 Bcf Injection Lifts Storage to 3,567 Bcf",
-      "tag": "Storage",
-      "summary": "Lower 48 inventories rose 67 Bcf in the week ended Oct. 9, down from the prior week's 85 Bcf build."
+      "title": "Natural Gas Slips 1.4% to $3.19 Ahead of Open",
+      "tag": "Natural Gas",
+      "summary": "Front-month futures eased from the prior settle of $3.236 as storage stayed above year-ago levels after the latest injection."
     },
     {
-      "title": "Natural Gas Futures Firm as WTI Holds Near $95",
-      "tag": "Natural Gas",
-      "summary": "Front-month gas rose 2.3% to $3.270 early Thursday while Brent slipped 1.2% to $104.83."
+      "title": "Brent Holds Above $106 as WTI Edges Toward $98.50",
+      "tag": "Crude Oil",
+      "summary": "Crude gained about half a percent in early trading, with Brent at $106.53 and WTI at $98.45."
     }
   ],
   "knowledgeBuilder": {
-    "topic": "Why Account Numbers, Meter Numbers, and Service Points Are Different Identifiers and How Mixing Them Up Stalls Enrollments",
-    "tldr": "An account number identifies the billing relationship, a meter number identifies the hardware, and a service point ID identifies the delivery location. Enrollment files key off the service point, so a swapped identifier gets a switch request rejected."
+    "topic": "How ISO Settlement Revises Last Month's Usage and Why Supplier Costs Change Months Later",
+    "tldr": "Grid operators first settle power on estimates, then re-run settlements as actual meter data arrives. Supplier costs on a past month can shift well after the invoice goes out."
   },
-  "procurementTip": "Gas gaining 7 cents overnight while the weekly build shrank from 85 to 67 Bcf shows how fast winter-strip pricing, and any fixed-price quote built on it, can shift between a morning quote and an afternoon signature.",
+  "procurementTip": "With gas near $3.19 and ERCOT's hub average in the mid-teens, fall shoulder-season conditions are keeping spot power cheap relative to forward curves that price in winter risk.",
   "priceHistory": {
     "labels": [
       "Oct '25",
@@ -492,7 +494,7 @@ const SEED = {
       2.8,
       2.87,
       3.09,
-      3.27
+      3.19
     ],
     "wti": [
       74.2,
@@ -507,7 +509,7 @@ const SEED = {
       85,
       83.15,
       91.85,
-      95.46
+      98.45
     ],
     "ercot": [
       28,
@@ -522,7 +524,7 @@ const SEED = {
       55,
       32,
       28,
-      26.1
+      16.17
     ],
     "pjm": [
       35,
@@ -570,7 +572,24 @@ const SEED = {
       54
     ]
   },
-  "deepDive": null,
+  "deepDive": {
+    "topic": "Anatomy of the Supply Charges Section of a Commercial Electric Bill",
+    "sections": [
+      {
+        "title": "The Energy Line",
+        "body": "The energy charge is the per-kWh price for the electricity itself, and it is the line a supplier's contract sets. On a fixed-price deal it is one number; on an index deal it moves with wholesale prices and is often billed alongside an adder."
+      },
+      {
+        "title": "Capacity and Transmission Pass-Throughs",
+        "body": "Capacity and transmission lines may appear inside the supply section even though grid operators set the underlying costs. Suppliers either bundle them into the rate or pass them through at actual cost, which is why two quotes with the same energy price can produce different bills."
+      },
+      {
+        "title": "Which Lines a Supplier Can Beat",
+        "body": "Competition happens almost entirely on the energy price, the adder, and how capacity and transmission are packaged. Utility-set items such as delivery charges are identical no matter which supplier serves the account."
+      }
+    ],
+    "takeaway": "The supply section is the only part of the bill a supplier controls, but the packaging of capacity and transmission can matter as much as the energy price."
+  },
   "glossary": [
     {
       "term": "Price to Compare (PTC)",
@@ -911,6 +930,11 @@ const SEED = {
       "term": "Billing Determinant",
       "category": "Bill Components",
       "definition": "The metered quantity, such as kWh, kW, or therms, that a rate is multiplied by to produce a charge. Energy, demand, and delivery lines on one bill can each use a different determinant."
+    },
+    {
+      "term": "Minimum Bill",
+      "category": "Contract Terms",
+      "definition": "A floor amount a customer owes each billing period when metered usage falls below the contract's minimum threshold."
     }
   ]
 };
